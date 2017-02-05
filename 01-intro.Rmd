@@ -1,0 +1,275 @@
+# はじめに {#intro}
+
+```{r, include=FALSE}
+project_name = 'linear-economic-dynamics'
+```
+
+## 目標とするモデル
+
+この講義では, 次の形の動的システムを考察する. 
+
+$$
+\begin{equation}
+  A\mathbb{E}_{t}x_{t+1}=Bx_{t}+Cz_{t} (\#eq:lre)
+\end{equation}
+$$
+
+
+$x_t$ は内生変数のベクトル, $z_t$ は外生変数. $A$, $B$, $C$ は適切なサイズの行列である. $\mathbb E_t$ は条件付き期待値. 大ざっぱに言えば, 行列積と足し算だけからなるシステムを線形システムという. 上の線形方程式を
+
+\begin{equation} 
+  Bx_{t} = A\mathbb{E}_{t}x_{t+1} - Cz_{t} (\#eq:lre2)
+\end{equation}
+
+と書き換えると, **今期の経済変数は将来に対する期待によって定まっている**と読むことができる. \@ref(eq:lre) や \@ref(eq:lre2) のようなシステムを **線形合理的期待モデル (linear rational expectations model)** という.
+
+通常, 経済モデルは非線形システム (線形でないシステムをすべて非線形システムという) によって記述されることが多いのだが, 非確率的な平衡点 $x^* = x_t = x_{t+1}$, $z_t = 0$ ($t > 0$) の周りに分析を限定すれば, 線形システムによってよく近似されることが知られている.^[Hartman-Grobman の定理.]
+
+線形システムの分析は係数行列 (上記の $A$, $B$, $C$) の分析に落とし込むことができるため, 理論的にも数値的にも大変扱いやすい. したがって, これから我々が学ぶ分析手法は**平衡状態にある経済に対して小さなショックが加わったときに, 経済変数がどのような経時的変化を示すかを分析するための第一歩**である. 実際には, 線形近似のみから数量的なインプリケーションを導くことは困難であるり, 有用な分析を行うためには高次の近似手法を学ぶ必要がある. しかし, 線形理論を理解することなく非線形理論を理解することはできない. 一歩一歩着実に進んでいこう. 
+
+## 最初のモデル
+
+実は確率的な要因がなくなったとしても分析の基本的な方針は変わらない. すなわち, 非確率的 (決定論的) なシステム
+
+\begin{equation}
+  Ax_{t+1} = Bx_t + Cz_t (\#eq:lsys)
+\end{equation}
+
+を分析する手法を確立すれば, \@ref(eq:lre) の分析・シミュレーションができる. まずは \@ref(eq:lsys) の分析について述べたのち, 確率的な要因を導入するというステップで理論分析を進める.
+
+上記の \@ref(eq:lsys) の形のシステムは, 制御理論の分野ではデスクリプタシステム (descriptor system), あるいは陰的システム (implicit system) として知られている. 制御理論における前提とやや異なる部分もあるにはあるが, 基本的な方針を概ね共有している. この分野で研究を進めようという人は, 同じ概念が異なる分野で異なる名前で利用されていることを知っておく方がよいだろう.
+
+## プログラミング環境 RStudio
+
+前述のような線形モデルは (広く普及している C, Fortran のルーチンのおかげで) 大抵のプログラミング言語で解くことができる. 本書で R を使用するのは, 想定する読者層がもっとも接近しやすい言語であろうと考えたからである. 計量経済学の学習は Stata を使い, マクロ経済学では Matlab, 数理経済学の授業では Python というようなことにもなりがちだが, プログラミングの初級者は1つの言語に深く習熟するようにした方がよい.  将来的に他の言語に移るとしても, 広く浅く学んだ人よりも深く狭く学んだ人の方が, 速く学ぶ.
+
+
+R は計量経済学のツールとしてもとても優秀で, しかも多くのユーザーコミュニティがある. データ収集, 図示, モデリング, ドキュメント作成のすべての工程をRとRStudio で実行することができる. RStudio に触れる機会を増やすために, すべてのレポートを RStudio で作成するように気持ちを切り替えてみよう. RMarkdown という書式で書き, それをコンパイルする. knitr や pandoc がスムーズに仕事をこなしてくれる. PDF に変換するには texlive をインストールする. サイズは大きいが簡単だ. 数式を入力するには LaTeX の構文を覚える必要があるが, 大学院にいる以上いずれ必要になる技術だ. 今やって損はない. RMarkdown は LaTeX そのものと比べると概ね自然に書くことができるし, 何よりも R のコードや計算結果, グラフを文章内に埋め込むのが非常に簡単だ. ところで, 本書も RStudio で書いている. いくつかの RMarkdown ファイル, 設定ファイルを bookdown というパッケージがうまく処理してくれる.  
+
+R に十分習熟し, プロファイリングの努力も虚しく計算速度に限界を感じることがあるかもしれない. そうなった C++ を少し学べばよい. 重い処理だけを扱う C++ のコードを用意し, RCpp パケージを使って呼び出すことができる. そのような願望が現れるころには計算機の仕組みをある程度理解しているだろうから, C++ も速く学べると思う. 
+
+本書のコードに関する解説は, 読者が RStudio で作業をしているものと想定している. Rプログラミングの経験が浅い読者は, 筆者と同様の環境を構築しておくほうが混乱がないだろう. 本節の残りの部分で RStudio  の使い方に関する簡単な説明と, 環境構築を行う.  
+
+### 準備
+
+R 本体も RStudio もバイナリファイルをダウンロードして簡単にインストールすることができるので, インストールに関する詳細は省略する. 
+
+このコースの学習用に RStudio プロジェクトファイルを用意しておこう. RStudio を起動し, メニューから「File > New Project...」をクリックして新しいプロジェクトを作成する. 作成方法に関していくつかの選択肢を提示されるので, 特に問題がなければ「New Directory > Empty Project」を選ぶ. 必要な入力項目を入力する. 例えば, プロジェクト名を`r project_name` としておこう. 指定したディレクトリの配下に, `r project_name` という名前の新しいディレクトリ (フォルダ) , さらにその中に `r paste0(project_name, '.Rproj')` というファイルが作成される. 
+
+作業再開時には, `r paste0(project_name, '.Rproj')` をダブルクリックして, RStudio が開く. 先程作ったディレクトリが作業ディレクトリになる. プロジェクト作成直後はすでに作業ディレクトリを移っているのでそのまま進めて構わない.
+
+```{block2, type="exercise"}
+次の用語を説明する. 説明できない場合は検索して調べる. 
+
+- ディレクトリ, フォルダ, directory, folder
+- 作業ディレクトリ, working directory / current directory
+- 相対パス, relative path
+- 絶対パス, absolute path
+- コンソール, console
+- スクリプトファイル, script file
+
+```
+
+コマンドの実行はコンソールに入力＋Enter 押下でもよいし, コマンドをスクリプトファイルに書いて実行してもよい.
+
+#### コンソール {-}
+
+Console と書かれたエリアを探してほしい. 設定をいじっていなければ,[^locale]
+
+[^locale]: OSの言語に合わせて R のメッセージの言語が異なるかもしれない.            筆者は英語で利用することを強く推奨する. 未知のエラーに遭遇したときに, 英語の方が情報が得られやすい. ロカールの変更方法は各自調べること.
+
+```
+R version 3.3.2 (2016-10-31) -- "Sincere Pumpkin Patch"
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin13.4.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+>
+```
+
+という表示が見えるはずだ. 最後の記号 「>」は「プロンプト」と呼ばれる. ここにコマンドを入力せよという意味である. 
+
+本書では, コンソールに入力して実行して結果を確認するという文脈であってもプロンプトを表示しない. 各自入力して実行してほしいコマンドは次のようなグレーのボックスで表示する. 
+
+
+```{r}
+10 * 3
+```
+
+`[1] 30` は実行結果であり, `10 * 3` の結果が `r 10 * 3` であることを意味している. 先頭についている `##` は特に意味はない. `[1]` は今のところ無視してもよい.  **コマンドの直後に配置された白背景のボックスに直前のコマンドの実行結果を掲載する**.
+
+
+プロンプトを省略することで, 複数行にわたるコマンドであってもコピー＆ペーストで実行できるという利点がある. 次のコードをまるごとコピーして, コンソールにペーストし, Enter を押下すればPlotsペインに結果が出力されるはずだ.
+
+```{r, fig.cap="'01_cobbdouglas_plot.R' の実行結果"}
+# 01_cobbdouglas_plot.R
+
+A = 1.2
+alpha = 0.3
+cobbdouglas = function(k) {
+  return(A * k ^ alpha)
+}
+
+k = seq(0, 10, length.out=200)
+y = cobbdouglas(k)
+plot(k, y, type='l')
+```
+
+`#` に続く内容は, プログラマが読むためだけのコメントである. 本書の約束事として, コードチャンクの1行目のコメントには, スクリプトとして保存する場合のファイル名や, 本文中で参照するための短いキャプションを書くことにする.
+
+
+#### スクリプトファイル {-}
+
+スクリプトファイルを保存するディレクトリを作っておこう. Files ペインを探して内容を見ると `r paste0(project_name, '.Rproj')` ファイルを見つけられる思う. そこがプロジェクトディレクトリの最上位階層 (ルートディレクトリ) である. もし当該ファイルが見当たらなければ, ディレクトリ階層を移動して探してほしい.  元いた場所から離れることができたのだから戻ることもできるはずだ. 帰れなくなったら RStudio を終了して, 再び .Rproj をダブルクリックして起動しなおせばよい. 
+
+プロジェクトの .Rpoj ファイルが見つかったら「New Folder」というボタンを押して, 「R」という名前の新しいディレクトリを作る.
+
+**スクリプト (script)**とは1つ以上のコマンドをまとめたファイルのことである. R はスクリプトファイルを読んで, 上から順番に実行することができる. コンソール上での作業は複数行に渡るコードを入力するには不向きなので, 別途ファイルに保存しておくことで生
+
+RStudio で新しいスクリプトファイルを作るにはいくつかの方法がある.
+
+- RStudio 左上にあるるボタン (白い四角の上に足し算記号のマーク) 
+  から「R Script」を選びクリックする. 
+- メニューから「File > New File > R Script」と進む.
+- **キーボードショートカット Ctrl+Shift+N / Cmd+Shift+N を押下する**
+
+最後のキーボードショートカットを覚えるのが一番よいだろう. 
+Cmd+Shit+N を押下すると, Untitled1 という名前でソースペインが開く. ここに先程の `01_cobbdouglas_plot.R` のコードをコピー＆ペーストしてみよう. Ctrl+S / Cmd+S によって保存しようとすると, 保存場所と名前を決めるように促されるので, 先程作成しておいた R というフォルダに, `01_cobbdouglas_plot.R` という名前で配置する. プロジェクトディレクトリは次のような構成になっているはずだ.[^hidden]
+
+[^hidden]: 実際には .Rproj.user という隠しディレクトリがある. 
+
+```
+linear-economic-dynamics
+├── R
+│   └── 01_cobbdouglas_plot.R
+└── linear-economic-dynamics.Rproj
+```
+
+作業ディレクトリ (linear-economic-dynamics) にある, R というサブディレクトリの中にある `01_cobbdouglas_plot.R` というスクリプトファイルを実行するには以下のようにする.
+
+```{r, eval=FALSE}
+source('R/01_cobbdouglas_plot.R')
+```
+
+作業ディレクトリを起点としたファイルの位置を**相対パス (relative path)**という. スクリプト内にファイルパスを書く場合は, やむを得ない事情で移動できない場合を除いて必ず相対パスで指定するようにする.
+
+
+さきほどのスクリプトファイルはもっと下位のサブディレクトリに配置することもできる. 例えば, 章ごと節ごとにディレクトリを作って
+
+```
+source('R/part1/chapter03/section04/subsection01/01.R')
+```
+
+ということも可能ではある. しかし, 階層が深くなりすぎると管理が難しくなるので, できるだけフラットにしておくようにしよう. この本では, 
+
+```
+R/chapternumber_descriptive_name.R
+```
+
+という形式のファイル名をつけ, すべて R ディレクトリの直下に配置する. 
+
+### パッケージ
+
+#### tidyverse {-}
+
+本書では `tidyverse` パッケージを利用する. `tidyverse` はRのデータフレーム操作を円滑にするためのパッケージ群である. 必要なもの以上に関数を読み込むことを望まない場合には, `ggplot2`, `dplyr`, `tidyr` を必要に応じて読み込むとよい.
+
+試しにプロンプトに
+
+```{r}
+library(tidyverse)
+```
+
+と打ち込んでみよう. エラーが出る場合には次のコマンドでインストールしてから, 再度実行する. 
+
+```{r, eval=FALSE}
+install.packages("tidyverse")
+```
+```
+Loading tidyverse: ggplot2
+Loading tidyverse: tibble
+Loading tidyverse: tidyr
+Loading tidyverse: readr
+Loading tidyverse: purrr
+Loading tidyverse: dplyr
+Conflicts with tidy packages ---------------------------------------------------------
+filter(): dplyr, stats
+lag():    dplyr, stats
+```
+といったメッセージが出ると思う. `tidyverse` はパッケージ群なので, 幾つかの個別のパッケージを読み込むのが仕事である. Conflicts が出て心配になるかもしれないが, 特に問題はない. `filter()`, `lag()` という関数がデフォルトで読み込まれているにもかかわらず, 同じ名前を持つ `dplyr` を読み込んだことで`filter()`, `lag()` という関数の実体が変更されてしまった. もし, `stats` を使いたければ, `stats::filter()` と呼び出せばよい. `stats::` や `dplyr::` といったプレフィックスは, 関数やオブジェクトがどのパッケージで定義されたものかを明示的にするときに使う. 
+
+本書では, `base::data.frame()` の代わりに `tibble::tibble()` を利用する. `tibble` パッケージは `tidyverse` に含まれている. 違いを簡単に見ておこう.
+
+```{r}
+x = c(1, 2, 3)
+y = c('a', 'b', 'c')
+z = c(TRUE, TRUE, FALSE)
+
+(df = data.frame(x = x, y = y, z = z))
+```
+
+```{r}
+(tbl = tibble(x = x, y = y, z = z))
+```
+
+base のデータフレームと比べて, tibble は次の点で扱いやすい.
+
+- データのサイズを表示してくれる
+- コラムの型情報を表示する (`<dbl>`, `<chr>`, `<lgl>`)
+- 文字列をファクター型にしない
+
+ファクター型は, 文字列を内部的に整数値として保存している. これを文字列と思って扱うと問題が起こる. 例えば,
+
+```{r}
+"a" < "b"
+```
+
+と同じ振る舞いを期待して, 次のような評価をすると問題が起こる:
+
+```{r}
+df$y[1] < df$y[2]
+```
+
+
+#### QZ {-}
+
+同様に `QZ` パッケージもインストールしておこう. 後々利用することになる.
+
+```{r, eval=FALSE}
+install.packages("qz")
+```
+
+#### devtools {-}
+
+パッケージ開発環境. `devtools::github_install()` を使って, github レポジトリからパッケージをインストールできるようになる.  
+
+**Step 1**:
+
+コンパイラをインストールする.
+
+- **Windows**: [Rtools (https://cran.r-project.org/bin/windows/Rtools/)](https://cran.r-project.org/bin/windows/Rtools/) をインストール
+- **Mac**: Xcode をインストール
+
+**Step 2**:
+
+CRAN からインストール.
+
+```{r, eval=FALSE}
+install.packages("devtools")
+```
+
+
+

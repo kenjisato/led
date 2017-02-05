@@ -1,0 +1,19 @@
+\usepackage[hiragino-pron]{luatexja-preset}
+\usepackage{amsthm}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{定理}[chapter]
+\newtheorem{proposition}{命題}[chapter]
+\newtheorem{definition}{定義}[chapter]
+\newtheorem{lemma}{補題}[chapter]
+\newtheorem{fact}{事実}[chapter]
+\newtheorem{exercise}{練習問題}[chapter]
+
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+
+\usepackage[onehalfspacing]{setspace}

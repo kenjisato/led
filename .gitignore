@@ -1,0 +1,14 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.toc
+
+/_book
+/_bookdown_files

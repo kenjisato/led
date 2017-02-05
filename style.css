@@ -1,0 +1,77 @@
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  margin: 0 0 5px;
+  line-height: 1.2;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: .5em 1em;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre.sourceCode {
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre:not([class]) {
+  margin-bottom: 10px;
+  background-color: white;
+}
+
+div.definition {
+    border: 4px solid #82636b;
+    border-radius: 240px 15px 185px 15px / 15px 200px 15px 185px;
+    margin: 2em 0;
+    padding: 2em;
+}
+
+div.theorem {
+    border: 4px solid #82636b;
+    border-radius: 240px 15px 185px 15px / 15px 200px 15px 185px;
+    margin: 2em 0;
+    padding: 2em;
+}
+
+
+.exercise {
+    border: 2px solid #82636b;
+    border-radius: 4px;
+    margin: 2em 0;
+    padding: 2em;
+    position: relative;
+}
+.exercise::before {
+    background-color: #fff;
+    color: #82636b;
+    content: "Exercise";
+    font-weight: bold;
+    left: 1em;
+    padding: 0 .5em;
+    position: absolute;
+    top: -1em;
+}
+
+
+.fact {
+    border: 2px solid #82636b;
+    border-radius: 4px;
+    margin: 2em 0;
+    padding: 2em;
+    position: relative;
+}
+.fact::before {
+    background-color: #fff;
+    color: #82636b;
+    content: "Fact";
+    font-weight: bold;
+    left: 1em;
+    padding: 0 .5em;
+    position: absolute;
+    top: -1em;
+}
