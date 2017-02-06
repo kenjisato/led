@@ -21,3 +21,4 @@ rmd_files:
   - 01-intro.Rmd
   - 02-complex_numbers.Rmd
   - 03-matrix.Rmd
+  - 04-eigen.Rmd

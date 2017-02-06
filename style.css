@@ -75,3 +75,21 @@ div.theorem {
     position: absolute;
     top: -1em;
 }
+
+.example {
+    border: 2px solid #82636b;
+    border-radius: 4px;
+    margin: 2em 0;
+    padding: 2em;
+    position: relative;
+}
+.example::before {
+    background-color: #fff;
+    color: #82636b;
+    content: "Example";
+    font-weight: bold;
+    left: 1em;
+    padding: 0 .5em;
+    position: absolute;
+    top: -1em;
+}
