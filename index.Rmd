@@ -1,40 +1,16 @@
 --- 
-title: "経済動学 (線形モデル)"
+title: "経済動学: 線形編"
 author: "佐藤 健治"
 date: '`r Sys.Date()`'
-output:
-  bookdown::pdf_book:
-    citation_package: natbib
-    includes:
-      in_header: preamble.tex
-    keep_tex: yes
-    latex_engine: lualatex
-    template: null
-  bookdown::gitbook:
-    config:
-      download: null
-      edit: null
-      lib_dir: assets
-      search: yes
-      split_by: chapter
-      toc:
-        after: |
-          <li><a href="https://github.com/kenjisato/linear-economic-dynamics" target="blank">Published with bookdown</a></li>
-        before: |
-          <li><a href="./">Linear Economic Dynamics</a></li>
-        collapse: section
-        scroll_highlight: yes
-      toolbar:
-        position: fixed
-    css: style.css
-description: 経済動学 講義ノート
-documentclass: scrbook
-classoption: ["a4paper"]
-github-repo: kenjisato/economicdynamics
-link-citations: yes
-bibliography: bibliography.bib
 site: bookdown::bookdown_site
+output: bookdown::gitbook
+description: 経済動学 講義ノート
+github-repo: kenjisato/economicdynamics
+documentclass: scrbook
+classoption: a4paper
+bibliography: bibliography.bib
 biblio-style: apalike
+link-citations: yes
 ---
 
 # 序文 {-}
@@ -47,7 +23,7 @@ biblio-style: apalike
 - その計算機シミュレーション
 - マルコフスイッチング合理的期待モデルの紹介
 
-マクロ数量分析の標準的なツールである Dynare を自分で使ったり, 論文で名前を見たことがある学生も多いと思う. 一方で, その裏側でどのような計算が行われているかを知らないという学生も多いのではないかと思う. 理論に無関心でもおおよそ問題が起こらないのは, ひとえに Dynare が優れたインターフェイスを備えたアプリケーションであるということに外ならないのだが, そのブラックボックスを開けて理論を理解しようというのがこの講義の第1の課題である. 
+マクロ数量分析の標準的なツールである Dynare を自分で使ったり, 名前を聞いたことのある学生も多いと思う. 一方で, その裏側でどのような計算が行われているかを知らないという学生も多いのではないかと思う. 理論に無関心でもおおよそ問題が起こらないのは, ひとえに Dynare が優れたインターフェイスを備えたアプリケーションであるということに外ならないのだが, そのブラックボックスを開けて理論を理解しようというのがこの講義の第1の課題である. 
 
 第2の課題は, 読者にコンピュータシミュレーションの基礎的な手法を身につけてもらうことである. 線形合理的期待モデルは近年のマクロ経済の数量分析に大きな役割を果たしているから, 各自の研究プロジェクトに大いに役に立つものと信じている. 
 数学もプログラミングも自分の手を動かし, 頭を悩ませなければ習熟できない. 理論とその実装を行き来しながら総合的な問題解決能力を養ってほしい. この講義では, 主に R言語を用いる.^[R ([https://www.r-project.org/](https://www.r-project.org/)) と RStudio ([https://www.rstudio.com/](https://www.rstudio.com/)) の最新版を各自インストールしてほしい. R言語を選んだ理由は, 計量経済学の学習のために利用したことのある学生が多いだろう考えたからであり, R がシミュレーションのために最適であるとは考えていない. 大変人気のあるプログラミング言語・環境であるから一度は学んでおいて損はないと思う.]
@@ -62,64 +38,65 @@ biblio-style: apalike
 最初の数章は動的システムの分析に必要な, 学部初年次に習うであろう定義と結果をまとめているだけなので,  多くの読者にとって既知の事柄の羅列になっているはずだ. したがって, 練習問題を解いてみて躓くことがなければ読み飛ばすことができる. ただし, 各章は段階的に難しくなるように配置されているので, 少しでも不安があるようなら一読をお薦めする. また, この分野をすでに知っている読者でなければ関心のある章だけを読むという使い方はできないと思う. 
 
 
-### 第\@ref(intro)章: はじめに {-}
+#### 第\@ref(intro)章: はじめに {-}
 
 - どのようなモデルを解きたいか
 - プログラミング環境の構築
 
-### 第\@ref(complexnumbers)章: 複素数 {-}
+#### 第\@ref(complexnumbers)章: 複素数 {-}
 
 - 複素数の復習
 - なぜ複素数が必要なのか
 
-### 第\@ref(matrix)章: 行列論の基礎 {-}
+#### 第\@ref(matrix)章: 行列論の基礎 {-}
 
 - 行列の復習
 - 行列積と複素数積の類似性
 
-### 第\@ref(eigen)章: 行列の固有値 {-}
+#### 第\@ref(eigen)章: 行列の固有値 {-}
 
 - 行列の固有値の復習
 - 線形システム複素固有値の関係を明らかにする
 
-### 第5章: 固有空間 {-}
+#### 第5章: 固有空間 {-}
 
-### 第6章: ジョルダン標準形と線形システムの安定性 {-}
+#### 第6章: ジョルダン標準形と線形システムの安定性 {-}
 
 - ジョルダン標準形
 - 安定性
 
-### 第7章: $\det A \neq 0$ {-}
+#### 第7章: $\det A \neq 0$ {-}
 
 - @BlanchardKahn1980
 
-### 第8章: ワイエルシュトラス標準形とデスクリプタシステム {-}
+#### 第8章: ワイエルシュトラス標準形とデスクリプタシステム {-}
 
 - $\det A = 0$ 
 
-### 第9章: 一般の $A$ {-}
+#### 第9章: 一般の $A$ {-}
 
 - Stock and Watson?
 
-### 第10章: 数値解法 {-}
+#### 第10章: 数値解法 {-}
 
 - Schur 分解
 - QZ 分解
 
-### 第11章: Klein の方法 {-}
+#### 第11章: Klein の方法 {-}
 
 - @Klein2000
 
 
-### 第12章: Sims の方法 {-}
+#### 第12章: Sims の方法 {-}
 
 
-### 第13章: 確率システム {-}
+#### 第13章: 確率システム {-}
 
 
-### 第14章: Lubik-Schorfheide {-}
+#### 第14章: Lubik-Schorfheide {-}
 
-### 第15章: マルコフスイッチングシステム {-}
+
+#### 第15章: マルコフスイッチングシステム {-}
 
 
 ## 謝辞 {-}

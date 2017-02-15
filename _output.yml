@@ -1,6 +1,28 @@
-output:
-  html_document:
-    toc: true
-    pandoc_args: [
-      "--from", "markdown+autolink_bare_uris+tex_math_single_backslash-implicit_figures"
-      ]
+bookdown::pdf_book:
+  citation_package: natbib
+  includes:
+    in_header: preamble.tex
+  keep_tex: yes
+  latex_engine: lualatex
+  template: null
+bookdown::gitbook:
+  css: css/style.css
+  pandoc_args: [
+      "--from",
+      "markdown+autolink_bare_uris+tex_math_single_backslash-implicit_figures"
+    ]
+  config:
+    download: null
+    edit: null
+    lib_dir: assets
+    search: yes
+    split_by: chapter
+    toc:
+      after: |
+        <li><a href="https://github.com/kenjisato/linear-economic-dynamics" target="blank">Published with bookdown</a></li>
+      before: |
+        <li><a href="./">Linear Economic Dynamics</a></li>
+      collapse: section
+      scroll_highlight: yes
+    toolbar:
+      position: fixed

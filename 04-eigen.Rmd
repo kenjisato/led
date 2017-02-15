@@ -154,9 +154,176 @@ $$
 ```
 
 
+## 対角化
+
+% Preview source code from paragraph 118 to 122
 
 
+\section{例題: 対角化}
 
+行列 
+\[
+J=\left[\begin{array}{cc}
+0 & -1\\
+1 & 0
+\end{array}\right]
+\]
+の固有値と固有ベクトルを計算してみよう. 
+\[
+\det(\lambda J-I)=\left|\left[\begin{array}{cc}
+\lambda & 1\\
+-1 & \lambda
+\end{array}\right]\right|=\lambda^{2}+1
+\]
+だから, 固有値は $\pm j$ である. 固有値 $j$ に対する固有ベクトルは, 
+\[
+\left[\begin{array}{cc}
+0 & -1\\
+1 & 0
+\end{array}\right]\left[\begin{array}{c}
+x\\
+y
+\end{array}\right]=j\left[\begin{array}{c}
+x\\
+y
+\end{array}\right]
+\]
+の解であり, 
+\[
+x=jy
+\]
+によって特徴付けられる. 例えば, 
+\[
+v_{j}=\left[\begin{array}{c}
+j\\
+1
+\end{array}\right]
+\]
+が固有ベクトルである. 固有値 $-j$ に対する固有ベクトルは, 
+\[
+\left[\begin{array}{cc}
+0 & -1\\
+1 & 0
+\end{array}\right]\left[\begin{array}{c}
+x\\
+y
+\end{array}\right]=-j\left[\begin{array}{c}
+x\\
+y
+\end{array}\right]
+\]
+の解であり, 
+\[
+jx=y
+\]
+によって特徴付けられる. 例えば, 
+\[
+v_{-j}=\left[\begin{array}{c}
+1\\
+j
+\end{array}\right]
+\]
+が固有ベクトルである. 
+
+固有ベクトル$v_{j}$ と $v_{-j}$を並べた行列
+\[
+V=[\begin{array}{cc}
+v_{j} & v_{-j}\end{array}]=\left[\begin{array}{cc}
+j & 1\\
+1 & j
+\end{array}\right]
+\]
+は正則であり, 
+\[
+V^{-1}=\frac{1}{j^{2}-1}\left[\begin{array}{cc}
+j & -1\\
+-1 & j
+\end{array}\right]=\left[\begin{array}{cc}
+-j/2 & 1/2\\
+1/2 & -j/2
+\end{array}\right].
+\]
+\begin{align*}
+V\left[\begin{array}{cc}
+j & 0\\
+0 & -j
+\end{array}\right]V^{-1} & =\left[\begin{array}{cc}
+j & 1\\
+1 & j
+\end{array}\right]\left[\begin{array}{cc}
+j & 0\\
+0 & -j
+\end{array}\right]\left[\begin{array}{cc}
+-j/2 & 1/2\\
+1/2 & -j/2
+\end{array}\right]\\
+ & =\left[\begin{array}{cc}
+-1 & -j\\
+j & 1
+\end{array}\right]\left[\begin{array}{cc}
+-j/2 & 1/2\\
+1/2 & -j/2
+\end{array}\right]\\
+ & =\left[\begin{array}{cc}
+0 & -1\\
+1 & 0
+\end{array}\right]\\
+ & =J.
+\end{align*}
+あるいは
+\[
+\left[\begin{array}{cc}
+j & 0\\
+0 & -j
+\end{array}\right]=V^{-1}JV
+\]
+が成り立つ. 固有値を並べた行列によって $J$ を対角行列に変形 (対角化) することができる. あらゆる行列に対してこのような変形ができる訳ではないことには注意が必要である.
+すべての固有値が相異なる場合や, 対称行列などが対角化が可能である. 
+
+\section{補論}
+
+行列
+\[
+J=\left[\begin{array}{cc}
+0 & -1\\
+1 & 0
+\end{array}\right]
+\]
+に対して 
+\[
+J^{2}=-I
+\]
+が成り立つ, $J$ は虚数単位の行列表現である. 複素数 $z=a+bj$ を行列を用いて表現すると 
+\[
+Z=aI+bJ=\left[\begin{array}{cc}
+a & -b\\
+b & a
+\end{array}\right].
+\]
+$r=\sqrt{a^{2}+b^{2}}$, $\theta=\arctan(b/a)$ とすれば ($a=0$, $b>0$
+のとき$\theta=\pi/2$, $a=0$, $b<0$ のとき$\theta=-\pi/2$ とする), 
+\[
+Z=r\left[\begin{array}{cc}
+\cos\theta & -\sin\theta\\
+\sin\theta & \cos\theta
+\end{array}\right]
+\]
+と書ける. 
+\begin{align*}
+Z\left[\begin{array}{c}
+x_{1}\\
+x_{2}
+\end{array}\right] & =r\left[\begin{array}{cc}
+\cos\theta & -\sin\theta\\
+\sin\theta & \cos\theta
+\end{array}\right]\left[\begin{array}{c}
+x_{1}\\
+x_{2}
+\end{array}\right]
+\end{align*}
+がベクトルの伸縮と回転という複素数積と同様の性質を持っていることを確認しておいてほしい. この考え方は実係数の範囲で行列を標準化 (ブロック対角化,
+実ジョルダン標準化)する場合などに役に立つ.\footnote{この講義では複素数の範囲で標準化を考える.} 固有値に複素数 $a\pm bj$
+が含まれる場合, 対角ブロックに $aI+bJ$ を含むブロック対角行列が得られるのである. 
 
 
 
