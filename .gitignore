@@ -12,3 +12,8 @@
 
 /_book
 /_bookdown_files
+
+/libs
+
+/linear-economic-dynamics.*
+/bib/packages.bib

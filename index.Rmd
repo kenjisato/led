@@ -8,7 +8,7 @@ description: 経済動学 講義ノート
 github-repo: kenjisato/economicdynamics
 documentclass: scrbook
 classoption: a4paper
-bibliography: bibliography.bib
+bibliography: ['bib/bibliography.bib', 'bib/packages.bib']
 biblio-style: apalike
 link-citations: yes
 ---
@@ -104,4 +104,10 @@ link-citations: yes
 コロンビア大学の安東宇さんから有益なコメントをいくつかいただいた.
 
 
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'bib/packages.bib')
+```
 
