@@ -8,11 +8,13 @@
 
 システムの振る舞いをよりよく理解するためには抽象的な線形空間論まで踏み込む必要があるが, それは次回以降に譲って, ここでは表形式に数を並べたものとして**行列 (matrix)** を捉えよう. 従って, 行列とは次のような対象である. 
 $$
-A=\begin{bmatrix}a_{1,1} & a_{1,2} & \cdots & a_{1,n-1} & a_{1,n}\\
-a_{2,1} & a_{2,2} & \cdots & a_{2,n-1} & a_{2,n}\\
-\vdots & \vdots & \ddots & \vdots & \vdots\\
-a_{m-1,1} & a_{m-1,2} & \cdots & a_{m-1,n-1} & a_{m-1,n}\\
-a_{m,1} & a_{m,2} & \cdots & a_{m-1,n} & a_{m,n}
+A =
+\begin{bmatrix}
+  a_{1,1}   & a_{1,2}   & \cdots & a_{1,n-1}   & a_{1,n}  \\
+  a_{2,1}   & a_{2,2}   & \cdots & a_{2,n-1}   & a_{2,n}  \\
+  \vdots    & \vdots    & \ddots & \vdots      & \vdots   \\
+  a_{m-1,1} & a_{m-1,2} & \cdots & a_{m-1,n-1} & a_{m-1,n}\\
+  a_{m,1}   & a_{m,2}   & \cdots & a_{m-1,n}   & a_{m,n}
 \end{bmatrix}
 $$
 
@@ -32,21 +34,27 @@ $$
 を行列の**行 (row)** という. 一方, 各
 $$
 \begin{bmatrix}
-a_{1,1}\\
-a_{2,1}\\
-\vdots\\
-a_{m-1,1}\\
-a_{m,1}
-\end{bmatrix},\ \begin{bmatrix}a_{1,2}\\
-a_{2,2}\\
-\vdots\\
-a_{m-1,2}\\
-a_{m,2}
-\end{bmatrix},\ \dots,\ \begin{bmatrix}a_{1,n}\\
-a_{2,n}\\
-\vdots\\
-a_{m-1,n}\\
-a_{m,n}
+  a_{1,1}\\
+  a_{2,1}\\
+  \vdots\\
+  a_{m-1,1}\\
+  a_{m,1}
+\end{bmatrix},
+\ 
+\begin{bmatrix}
+  a_{1,2}\\
+  a_{2,2}\\
+  \vdots\\
+  a_{m-1,2}\\
+  a_{m,2}
+\end{bmatrix},
+\ \dots,\ 
+\begin{bmatrix}
+  a_{1,n}\\
+  a_{2,n}\\
+  \vdots\\
+  a_{m-1,n}\\
+  a_{m,n}
 \end{bmatrix}
 $$
 
