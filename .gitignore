@@ -10,6 +10,8 @@
 *.out
 *.toc
 
+/figures/*.key
+
 /_book
 /_bookdown_files
 
