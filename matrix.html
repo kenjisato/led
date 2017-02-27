@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>経済動学: 線形編</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="経済動学 講義ノート">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="経済動学: 線形編" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="経済動学 講義ノート" />
+  <meta name="github-repo" content="kenjisato/economicdynamics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="経済動学: 線形編" />
+  
+  <meta name="twitter:description" content="経済動学 講義ノート" />
+  
+
+<meta name="author" content="佐藤 健治">
+
+
+<meta name="date" content="2017-02-27">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="complexnumbers.html">
+<link rel="next" href="eigen.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Linear Economic Dynamics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>序文</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e6a78be68890"><i class="fa fa-check"></i>構成</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e8ac9de8be9e"><i class="fa fa-check"></i>謝辞</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> はじめに</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#section-1.1"><i class="fa fa-check"></i><b>1.1</b> 経済動学</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#section-1.2"><i class="fa fa-check"></i><b>1.2</b> 対象とするモデル</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#section-1.2.1"><i class="fa fa-check"></i><b>1.2.1</b> 決定論モデル</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#section-1.2.2"><i class="fa fa-check"></i><b>1.2.2</b> 制御理論との違い</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#section-1.2.3"><i class="fa fa-check"></i><b>1.2.3</b> 安定性と決定性</a></li>
+<li class="chapter" data-level="1.2.4" data-path="intro.html"><a href="intro.html#section-1.2.4"><i class="fa fa-check"></i><b>1.2.4</b> 合理的期待モデル</a></li>
+<li class="chapter" data-level="1.2.5" data-path="intro.html"><a href="intro.html#section-1.2.5"><i class="fa fa-check"></i><b>1.2.5</b> マルコフスイッチングモデル</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#section-1.3"><i class="fa fa-check"></i><b>1.3</b> プログラミング環境</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#rstudio"><i class="fa fa-check"></i><b>1.3.1</b> RStudio</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#section-1.3.2"><i class="fa fa-check"></i><b>1.3.2</b> 準備</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#section-1.3.3"><i class="fa fa-check"></i><b>1.3.3</b> パッケージ</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="complexnumbers.html"><a href="complexnumbers.html"><i class="fa fa-check"></i><b>2</b> 複素数</a><ul>
+<li class="chapter" data-level="2.1" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> はじめに</a></li>
+<li class="chapter" data-level="2.2" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> 複素数</a></li>
+<li class="chapter" data-level="2.3" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.3"><i class="fa fa-check"></i><b>2.3</b> 複素平面</a></li>
+<li class="chapter" data-level="2.4" data-path="complexnumbers.html"><a href="complexnumbers.html#r-"><i class="fa fa-check"></i><b>2.4</b> R コード</a><ul>
+<li class="chapter" data-level="" data-path="complexnumbers.html"><a href="complexnumbers.html#e59b9be58987e6bc94e7ae97"><i class="fa fa-check"></i>四則演算</a></li>
+<li class="chapter" data-level="" data-path="complexnumbers.html"><a href="complexnumbers.html#e8a487e7b4a0e5b9b3e99da2e4b88ae381aee59bb3e7a4ba"><i class="fa fa-check"></i>複素平面上の図示</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.5"><i class="fa fa-check"></i><b>2.5</b> 極形式</a></li>
+<li class="chapter" data-level="2.6" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.6"><i class="fa fa-check"></i><b>2.6</b> 共役複素数</a></li>
+<li class="chapter" data-level="2.7" data-path="complexnumbers.html"><a href="complexnumbers.html#complexramsey"><i class="fa fa-check"></i><b>2.7</b> 補遺：ラムゼーモデル</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>3</b> 行列論の基礎</a><ul>
+<li class="chapter" data-level="3.1" data-path="matrix.html"><a href="matrix.html#section-3.1"><i class="fa fa-check"></i><b>3.1</b> 行列の形</a></li>
+<li class="chapter" data-level="3.2" data-path="matrix.html"><a href="matrix.html#section-3.2"><i class="fa fa-check"></i><b>3.2</b> 行列の演算</a></li>
+<li class="chapter" data-level="3.3" data-path="matrix.html"><a href="matrix.html#section-3.3"><i class="fa fa-check"></i><b>3.3</b> 線形方程式</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="matrix.html"><a href="matrix.html#section-3.3.1"><i class="fa fa-check"></i><b>3.3.1</b> 線形連立方程式の変形</a></li>
+<li class="chapter" data-level="3.3.2" data-path="matrix.html"><a href="matrix.html#section-3.3.2"><i class="fa fa-check"></i><b>3.3.2</b> 行基本変形</a></li>
+<li class="chapter" data-level="3.3.3" data-path="matrix.html"><a href="matrix.html#section-3.3.3"><i class="fa fa-check"></i><b>3.3.3</b> 列基本変形</a></li>
+<li class="chapter" data-level="3.3.4" data-path="matrix.html"><a href="matrix.html#section-3.3.4"><i class="fa fa-check"></i><b>3.3.4</b> 初等変形</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="eigen.html"><a href="eigen.html"><i class="fa fa-check"></i><b>4</b> 固有値</a><ul>
+<li class="chapter" data-level="4.1" data-path="eigen.html"><a href="eigen.html#section-4.1"><i class="fa fa-check"></i><b>4.1</b> 行列式</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="eigen.html"><a href="eigen.html#section-4.1.1"><i class="fa fa-check"></i><b>4.1.1</b> 置換</a></li>
+<li class="chapter" data-level="4.1.2" data-path="eigen.html"><a href="eigen.html#section-4.1.2"><i class="fa fa-check"></i><b>4.1.2</b> 行列式の定義</a></li>
+<li class="chapter" data-level="4.1.3" data-path="eigen.html"><a href="eigen.html#section-4.1.3"><i class="fa fa-check"></i><b>4.1.3</b> 行列式の意味</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="eigen.html"><a href="eigen.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 固有値</a></li>
+<li class="chapter" data-level="4.3" data-path="eigen.html"><a href="eigen.html#section-4.3"><i class="fa fa-check"></i><b>4.3</b> 対角化</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="eigen.html"><a href="eigen.html#-"><i class="fa fa-check"></i><b>4.3.1</b> 例題: 対角化</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e58f82e88083e69687e78cae.html"><a href="e58f82e88083e69687e78cae.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/kenjisato/linear-economic-dynamics" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">経済動学: 線形編</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="matrix" class="section level1">
+<h1><span class="header-section-number">第3章</span> 行列論の基礎</h1>
+<p>本章と<a href="eigen.html#eigen">次章</a>では学部初年次の入門的な線形代数学で学ぶ重要項目のうち関連するものを復習する。経済動学の学習に最低限必要な項目を取り上げているが，十分に網羅的になっている訳ではないので， 線形代数学の成書を1つ手元に置いておくのがよいと思う.</p>
+<p>本章では行列の形態にまつわる名称や基本演算および初等変形を定義する。次章以降で明らかになるように，線形動的システムの係数行列に対して初等変形を施すことで， 同等な解を持ち分析が容易な動的システムを導出できる。安定性分析の基礎となる重要な</p>
+<div id="section-3.1" class="section level2">
+<h2><span class="header-section-number">3.1</span> 行列の形</h2>
+<p>システムの振る舞いをよりよく理解するためには抽象的な線形空間論まで踏み込む必要があるが，それは次回以降に譲って，ここでは表形式に数を並べたものとして<strong>行列 (matrix)</strong> を捉えよう。従って，行列とは次のような対象である。 <span class="math display">\[
+A =
+\begin{bmatrix}
+  a_{1,1}   &amp; a_{1,2}   &amp; \cdots &amp; a_{1,n-1}   &amp; a_{1,n}  \\
+  a_{2,1}   &amp; a_{2,2}   &amp; \cdots &amp; a_{2,n-1}   &amp; a_{2,n}  \\
+  \vdots    &amp; \vdots    &amp; \ddots &amp; \vdots      &amp; \vdots   \\
+  a_{m-1,1} &amp; a_{m-1,2} &amp; \cdots &amp; a_{m-1,n-1} &amp; a_{m-1,n}\\
+  a_{m,1}   &amp; a_{m,2}   &amp; \cdots &amp; a_{m-1,n}   &amp; a_{m,n}
+\end{bmatrix}
+\]</span></p>
+<p>ただし，<span class="math inline">\(a_{i,j}\in\mathbb{F}\)</span>，<span class="math inline">\(i=1,\dots,m\)</span>，<span class="math inline">\(j=1,\dots,n\)</span>。<span class="math inline">\(\mathbb{F}\)</span> は <span class="math inline">\(\mathbb{R}\)</span> または <span class="math inline">\(\mathbb{C}\)</span>。数 <span class="math inline">\(a_{i,j}\)</span> を行列の<strong>成分</strong>または<strong>要素 (element，component，entry)</strong> と呼ぶ。混乱の恐れがない場合はコンマを外して <span class="math inline">\(a_{ij}\)</span> と書くことが多い。成分を明らかにするための簡略表記として <span class="math inline">\(A=[a_{ij}]\)</span> といった書き方をする場合がある。また，行列 <span class="math inline">\(A\)</span> の <span class="math inline">\((i,j)\)</span> 成分 <span class="math inline">\(a_{ij}\)</span> を<span class="math inline">\(A_{ij}\)</span> のように書くこともある.</p>
+<p>各 <span class="math display">\[
+\begin{aligned}
+  &amp;\begin{bmatrix}a_{1,1} &amp; a_{1,2} &amp; \cdots &amp; a_{1,n-1} &amp; a_{1,n}\end{bmatrix}\\
+  &amp;\begin{bmatrix}a_{2,1} &amp; a_{2,2} &amp; \cdots &amp; a_{2,n-1} &amp; a_{2,n}\end{bmatrix}\\
+  &amp;\hspace{6em}\vdots\\
+  &amp;\begin{bmatrix}a_{m,1} &amp; a_{m,2} &amp; \cdots &amp; a_{m,n-1} &amp; a_{m,n}\end{bmatrix}
+\end{aligned}
+\]</span></p>
+<p>を行列の<strong>行 (row)</strong> という。一方，各 <span class="math display">\[
+\begin{bmatrix}
+  a_{1,1}\\
+  a_{2,1}\\
+  \vdots\\
+  a_{m-1,1}\\
+  a_{m,1}
+\end{bmatrix},
+\ 
+\begin{bmatrix}
+  a_{1,2}\\
+  a_{2,2}\\
+  \vdots\\
+  a_{m-1,2}\\
+  a_{m,2}
+\end{bmatrix},
+\ \dots,\ 
+\begin{bmatrix}
+  a_{1,n}\\
+  a_{2,n}\\
+  \vdots\\
+  a_{m-1,n}\\
+  a_{m,n}
+\end{bmatrix}
+\]</span></p>
+<p>を行列の<strong>列 (column)</strong> という。上の行列<span class="math inline">\(A\)</span> は<span class="math inline">\(m\)</span>個の行と<span class="math inline">\(n\)</span>個の列を持つので，<span class="math inline">\(m\times n\)</span> 行列と呼ばれる。<span class="math inline">\(\mathbb{F}^{m\times n}\)</span>　を <span class="math inline">\(\mathbb{F}\)</span> の値を成分にもつ <span class="math inline">\(m\times n\)</span> 行列の全体の集合と定義する。</p>
+<p>行列の形にまつわるいくつかの用語を確認しておこう。</p>
+<div id="-square-matrix" class="section level4 unnumbered">
+<h4>正方行列 (square matrix)</h4>
+<p><span class="math inline">\(m=n\)</span> のとき，すなわち <span class="math inline">\(A\in\mathbb{F}^{n\times n}\)</span> のとき，<span class="math inline">\(A\)</span> は <span class="math inline">\(n\)</span> 次の<strong>正方行列 (square matrix of order <span class="math inline">\(n\)</span>)</strong> であるいう。</p>
+</div>
+<div id="-zero-matrixnull-matrix" class="section level4 unnumbered">
+<h4>ゼロ行列 (zero matrix，null matrix)</h4>
+<p>すべての成分がゼロである行列をゼロ行列という。サイズが <span class="math inline">\(m\times n\)</span> であるゼロ行列を <span class="math inline">\(0_{m\times n}\)</span> とか <span class="math inline">\(O_{m\times n}\)</span> と書く。多くの場合にそうであるように，混乱の恐れがない場合には <span class="math inline">\(O\)</span> とか <span class="math inline">\(0\)</span> と書く。</p>
+</div>
+<div id="-diagonal-elements" class="section level4 unnumbered">
+<h4>対角成分 (diagonal elements)</h4>
+<p>正方行列 <span class="math inline">\(A\)</span> の成分 <span class="math inline">\(\{a_{ij}\ |\ i,j=1,\dots,n\}\)</span> のうち <span class="math inline">\(i=j\)</span> なる部分 <span class="math inline">\(\{a_{11},\dots,a_{nn}\}\)</span> を<strong>対角成分 (diagonal element)</strong>という。対角成分の1つ上の成分 <span class="math inline">\(\{a_{12},a_{23},\dots,a_{n-1,n}\}\)</span> を<strong>優対角成分 (superdiagonal element)</strong>，対角成分の1つ下の成分 <span class="math inline">\(\{a_{21},a_{32},\dots,a_{n,n-1}\}\)</span> を<strong>劣対角成分 (subdiagonal element)</strong> という。対角成分の和を<strong>トレース (trace)</strong> といい，<span class="math inline">\(\mathrm{trace}A\)</span> と書く.</p>
+</div>
+<div id="-triangular-matrix" class="section level4 unnumbered">
+<h4>三角行列 (triangular matrix)</h4>
+<p>正方行列<span class="math inline">\(A=[a_{ij}]\)</span> が <span class="math inline">\(i&gt;j\Rightarrow a_{ij}=0\)</span> を満たすとき，<span class="math inline">\(A\)</span> を<strong>上三角行列 (upper triangular matrix)</strong> という。一方，<span class="math inline">\(A=[a_{ij}]\)</span> が <span class="math inline">\(i&lt;j\Rightarrow a_{ij}=0\)</span> を満たすとき，<span class="math inline">\(A\)</span> は<strong>下三角行列 (lower triangular matrix)</strong> であるという。上三角行列は対角成分より下にある成分がすべてゼロ，下三角行列は対角成分より上にある成分がすべてゼロである。</p>
+</div>
+<div id="-diagonal-matrix" class="section level4 unnumbered">
+<h4>対角行列 (diagonal matrix)</h4>
+<p>対角成分を除いた成分がすべてゼロであるような正方行列を<strong>対角行列 (diagonal matrix)</strong>という。ときに，<span class="math inline">\(\mathrm{diag}\{a_{1},\dots,a_{n}\}\)</span> のように書いて対角成分が左上から順に <span class="math inline">\(a_{1},\dots,a_{n}\)</span> である対角行列を表すことがある。これは Matlab などで利用されている記法で，Python と Octave でも利用できる.</p>
+</div>
+<div id="-identity-matrix" class="section level4 unnumbered">
+<h4>単位行列 (identity matrix)</h4>
+<p>対角成分がすべて<span class="math inline">\(1\)</span> である対角行列を単位行列という。<span class="math inline">\(n\)</span>次の単位行列を <span class="math inline">\(I_{n}\)</span> と書く。誤解の恐れがない場合は単に <span class="math inline">\(I\)</span> と書く。Python では関数 numpy.eye(n) で <span class="math inline">\(n\)</span> 次単位行列を作る.</p>
+</div>
+<div id="-transpose-matrix" class="section level4 unnumbered">
+<h4>転置行列 (transpose matrix)</h4>
+<p><span class="math inline">\(A=[a_{ij}]\in\mathbb{F}^{m\times n}\)</span> の転置行列 <span class="math inline">\(A^{\top}\)</span> とは，<span class="math inline">\((A^{\top})_{ij}=a_{ji}\)</span>, <span class="math inline">\(i=1,\dots,m\)</span>，<span class="math inline">\(j=1,\dots n\)</span> を満たす<span class="math inline">\(m\times n\)</span>行列のことをいう。</p>
+</div>
+<div id="-conjugate-transpose" class="section level4 unnumbered">
+<h4>共役転置行列 (conjugate transpose)</h4>
+<p><span class="math inline">\(A=[a_{ij}]\in\mathbb{F}^{m\times n}\)</span> の共役転置行列 <span class="math inline">\(A^{*}\)</span> とは，<span class="math inline">\((A^{*})_{ij}=\bar{a}_{ji}\)</span>, <span class="math inline">\(i=1,\dots,m\)</span>，<span class="math inline">\(j=1,\dots n\)</span> を満たす<span class="math inline">\(m\times n\)</span>行列のことである。実行列の共役転置行列は転置行列である.</p>
+</div>
+<div id="-symmetric-matrix" class="section level4 unnumbered">
+<h4>対称行列 (symmetric matrix)</h4>
+<p><span class="math inline">\(A\in\mathbb{R}^{n\times n}\)</span> が<strong>対称行列 (symmetric matrix)</strong>であるとは，<span class="math inline">\(A^{\top}=A\)</span> が成り立つことをいう.</p>
+</div>
+<div id="-hermitian-matrix" class="section level4 unnumbered">
+<h4>エルミート行列 (Hermitian matrix)</h4>
+<p><span class="math inline">\(A\in\mathbb{C}^{n\times n}\)</span> がエルミート行列であるとは，<span class="math inline">\(A^{*}=A\)</span> が成り立つことをいう.</p>
+</div>
+<div id="-column-vectorrow-vector" class="section level4 unnumbered">
+<h4>列ベクトル・行ベクトル (column vector，row vector)</h4>
+<p>のちに見るように行列の集合には元どうしの加法とスカラー倍が定義され，それらは望ましい性質を満たす。ゼロ元・逆元と呼ばれる特別な元の存在も自明であるので，特定のサイズの行列全体の集合は，(のちに定義する) ベクトル空間の一例となっている。特に <span class="math display">\[
+  \mathbb{F}^{n\times1},\quad\mathbb{F}^{1\times n}
+\]</span> は我々が頻繁に用いる有限次元ベクトル空間の表現となっている。通常これらのうちいずれかを <span class="math inline">\(\mathbb{F}^{n}\)</span> と記す. 一般の <span class="math inline">\(A\in\mathbb{F}^{n\times m}\)</span> を<span class="math inline">\(n\)</span>次元列ベクトル (<span class="math inline">\(\mathbb{F}^{n\times1})\)</span> を <span class="math inline">\(m\)</span> 個並べたものと捉えたり，<span class="math inline">\(m\)</span>次元列ベクトル (<span class="math inline">\(\mathbb{F}^{1\times m})\)</span> を <span class="math inline">\(n\)</span> 個並べたものと捉えたりすることがある.</p>
+</div>
+<div id="-block-matrix" class="section level4 unnumbered">
+<h4>ブロック行列 (block matrix)</h4>
+<p>行列をいくつかの部分行列に分解した上で分析する方が都合の良い場合がある。例えば, <span class="math display">\[
+A=\left[
+  \begin{array}{ccc|ccc}
+    a_{1,1} &amp; \cdots &amp; a_{1,n} &amp; a_{1,n+1} &amp; \cdots &amp; a_{1,n+q}\\
+    \vdots &amp; \ddots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+    a_{m,1} &amp; \cdots &amp; a_{m,n} &amp; a_{m,n+1} &amp; \cdots &amp; a_{m,n+q}\\
+    \hline a_{m+1,1} &amp; \cdots &amp; a_{m+1,n} &amp; a_{m+1,n+1} &amp; \cdots &amp; a_{m+1,n+q}\\
+    \vdots &amp; \ddots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+    a_{m+p,1} &amp; \cdots &amp; a_{m+p,n} &amp; a_{m+p,n+1} &amp; \cdots &amp; a_{m+p,n+q}
+  \end{array}
+  \right]
+  =:
+  \left[
+    \begin{array}{c|c}
+      A_{11} &amp; A_{12}\\
+      \hline 
+      A_{21} &amp; A_{22}
+    \end{array}
+  \right]
+\]</span> のように，大きな行列 <span class="math inline">\(A\in\mathbb{F}^{(m+p)\times(n+q)}\)</span> を4つの部分行列 <span class="math inline">\(A_{11}\in\mathbb{F}^{m\times n}\)</span>, <span class="math inline">\(A_{12}\in\mathbb{F}^{m\times q}\)</span>，<span class="math inline">\(A_{21}\in\mathbb{F}^{p\times n}\)</span>, <span class="math inline">\(A_{22}\in\mathbb{F}^{p\times q}\)</span> に分解するなどである.<a href="#fn16" class="footnoteRef" id="fnref16"><sup>16</sup></a> <span class="math inline">\(A_{12}=0\)</span>，<span class="math inline">\(A_{21}=0\)</span> であるとき，<strong>ブロック対角行列 (block diagonal matrix)</strong>であるといい，<span class="math inline">\(A_{21}=0\)</span> であるとき<strong>ブロック上三角行列 (block upper triangular matrix)</strong>であるなどという。</p>
+</div>
+</div>
+<div id="section-3.2" class="section level2">
+<h2><span class="header-section-number">3.2</span> 行列の演算</h2>
+<div id="e382b9e382abe383a9e383bce5808d" class="section level4 unnumbered">
+<h4>スカラー倍</h4>
+<p><span class="math inline">\(A\in\mathbb{F}^{m\times n}\)</span> に対してスカラー倍 (scalar multiplication) あるいは定数倍と呼ばれる操作が次のように定義される: <span class="math inline">\(\alpha\in\mathbb{F}\)</span> について, <span class="math display">\[
+\alpha A:=\begin{bmatrix}\alpha a_{1,1} &amp; \alpha a_{1,2} &amp; \cdots &amp; \alpha a_{1,n-1} &amp; \alpha a_{1,n}\\
+\alpha a_{2,1} &amp; \alpha a_{2,2} &amp; \cdots &amp; \alpha a_{2,n-1} &amp; \alpha a_{2,n}\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots\\
+\alpha a_{m-1,1} &amp; \alpha a_{m-1,2} &amp; \cdots &amp; \alpha a_{m-1,n-1} &amp; \alpha a_{m-1,n}\\
+\alpha a_{m,1} &amp; \alpha a_{m,2} &amp; \cdots &amp; \alpha a_{m-1,n} &amp; \alpha a_{m,n}
+\end{bmatrix}\in\mathbb{F}^{m\times n}.
+\]</span></p>
+</div>
+<div id="e5928c" class="section level4 unnumbered">
+<h4>和</h4>
+<p>同数の行と列を持つ2つの行列に対して次のようにして和が定義できる。<span class="math inline">\(A=[a_{ij}]\in\mathbb{F}^{m\times n}\)</span>, <span class="math inline">\(B=[b_{ij}]\in\mathbb{F}^{m\times n}\)</span> に対して， <span class="math display">\[
+A+B:=[a_{ij}+b_{ij}]\in\mathbb{F}^{m\times n}.
+\]</span> すなわち，行列の和は成分ごとに和をとった行列である。定義から自明なことであるが，和は交換法則と結合法則を満たす。すなわち, 任意の <span class="math inline">\(A,B,C\in\mathbb{F}^{m\times n}\)</span> について <span class="math display">\[
+\begin{aligned}
+A+B &amp; =B+A\\
+A+(B+C) &amp; =(A+B)+C
+\end{aligned}
+\]</span> が成り立つ。ゼロ行列 <span class="math inline">\(0\in\mathbb{F}^{m\times n}\)</span> は任意の <span class="math inline">\(A\in\mathbb{F}^{m\times n}\)</span>に対して <span class="math display">\[
+  A+O_{m\times n}=A
+\]</span> を満たす。</p>
+</div>
+<div id="e7a98d" class="section level4 unnumbered">
+<h4>積</h4>
+<p>行列 <span class="math inline">\(A=[a_{ij}]\in\mathbb{F}^{m\times n}\)</span> と <span class="math inline">\(B=[b_{ij}]\in\mathbb{F}^{n\times p}\)</span> の積 <span class="math inline">\(AB\in\mathbb{F}^{m\times p}\)</span> を次のように定義する. <span class="math display">\[
+AB:=\left[\sum_{k=1}^{n}a_{ik}b_{kj}\right].
+\]</span> この定義は線形写像の合成という観点から見ればごく自然なものであることが分かる。解説は別の機会に譲ることにしよう。</p>
+<p>正方行列 <span class="math inline">\(A,B\in\mathbb{F}^{n\times n}\)</span> に対して，<span class="math inline">\(AB\)</span> と <span class="math inline">\(BA\)</span> の両方が定義される。しかし，それらは一般には一致しない。例えば， <span class="math display">\[
+\begin{aligned}
+  \begin{bmatrix}
+    1 &amp; 1\\
+    0 &amp; 1
+  \end{bmatrix}
+  \begin{bmatrix}
+    1 &amp; 0\\
+    1 &amp; 1
+  \end{bmatrix} 
+  &amp; \neq
+  \begin{bmatrix}
+    1 &amp; 0\\
+    1 &amp; 1
+  \end{bmatrix}
+  \begin{bmatrix}
+    1 &amp; 1\\
+    0 &amp; 1
+  \end{bmatrix}
+\end{aligned}
+\]</span> である。<span class="math inline">\(AB=BA\)</span> が成り立つとき，<span class="math inline">\(A\)</span> と <span class="math inline">\(B\)</span> は可換であるという。単位行列とゼロ行列は任意の行列と可換である. 任意の <span class="math inline">\(A\in\mathbb{F}^{n\times n}\)</span> に対して <span class="math display">\[
+  AI_{n}=I_{n}A=A
+\]</span> と <span class="math display">\[
+  AO_{n\times n}=O_{n\times n}A=O_{n\times n}
+\]</span> が成り立つ。</p>
+<p>行列の積には次の性質がある。 <span class="math display">\[
+\begin{aligned}
+  (AB)C &amp; =A(BC)\\
+  A(B+C) &amp; =AB+AC\\
+  (A+B)C &amp; =AC+BC.
+\end{aligned}
+\]</span> スカラー<span class="math inline">\(\alpha\)</span>に対して， <span class="math display">\[
+  (\alpha A)B=A(\alpha B)=\alpha(AB).
+\]</span></p>
+</div>
+<div id="-inverse-matrix" class="section level4 unnumbered">
+<h4>逆行列 (inverse matrix)</h4>
+<p>正方行列 <span class="math inline">\(A\in\mathbb{F}^{n\times n}\)</span> に対して， <span class="math display">\[
+  AB=BA=I_{n}
+\]</span> なる <span class="math inline">\(B\in\mathbb{F}^{n\times n}\)</span> が存在するとき <span class="math inline">\(A\)</span> は<strong>可逆 (invertible)</strong> あるいは<strong>正則 (regular)</strong> であるという。<span class="math inline">\(B\)</span> を <span class="math inline">\(A\)</span> の<strong>逆行列 (inverse matrix)</strong> といい <span class="math inline">\(A^{-1}\)</span> と記す。</p>
+
+<div class="exercise">
+逆行列は存在すれば一意的に定まることを証明せよ.
+</div>
+<p></p>
+
+<div class="exercise">
+逆行列は存在すれば正則であることを証明せよ。
+</div>
+<p></p>
+
+<div class="exercise">
+<span class="math inline">\(A,B\in\mathbb{F}^{n\times n}\)</span> がともに正則であるとき，<span class="math inline">\(AB\)</span> は可逆であり，<span class="math inline">\((AB)^{-1}=B^{-1}A^{-1}\)</span> が成り立つことを示せ。
+</div>
+<p></p>
+</div>
+<div id="-diagonal-matrix" class="section level4 unnumbered">
+<h4>直交行列 (diagonal matrix)</h4>
+<p><span class="math inline">\(A\in\mathbb{R}^{n\times n}\)</span> が直交行列であるとは，<span class="math inline">\(A^{\top}=A^{-1}\)</span> が成り立つことをいう。</p>
+</div>
+<div id="-unitary-matrix" class="section level4 unnumbered">
+<h4>ユニタリ行列 (unitary matrix)</h4>
+<p><span class="math inline">\(A\in\mathbb{C}^{n\times n}\)</span> がユニタリ行列であるとは，<span class="math inline">\(A^{*}=A^{-1}\)</span> が成り立つことをいう。</p>
+</div>
+</div>
+<div id="section-3.3" class="section level2">
+<h2><span class="header-section-number">3.3</span> 線形方程式</h2>
+<p>行列とベクトルの組 <span class="math display">\[
+\begin{aligned}
+  A &amp; =[a_{ij}]\in\mathbb{F}^{m\times n},\\
+  b &amp; =[b_{j}]\in\mathbb{F}^{m\times1}
+\end{aligned}
+\]</span> に対して， <span class="math display">\[
+Ax=b
+\]</span> を満たす <span class="math inline">\(x\in\mathbb{F}^{n\times1}\)</span> を求める問題を<strong>線形方程式 (linear equation)</strong>という。<span class="math inline">\(Ax\)</span> は行列<span class="math inline">\(A\)</span>と列ベクトル <span class="math inline">\(x\)</span> の積である。これは次の連立1次方程式の行列表現に外ならない。 <span class="math display">\[
+\begin{cases}
+a_{11}x_{1}+\cdots+a_{1n}x_{n}=b_{1}\\
+\qquad\vdots\\
+a_{m1}x_{1}+\cdots+a_{mn}x_{n}=b_{m}
+\end{cases}
+\]</span></p>
+<div id="section-3.3.1" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> 線形連立方程式の変形</h3>
+要点を理解するために簡単な例を用いよう。連立方程式
+\begin{equation}
+  \begin{cases}
+    x_{1}+x_{2}=1\\
+    x_{1}-x_{2}=2
+  \end{cases} (\#eq:lineq001)
+\end{equation}
+を行列の形式で表現すると
+\begin{equation}
+  \begin{bmatrix}
+    1 &amp; 1\\
+    1 &amp; -1
+  \end{bmatrix}
+  \begin{bmatrix}
+    x_{1}\\x_{2}
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    1\\2
+  \end{bmatrix} (\#eq:lineq002)
+\end{equation}
+と表すことができる。式<a href="#eq:lineq001">(<strong>??</strong>)</a>と全く同じ連立方程式で，順序だけを入れ替えたもの
+\begin{equation}
+\begin{cases}
+x_{1}-x_{2}=2\\
+x_{1}+x_{2}=1 
+\end{cases} (\#eq:lineq003)
+\end{equation}
+を行列表示すると，
+\begin{equation}
+\begin{bmatrix}1 &amp; -1\\
+1 &amp; 1
+\end{bmatrix}\begin{bmatrix}x_{1}\\
+x_{2}
+\end{bmatrix}=\begin{bmatrix}2\\
+1
+\end{bmatrix} (\#eq:lineq004)
+\end{equation}
+である。式<a href="#eq:lineq002">(<strong>??</strong>)</a>と式<a href="#eq:lineq004">(<strong>??</strong>)</a>は，全く同じ <span class="math inline">\((x_{1},x_{2})\)</span> が解であるという意味で同値な方程式であるが，係数行列 <span class="math inline">\(A\)</span> と定数項 <span class="math inline">\(b\)</span> が異なっている。この他にも，式<a href="#eq:lineq001">(<strong>??</strong>)</a>の第1式を定数倍した
+\begin{equation}
+\begin{cases}
+2x_{1}-2x_{2}=4\\
+x_{1}+x_{2}=1
+\end{cases} (\#eq:lineq005)
+\end{equation}
+や，式<a href="#eq:lineq001">(<strong>??</strong>)</a> の第1式を第2式に足すことで得られる
+\begin{equation}
+\begin{cases}
+x_{1}-x_{2}=2\\
+x_{1}+x_{2}+(x_{1}-x_{2})=1+2
+\end{cases} (\#eq:lineq006)
+\end{equation}
+<p>も同じ解をもつはずである。各自，式<a href="#eq:lineq005">(<strong>??</strong>)</a>，式<a href="#eq:lineq006">(<strong>??</strong>)</a> の行列表現を確認してほしい。</p>
+あるいは次の方程式 <span class="math display">\[
+\begin{cases}
+x_{2}+x_{1}=1\\
+-x_{2}+x_{1}=2
+\end{cases}
+\]</span> も全く同じ方程式を変形したものなので，その行列表示
+\begin{equation}
+\begin{bmatrix}1 &amp; 1\\
+-1 &amp; 1
+\end{bmatrix}\begin{bmatrix}x_{2}\\
+x_{1}
+\end{bmatrix}=\begin{bmatrix}1\\
+2
+\end{bmatrix}(\#eq:lineq007)
+\end{equation}
+<p>も，<span class="math inline">\(x_{1},x_{2}\)</span> の順序は入れ替わるが同じ解を導く。従って，<span class="math inline">\((x_{1},x_{2})\)</span> でなく <span class="math inline">\((x_{2},x_{1})\)</span> の順で解を得たことさえ了解していれば，式<a href="#eq:lineq007">(<strong>??</strong>)</a>と式<a href="#eq:lineq004">(<strong>??</strong>)</a> は本質的に同じ線形方程式である.</p>
+<p>見かけ上異なる複数の行列が連立方程式の解という観点から見れば全て同じものになるという事実は応用上大変重要である。連立方程式や動学方程式を分析する上では, もっとも有利な形式に変形してから分析すれば十分なのである。特に，あらかじめ都合のよい形式に変形されているものとして理論分析を行うこともあるので, 応用者は自らそのような形式に変形し，さらに復元できなければいけない。</p>
+<p>連立方程式の求解に関していえば，同値な変形を繰り返して <span class="math display">\[
+\begin{cases}
+  x_{1}=*\\
+  x_{2}=*
+\end{cases}
+\]</span> 形式を導けばよい。行列表示すると <span class="math display">\[
+\begin{bmatrix}
+  1 &amp; 0\\
+  0 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+  x_{1}\\
+  x_{2}
+\end{bmatrix}=\begin{bmatrix}*\\
+*
+\end{bmatrix}
+\]</span> を導けばよい。</p>
+</div>
+<div id="section-3.3.2" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> 行基本変形</h3>
+<p>連立方程式の変形を行列の言葉で表現してみよう。</p>
+<div id="e8a18ce381aee4baa4e68f9b" class="section level4 unnumbered">
+<h4>行の交換</h4>
+<p>行列の行に対するもっとも基本的な操作は行の交換であろう。連立方程式は順序付けされてない方程式の組であり，これに無理やり順序付けたものが先ほどの行列表示に他ならないので, 行順序の変更に対して解は不変である。</p>
+<p><span class="math inline">\(2\times2\)</span> 行列の行順序の変更は行列 <span class="math inline">\(\left[\begin{smallmatrix}0 &amp; 1\\ 1 &amp; 0 \end{smallmatrix}\right]\)</span>を左から掛ける操作に対応する。 <span class="math display">\[
+\begin{aligned}
+\begin{bmatrix}0 &amp; 1\\
+1 &amp; 0
+\end{bmatrix}\begin{bmatrix}1 &amp; 1\\
+1 &amp; -1
+\end{bmatrix}\begin{bmatrix}x_{1}\\
+x_{2}
+\end{bmatrix} &amp; =\begin{bmatrix}1 &amp; -1\\
+1 &amp; 1
+\end{bmatrix}\begin{bmatrix}x_{1}\\
+x_{2}
+\end{bmatrix}\\
+\begin{bmatrix}0 &amp; 1\\
+1 &amp; 0
+\end{bmatrix}\begin{bmatrix}1\\
+2
+\end{bmatrix} &amp; =\begin{bmatrix}2\\
+1
+\end{bmatrix}.
+\end{aligned}
+\]</span> 次の関係が成り立つことに注目してほしい. <span class="math display">\[
+\begin{bmatrix}
+  0 &amp; 1\\
+  1 &amp; 0 
+\end{bmatrix}^{-1}
+=
+\begin{bmatrix}
+  0 &amp; 1\\
+  1 &amp; 0
+\end{bmatrix}.
+\]</span> 従って，式<a href="#eq:lineq002">(<strong>??</strong>)</a> と式<a href="#eq:lineq004">(<strong>??</strong>)</a>は正則行列 <span class="math inline">\(\left[\begin{smallmatrix}0 &amp; 1\\ 1 &amp; 0 \end{smallmatrix}\right]\)</span> を通して互いに変形し合う。</p>
+<p>より一般の <span class="math inline">\(m\times n\)</span> 行列についてどのようになるか考えてみよ。</p>
+
+<div class="exercise">
+A<span class="math inline">\(\in\mathbb{F}^{m\times n}\)</span> を任意の行列とする。行列の第<span class="math inline">\(i\)</span>行と第<span class="math inline">\(j\)</span>行を入れ替えた結果が行列積 <span class="math inline">\(C_{ij}^{m}A\)</span> で表せるような行列 <span class="math inline">\(C_{ij}^{m}\in\mathbb{F}^{m\times m}\)</span> が存在する。 <span class="math inline">\(C_{ij}^{m}\)</span> の要素をかきだしなさい。
+</div>
+<p></p>
+</div>
+<div id="e8a18ce585a8e4bd93e381aee99d9ee382bce383ade5ae9ae695b0e5808d" class="section level4 unnumbered">
+<h4>行全体の非ゼロ定数倍</h4>
+<p>1つの行にゼロでない定数 <span class="math inline">\(u\)</span> をかける操作も行列積を用いて表現できる。ここでも簡単な場合だけ見ておこう。 <span class="math display">\[
+\begin{bmatrix}1 &amp; 0\\
+0 &amp; u
+\end{bmatrix}\begin{bmatrix}1 &amp; 1\\
+1 &amp; -1
+\end{bmatrix}=\begin{bmatrix}1 &amp; 1\\
+u &amp; -u
+\end{bmatrix}.
+\]</span> 次の関係が成り立つことに注目してほしい. <span class="math display">\[
+\begin{bmatrix}1 &amp; 0\\
+0 &amp; u
+\end{bmatrix}^{-1}=\begin{bmatrix}1 &amp; 0\\
+0 &amp; 1/u
+\end{bmatrix}.
+\]</span></p>
+
+<div class="exercise">
+<span class="math inline">\(A\in\mathbb{F}^{m\times n}\)</span> を任意の行列とする。行列の第<span class="math inline">\(i\)</span>行に一斉に非ゼロ定数 <span class="math inline">\(u\)</span> をかけた結果が行列積 <span class="math inline">\(D_{i}^{m}(u)A\)</span> で表せるような行列 <span class="math inline">\(D_{i}^{m}(u)\in\mathbb{F}^{m\times m}\)</span> が存在する。<span class="math inline">\(D_{i}^{m}\)</span> の要素をかきだしなさい。
+</div>
+<p></p>
+</div>
+<div id="e8a18ce381aee5ae9ae695b0e5808de38292e588a5e381aee8a18ce381abe58aa0e38188e3828b" class="section level4 unnumbered">
+<h4>行の定数倍を別の行に加える</h4>
+<p>1つの行に(ゼロであってもよい)定数 <span class="math inline">\(a\)</span> をかける操作も行列積を用いて表現できる。簡単な場合だけ見ておこう。 <span class="math display">\[
+\begin{bmatrix}1 &amp; a\\
+0 &amp; 1
+\end{bmatrix}\begin{bmatrix}1 &amp; 1\\
+1 &amp; -1
+\end{bmatrix}=\begin{bmatrix}1+a &amp; 1-a\\
+1 &amp; -1
+\end{bmatrix}.
+\]</span> 次の関係が成り立つことに注目してほしい. <span class="math display">\[
+\begin{bmatrix}1 &amp; a\\
+0 &amp; 1
+\end{bmatrix}^{-1}=\begin{bmatrix}1 &amp; -a\\
+0 &amp; 1
+\end{bmatrix}.
+\]</span></p>
+<p>一般の場合は練習問題とする。</p>
+
+<div class="exercise">
+<span class="math inline">\(A\in\mathbb{F}^{m\times n}\)</span> を任意の行列とする。行列の第<span class="math inline">\(i\)</span>行の <span class="math inline">\(a\)</span>倍を第<span class="math inline">\(j\)</span>行に加えた結果が行列積 <span class="math inline">\(E_{ij}^{m}(a)A\)</span> で表せるような行列 <span class="math inline">\(E_{ij}^{m}(a)\in\mathbb{F}^{m\times m}\)</span> が存在する。<span class="math inline">\(E_{ij}^{m}(a)\)</span> の要素をかきだしなさい。
+</div>
+<p></p>
+</div>
+</div>
+<div id="section-3.3.3" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> 列基本変形</h3>
+<p>行の変形と同様に，列の変形も定義できる。実は上で得られた行列を「右から」かける操作が列変形に対応している。各自確認しておいてほしい。</p>
+
+<div class="exercise">
+<span class="math inline">\(A\in\mathbb{F}^{m\times n}\)</span> を任意の行列とする。行列の第<span class="math inline">\(i\)</span>列と第<span class="math inline">\(j\)</span>列を入れ替えた行列は <span class="math inline">\(AC_{ij}^{m}\)</span> と一致する。
+</div>
+<p></p>
+
+<div class="exercise">
+<span class="math inline">\(A\in\mathbb{F}^{m\times n}\)</span> を任意の行列とする。行列の第<span class="math inline">\(i\)</span>列に一斉に非ゼロ定数 <span class="math inline">\(u\)</span> をかけた結果は <span class="math inline">\(AD_{i}^{m}(u)\)</span> と一致する。
+</div>
+<p></p>
+
+<div class="exercise">
+<span class="math inline">\(A\in\mathbb{F}^{m\times n}\)</span> を任意の行列とする。行列の第<span class="math inline">\(i\)</span>列の <span class="math inline">\(a\)</span>倍を第<span class="math inline">\(j\)</span>列に加えた結果は <span class="math inline">\(AE_{ij}^{m}(a)\)</span> と一致する。
+</div>
+<p></p>
+<p>列の変形は式<a href="#eq:lineq007">(<strong>??</strong>)</a>で見た「解の並び替え」を一般化したものである。線形方程式 <span class="math display">\[
+Ax=b
+\]</span> は <span class="math display">\[
+AC_{ij}^{m}\left(C_{ij}^{m}\right)^{-1}x=b
+\]</span> と同値であるから <span class="math inline">\(y=\left(C_{ij}^{m}\right)^{-1}x\)</span> と置き換えれば <span class="math display">\[
+AC_{ij}^{m}y=b
+\]</span> と同値である。この変換については座標変換と関連付けて今後より詳しく学ぶことになる。</p>
+</div>
+<div id="section-3.3.4" class="section level3">
+<h3><span class="header-section-number">3.3.4</span> 初等変形</h3>
+<p>行列に行基本変形と列基本変形を繰り返して得られる操作を初等変形という。<span class="math inline">\(A\in\mathbb{F}^{m\times n}\)</span>，<span class="math inline">\(i=1,\dots,n_{r}\)</span>，<span class="math inline">\(j=1,\dots,n_{c}\)</span> について <span class="math inline">\(P_{i}\)</span> をいずれかの行基本変形，<span class="math inline">\(Q_{j}\)</span> をいずれかの列基本変形とすると <span class="math display">\[
+P=P_{n_{r}}\cdots P_{1},\quad Q=Q_{1}\cdots Q_{n_{c}}
+\]</span> を用いて初等変形 (の結果) を <span class="math display">\[
+PAQ
+\]</span> と表すことができる。</p>
+
+<div class="exercise">
+<span class="math inline">\(P,Q\)</span> が正則行列であることを示せ.
+</div>
+<p></p>
+
+<div class="proposition">
+<span id="prp:unnamed-chunk-56" class="proposition"><strong>命題 3.1 </strong></span>任意の行列 <span class="math inline">\(A\in\mathbb{F}^{m\times n}\)</span> に対して，適当に初等変形 <span class="math inline">\(P\)</span>，<span class="math inline">\(Q\)</span> を選べば <span class="math display">\[
+  PAQ=\left[\begin{array}{c|c}
+  I_{d\times d} &amp; O_{d\times(n-d)}\\
+  \hline O_{(m-d)\times d} &amp; O_{(m-d)\times(n-d)}
+  \end{array}\right]
+\]</span> とできる。ここで，<span class="math inline">\(d\)</span> は<span class="math inline">\(P,Q\)</span>の選び方によらず<span class="math inline">\(A\)</span>のみから決まる定数である。
+</div>
+<p></p>
+<div id="e383a9e383b3e382af" class="section level4 unnumbered">
+<h4>ランク</h4>
+<p>上の <span class="math inline">\(d\)</span> を行列 <span class="math inline">\(A\)</span> の<strong>ランク (rank)</strong>といい，<span class="math inline">\(\mathrm{rank}A\)</span> と書く。</p>
+<p>一般に <span class="math inline">\(\mathrm{rank}A\le\min\{m,n\}\)</span> である。この不等式が等号で成り立つとき，<span class="math inline">\(A\)</span> は<strong>フルランク (full rank)</strong> であるという。特に，<span class="math inline">\(\mathrm{rank}A=m\)</span> のとき<strong>行フルランク (full column rank)</strong>，<span class="math inline">\(\mathrm{rank}A=n\)</span> のとき<strong>列フルランク (full row rank)</strong>という。</p>
+
+<div class="proposition">
+<span id="prp:fullrank" class="proposition"><strong>命題 3.2 </strong></span>行列 <span class="math inline">\(A\in\mathbb{F}^{n\times n}\)</span> が正則であることと，フルランクであることは同値である。
+</div>
+<p></p>
+
+<div class="proof">
+<p><span class="proof"><em>証明. </em></span> <span class="math inline">\(A\)</span> がフルランクであると仮定する。すなわち</p>
+<span class="math display" id="eq:apq">\[
+  PAQ=I
+\]</span> なる初等変形 <span class="math inline">\(P\)</span>，<span class="math inline">\(Q\)</span> がある。左から <span class="math inline">\(P^{-1}\)</span>，右から <span class="math inline">\(Q^{-1}\)</span> をかけてやれば
+\begin{equation}
+  A = P^{-1}Q^{-1} \tag{3.1}
+\end{equation}
+<p>が得られる。右辺は正則なので逆行列が存在する。すなわち <span class="math inline">\(A^{-1}=QP\)</span>.</p>
+<span class="math inline">\(A\)</span> は正則であるがフルランクでないと仮定する。すなわち，<span class="math inline">\(d&lt;n\)</span> に対して <span class="math display">\[
+  PAQ=\left[\begin{array}{c|c}
+  I_{d\times d} &amp; O_{d\times(n-d)}\\
+  \hline O_{(m-d)\times d} &amp; O_{(m-d)\times(n-d)}
+  \end{array}\right]
+\]</span> となる。逆行列 <span class="math inline">\(A^{-1}\)</span> が存在するので，<span class="math inline">\(PAQ\)</span> に右から <span class="math inline">\(Q^{-1}A^{-1}\)</span> をかければ <span class="math display">\[ 
+PAQ(Q^{-1}A^{-1})=P
+\]</span> を得る。<span class="math inline">\(PAQ\)</span> の形状により <span class="math inline">\(P\)</span> の <span class="math inline">\((d+1)\)</span> 行目以下はすべてゼロにならなければならないが，このような行列を基本変形の積として表現することはできない. 従って，この等式は不合理である。よって<span class="math inline">\(A\)</span>はフルランクでなければならない.
+</div>
+<p></p>
+<p>式<a href="matrix.html#eq:apq">(3.1)</a> を少し変形すると</p>
+<p><span class="math display">\[
+A=P^{-1}Q^{-1}=\tilde{P}^{-1}
+\]</span></p>
+<p>なる行基本変形のみ (あるいは列基本変形のみ) からなる初等変形 <span class="math inline">\(\tilde{P}\)</span> が存在することが分かる。<span class="math inline">\(A^{-1}=\tilde{P}\)</span> であるから，<span class="math inline">\(A\)</span> から <span class="math inline">\(I\)</span> に至る行基本変形を <span class="math inline">\(I\)</span> に施せば逆行列を得ることができる.</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="16">
+<li id="fn16"><p><span class="math inline">\(P:=Q\)</span> という表現は，<span class="math inline">\(P\)</span> を <span class="math inline">\(Q\)</span> で定義するという意味，<span class="math inline">\(P =:Q\)</span> は <span class="math inline">\(Q\)</span> を<span class="math inline">\(P\)</span> で定義するという意味である.<a href="matrix.html#fnref16">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="complexnumbers.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="eigen.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"lib_dir": "assets",
+"search": true,
+"toolbar": {
+"position": "fixed"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

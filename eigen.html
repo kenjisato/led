@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>経済動学: 線形編</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="経済動学 講義ノート">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="経済動学: 線形編" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="経済動学 講義ノート" />
+  <meta name="github-repo" content="kenjisato/economicdynamics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="経済動学: 線形編" />
+  
+  <meta name="twitter:description" content="経済動学 講義ノート" />
+  
+
+<meta name="author" content="佐藤 健治">
+
+
+<meta name="date" content="2017-02-27">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="matrix.html">
+<link rel="next" href="e58f82e88083e69687e78cae.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Linear Economic Dynamics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>序文</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e6a78be68890"><i class="fa fa-check"></i>構成</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e8ac9de8be9e"><i class="fa fa-check"></i>謝辞</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> はじめに</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#section-1.1"><i class="fa fa-check"></i><b>1.1</b> 経済動学</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#section-1.2"><i class="fa fa-check"></i><b>1.2</b> 対象とするモデル</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#section-1.2.1"><i class="fa fa-check"></i><b>1.2.1</b> 決定論モデル</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#section-1.2.2"><i class="fa fa-check"></i><b>1.2.2</b> 制御理論との違い</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#section-1.2.3"><i class="fa fa-check"></i><b>1.2.3</b> 安定性と決定性</a></li>
+<li class="chapter" data-level="1.2.4" data-path="intro.html"><a href="intro.html#section-1.2.4"><i class="fa fa-check"></i><b>1.2.4</b> 合理的期待モデル</a></li>
+<li class="chapter" data-level="1.2.5" data-path="intro.html"><a href="intro.html#section-1.2.5"><i class="fa fa-check"></i><b>1.2.5</b> マルコフスイッチングモデル</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#section-1.3"><i class="fa fa-check"></i><b>1.3</b> プログラミング環境</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#rstudio"><i class="fa fa-check"></i><b>1.3.1</b> RStudio</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#section-1.3.2"><i class="fa fa-check"></i><b>1.3.2</b> 準備</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#section-1.3.3"><i class="fa fa-check"></i><b>1.3.3</b> パッケージ</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="complexnumbers.html"><a href="complexnumbers.html"><i class="fa fa-check"></i><b>2</b> 複素数</a><ul>
+<li class="chapter" data-level="2.1" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> はじめに</a></li>
+<li class="chapter" data-level="2.2" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> 複素数</a></li>
+<li class="chapter" data-level="2.3" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.3"><i class="fa fa-check"></i><b>2.3</b> 複素平面</a></li>
+<li class="chapter" data-level="2.4" data-path="complexnumbers.html"><a href="complexnumbers.html#r-"><i class="fa fa-check"></i><b>2.4</b> R コード</a><ul>
+<li class="chapter" data-level="" data-path="complexnumbers.html"><a href="complexnumbers.html#e59b9be58987e6bc94e7ae97"><i class="fa fa-check"></i>四則演算</a></li>
+<li class="chapter" data-level="" data-path="complexnumbers.html"><a href="complexnumbers.html#e8a487e7b4a0e5b9b3e99da2e4b88ae381aee59bb3e7a4ba"><i class="fa fa-check"></i>複素平面上の図示</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.5"><i class="fa fa-check"></i><b>2.5</b> 極形式</a></li>
+<li class="chapter" data-level="2.6" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.6"><i class="fa fa-check"></i><b>2.6</b> 共役複素数</a></li>
+<li class="chapter" data-level="2.7" data-path="complexnumbers.html"><a href="complexnumbers.html#complexramsey"><i class="fa fa-check"></i><b>2.7</b> 補遺：ラムゼーモデル</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>3</b> 行列論の基礎</a><ul>
+<li class="chapter" data-level="3.1" data-path="matrix.html"><a href="matrix.html#section-3.1"><i class="fa fa-check"></i><b>3.1</b> 行列の形</a></li>
+<li class="chapter" data-level="3.2" data-path="matrix.html"><a href="matrix.html#section-3.2"><i class="fa fa-check"></i><b>3.2</b> 行列の演算</a></li>
+<li class="chapter" data-level="3.3" data-path="matrix.html"><a href="matrix.html#section-3.3"><i class="fa fa-check"></i><b>3.3</b> 線形方程式</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="matrix.html"><a href="matrix.html#section-3.3.1"><i class="fa fa-check"></i><b>3.3.1</b> 線形連立方程式の変形</a></li>
+<li class="chapter" data-level="3.3.2" data-path="matrix.html"><a href="matrix.html#section-3.3.2"><i class="fa fa-check"></i><b>3.3.2</b> 行基本変形</a></li>
+<li class="chapter" data-level="3.3.3" data-path="matrix.html"><a href="matrix.html#section-3.3.3"><i class="fa fa-check"></i><b>3.3.3</b> 列基本変形</a></li>
+<li class="chapter" data-level="3.3.4" data-path="matrix.html"><a href="matrix.html#section-3.3.4"><i class="fa fa-check"></i><b>3.3.4</b> 初等変形</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="eigen.html"><a href="eigen.html"><i class="fa fa-check"></i><b>4</b> 固有値</a><ul>
+<li class="chapter" data-level="4.1" data-path="eigen.html"><a href="eigen.html#section-4.1"><i class="fa fa-check"></i><b>4.1</b> 行列式</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="eigen.html"><a href="eigen.html#section-4.1.1"><i class="fa fa-check"></i><b>4.1.1</b> 置換</a></li>
+<li class="chapter" data-level="4.1.2" data-path="eigen.html"><a href="eigen.html#section-4.1.2"><i class="fa fa-check"></i><b>4.1.2</b> 行列式の定義</a></li>
+<li class="chapter" data-level="4.1.3" data-path="eigen.html"><a href="eigen.html#section-4.1.3"><i class="fa fa-check"></i><b>4.1.3</b> 行列式の意味</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="eigen.html"><a href="eigen.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 固有値</a></li>
+<li class="chapter" data-level="4.3" data-path="eigen.html"><a href="eigen.html#section-4.3"><i class="fa fa-check"></i><b>4.3</b> 対角化</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="eigen.html"><a href="eigen.html#-"><i class="fa fa-check"></i><b>4.3.1</b> 例題: 対角化</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e58f82e88083e69687e78cae.html"><a href="e58f82e88083e69687e78cae.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/kenjisato/linear-economic-dynamics" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">経済動学: 線形編</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="eigen" class="section level1">
+<h1><span class="header-section-number">第4章</span> 固有値</h1>
+<p>本章では，行列の固有値に関して復習する。</p>
+<div id="section-4.1" class="section level2">
+<h2><span class="header-section-number">4.1</span> 行列式</h2>
+<div id="section-4.1.1" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> 置換</h3>
+<p>有限個の自然数の集合 <span class="math inline">\(\{1,2,\dots,n-1,n\}\)</span> を並び替える方法には <span class="math inline">\(n!\)</span> 通りの方法がある。この並び替え全体の集合を <span class="math inline">\(S_n\)</span> で表す。例えば <span class="math inline">\(\sigma&#39;=(1,2,\dots,n-1,n)\)</span> や <span class="math inline">\(\sigma&#39;&#39;=(n,n-1,\dots,2,1)\)</span> などが<span class="math inline">\(S_{n}\)</span> の元である。<span class="math inline">\(S_{n}\)</span> の元を<strong>置換 (permutation)</strong>と呼ぶ。置換 <span class="math inline">\(\sigma\in S_{n}\)</span> を <span class="math inline">\(\{1,2,\dots,n\}\)</span> からそれ自身への全単射と考えて，<span class="math inline">\(\sigma&#39;(1)=1\)</span>，<span class="math inline">\(\sigma&#39;&#39;(n-1)=2\)</span> などのように書くこともできる. この記法は置換の合成 (通常，「積」と呼ばれる) の自然な定義を導いてくれる。すなわち</p>
+<p><span class="math display">\[
+  (\sigma_{1}\sigma_{2})(i)=\sigma_{1}(\sigma_{2}(i)),\quad i=1,2,\dots,n.
+\]</span></p>
+<p><strong>恒等置換 (identity permutation)</strong>とは，<span class="math inline">\(\sigma_{id}(i)=i\)</span>，<span class="math inline">\(i=1,\dots,n\)</span> なる置換である。<strong>互換 (transposition)</strong>とは，2つの文字を入れ替える特別な置換である。すなわち <span class="math inline">\(i\neq j\)</span> に対して <span class="math display">\[
+  \pi_{ij}(i)=j,\quad\pi_{ij}(j)=i,\quad\pi_{ij}(k)=k,\quad k\neq i,j.
+\]</span> すべての置換は互換の積として表すことができる。例えば，<span class="math inline">\(\sigma=(2,3,4,1)\)</span> とすれば <span class="math display">\[
+  (1,2,3,4)\xrightarrow{\pi_{1,2}}(2,1,3,4)\xrightarrow{\pi_{1,3}}(2,3,1,4)\xrightarrow{\pi_{1,4}}(2,3,4,1)
+\]</span> なので，<span class="math inline">\(\sigma=\pi_{1,4}\pi_{1,3}\pi_{1,2}\)</span> となる。この分解の方法は一意的ではないが，分解を構成する互換の数は奇遇が不変となることが知られている。奇数個の互換の積に分解できる置換を<strong>奇置換 (odd permutation)</strong>, 偶数個の互換の積に分解できる置換を<strong>偶置換 (even permutation)</strong> と呼ぶ。写像 <span class="math inline">\(\mathrm{sgn}:S_{n}\to\{-1,1\}\)</span> を次のように定義できる. <span class="math display">\[
+  \mathrm{sgn}(\sigma)=\begin{cases}
+  -1 &amp; \mbox{if }\sigma\mbox{ is odd}\\
+  +1 &amp; \mbox{if }\sigma\mbox{ is even}.
+  \end{cases}
+\]</span></p>
+</div>
+<div id="section-4.1.2" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> 行列式の定義</h3>
+<p>正方行列 <span class="math inline">\(A=[a_{ij}]\in\mathbb{F}^{n\times n}\)</span> に対して，<strong>行列式 (determinant)</strong> <span class="math inline">\(\det A\)</span> (<span class="math inline">\(|A|\)</span>とも書く) を次のように定義する。 <span class="math display">\[
+  \det A=\sum_{\sigma\in S_{n}}\mathrm{sgn}(\sigma)a_{1\sigma(1)}\cdots a_{n\sigma(n)}.
+\]</span></p>
+
+<div class="proposition">
+<p><span id="prp:determinant" class="proposition"><strong>命題 4.1 </strong></span>行列式は次の性質を持つ.</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\det A^{\top}=\det A\)</span>.</li>
+<li><span class="math inline">\(\det C_{ij}A=-\det A\)</span> (行の交換で符号が変わる).</li>
+<li><span class="math inline">\(\det D_{i}^{n}(a)A=a\det A\)</span> (行の<span class="math inline">\(a\)</span>倍で行列式が<span class="math inline">\(a\)</span>倍になる。<span class="math inline">\(a=0\)</span> でも成り立つ)。</li>
+<li><span class="math inline">\(\det\left(E_{ij}^{n}(a)A\right)=\det A\)</span> (行の<span class="math inline">\(a\)</span>倍を別の行に加えても行列式は変化しない).</li>
+<li><span class="math display">\[
+  \det\left[\begin{array}{ccc}
+  a_{11} &amp; \cdots &amp; a_{1n}\\
+  a_{i1}+b_{i1} &amp; \cdots &amp; a_{in}+b_{in}\\
+  a_{n1} &amp; \cdots &amp; a_{nn}
+  \end{array}\right]=\det\left[\begin{array}{ccc}
+  a_{11} &amp; \cdots &amp; a_{1n}\\
+  a_{i1} &amp; \cdots &amp; a_{in}\\
+  a_{n1} &amp; \cdots &amp; a_{nn}
+  \end{array}\right]+\det\left[\begin{array}{ccc}
+  a_{11} &amp; \cdots &amp; a_{1n}\\
+  b_{i1} &amp; \cdots &amp; b_{in}\\
+  a_{n1} &amp; \cdots &amp; a_{nn}
+  \end{array}\right].
+\]</span></li>
+<li><span class="math inline">\(\det I=1\)</span>.</li>
+<li><span class="math inline">\(\det AB=\det A\det B\)</span>.</li>
+</ol>
+</div>
+<p></p>
+
+<div class="exercise">
+命題 <a href="eigen.html#prp:determinant">4.1</a> を証明せよ.
+</div>
+<p></p>
+
+<div class="fact">
+<span class="math inline">\(A \in \mathbb{F}^{n \times n}\)</span> が正則であるための必要十分条件は <span class="math inline">\(\det A \neq 0\)</span>。
+</div>
+<p></p>
+
+<div class="proof">
+<span class="proof"><em>証明. </em></span> <span class="math inline">\(A\)</span> が正則であるとしよう。このとき，命題 <a href="eigen.html#prp:determinant">4.1</a> 性質6，7 より， <span class="math inline">\(1 = \det I = \det A \det A^{-1}\)</span> が成り立つから <span class="math inline">\(\det A = 0\)</span> にはなりえない。 次に，<span class="math inline">\(\det A \neq 0\)</span> が成り立つとして，<span class="math inline">\(A\)</span> の正則性を導こう。対偶を示す<a href="#fn17" class="footnoteRef" id="fnref17"><sup>17</sup></a>。 <span class="math inline">\(A\)</span>が正則でければ <span class="math inline">\(A\)</span>はフルランクでない（命題<a href="matrix.html#prp:fullrank">3.2</a>）。 このとき正則行列 <span class="math inline">\(P, Q\)</span> が存在して， <span class="math display">\[
+PAQ=\left[
+  \begin{array}{c|c}
+    I_{d\times d} &amp; O_{d\times(n-d)}\\
+    \hline O_{(m-d)\times d} &amp; O_{(m-d)\times(n-d)}
+  \end{array}\right]
+\]</span> とできる。右辺の行列式は定義によりゼロである。 命題 <a href="eigen.html#prp:determinant">4.1</a> 性質7 により，<span class="math inline">\(\det P \det A \det Q = 0\)</span>。 正則行列 <span class="math inline">\(P, Q\)</span> に対しては <span class="math inline">\(\det P \neq 0 \neq \det Q\)</span> が成り立つことが分かっているから， <span class="math inline">\(\det A = 0\)</span> が成り立たなければならない。
+</div>
+<p></p>
+</div>
+<div id="section-4.1.3" class="section level3">
+<h3><span class="header-section-number">4.1.3</span> 行列式の意味</h3>
+2次正方行列 <span class="math display">\[
+A = 
+\begin{bmatrix}
+  a &amp; b \\
+  c &amp; d
+\end{bmatrix}
+\]</span> の行列式は定義に従って容易に計算することができる。 <span class="math display">\[
+  \det A = ad - bc
+\]</span> この量は，行列<span class="math inline">\(A\)</span>の列を成す2つのベクトル <span class="math display">\[
+  A_1 = \begin{bmatrix} a \\ c \end{bmatrix},
+  \quad
+  A_2 = \begin{bmatrix} b \\ d \end{bmatrix}
+\]</span> が作る平行四辺形 (parallelogram) の（符号付き）面積と一致する（図<a href="eigen.html#fig:parallelogram">4.1</a>の色付き部分）。
+<div class="figure"><span id="fig:parallelogram"></span>
+<img src="figures/04-eigen/04-eigen.001.jpeg" alt="列ベクトルが成す平行四辺形"  />
+<p class="caption">
+図 4.1: 列ベクトルが成す平行四辺形
+</p>
+</div>
+<p>一般の次数でも同様の考え方が</p>
+</div>
+</div>
+<div id="section-4.2" class="section level2">
+<h2><span class="header-section-number">4.2</span> 固有値</h2>
+<p>複素数 <span class="math inline">\(\lambda\)</span> が正方行列 <span class="math inline">\(A\in\mathbb{F}^{n\times n}\)</span> の<strong>固有値 (eigenvalue)</strong> であるとは，ゼロでない列ベクトル <span class="math inline">\(v\in\mathbb{C}^{n}\)</span> が存在して <span class="math display">\[
+  Av=\lambda v
+\]</span> が成り立つことをいう。 ベクトル <span class="math inline">\(v\)</span> を固有値 <span class="math inline">\(\lambda\)</span> に対応する固有ベクトル (eigenvector) という. 上の方程式を変形すると線形方程式 <span class="math display">\[
+  (\lambda I-A)v=0
+\]</span> が得られる。この方程式がゼロでないベクトルを解に持つための必要十分条件は <span class="math display">\[
+  \phi_{A}(\lambda)=\det(\lambda I-A)=0
+\]</span> が成り立つことである。</p>
+
+<div class="exercise">
+上の事実を確認せよ。
+</div>
+<p></p>
+<p><span class="math inline">\(\phi_{A}(\lambda)\)</span> は <span class="math inline">\(\lambda\)</span> に関する <span class="math inline">\(n\)</span> 次多項式であり, 固有多項式 (characteristic polynomial) という。<span class="math inline">\(\phi_{A}(\lambda)=0\)</span> は重複度を込めて<span class="math inline">\(n\)</span> 個の解を持つので，<span class="math inline">\(A\)</span> は (重複度を込めて) <span class="math inline">\(n\)</span> 個の固有値を持つ[^代数学の基本定理。]。 <span class="math display">\[
+  \phi_{A}(\lambda)=\lambda^{n}+c_{1}\lambda^{n-1}+\cdots+c_{n}
+\]</span> とおけば， <span class="math display">\[
+  c_{1}=-\mathrm{trace}A,\qquad c_{n}=(-1)^{n}\det A
+\]</span> である.</p>
+
+<div class="exercise">
+上の事実を確認せよ。
+</div>
+<p></p>
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-63" class="theorem"><strong>定理 4.1 </strong></span>実行列 <span class="math inline">\(A\in\mathbb{R}^{n\times n}\)</span>が複素固有値 <span class="math inline">\(\lambda\)</span> を持てば，<span class="math inline">\(\bar{\lambda}\)</span> も<span class="math inline">\(A\)</span> の固有値である.
+</div>
+<p></p>
+
+<div class="exercise">
+上の定理を証明せよ.
+</div>
+<p></p>
+
+<div class="theorem">
+<span id="thm:independence2" class="theorem"><strong>定理 4.2 </strong></span>異なる固有値 <span class="math inline">\(\lambda_{1}\neq\lambda_{2}\)</span> に対する固有ベクトル <span class="math inline">\(v_{1}\)</span>，<span class="math inline">\(v_{2}\)</span> は次の性質を持つ: <span class="math inline">\(\alpha_{1},\alpha_{2}\in\mathbb{C}\)</span> に対して <span class="math display">\[
+  \alpha_{1}v_{1}+\alpha_{2}v_{2}=0\Rightarrow\alpha_{1}=\alpha_{2}=0. 
+\]</span>
+</div>
+ すなわち，異なる固有値に対応する固有ベクトルは<strong>1次独立（linearly independent）</strong>である。 
+<div class="proof">
+<p><span class="proof"><em>証明. </em></span> 1次独立性が成り立たないとする。すなわち，<span class="math inline">\(\alpha_{1}\neq0\neq\alpha_{2}\)</span> があって <span class="math inline">\(\alpha_{1}v_{1}+\alpha_{2}v_{2}=0\)</span>を満すとする。このとき， <span class="math display">\[
+    \alpha_{1}Av_{1}+\alpha_{2}Av_{2}=0.
+  \]</span> 固有値の定義より <span class="math display">\[
+    \alpha_{1}\lambda_{1}v_{1}+\alpha_{2}\lambda_{2}v_{2}=0.
+  \]</span> <span class="math inline">\(\lambda_{1}\neq\lambda_{2}\)</span> より，一方はゼロでない。一般性を失うことなく<span class="math inline">\(\lambda_{1}\neq0\)</span> とできて, <span class="math display">\[
+    \alpha_{1}v_{1}+(\lambda_{2}/\lambda_{1})\alpha_{2}v_{2}=0.
+  \]</span> <span class="math inline">\(\alpha_1 v_1 + \alpha_2 v_2 = 0\)</span> より, <span class="math display">\[
+    \left[
+      1 - (\lambda_{2}/\lambda_{1})
+    \right] \alpha_{1}v_{1}=0.
+  \]</span></p>
+<span class="math inline">\(\alpha_{1}\neq0\)</span>，<span class="math inline">\(v_{1}\neq0\)</span> なので，<span class="math inline">\(\lambda_{2}/\lambda_{1}=1\)</span> が成り立たなければならないが,　これは異なる固有値を選んだという前提に矛盾する。従って，相異なる固有値に対応する固有ベクトルは1次独立でなければならない。
+</div>
+<p></p>
+<p>2つ以上の異なる固有値についても同様のことが証明できる。</p>
+
+<div class="theorem">
+<span id="thm:independenceN" class="theorem"><strong>定理 4.3 </strong></span>正方行列 <span class="math inline">\(A \in \mathbb R^{n \times n}\)</span> が相異なる固有値 <span class="math inline">\(\lambda_{1}, \dots, \lambda_{n}\)</span> をもつとする。それぞれの固有値 <span class="math inline">\(\lambda_i\)</span> に対応する固有ベクトル <span class="math inline">\(v_i\)</span> としたとき， <span class="math inline">\(\{ v_1, \dots, v_n \}\)</span> は1次独立である。 すなわち， <span class="math inline">\(\alpha_{1},\dots,\alpha_{n}\in\mathbb{C}\)</span> に対して <span class="math inline">\(\alpha_{1}v_{1}+ \cdots + \alpha_{n}v_{n}=0\)</span> が成り立てば，<span class="math inline">\(\alpha_{1}=\cdots=\alpha_{n}=0\)</span> が成り立つ。
+</div>
+<p></p>
+
+<div class="exercise">
+定理<a href="eigen.html#thm:independenceN">4.3</a>を証明せよ。
+</div>
+<p></p>
+</div>
+<div id="section-4.3" class="section level2">
+<h2><span class="header-section-number">4.3</span> 対角化</h2>
+<div id="-" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> 例題: 対角化</h3>
+<p>行列 <span class="math display">\[
+J=\left[\begin{array}{cc}
+0 &amp; -1\\
+1 &amp; 0
+\end{array}\right]
+\]</span> の固有値と固有ベクトルを計算してみよう。 <span class="math display">\[
+\det(\lambda J-I)=\left|\left[\begin{array}{cc}
+\lambda &amp; 1\\
+-1 &amp; \lambda
+\end{array}\right]\right|=\lambda^{2}+1
+\]</span> だから，固有値は <span class="math inline">\(\pm j\)</span> である。固有値 <span class="math inline">\(j\)</span> に対する固有ベクトルは， <span class="math display">\[
+\left[\begin{array}{cc}
+0 &amp; -1\\
+1 &amp; 0
+\end{array}\right]\left[\begin{array}{c}
+x\\
+y
+\end{array}\right]=j\left[\begin{array}{c}
+x\\
+y
+\end{array}\right]
+\]</span> の解であり， <span class="math display">\[
+x=jy
+\]</span> によって特徴付けられる。例えば， <span class="math display">\[
+v_{j}=\left[\begin{array}{c}
+j\\
+1
+\end{array}\right]
+\]</span> が固有ベクトルである。固有値 <span class="math inline">\(-j\)</span> に対する固有ベクトルは， <span class="math display">\[
+\left[\begin{array}{cc}
+0 &amp; -1\\
+1 &amp; 0
+\end{array}\right]\left[\begin{array}{c}
+x\\
+y
+\end{array}\right]=-j\left[\begin{array}{c}
+x\\
+y
+\end{array}\right]
+\]</span> の解であり， <span class="math display">\[
+jx=y
+\]</span> によって特徴付けられる。例えば， <span class="math display">\[
+v_{-j}=\left[\begin{array}{c}
+1\\
+j
+\end{array}\right]
+\]</span> が固有ベクトルである。</p>
+固有ベクトル<span class="math inline">\(v_{j}\)</span> と <span class="math inline">\(v_{-j}\)</span>を並べた行列 <span class="math display">\[
+V=[\begin{array}{cc}
+v_{j} &amp; v_{-j}\end{array}]=\left[\begin{array}{cc}
+j &amp; 1\\
+1 &amp; j
+\end{array}\right]
+\]</span> は正則であり， <span class="math display">\[
+V^{-1}=\frac{1}{j^{2}-1}\left[\begin{array}{cc}
+j &amp; -1\\
+-1 &amp; j
+\end{array}\right]=\left[\begin{array}{cc}
+-j/2 &amp; 1/2\\
+1/2 &amp; -j/2
+\end{array}\right].
+\]</span>
+\begin{align*}
+V\left[\begin{array}{cc}
+j &amp; 0\\
+0 &amp; -j
+\end{array}\right]V^{-1} &amp; =\left[\begin{array}{cc}
+j &amp; 1\\
+1 &amp; j
+\end{array}\right]\left[\begin{array}{cc}
+j &amp; 0\\
+0 &amp; -j
+\end{array}\right]\left[\begin{array}{cc}
+-j/2 &amp; 1/2\\
+1/2 &amp; -j/2
+\end{array}\right]\\
+ &amp; =\left[\begin{array}{cc}
+-1 &amp; -j\\
+j &amp; 1
+\end{array}\right]\left[\begin{array}{cc}
+-j/2 &amp; 1/2\\
+1/2 &amp; -j/2
+\end{array}\right]\\
+ &amp; =\left[\begin{array}{cc}
+0 &amp; -1\\
+1 &amp; 0
+\end{array}\right]\\
+ &amp; =J.
+\end{align*}
+<p>あるいは <span class="math display">\[
+\left[\begin{array}{cc}
+j &amp; 0\\
+0 &amp; -j
+\end{array}\right]=V^{-1}JV
+\]</span> が成り立つ。固有値を並べた行列によって <span class="math inline">\(J\)</span> を対角行列に変形 (対角化) することができる。あらゆる行列に対してこのような変形ができる訳ではないことには注意が必要である. すべての固有値が相異なる場合や，対称行列などが対角化が可能である。</p>
+\section{補論}
+行列 <span class="math display">\[
+J=\left[\begin{array}{cc}
+0 &amp; -1\\
+1 &amp; 0
+\end{array}\right]
+\]</span> に対して <span class="math display">\[
+J^{2}=-I
+\]</span> が成り立つ，<span class="math inline">\(J\)</span> は虚数単位の行列表現である。複素数 <span class="math inline">\(z=a+bj\)</span> を行列を用いて表現すると <span class="math display">\[
+Z=aI+bJ=\left[\begin{array}{cc}
+a &amp; -b\\
+b &amp; a
+\end{array}\right].
+\]</span> <span class="math inline">\(r=\sqrt{a^{2}+b^{2}}\)</span>，<span class="math inline">\(\theta=\arctan(b/a)\)</span> とすれば (<span class="math inline">\(a=0\)</span>，<span class="math inline">\(b&gt;0\)</span> のとき<span class="math inline">\(\theta=\pi/2\)</span>，<span class="math inline">\(a=0\)</span>，<span class="math inline">\(b&lt;0\)</span> のとき<span class="math inline">\(\theta=-\pi/2\)</span> とする)， <span class="math display">\[
+Z=r\left[\begin{array}{cc}
+\cos\theta &amp; -\sin\theta\\
+\sin\theta &amp; \cos\theta
+\end{array}\right]
+\]</span> と書ける。
+\begin{align*}
+Z\left[\begin{array}{c}
+x_{1}\\
+x_{2}
+\end{array}\right] &amp; =r\left[\begin{array}{cc}
+\cos\theta &amp; -\sin\theta\\
+\sin\theta &amp; \cos\theta
+\end{array}\right]\left[\begin{array}{c}
+x_{1}\\
+x_{2}
+\end{array}\right]
+\end{align*}
+<p>がベクトルの伸縮と回転という複素数積と同様の性質を持っていることを確認しておいてほしい。この考え方は実係数の範囲で行列を標準化 (ブロック対角化, 実ジョルダン標準化)する場合などに役に立つ. 固有値に複素数 <span class="math inline">\(a\pm bj\)</span> が含まれる場合，対角ブロックに <span class="math inline">\(aI+bJ\)</span> を含むブロック対角行列が得られるのである。</p>
+
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="17">
+<li id="fn17"><p>命題<span class="math inline">\(P\)</span>: <span class="math inline">\(A \Longrightarrow B\)</span> が真（true）のとき，またそのときに限り， 命題<span class="math inline">\(P&#39;\)</span>: <span class="math inline">\(\neg B \Longrightarrow \neg A\)</span> は真である。ただし，<span class="math inline">\(\neg A\)</span> は<span class="math inline">\(A\)</span> の否定。 命題<span class="math inline">\(P&#39;\)</span>を命題<span class="math inline">\(P\)</span>の対偶命題という。主命題を証明するよりも対偶命題の証明が易しい （思いつきやすい）場合には対偶命題を示せばよい。<a href="eigen.html#fnref17">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="matrix.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="e58f82e88083e69687e78cae.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"lib_dir": "assets",
+"search": true,
+"toolbar": {
+"position": "fixed"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>経済動学: 線形編</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="経済動学 講義ノート">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="経済動学: 線形編" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="経済動学 講義ノート" />
+  <meta name="github-repo" content="kenjisato/economicdynamics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="経済動学: 線形編" />
+  
+  <meta name="twitter:description" content="経済動学 講義ノート" />
+  
+
+<meta name="author" content="佐藤 健治">
+
+
+<meta name="date" content="2017-02-27">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+<link rel="next" href="intro.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Linear Economic Dynamics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>序文</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e6a78be68890"><i class="fa fa-check"></i>構成</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e8ac9de8be9e"><i class="fa fa-check"></i>謝辞</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> はじめに</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#section-1.1"><i class="fa fa-check"></i><b>1.1</b> 経済動学</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#section-1.2"><i class="fa fa-check"></i><b>1.2</b> 対象とするモデル</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#section-1.2.1"><i class="fa fa-check"></i><b>1.2.1</b> 決定論モデル</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#section-1.2.2"><i class="fa fa-check"></i><b>1.2.2</b> 制御理論との違い</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#section-1.2.3"><i class="fa fa-check"></i><b>1.2.3</b> 安定性と決定性</a></li>
+<li class="chapter" data-level="1.2.4" data-path="intro.html"><a href="intro.html#section-1.2.4"><i class="fa fa-check"></i><b>1.2.4</b> 合理的期待モデル</a></li>
+<li class="chapter" data-level="1.2.5" data-path="intro.html"><a href="intro.html#section-1.2.5"><i class="fa fa-check"></i><b>1.2.5</b> マルコフスイッチングモデル</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#section-1.3"><i class="fa fa-check"></i><b>1.3</b> プログラミング環境</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#rstudio"><i class="fa fa-check"></i><b>1.3.1</b> RStudio</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#section-1.3.2"><i class="fa fa-check"></i><b>1.3.2</b> 準備</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#section-1.3.3"><i class="fa fa-check"></i><b>1.3.3</b> パッケージ</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="complexnumbers.html"><a href="complexnumbers.html"><i class="fa fa-check"></i><b>2</b> 複素数</a><ul>
+<li class="chapter" data-level="2.1" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> はじめに</a></li>
+<li class="chapter" data-level="2.2" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> 複素数</a></li>
+<li class="chapter" data-level="2.3" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.3"><i class="fa fa-check"></i><b>2.3</b> 複素平面</a></li>
+<li class="chapter" data-level="2.4" data-path="complexnumbers.html"><a href="complexnumbers.html#r-"><i class="fa fa-check"></i><b>2.4</b> R コード</a><ul>
+<li class="chapter" data-level="" data-path="complexnumbers.html"><a href="complexnumbers.html#e59b9be58987e6bc94e7ae97"><i class="fa fa-check"></i>四則演算</a></li>
+<li class="chapter" data-level="" data-path="complexnumbers.html"><a href="complexnumbers.html#e8a487e7b4a0e5b9b3e99da2e4b88ae381aee59bb3e7a4ba"><i class="fa fa-check"></i>複素平面上の図示</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.5"><i class="fa fa-check"></i><b>2.5</b> 極形式</a></li>
+<li class="chapter" data-level="2.6" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.6"><i class="fa fa-check"></i><b>2.6</b> 共役複素数</a></li>
+<li class="chapter" data-level="2.7" data-path="complexnumbers.html"><a href="complexnumbers.html#complexramsey"><i class="fa fa-check"></i><b>2.7</b> 補遺：ラムゼーモデル</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>3</b> 行列論の基礎</a><ul>
+<li class="chapter" data-level="3.1" data-path="matrix.html"><a href="matrix.html#section-3.1"><i class="fa fa-check"></i><b>3.1</b> 行列の形</a></li>
+<li class="chapter" data-level="3.2" data-path="matrix.html"><a href="matrix.html#section-3.2"><i class="fa fa-check"></i><b>3.2</b> 行列の演算</a></li>
+<li class="chapter" data-level="3.3" data-path="matrix.html"><a href="matrix.html#section-3.3"><i class="fa fa-check"></i><b>3.3</b> 線形方程式</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="matrix.html"><a href="matrix.html#section-3.3.1"><i class="fa fa-check"></i><b>3.3.1</b> 線形連立方程式の変形</a></li>
+<li class="chapter" data-level="3.3.2" data-path="matrix.html"><a href="matrix.html#section-3.3.2"><i class="fa fa-check"></i><b>3.3.2</b> 行基本変形</a></li>
+<li class="chapter" data-level="3.3.3" data-path="matrix.html"><a href="matrix.html#section-3.3.3"><i class="fa fa-check"></i><b>3.3.3</b> 列基本変形</a></li>
+<li class="chapter" data-level="3.3.4" data-path="matrix.html"><a href="matrix.html#section-3.3.4"><i class="fa fa-check"></i><b>3.3.4</b> 初等変形</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="eigen.html"><a href="eigen.html"><i class="fa fa-check"></i><b>4</b> 固有値</a><ul>
+<li class="chapter" data-level="4.1" data-path="eigen.html"><a href="eigen.html#section-4.1"><i class="fa fa-check"></i><b>4.1</b> 行列式</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="eigen.html"><a href="eigen.html#section-4.1.1"><i class="fa fa-check"></i><b>4.1.1</b> 置換</a></li>
+<li class="chapter" data-level="4.1.2" data-path="eigen.html"><a href="eigen.html#section-4.1.2"><i class="fa fa-check"></i><b>4.1.2</b> 行列式の定義</a></li>
+<li class="chapter" data-level="4.1.3" data-path="eigen.html"><a href="eigen.html#section-4.1.3"><i class="fa fa-check"></i><b>4.1.3</b> 行列式の意味</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="eigen.html"><a href="eigen.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 固有値</a></li>
+<li class="chapter" data-level="4.3" data-path="eigen.html"><a href="eigen.html#section-4.3"><i class="fa fa-check"></i><b>4.3</b> 対角化</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="eigen.html"><a href="eigen.html#-"><i class="fa fa-check"></i><b>4.3.1</b> 例題: 対角化</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e58f82e88083e69687e78cae.html"><a href="e58f82e88083e69687e78cae.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/kenjisato/linear-economic-dynamics" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">経済動学: 線形編</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">経済動学: 線形編</h1>
+<h4 class="author"><em>佐藤 健治</em></h4>
+<h4 class="date"><em>2017-02-27</em></h4>
+</div>
+<div id="e5ba8fe69687" class="section level1 unnumbered">
+<h1>序文</h1>
+<p>このノートは, 神戸大学大学院経済学研究科で2016年度, 2017年度の第1クォーターに実施した講義に基づいている. マクロ経済学, マクロ計量経済学, および数理経済学を専攻しようとする院生を読者として想定しているが, 数学的な議論が苦にならなければ学部上級の学生にとっても有益なものと思われる. 線形代数学, 動的システム理論, 力学系の初歩的な概念からはじめて, できるかぎり自己完結的なものとなるように心がけたので, マクロ経済学に特化した「経済数学」の参考書という使いかたもできると思う. また, 経済学に関する既知の事実をほとんど利用しないので, 経済モデルの分析に関心を持ち始めた理学・工学系の学生にとっても有用だろう.</p>
+<p>この講義では, 線形合理的期待モデルの分析を中心的な課題としている. 次の3つを中心的な課題としている.</p>
+<ul>
+<li>線形合理的期待モデルの理論分析</li>
+<li>その計算機シミュレーション</li>
+<li>マルコフスイッチング合理的期待モデルの紹介</li>
+</ul>
+<p>マクロ数量分析の標準的なツールである Dynare を自分で使ったり, 名前を聞いたことのある学生も多いと思う. 一方で, その裏側でどのような計算が行われているかを知らないという学生も多いのではないかと思う. 理論に無関心でもおおよそ問題が起こらないのは, ひとえに Dynare が優れたインターフェイスを備えたアプリケーションであるということに外ならないのだが, そのブラックボックスを開けて理論を理解しようというのがこの講義の第1の課題である.</p>
+<p>第2の課題は, 読者にコンピュータシミュレーションの基礎的な手法を身につけてもらうことである. 線形合理的期待モデルは近年のマクロ経済の数量分析に大きな役割を果たしているから, 各自の研究プロジェクトに大いに役に立つものと信じている. 数学もプログラミングも自分の手を動かし, 頭を悩ませなければ習熟できない. 理論とその実装を行き来しながら総合的な問題解決能力を養ってほしい. この講義では, 主に R言語を用いる.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+<p>最後に, 近年盛んに研究されているマルコフスイッチング合理的期待モデルという非線形モデルを紹介する. 線形モデルのように, (ある種の) 安定性・不安定性に関する必要十分条件が得られるという特徴があり, 理論的に扱いやすい. 金融政策ルールに関するテイラーの条件を緩和できることが知られており, 理論・実証の両面から盛んに研究が進んでいる分野である.</p>
+<div id="e6a78be68890" class="section level2 unnumbered">
+<h2>構成</h2>
+<p>本書は15回 (週2回, 各回90分 × 8週) のクォーター制の講義に合わせて作られている. 原則的には各回1章を順に読み進めていくように構成している. 随所に理解を試す「練習問題」を設けたので, すべての問題に取り組んでほしい.</p>
+<p>最初の数章は動的システムの分析に必要な, 学部初年次に習うであろう定義と結果をまとめているだけなので, 多くの読者にとって既知の事柄の羅列になっているはずだ. したがって, 練習問題を解いてみて躓くことがなければ読み飛ばすことができる. ただし, 各章は段階的に難しくなるように配置されているので, 少しでも不安があるようなら一読をお薦めする. また, この分野をすでに知っている読者でなければ関心のある章だけを読むという使い方はできないと思う.</p>
+<div id="refintro-" class="section level4 unnumbered">
+<h4>第<a href="intro.html#intro">1</a>章: はじめに</h4>
+<ul>
+<li>どのようなモデルを解きたいか</li>
+<li>プログラミング環境の構築</li>
+</ul>
+</div>
+<div id="refcomplexnumbers-" class="section level4 unnumbered">
+<h4>第<a href="complexnumbers.html#complexnumbers">2</a>章: 複素数</h4>
+<ul>
+<li>複素数の復習</li>
+<li>なぜ複素数が必要なのか</li>
+</ul>
+</div>
+<div id="refmatrix-" class="section level4 unnumbered">
+<h4>第<a href="matrix.html#matrix">3</a>章: 行列論の基礎</h4>
+<ul>
+<li>行列の復習</li>
+<li>行列積と複素数積の類似性</li>
+</ul>
+</div>
+<div id="refeigen-" class="section level4 unnumbered">
+<h4>第<a href="eigen.html#eigen">4</a>章: 行列の固有値</h4>
+<ul>
+<li>行列の固有値の復習</li>
+<li>線形システム複素固有値の関係を明らかにする</li>
+</ul>
+</div>
+<div id="5-" class="section level4 unnumbered">
+<h4>第5章: 固有空間</h4>
+</div>
+<div id="6-" class="section level4 unnumbered">
+<h4>第6章: ジョルダン標準形と線形システムの安定性</h4>
+<ul>
+<li>ジョルダン標準形</li>
+<li>安定性</li>
+</ul>
+</div>
+<div id="7-det-a-neq-0" class="section level4 unnumbered">
+<h4>第7章: <span class="math inline">\(\det A \neq 0\)</span></h4>
+<ul>
+<li><span class="citation">Blanchard and Kahn (<a href="#ref-BlanchardKahn1980">1980</a>)</span></li>
+</ul>
+</div>
+<div id="8-" class="section level4 unnumbered">
+<h4>第8章: ワイエルシュトラス標準形とデスクリプタシステム</h4>
+<ul>
+<li><span class="math inline">\(\det A = 0\)</span></li>
+</ul>
+</div>
+<div id="9--a" class="section level4 unnumbered">
+<h4>第9章: 一般の <span class="math inline">\(A\)</span></h4>
+<ul>
+<li>Stock and Watson?</li>
+</ul>
+</div>
+<div id="10-" class="section level4 unnumbered">
+<h4>第10章: 数値解法</h4>
+<ul>
+<li>Schur 分解</li>
+<li>QZ 分解</li>
+</ul>
+</div>
+<div id="11-klein-" class="section level4 unnumbered">
+<h4>第11章: Klein の方法</h4>
+<ul>
+<li><span class="citation">Klein (<a href="#ref-Klein2000">2000</a>)</span></li>
+</ul>
+</div>
+<div id="12-sims-" class="section level4 unnumbered">
+<h4>第12章: Sims の方法</h4>
+</div>
+<div id="13-" class="section level4 unnumbered">
+<h4>第13章: 確率システム</h4>
+</div>
+<div id="14-lubik-schorfheide" class="section level4 unnumbered">
+<h4>第14章: Lubik-Schorfheide</h4>
+</div>
+<div id="15-" class="section level4 unnumbered">
+<h4>第15章: マルコフスイッチングシステム</h4>
+</div>
+</div>
+<div id="e8ac9de8be9e" class="section level2 unnumbered">
+<h2>謝辞</h2>
+<p>コロンビア大学の安東宇さんから有益なコメントをいくつかいただいた.</p>
+
+</div>
+</div>
+<h3>参考文献</h3>
+<div id="refs" class="references">
+<div id="ref-BlanchardKahn1980">
+<p>Blanchard, Olivier Jean, and Charles M. Kahn. 1980. “The Solution of Linear Difference Models Under Rational Expectations.” <em>Econometrica</em> 48 (5): 1305–12.</p>
+</div>
+<div id="ref-Klein2000">
+<p>Klein, Paul. 2000. “Using the Generalized Schur Form to Solve a Multivariate Linear Rational Expectations Model.” <em>Journal of Economic Dynamics &amp; Control</em> 24: 1405–23.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>R (<a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a>) と RStudio (<a href="https://www.rstudio.com/" class="uri">https://www.rstudio.com/</a>) の最新版を各自インストールしてほしい. R言語を選んだ理由は, 計量経済学の学習のために利用したことのある学生が多いだろう考えたからであり, R がシミュレーションのために最適であるとは考えていない. 大変人気のあるプログラミング言語・環境であるから一度は学んでおいて損はないと思う.<a href="index.html#fnref1">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"lib_dir": "assets",
+"search": true,
+"toolbar": {
+"position": "fixed"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

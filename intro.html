@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>経済動学: 線形編</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="経済動学 講義ノート">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="経済動学: 線形編" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="経済動学 講義ノート" />
+  <meta name="github-repo" content="kenjisato/economicdynamics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="経済動学: 線形編" />
+  
+  <meta name="twitter:description" content="経済動学 講義ノート" />
+  
+
+<meta name="author" content="佐藤 健治">
+
+
+<meta name="date" content="2017-02-27">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="complexnumbers.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Linear Economic Dynamics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>序文</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e6a78be68890"><i class="fa fa-check"></i>構成</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e8ac9de8be9e"><i class="fa fa-check"></i>謝辞</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> はじめに</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#section-1.1"><i class="fa fa-check"></i><b>1.1</b> 経済動学</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#section-1.2"><i class="fa fa-check"></i><b>1.2</b> 対象とするモデル</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#section-1.2.1"><i class="fa fa-check"></i><b>1.2.1</b> 決定論モデル</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#section-1.2.2"><i class="fa fa-check"></i><b>1.2.2</b> 制御理論との違い</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#section-1.2.3"><i class="fa fa-check"></i><b>1.2.3</b> 安定性と決定性</a></li>
+<li class="chapter" data-level="1.2.4" data-path="intro.html"><a href="intro.html#section-1.2.4"><i class="fa fa-check"></i><b>1.2.4</b> 合理的期待モデル</a></li>
+<li class="chapter" data-level="1.2.5" data-path="intro.html"><a href="intro.html#section-1.2.5"><i class="fa fa-check"></i><b>1.2.5</b> マルコフスイッチングモデル</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#section-1.3"><i class="fa fa-check"></i><b>1.3</b> プログラミング環境</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#rstudio"><i class="fa fa-check"></i><b>1.3.1</b> RStudio</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#section-1.3.2"><i class="fa fa-check"></i><b>1.3.2</b> 準備</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#section-1.3.3"><i class="fa fa-check"></i><b>1.3.3</b> パッケージ</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="complexnumbers.html"><a href="complexnumbers.html"><i class="fa fa-check"></i><b>2</b> 複素数</a><ul>
+<li class="chapter" data-level="2.1" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> はじめに</a></li>
+<li class="chapter" data-level="2.2" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> 複素数</a></li>
+<li class="chapter" data-level="2.3" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.3"><i class="fa fa-check"></i><b>2.3</b> 複素平面</a></li>
+<li class="chapter" data-level="2.4" data-path="complexnumbers.html"><a href="complexnumbers.html#r-"><i class="fa fa-check"></i><b>2.4</b> R コード</a><ul>
+<li class="chapter" data-level="" data-path="complexnumbers.html"><a href="complexnumbers.html#e59b9be58987e6bc94e7ae97"><i class="fa fa-check"></i>四則演算</a></li>
+<li class="chapter" data-level="" data-path="complexnumbers.html"><a href="complexnumbers.html#e8a487e7b4a0e5b9b3e99da2e4b88ae381aee59bb3e7a4ba"><i class="fa fa-check"></i>複素平面上の図示</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.5"><i class="fa fa-check"></i><b>2.5</b> 極形式</a></li>
+<li class="chapter" data-level="2.6" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.6"><i class="fa fa-check"></i><b>2.6</b> 共役複素数</a></li>
+<li class="chapter" data-level="2.7" data-path="complexnumbers.html"><a href="complexnumbers.html#complexramsey"><i class="fa fa-check"></i><b>2.7</b> 補遺：ラムゼーモデル</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>3</b> 行列論の基礎</a><ul>
+<li class="chapter" data-level="3.1" data-path="matrix.html"><a href="matrix.html#section-3.1"><i class="fa fa-check"></i><b>3.1</b> 行列の形</a></li>
+<li class="chapter" data-level="3.2" data-path="matrix.html"><a href="matrix.html#section-3.2"><i class="fa fa-check"></i><b>3.2</b> 行列の演算</a></li>
+<li class="chapter" data-level="3.3" data-path="matrix.html"><a href="matrix.html#section-3.3"><i class="fa fa-check"></i><b>3.3</b> 線形方程式</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="matrix.html"><a href="matrix.html#section-3.3.1"><i class="fa fa-check"></i><b>3.3.1</b> 線形連立方程式の変形</a></li>
+<li class="chapter" data-level="3.3.2" data-path="matrix.html"><a href="matrix.html#section-3.3.2"><i class="fa fa-check"></i><b>3.3.2</b> 行基本変形</a></li>
+<li class="chapter" data-level="3.3.3" data-path="matrix.html"><a href="matrix.html#section-3.3.3"><i class="fa fa-check"></i><b>3.3.3</b> 列基本変形</a></li>
+<li class="chapter" data-level="3.3.4" data-path="matrix.html"><a href="matrix.html#section-3.3.4"><i class="fa fa-check"></i><b>3.3.4</b> 初等変形</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="eigen.html"><a href="eigen.html"><i class="fa fa-check"></i><b>4</b> 固有値</a><ul>
+<li class="chapter" data-level="4.1" data-path="eigen.html"><a href="eigen.html#section-4.1"><i class="fa fa-check"></i><b>4.1</b> 行列式</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="eigen.html"><a href="eigen.html#section-4.1.1"><i class="fa fa-check"></i><b>4.1.1</b> 置換</a></li>
+<li class="chapter" data-level="4.1.2" data-path="eigen.html"><a href="eigen.html#section-4.1.2"><i class="fa fa-check"></i><b>4.1.2</b> 行列式の定義</a></li>
+<li class="chapter" data-level="4.1.3" data-path="eigen.html"><a href="eigen.html#section-4.1.3"><i class="fa fa-check"></i><b>4.1.3</b> 行列式の意味</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="eigen.html"><a href="eigen.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 固有値</a></li>
+<li class="chapter" data-level="4.3" data-path="eigen.html"><a href="eigen.html#section-4.3"><i class="fa fa-check"></i><b>4.3</b> 対角化</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="eigen.html"><a href="eigen.html#-"><i class="fa fa-check"></i><b>4.3.1</b> 例題: 対角化</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e58f82e88083e69687e78cae.html"><a href="e58f82e88083e69687e78cae.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/kenjisato/linear-economic-dynamics" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">経済動学: 線形編</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro" class="section level1">
+<h1><span class="header-section-number">第1章</span> はじめに</h1>
+<div id="section-1.1" class="section level2">
+<h2><span class="header-section-number">1.1</span> 経済動学</h2>
+<p>「経済動学」（economic dynamics）では経済の状態を表す変数（経済指標）の時間を通じた変化， あるいは変化の不在，を研究する。どのような問題を扱おうとしているのか整理しておこう。</p>
+<p>学部レベルのミクロ経済学を履修した読者は次のような最適化問題には馴染みがあると思う。 <span class="math display">\[
+\begin{aligned}
+  &amp;\max_{c\in \mathbb{R}^N_+} u(c) \\
+  &amp;\text{subject to}\quad p \cdot c \le I  
+\end{aligned}
+\]</span> 価格 <span class="math inline">\(p = (p_1, \dots, p_N)\)</span> と所得 <span class="math inline">\(I\)</span> のもとで，効用 <span class="math inline">\(u(c)\)</span> を最大にする消費量の組み合わせ <span class="math inline">\(c = (c_1, \dots, c_N)\)</span> を選べという問題である。この消費者モデルに対する標準的な仮定は，経済には<span class="math inline">\(N\)</span> 種の異なる財があり，そのうちの第 <span class="math inline">\(n\)</span> 財, <span class="math inline">\(n = 1, \dots, N\)</span>, には価格 <span class="math inline">\(p_n\)</span> が設定されている。 消費者はそれを <span class="math inline">\(c_n\)</span> 単位購入する。すべての財を購入するには，<span class="math inline">\(p\cdot c = \sum_{n = 1}^N p_n x_n\)</span> を支払う必要があるが，所得 <span class="math inline">\(I\)</span> を超える支出はできない。</p>
+<p>各財を並べた順番 <span class="math inline">\(n = 1, \dots, N\)</span> は完全に任意である。 <span class="math inline">\(c_n\)</span> と <span class="math inline">\(c_{n + 1}\)</span> がそのように並んでいることには何の理由もない。したがって，例えば， <span class="math inline">\(c_1 &lt; c_2 &lt; c_3 &lt; \cdots\)</span> という<strong>単調性（monotonicity）</strong>が得られたとしても， たまたまそのようになったという以上の解釈はできない。</p>
+<p>モデルを変えずに，解釈を変更してみよう。経済には本質的には1つの財しかないとする。 例えば<span class="math inline">\(c_1\)</span> は2001年の消費，<span class="math inline">\(c_2\)</span> を2002年の消費という様に， 各 <span class="math inline">\(c_n\)</span> をある特定の時点における経済活動を表す変数と解釈する。このような解釈の変更は， 解くべきモデルを変えることなく結果の解釈を変える。すなわち，先程の単調性は， 年々消費が増えていくということを意味している。説明上，<span class="math inline">\(N\)</span> を有限としたが，<span class="math inline">\(N = \infty\)</span> のケースを考えることが多い。<span class="math inline">\(N\)</span> が有限のとき， そのモデルは<strong>有限ホライズン（finite horizon）</strong>のモデルであるといい， そうでないとき<strong>無限ホライズン（infinite horizon）</strong>であるという。</p>
+<p>各変数が時間によってラベル付けされたモデルを解き， その解が満たす経時的な性質を調べるのが経済動学の主要な課題である。 次のような命題に関心がある。</p>
+<ul>
+<li>時間を通じて一定であるか，あるいは，十分時間が経てば収束状態に落ち着くか。 それとも，発散や恒常的な振動経路が観測されるか。</li>
+<li>収束経路は単調に増加（あるいは減少）するか，それとも振動的か。</li>
+<li>恒常的な振動が観測さるケースでは，振動は規則的（周期的， periodic）かあるいは不規則的（カオス，chaos）か。</li>
+<li>経済状態は過去の経路に依存して決まるか，それとも経路依存性はないか。</li>
+<li>経済状態は一意的に定まるのか，あるいは経済主体の「気まぐれ」が経路を変えてしまうことがあるのか。</li>
+<li>etc.</li>
+</ul>
+<p>モデルの解を特徴付ける方程式を<strong>動学方程式（dynamic equation）</strong>, あるいは<strong>動的システム（dynamic system）</strong>という。 経済学のモデルでは，消費者の効用最大化・企業の利潤最大化・種々の制約条件からなる最適化問題が満たす均衡条件として， 時点が隣り合う変数が満たす方程式を得られることが多い[^上のリストで挙げた「経路依存性」がないケースである。]。 <span class="math display">\[
+F(x_t, x_{t + 1}) = 0, \quad t = 1, 2, \dots
+\]</span> ただし，<span class="math inline">\(x_t\)</span> は関心のある経済変数を並べたベクトルである。時間（time）を表すインデックスを <span class="math inline">\(t\)</span> に変更した。経済政策などの外的な要因（ショック，shock）で経済環境が変化するケースを扱う場合には， <span class="math display">\[
+  F(x_t, x_{t+1}, z_t) = 0
+\]</span> といった動学方程式が得られることになる。これらのシステムは陰関数の解として変数が定まるという 意味で陰的システム（implicit system）である。</p>
+<p>経済の経時的な変化を知るためには，<span class="math inline">\(x_1, x_2, \dots\)</span> という時系列が必要であるから， 理想的には逐次的な計算公式 <span class="math display">\[
+x_{n + 1} = G_t (x_t, z_t)
+\]</span> が必要である。あるいは，<span class="math inline">\(G\)</span> の時間依存性がなければ， <span class="math display">\[
+x_{n+1} = G(x_t, z_t)
+\]</span> とできるかもしれない。上で例示したような動的システムは解くことができない。</p>
+</div>
+<div id="section-1.2" class="section level2">
+<h2><span class="header-section-number">1.2</span> 対象とするモデル</h2>
+<p>この講義では，次のような動的システムを考察する。</p>
+\begin{equation}
+  A\mathbb{E}_{t}x_{t+1}=Bx_{t}+Cz_{t} (\#eq:lre)
+\end{equation}
+<p><span class="math inline">\(x_t\)</span> はモデルを解いて決まる変数を並べたベクトル（内生変数，endogenous variable）， <span class="math inline">\(z_t\)</span> はモデルの外で決まる変数（外生変数，exogenous variable）。<span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span> は適切なサイズの行列である。 <span class="math inline">\(\mathbb E_t\)</span> は条件付き期待値である。</p>
+行列積と足し算だけからなる上記のようなシステムを線形システム（linear system）という。上の線形方程式を
+\begin{equation} 
+  Bx_{t} = A\mathbb{E}_{t}x_{t+1} - Cz_{t} (\#eq:lre2)
+\end{equation}
+<p>と書き換えると，<strong>今期の経済変数は将来に対する期待によって定まっている</strong>と読むことができる。 式<a href="#eq:lre">(<strong>??</strong>)</a> や 式<a href="#eq:lre2">(<strong>??</strong>)</a> のようなシステムを <strong>線形合理的期待モデル (linear rational expectations model)</strong> という。</p>
+<p>本書ではモデルの導出に深く踏み込まないが，価格や消費といった変数は将来に対する予想を反映して (forward-looking) 決まるということだけ意識しておけば十分だろう。 予想を反映して価格が決まるという関係は次のような例を通して理解できる。</p>
+
+<div class="example">
+<p>企業の株価はその企業が将来的に生み出す価値を利子率 (あるいは割引率) を考慮して割引いた値と一致するように決まる，というのが経済理論の基本公式である。 なお， 「割引」(discount) というのは収益を手にするまでに待たなければいけない時間分だけ減価調整することである。</p>
+<p>このような関係が成立する理由は比較的容易に理解できる。 ある企業の期待収益の割引現在価値がその企業の株価総額よりも一時的に高いとしよう。 当該株式を購入すれば 長い時間を通じて購入価格よりも高い収益を得ることができるのだから， そのような株式には買い手が集まり，市場価格は上昇する。逆に， 期待収益が株価総額を一時的に下回っているとしよう。 株主は株式を手放すインセンティブを持つが，そのような市場価格では買い手はつかない。 売値を下げてでも売りたいと考える株主がいなくなるまで株価は下落するだろう。 予想した価値と市場価格の不一致が解消された結果として達成されるのが先の価格公式というわけである。</p>
+利鞘を稼ぐチャンス（裁定機会，arbitrage opportunity）が存在すれば， 市場を通じて価格が速やかに調整され，その結果として裁定機会は失われる。 経済理論は裁定機会が消滅した後の経済環境（均衡）に焦点を当てて分析を行うことが多いが， それは上のような思想に基づいている。
+</div>
+<p></p>
+<p>通常, 経済モデルは非線形システム（線形でないシステムをすべて非線形システムという） によって記述されることが多いのだが, 非確率的な平衡点 <span class="math inline">\(x^* = x_t = x_{t+1}\)</span>, <span class="math inline">\(z_t = 0\)</span> （<span class="math inline">\(t &gt; 0\)</span>）の周りに分析を限定すれば，線形システムによってよく近似されることが知られている<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>。</p>
+<p>線形システムの分析は係数行列 (上記の <span class="math inline">\(A\)</span>，<span class="math inline">\(B\)</span>，<span class="math inline">\(C\)</span>) の分析に落とし込むことができるため， 理論的にも数値的にも大変扱いやすい。したがって， これから我々が学ぶ分析手法は<strong>平衡状態にある経済に対して小さなショックが加わったときに経済変数がどのような経時的変化を示すかを分析するための第一歩</strong>である。 実際には線形近似のみから数量的なインプリケーションを導くことは困難であるから， 有用な分析を行うためには高次の近似手法を学ぶ必要がある。しかし， 線形理論を理解することなく非線形理論を理解することはできない。一歩一歩着実に進んでいこう。</p>
+<div id="section-1.2.1" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> 決定論モデル</h3>
+<p>実は確率的な要因がなくなったとしても分析の基本的な方針は変わらない。すなわち， 非確率的 (決定論的) なシステム</p>
+\begin{equation}
+  Ax_{t+1} = Bx_t + Cz_t (\#eq:lsys)
+\end{equation}
+<p>を分析する手法を確立すれば，<a href="#eq:lre">(<strong>??</strong>)</a> の分析・シミュレーションができる。 まずは <a href="#eq:lsys">(<strong>??</strong>)</a> の分析について述べたのち， 確率的な要因を導入するというステップで理論分析を進める。</p>
+<p>さらに，非決定論的な分析を数段階に分けて解説する。</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(A\)</span> が正則のケース
+<ul>
+<li>解析的手法</li>
+<li>数値的手法</li>
+</ul></li>
+<li><span class="math inline">\(A\)</span> が非正則のケース
+<ul>
+<li>解析的手法</li>
+<li>数値的手法</li>
+</ul></li>
+</ol>
+<p><span class="math inline">\(A\)</span> が正則のケースでは <a href="#eq:lsys">(<strong>??</strong>)</a> は</p>
+\begin{equation}
+  x_{t+1} = A^{-1}Bx_t + A^{-1}Cz_t (\#eq:lsys)
+\end{equation}
+<p>と同値であるから（<span class="math inline">\(A^{-1}\)</span> は <span class="math inline">\(A\)</span> の逆行列）， 標準的な線形システム (状態空間方程式) と形式的には同じものである。</p>
+<p>続いて，<span class="math inline">\(A\)</span> が非正則のケースを扱う。上記の <a href="#eq:lsys">(<strong>??</strong>)</a> は， 制御理論の分野でデスクリプタシステム（descriptor system）， あるいは陰的システム（implicit system）として知られている対象である。 この分野で研究を進めようという人は， 同じ概念が異なる分野で異なる名前で利用されていることを知っておく方がよいだろう。</p>
+<p>ちなみに，デスクリプタシステムは「非因果的」（non-causal） なシステムを表現するために利用される。すなわち，未来の情報が現在に影響をおよぼすようなシステムである。 どこかで聞いたことのある話ではないだろうか？ 経済学における “forward-looking” は制御理論では非因果性と呼ばれている。</p>
+</div>
+<div id="section-1.2.2" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> 制御理論との違い</h3>
+<p>ただし経済学と制御理論の扱う対象が完全に同じだという訳ではない。経済モデルは， <span class="math inline">\(A\)</span>が正則であったとしても forward-looking（非因果的）な現象を表すように作られている。</p>
+<p>力学系理論や制御理論で式<a href="#eq:lsys">(<strong>??</strong>)</a>のようなシステムを扱うときには， 通常 <span class="math inline">\(x\)</span> と同じ数だけの初期条件 (initial codition) を与える。 そのようなケースでは初期条件から出発してシステムの解を逐次的に求めることができるから， 解を求める上で特段の難しさはない。一方，経済学における forward-looking の表現は， システム方程式<a href="#eq:lsys">(<strong>??</strong>)</a>とは独立している。 すなわち，変数（ベクトル） <span class="math inline">\(x\)</span> の一部の要素に初期条件が与えられて， 残りの要素には初期条件が与えられないという形で forward-looking を扱う。 初期条件を持つ成分を<strong>先決成分 (predetermined component)</strong> とか<strong>先決変数 (predetermined variable)</strong>と呼ぶ。 初期条件を持たない成分を<strong>非先決成分 (non-predetermined component)</strong> とか<strong>非先決変数 (non-predetermined variable)</strong> と呼ぶ<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>。</p>
+<p>例えば, 株式保有量を<span class="math inline">\(a\)</span>，株価を<span class="math inline">\(p\)</span>，株価に対する外的な影響を<span class="math inline">\(u\)</span>として， ベクトル <span class="math inline">\((a, p)\)</span> が次の動学方程式を満たすというモデルを作ったとしよう。</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+  a_{t+1} \\
+  p_{t+1}
+\end{bmatrix}
+=
+B
+\begin{bmatrix}
+  a_{t} \\
+  p_{t}
+\end{bmatrix}
++
+\begin{bmatrix}
+  0 \\
+  u_{t}
+\end{bmatrix}
+\]</span></p>
+<p>このとき <span class="math inline">\(a_0\)</span> は初期値として与えられているが，<span class="math inline">\(p_0\)</span> は <span class="math inline">\(a_0\)</span> および <span class="math inline">\(u\)</span> に対する予想に基いて決まるというのが典型的なマクロ経済学の問題である.</p>
+</div>
+<div id="section-1.2.3" class="section level3">
+<h3><span class="header-section-number">1.2.3</span> 安定性と決定性</h3>
+<p>さて，一部の変数に初期条件が与えられていない問題をどのように解けばよいだろうか。 もちろん，<span class="math inline">\(a_1, a_2, \dots\)</span> や <span class="math inline">\(p_0, p_1, \dots\)</span> に対して何の制約も置かなければこのような問題を解くことはできない。</p>
+<p><span class="citation">Blanchard and Kahn (<a href="#ref-BlanchardKahn1980">1980</a>)</span> が提案した条件は次のようなものである。 経済主体は幾何級数よりも早いスピードで発散するような予想に基いて行動することはない。 すなわち，幾何級数より早く発散するような初期値を除いた結果，初期値を1点に定めることができれば， その点は一意の均衡である。しかし，動学方程式を満たしつつ， 安定性（非幾何的発散）を満足するような経路は一般には無数に存在する。一意的であるようなケースを <strong>決定的 (deterinate)</strong> と呼び，決定的でないケースを <strong>不決定的 (indeterminate)</strong> と呼ぶ。</p>
+</div>
+<div id="section-1.2.4" class="section level3">
+<h3><span class="header-section-number">1.2.4</span> 合理的期待モデル</h3>
+<p>続いてシステム <a href="#eq:lre">(<strong>??</strong>)</a> の分析を行う. ショック項 <span class="math inline">\(z\)</span> を確率過程となるが, 決定論の分析を理解していれば, 条件付き期待値の性質を少し覚えるだけで理解できるようになる. 決定論モデルと同じ安定性の概念を利用して決定性を特徴づけることができるので, 実は決定論システムと本質的な違いはない.</p>
+<p>本書では, やや発展的な話題を紹介する.</p>
+</div>
+<div id="section-1.2.5" class="section level3">
+<h3><span class="header-section-number">1.2.5</span> マルコフスイッチングモデル</h3>
+<p>次に, 係数行列がマルコフ連鎖に従って変化するモデルに拡張する. このような拡張をすると, 伝統的な合理的期待モデルが利用してきた安定性の概念を利用することができなくなる. <strong>二乗平均安定性 (Mean Square Stability)</strong>という安定性概念を導入し, 決定性を特徴付ける.</p>
+</div>
+</div>
+<div id="section-1.3" class="section level2">
+<h2><span class="header-section-number">1.3</span> プログラミング環境</h2>
+<div id="rstudio" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> RStudio</h3>
+<p>前述のような線形モデルは (広く普及している C, Fortran のルーチンのおかげで) 大抵のプログラミング言語で解くことができる. 本書で R を使用するのは, 想定する読者層がもっとも接近しやすい言語であろうと考えたからである. 計量経済学の学習は Stata を使い, マクロ経済学では Matlab, 数理経済学の授業では Python というようなことにもなりがちだが, プログラミングの初級者は1つの言語に深く習熟するようにした方がよい. 将来的に他の言語に移るとしても, 広く浅く学んだ人よりも深く狭く学んだ人の方が, 速く学ぶ.</p>
+<p>R は計量経済学のツールとしてもとても優秀で, しかも多くのユーザーコミュニティがある. データ収集, 図示, モデリング, ドキュメント作成のすべての工程をRとRStudio で実行することができる. RStudio に触れる機会を増やすために, すべてのレポートを RStudio で作成するように気持ちを切り替えてみよう. RMarkdown という書式で書き, それをコンパイルする. knitr や pandoc がスムーズに仕事をこなしてくれる. PDF に変換するには texlive をインストールする. サイズは大きいが簡単だ. 数式を入力するには LaTeX の構文を覚える必要があるが, 大学院にいる以上いずれ必要になる技術だから, 今やっておいて損はない. RMarkdown は LaTeX そのものと比べると概ね自然に書くことができるし, 何よりも R のコードや計算結果, グラフを文章内に埋め込むのが非常に簡単だ. ところで, 本書も RStudio で書いている. いくつかの RMarkdown ファイル, 設定ファイルを bookdown というパッケージがうまく処理してくれる.</p>
+<p>R に十分習熟し, プロファイリングの努力も虚しく計算速度に限界を感じることがあるかもしれない. そうなった C++ を少し学べばよい. 重い処理だけを扱う C++ のコードを用意し, RCpp パケージを使って呼び出すことができる. そのような願望が現れるころには計算機の仕組みをある程度理解しているだろうから, C++ も速く学べると思う.</p>
+<p>本書のコードに関する解説は, 読者が RStudio で作業をしているものと想定している. Rプログラミングの経験が浅い読者は, 筆者と同様の環境を構築しておくほうが混乱がないだろう. 本節の残りの部分で RStudio の使い方に関する簡単な説明と, 環境構築を行う.</p>
+</div>
+<div id="section-1.3.2" class="section level3">
+<h3><span class="header-section-number">1.3.2</span> 準備</h3>
+<p>R 本体も RStudio もバイナリファイルをダウンロードして簡単にインストールすることができるので, インストールに関する詳細は省略する.</p>
+<p>このコースの学習用に RStudio プロジェクトファイルを用意しておこう. RStudio を起動し, メニューから「File &gt; New Project…」をクリックして新しいプロジェクトを作成する. 作成方法に関していくつかの選択肢を提示されるので, 特に問題がなければ「New Directory &gt; Empty Project」を選ぶ. 必要な入力項目を入力する. 例えば, プロジェクト名をlinear-economic-dynamics としておこう. 指定したディレクトリの配下に, linear-economic-dynamics という名前の新しいディレクトリ (フォルダ) , さらにその中に linear-economic-dynamics.Rproj というファイルが作成される.</p>
+<p>作業再開時には, linear-economic-dynamics.Rproj をダブルクリックして, RStudio が開く. 先程作ったディレクトリが作業ディレクトリになる. プロジェクト作成直後はすでに作業ディレクトリを移っているのでそのまま進めて構わない.</p>
+
+<div class="exercise">
+<p>次の用語を説明する. 説明できない場合は検索して調べる.</p>
+<ul>
+<li>ディレクトリ, フォルダ, directory, folder</li>
+<li>作業ディレクトリ, working directory / current directory</li>
+<li>相対パス, relative path</li>
+<li>絶対パス, absolute path</li>
+<li>コンソール, console</li>
+<li>スクリプトファイル, script file</li>
+</ul>
+</div>
+<p></p>
+<p>コマンドの実行はコンソールに入力＋Enter 押下でもよいし, コマンドをスクリプトファイルに書いて実行してもよい.</p>
+<div id="e382b3e383b3e382bde383bce383ab" class="section level4 unnumbered">
+<h4>コンソール</h4>
+<p>Console と書かれたエリアを探してほしい. 設定をいじっていなければ,<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a></p>
+<pre><code>R version 3.3.2 (2016-10-31) -- &quot;Sincere Pumpkin Patch&quot;
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin13.4.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type &#39;license()&#39; or &#39;licence()&#39; for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type &#39;contributors()&#39; for more information and
+&#39;citation()&#39; on how to cite R or R packages in publications.
+
+Type &#39;demo()&#39; for some demos, &#39;help()&#39; for on-line help, or
+&#39;help.start()&#39; for an HTML browser interface to help.
+Type &#39;q()&#39; to quit R.
+
+&gt;</code></pre>
+<p>という表示が見えるはずだ. 最後の記号 「&gt;」は「プロンプト」と呼ばれる. ここにコマンドを入力せよという意味である.</p>
+<p>本書では, コンソールに入力して実行して結果を確認するという文脈であってもプロンプトを表示しない. 各自入力して実行してほしいコマンドは次のようなグレーのボックスで表示する.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">10</span> *<span class="st"> </span><span class="dv">3</span></code></pre></div>
+<pre><code>## [1] 30</code></pre>
+<p><code>[1] 30</code> は実行結果であり, <code>10 * 3</code> の結果が 30 であることを意味している. 先頭についている <code>##</code> は特に意味はない. <code>[1]</code> は今のところ無視してもよい. <strong>コマンドの直後に配置された白背景のボックスに直前のコマンドの実行結果を掲載する</strong>.</p>
+<p>プロンプトを省略することで, 複数行にわたるコマンドであってもコピー＆ペーストで実行できるという利点がある. 次のコードをまるごとコピーして, コンソールにペーストし, Enter を押下すればPlotsペインに結果が出力されるはずだ.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 01_cobbdouglas_plot.R</span>
+
+A =<span class="st"> </span><span class="fl">1.2</span>
+alpha =<span class="st"> </span><span class="fl">0.3</span>
+cobbdouglas =<span class="st"> </span>function(k) {
+  <span class="kw">return</span>(A *<span class="st"> </span>k ^<span class="st"> </span>alpha)
+}
+
+k =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dt">length.out=</span><span class="dv">200</span>)
+y =<span class="st"> </span><span class="kw">cobbdouglas</span>(k)
+<span class="kw">plot</span>(k, y, <span class="dt">type=</span><span class="st">&#39;l&#39;</span>)</code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-6"></span>
+<img src="linear-economic-dynamics_files/figure-html/unnamed-chunk-6-1.png" alt="'01_cobbdouglas_plot.R' の実行結果" width="672" />
+<p class="caption">
+図 1.1: ‘01_cobbdouglas_plot.R’ の実行結果
+</p>
+</div>
+<p><code>#</code> に続く内容は, プログラマが読むためだけのコメントである. 本書の約束事として, コードチャンクの1行目のコメントには, スクリプトとして保存する場合のファイル名や, 本文中で参照するための短いキャプションを書くことにする.</p>
+</div>
+<div id="e382b9e382afe383aae38397e38388e38395e382a1e382a4e383ab" class="section level4 unnumbered">
+<h4>スクリプトファイル</h4>
+<p>スクリプトファイルを保存するディレクトリを作っておこう. Files ペインを探して内容を見ると linear-economic-dynamics.Rproj ファイルを見つけられる思う. そこがプロジェクトディレクトリの最上位階層 (ルートディレクトリ) である. もし当該ファイルが見当たらなければ, ディレクトリ階層を移動して探してほしい. 元いた場所から離れることができたのだから戻ることもできるはずだ. 帰れなくなったら RStudio を終了して, 再び .Rproj をダブルクリックして起動しなおせばよい.</p>
+<p>プロジェクトの .Rpoj ファイルが見つかったら「New Folder」というボタンを押して, 「R」という名前の新しいディレクトリを作る.</p>
+<p><strong>スクリプト (script)</strong>とは1つ以上のコマンドをまとめたファイルのことである. R はスクリプトファイルを読んで, 上から順番に実行することができる. コンソール上での作業は複数行に渡るコードを入力するには不向きなので, 別途ファイルに保存しておくことで生</p>
+<p>RStudio で新しいスクリプトファイルを作るにはいくつかの方法がある.</p>
+<ul>
+<li>RStudio 左上にあるるボタン (白い四角の上に足し算記号のマーク) から「R Script」を選びクリックする.</li>
+<li>メニューから「File &gt; New File &gt; R Script」と進む.</li>
+<li><strong>キーボードショートカット Ctrl+Shift+N / Cmd+Shift+N を押下する</strong></li>
+</ul>
+<p>最後のキーボードショートカットを覚えるのが一番よいだろう. Cmd+Shit+N を押下すると, Untitled1 という名前でソースペインが開く. ここに先程の <code>01_cobbdouglas_plot.R</code> のコードをコピー＆ペーストしてみよう. Ctrl+S / Cmd+S によって保存しようとすると, 保存場所と名前を決めるように促されるので, 先程作成しておいた R というフォルダに, <code>01_cobbdouglas_plot.R</code> という名前で配置する. プロジェクトディレクトリは次のような構成になっているはずだ.<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a></p>
+<pre><code>linear-economic-dynamics
+├── R
+│   └── 01_cobbdouglas_plot.R
+└── linear-economic-dynamics.Rproj</code></pre>
+<p>作業ディレクトリ (linear-economic-dynamics) にある, R というサブディレクトリの中にある <code>01_cobbdouglas_plot.R</code> というスクリプトファイルを実行するには以下のようにする.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&#39;R/01_cobbdouglas_plot.R&#39;</span>)</code></pre></div>
+<p>作業ディレクトリを起点としたファイルの位置を<strong>相対パス (relative path)</strong>という. スクリプト内にファイルパスを書く場合は, やむを得ない事情で移動できない場合を除いて必ず相対パスで指定するようにする.</p>
+<p>さきほどのスクリプトファイルはもっと下位のサブディレクトリに配置することもできる. 例えば, 章ごと節ごとにディレクトリを作って</p>
+<pre><code>source(&#39;R/part1/chapter03/section04/subsection01/01.R&#39;)</code></pre>
+<p>ということも可能ではある. しかし, 階層が深くなりすぎると管理が難しくなるので, できるだけフラットにしておくようにしよう. この本では,</p>
+<pre><code>R/chapternumber_descriptive_name.R</code></pre>
+<p>という形式のファイル名をつけ, すべて R ディレクトリの直下に配置する.</p>
+</div>
+</div>
+<div id="section-1.3.3" class="section level3">
+<h3><span class="header-section-number">1.3.3</span> パッケージ</h3>
+<div id="tidyverse" class="section level4 unnumbered">
+<h4>tidyverse</h4>
+<p>本書では <code>tidyverse</code> パッケージを利用する. <code>tidyverse</code> はRのデータフレーム操作を円滑にするためのパッケージ群である. 必要なもの以上に関数を読み込むことを望まない場合には, <code>ggplot2</code>, <code>dplyr</code>, <code>tidyr</code> を必要に応じて読み込むとよい.</p>
+<p>試しにプロンプトに</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
+<pre><code>## Loading tidyverse: ggplot2
+## Loading tidyverse: tibble
+## Loading tidyverse: tidyr
+## Loading tidyverse: readr
+## Loading tidyverse: purrr
+## Loading tidyverse: dplyr</code></pre>
+<pre><code>## Conflicts with tidy packages ----------------------------------------------</code></pre>
+<pre><code>## filter(): dplyr, stats
+## lag():    dplyr, stats</code></pre>
+<p>と打ち込んでみよう. エラーが出る場合には次のコマンドでインストールしてから, 再度実行する.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
+<pre><code>Loading tidyverse: ggplot2
+Loading tidyverse: tibble
+Loading tidyverse: tidyr
+Loading tidyverse: readr
+Loading tidyverse: purrr
+Loading tidyverse: dplyr
+Conflicts with tidy packages ---------------------------------------------------------
+filter(): dplyr, stats
+lag():    dplyr, stats</code></pre>
+<p>といったメッセージが出ると思う. <code>tidyverse</code> はパッケージ群なので, 幾つかの個別のパッケージを読み込むのが仕事である. Conflicts が出て心配になるかもしれないが, 特に問題はない. <code>filter()</code>, <code>lag()</code> という関数がデフォルトで読み込まれているにもかかわらず, 同じ名前を持つ <code>dplyr</code> を読み込んだことで<code>filter()</code>, <code>lag()</code> という関数の実体が変更されてしまった. もし, デフォルトの <code>filter()</code> を使いたければ, <code>stats::filter()</code> と呼び出せばよい. <code>stats::</code> や <code>dplyr::</code> といったプレフィックスは, 関数やオブジェクトがどのパッケージで定義されたものかを明示したいときに使う.</p>
+<p>本書では, <code>base::data.frame()</code> の代わりに <code>tibble::tibble()</code> を利用する. <code>tibble</code> パッケージは <code>tidyverse</code> に含まれている. 違いを簡単に見ておこう.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)
+y =<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>)
+z =<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)
+
+(<span class="dt">df =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">z =</span> z))</code></pre></div>
+<pre><code>##   x y     z
+## 1 1 a  TRUE
+## 2 2 b  TRUE
+## 3 3 c FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="dt">tbl =</span> <span class="kw">tibble</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">z =</span> z))</code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##       x     y     z
+##   &lt;dbl&gt; &lt;chr&gt; &lt;lgl&gt;
+## 1     1     a  TRUE
+## 2     2     b  TRUE
+## 3     3     c FALSE</code></pre>
+<p>base のデータフレームと比べて, tibble は次の点で扱いやすい.</p>
+<ul>
+<li>データのサイズを表示してくれる</li>
+<li>コラムの型情報を表示する (<code>&lt;dbl&gt;</code>, <code>&lt;chr&gt;</code>, <code>&lt;lgl&gt;</code>)</li>
+<li>文字列をファクター型にしない</li>
+</ul>
+<p>ファクター型は, 文字列を内部的に整数値として保存している. これを文字列と思って扱うと問題が起こる. 例えば,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;a&quot;</span> &lt;<span class="st"> &quot;b&quot;</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>と同じ振る舞いを期待して, 次のような評価をすると問題が起こる:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$y[<span class="dv">1</span>] &lt;<span class="st"> </span>df$y[<span class="dv">2</span>]</code></pre></div>
+<pre><code>## Warning in Ops.factor(df$y[1], df$y[2]): &#39;&lt;&#39; not meaningful for factors</code></pre>
+<pre><code>## [1] NA</code></pre>
+</div>
+<div id="qz" class="section level4 unnumbered">
+<h4>QZ</h4>
+<p>同様に <code>QZ</code> パッケージもインストールしておこう. 後々利用することになる.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;qz&quot;</span>)</code></pre></div>
+</div>
+<div id="devtools" class="section level4 unnumbered">
+<h4>devtools</h4>
+<p>パッケージ開発環境. <code>devtools::github_install()</code> を使って, github レポジトリからパッケージをインストールできるようになる.</p>
+<p><strong>Step 1</strong>:</p>
+<p>コンパイラをインストールする.</p>
+<ul>
+<li><strong>Windows</strong>: <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools (https://cran.r-project.org/bin/windows/Rtools/)</a> をインストール</li>
+<li><strong>Mac</strong>: Xcode をインストール</li>
+</ul>
+<p><strong>Step 2</strong>:</p>
+<p>CRAN からインストール.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</code></pre></div>
+
+</div>
+</div>
+</div>
+</div>
+<h3>参考文献</h3>
+<div id="refs" class="references">
+<div id="ref-BlanchardKahn1980">
+<p>Blanchard, Olivier Jean, and Charles M. Kahn. 1980. “The Solution of Linear Difference Models Under Rational Expectations.” <em>Econometrica</em> 48 (5): 1305–12.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="2">
+<li id="fn2"><p>Hartman-Grobman の定理。 この定理が成り立つためには平衡点が双曲型であるという条件が必要である。 双曲的でないシステムは非線形モデルの近似としては意味をなさないが， 線形モデルとして扱う分には特段の区別をする必要はない。<a href="intro.html#fnref2">↩</a></p></li>
+<li id="fn3"><p>確率的な要因を含むモデルではやや異なる定義をするが， 基本的には同じことである。<a href="intro.html#fnref3">↩</a></p></li>
+<li id="fn4"><p>OSの言語に合わせて R のメッセージの言語が異なるかもしれない. 筆者は英語で利用することを強く推奨する. 未知のエラーに遭遇したときに, 英語の方が情報が得られやすい. ロカールの変更方法は各自調べること.<a href="intro.html#fnref4">↩</a></p></li>
+<li id="fn5"><p>実際には .Rproj.user という隠しディレクトリがある.<a href="intro.html#fnref5">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="complexnumbers.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"lib_dir": "assets",
+"search": true,
+"toolbar": {
+"position": "fixed"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
