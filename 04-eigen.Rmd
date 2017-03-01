@@ -124,7 +124,17 @@ $$
 knitr::include_graphics("figures/04-eigen/04-eigen.001.jpeg")
 ```
 
-一般の次数でも同様の考え方が
+一般の次数でも同様の考え方が適用できる。例えば，3次正方行列の行列式は，列ベクトルが作る平行6面体（parallelepiped）の符号付き体積と一致する（\@ref(fig:parallelepiped)）。このことから分かることは，行列を構成する列に同じ向きを持つ（平行な）ベクトルが含まれていると行列式は必ずゼロになるということである（\@ref(fig:parallel-columns）。
+
+```{r parallelepiped, fig.cap="列ベクトルが成す平行六面体", echo=FALSE}
+knitr::include_graphics("figures/04-eigen/04-eigen.002.jpeg")
+```
+
+```{r parallel-columns, fig.cap="平行な列ベクトル", echo=FALSE}
+knitr::include_graphics("figures/04-eigen/04-eigen.003.jpeg")
+```
+
+後に明らかになるように，正方行列の正則性は列ベクトルの1次独立性と同値な条件である。これは，行列式がゼロでないこと，ランクが次数と一致することとも同値である。これらの関係を理解しておくと動学理論を見通しよく学習できる。
 
 ## 固有値
 
