@@ -317,8 +317,8 @@ Type 'q()' to quit R.
 
 プロンプトを省略することで, 複数行にわたるコマンドであってもコピー＆ペーストで実行できるという利点がある. 次のコードをまるごとコピーして, コンソールにペーストし, Enter を押下すればPlotsペインに結果が出力されるはずだ.
 
-```{r, fig.cap="'01_cobbdouglas_plot.R' の実行結果"}
-# 01_cobbdouglas_plot.R
+```{r, fig.cap="'01-cobbdouglas-plot.R' の実行結果"}
+# 01-cobbdouglas-plot.R
 
 A = 1.2
 alpha = 0.3

@@ -2,7 +2,6 @@
 
 本章では，行列の固有値に関して復習する。
 
-
 ## 行列式 
 
 ### 置換
@@ -120,7 +119,8 @@ $$
   A_2 = \begin{bmatrix} b \\ d \end{bmatrix}
 $$
 が作る平行四辺形 (parallelogram) の（符号付き）面積と一致する（図\@ref(fig:parallelogram)の色付き部分）。
-```{r, parallelogram, fig.cap="列ベクトルが成す平行四辺形", echo=FALSE}
+
+```{r parallelogram, fig.cap="列ベクトルが成す平行四辺形", echo=FALSE}
 knitr::include_graphics("figures/04-eigen/04-eigen.001.jpeg")
 ```
 
