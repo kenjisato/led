@@ -26,7 +26,7 @@
 <meta name="author" content="佐藤 健治">
 
 
-<meta name="date" content="2017-02-27">
+<meta name="date" content="2017-03-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -126,7 +126,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2" data-path="complexnumbers.html"><a href="complexnumbers.html"><i class="fa fa-check"></i><b>2</b> 複素数</a><ul>
 <li class="chapter" data-level="2.1" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> はじめに</a></li>
 <li class="chapter" data-level="2.2" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> 複素数</a></li>
-<li class="chapter" data-level="2.3" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.3"><i class="fa fa-check"></i><b>2.3</b> 複素平面</a></li>
+<li class="chapter" data-level="2.3" data-path="complexnumbers.html"><a href="complexnumbers.html#imaginary-plane"><i class="fa fa-check"></i><b>2.3</b> 複素平面（imaginary plane）</a></li>
 <li class="chapter" data-level="2.4" data-path="complexnumbers.html"><a href="complexnumbers.html#r-"><i class="fa fa-check"></i><b>2.4</b> R コード</a><ul>
 <li class="chapter" data-level="" data-path="complexnumbers.html"><a href="complexnumbers.html#e59b9be58987e6bc94e7ae97"><i class="fa fa-check"></i>四則演算</a></li>
 <li class="chapter" data-level="" data-path="complexnumbers.html"><a href="complexnumbers.html#e8a487e7b4a0e5b9b3e99da2e4b88ae381aee59bb3e7a4ba"><i class="fa fa-check"></i>複素平面上の図示</a></li>
@@ -224,9 +224,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <p></p>
 </div>
-<div id="section-2.3" class="section level2">
-<h2><span class="header-section-number">2.3</span> 複素平面</h2>
-<p>1つの複素数は <span class="math inline">\((a, b)\)</span> という実数のペアと同一視できるので，平面上の1点として複素数を表現できる。 理屈はともかく R のコードを使って説明してみよう。一緒に手を動かしてみてほしい。</p>
+<div id="imaginary-plane" class="section level2">
+<h2><span class="header-section-number">2.3</span> 複素平面（imaginary plane）</h2>
+<p>1つの複素数は <span class="math inline">\((a, b)\)</span> という実数のペアと同一視できるので，平面上の1点として複素数を表現できる。 図<a href="complexnumbers.html#fig:imaginary-plane">2.1</a> 参照。</p>
+<div class="figure"><span id="fig:imaginary-plane"></span>
+<img src="figures/02-complex_numbers/02-complex_numbers.001.jpeg" alt="複素平面"  />
+<p class="caption">
+図 2.1: 複素平面
+</p>
+</div>
+<p>複素平面は動学の分析に重要な役割を果たすので自ら図を描いて手になじませておくとよい。</p>
 </div>
 <div id="r-" class="section level2">
 <h2><span class="header-section-number">2.4</span> R コード</h2>
@@ -365,7 +372,13 @@ for (i in <span class="dv">1</span>:<span class="dv">10</span>) {
 \]</span></p>
 <p><span class="math inline">\(r = \sqrt{a^2 + b^2}\ge 0\)</span> を <span class="math inline">\(z = a + bi\)</span> の<strong>絶対値 (absolute value)</strong>という。<span class="math inline">\(z\)</span> の絶対値を <span class="math inline">\(|z|\)</span> で表す。<span class="math inline">\(\theta\)</span> を<strong>偏角 (argument)</strong> という (<span class="math inline">\(\mathrm{arg}(z)\)</span> で表すこともある)。すべての複素数が <span class="math display">\[
   z = r(\cos\theta + i\sin\theta)
-\]</span> という表現を持つ。この表現を複素数の<strong>極形式 (polar form)</strong>という.</p>
+\]</span> という表現を持つ。この表現を複素数の<strong>極形式 (polar form)</strong>という。図<a href="complexnumbers.html#fig:polar-form">2.2</a> 参照。</p>
+<div class="figure"><span id="fig:polar-form"></span>
+<img src="figures/02-complex_numbers/02-complex_numbers.002.jpeg" alt="極形式"  />
+<p class="caption">
+図 2.2: 極形式
+</p>
+</div>
 絶対値が<span class="math inline">\(1\)</span> で偏角の異なる2つの複素数 <span class="math inline">\(\cos\theta_1 + i\sin\theta_1\)</span> と <span class="math inline">\(\cos\theta_2 + i\sin\theta_2\)</span> を掛け合わせると
 \begin{align}
   &amp;(\cos\theta_1 + i\sin\theta_1)(\cos\theta_2 + i\sin\theta_2) \notag \\
@@ -429,7 +442,7 @@ for (i in <span class="dv">1</span>:<span class="dv">10</span>) {
   |z_p^n| &amp;= |r_p^n e^{i n\theta_p}| = r_p^n \to 0\\
   |z_q^n| &amp;= |r_q^n e^{i n\theta_q}| = r_q^n \to \infty
 \end{aligned}
-\]</span> を得る。この観察をまとめておこう.</p>
+\]</span> を得る。この観察をまとめておこう。</p>
 
 <div class="fact">
 <ul>
@@ -439,6 +452,13 @@ for (i in <span class="dv">1</span>:<span class="dv">10</span>) {
 </ul>
 </div>
 <p></p>
+<p>べき乗の収束性（安定性）は考えている複素数が複素平面上で原点を中心とする単位円（unit circle）の内側（単位円盤 unit disk の上）にあるかどうかで決まる。図<a href="complexnumbers.html#fig:unit-disk">2.3</a>において，<span class="math inline">\(z_1\)</span>のべきは発散し，<span class="math inline">\(z_2\)</span>のべきは原点に収束する。</p>
+<div class="figure"><span id="fig:unit-disk"></span>
+<img src="figures/02-complex_numbers/02-complex_numbers.003.jpeg" alt="単位円"  />
+<p class="caption">
+図 2.3: 単位円
+</p>
+</div>
 </div>
 </div>
 <div id="section-2.6" class="section level2">
@@ -447,7 +467,14 @@ for (i in <span class="dv">1</span>:<span class="dv">10</span>) {
 \begin{equation*}
   \bar{\bar z} = z 
 \end{equation*}
-が成り立つ。また, 
+<p>が成り立つ。（@ref(fig:conjugate））</p>
+<div class="figure"><span id="fig:conjugate"></span>
+<img src="figures/02-complex_numbers/02-complex_numbers.004.jpeg" alt="共役複素数"  />
+<p class="caption">
+図 2.4: 共役複素数
+</p>
+</div>
+共役複素数には次の性質がある。 
 <div class="exercise">
 任意の複素数 <span class="math inline">\(z\)</span> に対して, <span class="math display">\[
   z\bar z = |z|^2
@@ -507,7 +534,7 @@ sum ==<span class="st"> </span><span class="dv">1</span></code></pre></div>
 </div>
 <div id="complexramsey" class="section level2">
 <h2><span class="header-section-number">2.7</span> 補遺：ラムゼーモデル</h2>
-<p>章の冒頭に1セクターモデルの話を書いたので，マクロ経済学を未修の読者のために補足をしておこう。 大学院初級のマクロ経済学を履修したことがあって，「複素数は出てこなかったし，これからも出会うことはない」と考えている読者にもぜひ読んでほしい。</p>
+<p>章の冒頭に1セクターモデルの話を書いたので，マクロ経済学を未修の読者のために補足をしておこう。 大学院初級のマクロ経済学を履修したことがあって，「複素数は出てこなかったし，これからも出会うことはない」と考えていた読者にもぜひ読んでほしい。</p>
 <p>多くのマクロ経済モデルは最適成長モデル（optimal growth model）あるいはラムゼーモデル（Ramsey model）と呼ばれる基本モデルをベースに組み立てられている。 最適成長モデルは次のような無限ホライズンの最大化問題として記述される。</p>
 <p><span class="math display">\[
 \begin{aligned}
