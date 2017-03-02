@@ -392,8 +392,14 @@ R/chapternumber_descriptive_name.R
 
 試しにプロンプトに
 
-```{r}
+```{r, eval=FALSE}
 library(tidyverse)
+```
+
+```{r, include=FALSE}
+library(ggplot2)
+library(tibble)
+library(dplyr)
 ```
 
 と打ち込んでみよう. エラーが出る場合には次のコマンドでインストールしてから, 再度実行する. 
@@ -408,7 +414,7 @@ Loading tidyverse: tidyr
 Loading tidyverse: readr
 Loading tidyverse: purrr
 Loading tidyverse: dplyr
-Conflicts with tidy packages ---------------------------------------------------------
+Conflicts with tidy packages ---------------------------
 filter(): dplyr, stats
 lag():    dplyr, stats
 ```

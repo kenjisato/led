@@ -1,4 +1,10 @@
 language: r
+pandoc_version: 1.17
+cache: packages
+
+branches:
+  only:
+    - master
 
 env:
   global:
