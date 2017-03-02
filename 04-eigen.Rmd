@@ -445,7 +445,7 @@ i & 0\\
 \end{bmatrix}
 =
 V^{-1}JV
-(\#eq:J-matrix)
+(\#eq:Jmatrix)
 \end{equation}
 が成り立つ。固有ベクトルを並べた行列$V$によって $J$ を対角行列に変形 (対角化) することができた。
 あらゆる行列に対してこのような変形ができる訳ではないことには注意が必要である。
@@ -543,7 +543,7 @@ $$
 $$
 と対角化できたとしよう。
 定理\@ref(thm:conju-eigen-pair)より共役複素数が必ずペアで現れることに注意せよ。
-$P$ は固有ベクトルを並べた行列である。式\@ref(eq:J-matrix)より，
+$P$ は固有ベクトルを並べた行列である。式\@ref(eq:Jmatrix)より，
 $$
 \begin{aligned}
   AP 
@@ -656,7 +656,7 @@ knitr::include_graphics("figures/04-eigen/04-eigen.005.jpeg")
 
 一般のセクターに対しては定理\@ref(thm:levhari-liviatan-santos-onesec) は成り立たない。
 複素固有値 $\lambda$ が存在すれば，定理\@ref(thm:conju-eigen-pair) によって$\bar \lambda$ も固有値である。さらに，@LevhariLiviatan1972 によれば $1/(\beta \lambda)$ と 
-$1/(\beta \bar \lambda)$も固有値である。1つの複素固有値から3つの複素固有値が派生する。図\@ref(fig:remasey-multsector-saddle), 図\@ref(fig:ramsey-multsector-unstable)。
+$1/(\beta \bar \lambda)$も固有値である。1つの複素固有値から3つの複素固有値が派生する。図\@ref(fig:ramsey-multsector-saddle), 図\@ref(fig:ramsey-multsector-unstable)。
 
 ```{r ramsey-multsector-saddle, fig.cap="鞍点（マルチセクター）", echo=FALSE}
 knitr::include_graphics("figures/04-eigen/04-eigen.006.jpeg")
