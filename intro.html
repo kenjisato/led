@@ -412,15 +412,6 @@ y =<span class="st"> </span><span class="kw">cobbdouglas</span>(k)
 <p>本書では <code>tidyverse</code> パッケージを利用する. <code>tidyverse</code> はRのデータフレーム操作を円滑にするためのパッケージ群である. 必要なもの以上に関数を読み込むことを望まない場合には, <code>ggplot2</code>, <code>dplyr</code>, <code>tidyr</code> を必要に応じて読み込むとよい.</p>
 <p>試しにプロンプトに</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
-<pre><code>## Loading tidyverse: ggplot2
-## Loading tidyverse: tibble
-## Loading tidyverse: tidyr
-## Loading tidyverse: readr
-## Loading tidyverse: purrr
-## Loading tidyverse: dplyr</code></pre>
-<pre><code>## Conflicts with tidy packages ----------------------------------------------</code></pre>
-<pre><code>## filter(): dplyr, stats
-## lag():    dplyr, stats</code></pre>
 <p>と打ち込んでみよう. エラーが出る場合には次のコマンドでインストールしてから, 再度実行する.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
 <pre><code>Loading tidyverse: ggplot2
@@ -429,7 +420,7 @@ Loading tidyverse: tidyr
 Loading tidyverse: readr
 Loading tidyverse: purrr
 Loading tidyverse: dplyr
-Conflicts with tidy packages ---------------------------------------------------------
+Conflicts with tidy packages ---------------------------
 filter(): dplyr, stats
 lag():    dplyr, stats</code></pre>
 <p>といったメッセージが出ると思う. <code>tidyverse</code> はパッケージ群なので, 幾つかの個別のパッケージを読み込むのが仕事である. Conflicts が出て心配になるかもしれないが, 特に問題はない. <code>filter()</code>, <code>lag()</code> という関数がデフォルトで読み込まれているにもかかわらず, 同じ名前を持つ <code>dplyr</code> を読み込んだことで<code>filter()</code>, <code>lag()</code> という関数の実体が変更されてしまった. もし, デフォルトの <code>filter()</code> を使いたければ, <code>stats::filter()</code> と呼び出せばよい. <code>stats::</code> や <code>dplyr::</code> といったプレフィックスは, 関数やオブジェクトがどのパッケージで定義されたものかを明示したいときに使う.</p>
