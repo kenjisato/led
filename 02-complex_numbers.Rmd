@@ -418,7 +418,7 @@ $f(x)=0$ を成り立たせるすべての $x$ の集合を指し，根（root�
 のことを指して，区別することが多い。]。いずれにせよ実係数多項式方程式が重要な役割を果たす。
 
 多項式方程式は次のような性質を持つ。
-```{theorem, name = "代数学の基本定理"}
+```{theorem, label="fundamental-theorem-algebra", name = "代数学の基本定理"}
 $a_n, \dots, a_0 \in \mathbb C$ とする。$z$ の多項式
 $$
   p(z) = a_n z^n + a_{n-1} z^{n-1} + \cdots + a_1 z + a_0
@@ -545,7 +545,7 @@ $$
 
 次の定理は @LevhariLiviatan1972 と @Santos1991 による結果の1セクター版である。
 
-```{theorem}
+```{theorem, label='levhari-liviatan-santos-onesec'}
 方程式 \@ref(eq:lineuler) の根はともに実数である。
 ```
 
