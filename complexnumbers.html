@@ -26,7 +26,7 @@
 <meta name="author" content="佐藤 健治">
 
 
-<meta name="date" content="2017-03-01">
+<meta name="date" content="2017-03-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -151,10 +151,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.1.2" data-path="eigen.html"><a href="eigen.html#section-4.1.2"><i class="fa fa-check"></i><b>4.1.2</b> 行列式の定義</a></li>
 <li class="chapter" data-level="4.1.3" data-path="eigen.html"><a href="eigen.html#section-4.1.3"><i class="fa fa-check"></i><b>4.1.3</b> 行列式の意味</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="eigen.html"><a href="eigen.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 固有値</a></li>
+<li class="chapter" data-level="4.2" data-path="eigen.html"><a href="eigen.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 固有値と固有ベクトル</a></li>
 <li class="chapter" data-level="4.3" data-path="eigen.html"><a href="eigen.html#section-4.3"><i class="fa fa-check"></i><b>4.3</b> 対角化</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="eigen.html"><a href="eigen.html#-"><i class="fa fa-check"></i><b>4.3.1</b> 例題: 対角化</a></li>
+<li class="chapter" data-level="4.3.1" data-path="eigen.html"><a href="eigen.html#section-4.3.1"><i class="fa fa-check"></i><b>4.3.1</b> 計算方法の確認</a></li>
+<li class="chapter" data-level="4.3.2" data-path="eigen.html"><a href="eigen.html#section-4.3.2"><i class="fa fa-check"></i><b>4.3.2</b> 例題</a></li>
+<li class="chapter" data-level="4.3.3" data-path="eigen.html"><a href="eigen.html#section-4.3.3"><i class="fa fa-check"></i><b>4.3.3</b> 複素数の行列表現</a></li>
+<li class="chapter" data-level="4.3.4" data-path="eigen.html"><a href="eigen.html#section-4.3.4"><i class="fa fa-check"></i><b>4.3.4</b> 実対角化</a></li>
 </ul></li>
+<li class="chapter" data-level="4.4" data-path="eigen.html"><a href="eigen.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 線形動学方程式と固有値</a></li>
+<li class="chapter" data-level="4.5" data-path="eigen.html"><a href="eigen.html#section-4.5"><i class="fa fa-check"></i><b>4.5</b> ラムゼーモデルと固有値</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="e58f82e88083e69687e78cae.html"><a href="e58f82e88083e69687e78cae.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
@@ -192,7 +197,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 \]</span> を成り立たせる <span class="math inline">\(i\)</span> のことである。実際にはそのような <span class="math inline">\(i\)</span> は複数ある (かもしれない) ので，そのうちの1つに <span class="math inline">\(i\)</span> という名前をつける。実数の範囲にはこのような数は存在しないから，<span class="math inline">\(i\)</span> の追加によって <span class="math inline">\(\mathbb R\)</span> より大きい集合を考えることになる.<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a></p>
 
 <div class="definition">
-<span id="def:unnamed-chunk-16" class="definition"><strong>定義 2.1 </strong></span><strong>複素数 (complex number)</strong> とは，実数 <span class="math inline">\(a\)</span>，<span class="math inline">\(b\)</span> を用いて <span class="math display">\[
+<span id="def:unnamed-chunk-17" class="definition"><strong>定義 2.1 </strong></span><strong>複素数 (complex number)</strong> とは，実数 <span class="math inline">\(a\)</span>，<span class="math inline">\(b\)</span> を用いて <span class="math display">\[
   a + bi
 \]</span> と書ける数のことをいう。<span class="math inline">\(a\)</span> を<strong>実部 (real part)</strong>，<span class="math inline">\(b\)</span> を<strong>虚部 (imaginary part)</strong> という。
 </div>
@@ -203,7 +208,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>複素数同士の四則演算を次のように定義する.</p>
 
 <div class="definition">
-<p><span id="def:unnamed-chunk-17" class="definition"><strong>定義 2.2 </strong></span> 任意の <span class="math inline">\(a_1，a_2，b_1，b_2 \in \mathbb R\)</span> に対して, <span class="math display">\[
+<p><span id="def:unnamed-chunk-18" class="definition"><strong>定義 2.2 </strong></span> 任意の <span class="math inline">\(a_1，a_2，b_1，b_2 \in \mathbb R\)</span> に対して, <span class="math display">\[
 \begin{aligned}
   (a_1 + b_1 i) + (a_2 + b_2 i) &amp;= (a_1 + a_2) + (b_1 + b_2) i \\
   (a_1 + b_1 i) - (a_2 + b_2 i) &amp;= (a_1 - a_2) + (b_1 - b_2) i \\
@@ -227,7 +232,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="imaginary-plane" class="section level2">
 <h2><span class="header-section-number">2.3</span> 複素平面（imaginary plane）</h2>
 <p>1つの複素数は <span class="math inline">\((a, b)\)</span> という実数のペアと同一視できるので，平面上の1点として複素数を表現できる。 図<a href="complexnumbers.html#fig:imaginary-plane">2.1</a> 参照。</p>
-<div class="figure"><span id="fig:imaginary-plane"></span>
+<div class="figure" style="text-align: center"><span id="fig:imaginary-plane"></span>
 <img src="figures/02-complex_numbers/02-complex_numbers.001.jpeg" alt="複素平面"  />
 <p class="caption">
 図 2.1: 複素平面
@@ -326,7 +331,7 @@ points</code></pre></div>
 <p>今作ったデータフレームの <code>re</code> 列を横軸に，<code>im</code> 列を縦軸にプロットすればよい。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(points) +<span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>re, <span class="dt">y=</span>im, <span class="dt">color=</span><span class="kw">factor</span>(z))) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">coord_fixed</span>() +<span class="st"> </span><span class="kw">xlim</span>(-<span class="dv">5</span>, <span class="dv">5</span>) +<span class="st"> </span><span class="kw">ylim</span>(-<span class="dv">5</span>, <span class="dv">5</span>) <span class="co"># この行は装飾</span></code></pre></div>
-<p><img src="linear-economic-dynamics_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p><img src="linear-economic-dynamics_files/figure-html/unnamed-chunk-33-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="e381b9e3818de4b997" class="section level4 unnumbered">
 <h4>べき乗</h4>
@@ -342,7 +347,7 @@ for (i in <span class="dv">1</span>:<span class="dv">10</span>) {
 
 <span class="kw">ggplot</span>(zn) +<span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>re, <span class="dt">y=</span>im, <span class="dt">color=</span><span class="kw">factor</span>(n))) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">coord_fixed</span>() +<span class="st"> </span><span class="kw">xlim</span>(-<span class="fl">1.02</span>, <span class="fl">1.02</span>) +<span class="st"> </span><span class="kw">ylim</span>(-<span class="fl">1.02</span>, <span class="fl">1.02</span>)</code></pre></div>
-<p><img src="linear-economic-dynamics_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p><img src="linear-economic-dynamics_files/figure-html/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(1\)</span> に <span class="math inline">\(0.5 + 0.5i\)</span> を繰り返し掛けると次第に原点に近づいていくことが分かる。これは，実部・虚部ともに <span class="math inline">\(0.5\)</span> という比較的小さな数字だから成り立ちそうな気がする。実数の場合，<span class="math inline">\(\lim_{n\to \infty} a^n = 0\)</span> となるのは，<span class="math inline">\(-1 &lt; a &lt; 1\)</span> の場合ということを思いだしてほしい。複素数の場合には，実部・虚部のそれぞれが<span class="math inline">\(1\)</span> より小さい絶対値を持てば原点に収束するだろうか？</p>
 <p>例えば次の例を考えてみよう。 <span class="math display">\[
   z_q = 0.9 + 0.9i
@@ -356,7 +361,7 @@ for (i in <span class="dv">1</span>:<span class="dv">10</span>) {
 
 <span class="kw">ggplot</span>(zm) +<span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>re, <span class="dt">y=</span>im, <span class="dt">color=</span><span class="kw">factor</span>(n))) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">coord_fixed</span>() +<span class="st"> </span><span class="kw">xlim</span>(-<span class="dv">12</span>, <span class="dv">12</span>) +<span class="st"> </span><span class="kw">ylim</span>(-<span class="dv">12</span>, <span class="dv">12</span>)</code></pre></div>
-<p><img src="linear-economic-dynamics_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p><img src="linear-economic-dynamics_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>上の図を見る限り，回転しながらどんどん原点から離れていっているようだ。原点への収束，原点からの乖離はどのような条件で特徴付けられるだろうか。</p>
 </div>
 </div>
@@ -373,7 +378,7 @@ for (i in <span class="dv">1</span>:<span class="dv">10</span>) {
 <p><span class="math inline">\(r = \sqrt{a^2 + b^2}\ge 0\)</span> を <span class="math inline">\(z = a + bi\)</span> の<strong>絶対値 (absolute value)</strong>という。<span class="math inline">\(z\)</span> の絶対値を <span class="math inline">\(|z|\)</span> で表す。<span class="math inline">\(\theta\)</span> を<strong>偏角 (argument)</strong> という (<span class="math inline">\(\mathrm{arg}(z)\)</span> で表すこともある)。すべての複素数が <span class="math display">\[
   z = r(\cos\theta + i\sin\theta)
 \]</span> という表現を持つ。この表現を複素数の<strong>極形式 (polar form)</strong>という。図<a href="complexnumbers.html#fig:polar-form">2.2</a> 参照。</p>
-<div class="figure"><span id="fig:polar-form"></span>
+<div class="figure" style="text-align: center"><span id="fig:polar-form"></span>
 <img src="figures/02-complex_numbers/02-complex_numbers.002.jpeg" alt="極形式"  />
 <p class="caption">
 図 2.2: 極形式
@@ -453,7 +458,7 @@ for (i in <span class="dv">1</span>:<span class="dv">10</span>) {
 </div>
 <p></p>
 <p>べき乗の収束性（安定性）は考えている複素数が複素平面上で原点を中心とする単位円（unit circle）の内側（単位円盤 unit disk の上）にあるかどうかで決まる。図<a href="complexnumbers.html#fig:unit-disk">2.3</a>において，<span class="math inline">\(z_1\)</span>のべきは発散し，<span class="math inline">\(z_2\)</span>のべきは原点に収束する。</p>
-<div class="figure"><span id="fig:unit-disk"></span>
+<div class="figure" style="text-align: center"><span id="fig:unit-disk"></span>
 <img src="figures/02-complex_numbers/02-complex_numbers.003.jpeg" alt="単位円"  />
 <p class="caption">
 図 2.3: 単位円
@@ -468,7 +473,7 @@ for (i in <span class="dv">1</span>:<span class="dv">10</span>) {
   \bar{\bar z} = z 
 \end{equation*}
 <p>が成り立つ。（@ref(fig:conjugate））</p>
-<div class="figure"><span id="fig:conjugate"></span>
+<div class="figure" style="text-align: center"><span id="fig:conjugate"></span>
 <img src="figures/02-complex_numbers/02-complex_numbers.004.jpeg" alt="共役複素数"  />
 <p class="caption">
 図 2.4: 共役複素数
@@ -511,7 +516,7 @@ sum ==<span class="st"> </span><span class="dv">1</span></code></pre></div>
 <p>後ほど明らかになるように，線形システムは固有多項式と呼ばれる実係数多項式を「因数分解」する問題を通じて分析される。あるいは， 本質的には同じことだが，実係数多項式方程式の解（根 root）を調べる<a href="#fn10" class="footnoteRef" id="fnref10"><sup>10</sup></a>。いずれにせよ実係数多項式方程式が重要な役割を果たす。</p>
 多項式方程式は次のような性質を持つ。 
 <div class="theorem">
-<span id="thm:unnamed-chunk-41" class="theorem"><strong>定理 2.1  (代数学の基本定理) </strong></span><span class="math inline">\(a_n, \dots, a_0 \in \mathbb C\)</span> とする。<span class="math inline">\(z\)</span> の多項式 <span class="math display">\[
+<span id="thm:fundamental-theorem-algebra" class="theorem"><strong>定理 2.1  (代数学の基本定理) </strong></span><span class="math inline">\(a_n, \dots, a_0 \in \mathbb C\)</span> とする。<span class="math inline">\(z\)</span> の多項式 <span class="math display">\[
   p(z) = a_n z^n + a_{n-1} z^{n-1} + \cdots + a_1 z + a_0
 \]</span> は，複素数の範囲で（重根を重複度の回数数えれば）ちょうど <span class="math inline">\(n\)</span> 個の根（root）をもつ。　
 </div>
@@ -575,7 +580,7 @@ u_2(k_{t-1}, k_t) + \beta u_1 (k_t, k_{t+1}) = 0
 <p>次の定理は <span class="citation">Levhari and Liviatan (<a href="#ref-LevhariLiviatan1972">1972</a>)</span> と <span class="citation">Santos (<a href="#ref-Santos1991">1991</a>)</span> による結果の1セクター版である。</p>
 
 <div class="theorem">
-<span id="thm:unnamed-chunk-44" class="theorem"><strong>定理 2.3 </strong></span>方程式 <a href="complexnumbers.html#eq:lineuler">(2.1)</a> の根はともに実数である。
+<span id="thm:levhari-liviatan-santos-onesec" class="theorem"><strong>定理 2.3 </strong></span>方程式 <a href="complexnumbers.html#eq:lineuler">(2.1)</a> の根はともに実数である。
 </div>
 <p></p>
 

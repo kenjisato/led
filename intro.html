@@ -26,7 +26,7 @@
 <meta name="author" content="佐藤 健治">
 
 
-<meta name="date" content="2017-03-01">
+<meta name="date" content="2017-03-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -151,10 +151,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.1.2" data-path="eigen.html"><a href="eigen.html#section-4.1.2"><i class="fa fa-check"></i><b>4.1.2</b> 行列式の定義</a></li>
 <li class="chapter" data-level="4.1.3" data-path="eigen.html"><a href="eigen.html#section-4.1.3"><i class="fa fa-check"></i><b>4.1.3</b> 行列式の意味</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="eigen.html"><a href="eigen.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 固有値</a></li>
+<li class="chapter" data-level="4.2" data-path="eigen.html"><a href="eigen.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 固有値と固有ベクトル</a></li>
 <li class="chapter" data-level="4.3" data-path="eigen.html"><a href="eigen.html#section-4.3"><i class="fa fa-check"></i><b>4.3</b> 対角化</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="eigen.html"><a href="eigen.html#-"><i class="fa fa-check"></i><b>4.3.1</b> 例題: 対角化</a></li>
+<li class="chapter" data-level="4.3.1" data-path="eigen.html"><a href="eigen.html#section-4.3.1"><i class="fa fa-check"></i><b>4.3.1</b> 計算方法の確認</a></li>
+<li class="chapter" data-level="4.3.2" data-path="eigen.html"><a href="eigen.html#section-4.3.2"><i class="fa fa-check"></i><b>4.3.2</b> 例題</a></li>
+<li class="chapter" data-level="4.3.3" data-path="eigen.html"><a href="eigen.html#section-4.3.3"><i class="fa fa-check"></i><b>4.3.3</b> 複素数の行列表現</a></li>
+<li class="chapter" data-level="4.3.4" data-path="eigen.html"><a href="eigen.html#section-4.3.4"><i class="fa fa-check"></i><b>4.3.4</b> 実対角化</a></li>
 </ul></li>
+<li class="chapter" data-level="4.4" data-path="eigen.html"><a href="eigen.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 線形動学方程式と固有値</a></li>
+<li class="chapter" data-level="4.5" data-path="eigen.html"><a href="eigen.html#section-4.5"><i class="fa fa-check"></i><b>4.5</b> ラムゼーモデルと固有値</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="e58f82e88083e69687e78cae.html"><a href="e58f82e88083e69687e78cae.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
@@ -355,7 +360,7 @@ Type &#39;q()&#39; to quit R.
 <pre><code>## [1] 30</code></pre>
 <p><code>[1] 30</code> は実行結果であり, <code>10 * 3</code> の結果が 30 であることを意味している. 先頭についている <code>##</code> は特に意味はない. <code>[1]</code> は今のところ無視してもよい. <strong>コマンドの直後に配置された白背景のボックスに直前のコマンドの実行結果を掲載する</strong>.</p>
 <p>プロンプトを省略することで, 複数行にわたるコマンドであってもコピー＆ペーストで実行できるという利点がある. 次のコードをまるごとコピーして, コンソールにペーストし, Enter を押下すればPlotsペインに結果が出力されるはずだ.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 01_cobbdouglas_plot.R</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 01-cobbdouglas-plot.R</span>
 
 A =<span class="st"> </span><span class="fl">1.2</span>
 alpha =<span class="st"> </span><span class="fl">0.3</span>
@@ -366,10 +371,10 @@ cobbdouglas =<span class="st"> </span>function(k) {
 k =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dt">length.out=</span><span class="dv">200</span>)
 y =<span class="st"> </span><span class="kw">cobbdouglas</span>(k)
 <span class="kw">plot</span>(k, y, <span class="dt">type=</span><span class="st">&#39;l&#39;</span>)</code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-6"></span>
-<img src="linear-economic-dynamics_files/figure-html/unnamed-chunk-6-1.png" alt="'01_cobbdouglas_plot.R' の実行結果" width="672" />
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-7"></span>
+<img src="linear-economic-dynamics_files/figure-html/unnamed-chunk-7-1.png" alt="'01-cobbdouglas-plot.R' の実行結果" width="672" />
 <p class="caption">
-図 1.1: ‘01_cobbdouglas_plot.R’ の実行結果
+図 1.1: ‘01-cobbdouglas-plot.R’ の実行結果
 </p>
 </div>
 <p><code>#</code> に続く内容は, プログラマが読むためだけのコメントである. 本書の約束事として, コードチャンクの1行目のコメントには, スクリプトとして保存する場合のファイル名や, 本文中で参照するための短いキャプションを書くことにする.</p>

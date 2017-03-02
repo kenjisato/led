@@ -26,7 +26,7 @@
 <meta name="author" content="佐藤 健治">
 
 
-<meta name="date" content="2017-03-01">
+<meta name="date" content="2017-03-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -151,10 +151,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.1.2" data-path="eigen.html"><a href="eigen.html#section-4.1.2"><i class="fa fa-check"></i><b>4.1.2</b> 行列式の定義</a></li>
 <li class="chapter" data-level="4.1.3" data-path="eigen.html"><a href="eigen.html#section-4.1.3"><i class="fa fa-check"></i><b>4.1.3</b> 行列式の意味</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="eigen.html"><a href="eigen.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 固有値</a></li>
+<li class="chapter" data-level="4.2" data-path="eigen.html"><a href="eigen.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 固有値と固有ベクトル</a></li>
 <li class="chapter" data-level="4.3" data-path="eigen.html"><a href="eigen.html#section-4.3"><i class="fa fa-check"></i><b>4.3</b> 対角化</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="eigen.html"><a href="eigen.html#-"><i class="fa fa-check"></i><b>4.3.1</b> 例題: 対角化</a></li>
+<li class="chapter" data-level="4.3.1" data-path="eigen.html"><a href="eigen.html#section-4.3.1"><i class="fa fa-check"></i><b>4.3.1</b> 計算方法の確認</a></li>
+<li class="chapter" data-level="4.3.2" data-path="eigen.html"><a href="eigen.html#section-4.3.2"><i class="fa fa-check"></i><b>4.3.2</b> 例題</a></li>
+<li class="chapter" data-level="4.3.3" data-path="eigen.html"><a href="eigen.html#section-4.3.3"><i class="fa fa-check"></i><b>4.3.3</b> 複素数の行列表現</a></li>
+<li class="chapter" data-level="4.3.4" data-path="eigen.html"><a href="eigen.html#section-4.3.4"><i class="fa fa-check"></i><b>4.3.4</b> 実対角化</a></li>
 </ul></li>
+<li class="chapter" data-level="4.4" data-path="eigen.html"><a href="eigen.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 線形動学方程式と固有値</a></li>
+<li class="chapter" data-level="4.5" data-path="eigen.html"><a href="eigen.html#section-4.5"><i class="fa fa-check"></i><b>4.5</b> ラムゼーモデルと固有値</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="e58f82e88083e69687e78cae.html"><a href="e58f82e88083e69687e78cae.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
@@ -634,7 +639,7 @@ PAQ
 <p></p>
 
 <div class="proposition">
-<span id="prp:unnamed-chunk-56" class="proposition"><strong>命題 3.1 </strong></span>任意の行列 <span class="math inline">\(A\in\mathbb{F}^{m\times n}\)</span> に対して，適当に初等変形 <span class="math inline">\(P\)</span>，<span class="math inline">\(Q\)</span> を選べば <span class="math display">\[
+<span id="prp:unnamed-chunk-55" class="proposition"><strong>命題 3.1 </strong></span>任意の行列 <span class="math inline">\(A\in\mathbb{F}^{m\times n}\)</span> に対して，適当に初等変形 <span class="math inline">\(P\)</span>，<span class="math inline">\(Q\)</span> を選べば <span class="math display">\[
   PAQ=\left[\begin{array}{c|c}
   I_{d\times d} &amp; O_{d\times(n-d)}\\
   \hline O_{(m-d)\times d} &amp; O_{(m-d)\times(n-d)}

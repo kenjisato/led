@@ -26,7 +26,7 @@
 <meta name="author" content="佐藤 健治">
 
 
-<meta name="date" content="2017-03-01">
+<meta name="date" content="2017-03-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -151,10 +151,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.1.2" data-path="eigen.html"><a href="eigen.html#section-4.1.2"><i class="fa fa-check"></i><b>4.1.2</b> 行列式の定義</a></li>
 <li class="chapter" data-level="4.1.3" data-path="eigen.html"><a href="eigen.html#section-4.1.3"><i class="fa fa-check"></i><b>4.1.3</b> 行列式の意味</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="eigen.html"><a href="eigen.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 固有値</a></li>
+<li class="chapter" data-level="4.2" data-path="eigen.html"><a href="eigen.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 固有値と固有ベクトル</a></li>
 <li class="chapter" data-level="4.3" data-path="eigen.html"><a href="eigen.html#section-4.3"><i class="fa fa-check"></i><b>4.3</b> 対角化</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="eigen.html"><a href="eigen.html#-"><i class="fa fa-check"></i><b>4.3.1</b> 例題: 対角化</a></li>
+<li class="chapter" data-level="4.3.1" data-path="eigen.html"><a href="eigen.html#section-4.3.1"><i class="fa fa-check"></i><b>4.3.1</b> 計算方法の確認</a></li>
+<li class="chapter" data-level="4.3.2" data-path="eigen.html"><a href="eigen.html#section-4.3.2"><i class="fa fa-check"></i><b>4.3.2</b> 例題</a></li>
+<li class="chapter" data-level="4.3.3" data-path="eigen.html"><a href="eigen.html#section-4.3.3"><i class="fa fa-check"></i><b>4.3.3</b> 複素数の行列表現</a></li>
+<li class="chapter" data-level="4.3.4" data-path="eigen.html"><a href="eigen.html#section-4.3.4"><i class="fa fa-check"></i><b>4.3.4</b> 実対角化</a></li>
 </ul></li>
+<li class="chapter" data-level="4.4" data-path="eigen.html"><a href="eigen.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 線形動学方程式と固有値</a></li>
+<li class="chapter" data-level="4.5" data-path="eigen.html"><a href="eigen.html#section-4.5"><i class="fa fa-check"></i><b>4.5</b> ラムゼーモデルと固有値</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="e58f82e88083e69687e78cae.html"><a href="e58f82e88083e69687e78cae.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
@@ -213,19 +218,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><span class="math inline">\(\det D_{i}^{n}(a)A=a\det A\)</span> (行の<span class="math inline">\(a\)</span>倍で行列式が<span class="math inline">\(a\)</span>倍になる。<span class="math inline">\(a=0\)</span> でも成り立つ)。</li>
 <li><span class="math inline">\(\det\left(E_{ij}^{n}(a)A\right)=\det A\)</span> (行の<span class="math inline">\(a\)</span>倍を別の行に加えても行列式は変化しない).</li>
 <li><span class="math display">\[
-  \det\left[\begin{array}{ccc}
+  \det\begin{bmatrix}
   a_{11} &amp; \cdots &amp; a_{1n}\\
   a_{i1}+b_{i1} &amp; \cdots &amp; a_{in}+b_{in}\\
   a_{n1} &amp; \cdots &amp; a_{nn}
-  \end{array}\right]=\det\left[\begin{array}{ccc}
+  \end{bmatrix}=\det\begin{bmatrix}
   a_{11} &amp; \cdots &amp; a_{1n}\\
   a_{i1} &amp; \cdots &amp; a_{in}\\
   a_{n1} &amp; \cdots &amp; a_{nn}
-  \end{array}\right]+\det\left[\begin{array}{ccc}
+  \end{bmatrix}+\det\begin{bmatrix}
   a_{11} &amp; \cdots &amp; a_{1n}\\
   b_{i1} &amp; \cdots &amp; b_{in}\\
   a_{n1} &amp; \cdots &amp; a_{nn}
-  \end{array}\right].
+  \end{bmatrix}.
 \]</span></li>
 <li><span class="math inline">\(\det I=1\)</span>.</li>
 <li><span class="math inline">\(\det AB=\det A\det B\)</span>.</li>
@@ -249,14 +254,15 @@ PAQ=\left[
   \begin{array}{c|c}
     I_{d\times d} &amp; O_{d\times(n-d)}\\
     \hline O_{(m-d)\times d} &amp; O_{(m-d)\times(n-d)}
-  \end{array}\right]
+  \end{array}
+\right]
 \]</span> とできる。右辺の行列式は定義によりゼロである。 命題 <a href="eigen.html#prp:determinant">4.1</a> 性質7 により，<span class="math inline">\(\det P \det A \det Q = 0\)</span>。 正則行列 <span class="math inline">\(P, Q\)</span> に対しては <span class="math inline">\(\det P \neq 0 \neq \det Q\)</span> が成り立つことが分かっているから， <span class="math inline">\(\det A = 0\)</span> が成り立たなければならない。
 </div>
 <p></p>
 </div>
 <div id="section-4.1.3" class="section level3">
 <h3><span class="header-section-number">4.1.3</span> 行列式の意味</h3>
-2次正方行列 <span class="math display">\[
+<p>2次正方行列 <span class="math display">\[
 A = 
 \begin{bmatrix}
   a &amp; b \\
@@ -268,70 +274,93 @@ A =
   A_1 = \begin{bmatrix} a \\ c \end{bmatrix},
   \quad
   A_2 = \begin{bmatrix} b \\ d \end{bmatrix}
-\]</span> が作る平行四辺形 (parallelogram) の（符号付き）面積と一致する（図<a href="eigen.html#fig:parallelogram">4.1</a>の色付き部分）。
-<div class="figure"><span id="fig:parallelogram"></span>
+\]</span> が作る平行四辺形 (parallelogram) の（符号付き）面積と一致する（図<a href="eigen.html#fig:parallelogram">4.1</a>の色付き部分）。</p>
+<div class="figure" style="text-align: center"><span id="fig:parallelogram"></span>
 <img src="figures/04-eigen/04-eigen.001.jpeg" alt="列ベクトルが成す平行四辺形"  />
 <p class="caption">
 図 4.1: 列ベクトルが成す平行四辺形
 </p>
 </div>
-<p>一般の次数でも同様の考え方が</p>
+<p>一般の次数でも同様の考え方が適用できる。例えば，3次正方行列の行列式は，列ベクトルが作る平行6面体（parallelepiped）の符号付き体積と一致する（図<a href="eigen.html#fig:parallelepiped">4.2</a>）。</p>
+<div class="figure" style="text-align: center"><span id="fig:parallelepiped"></span>
+<img src="figures/04-eigen/04-eigen.002.jpeg" alt="列ベクトルが成す平行六面体"  />
+<p class="caption">
+図 4.2: 列ベクトルが成す平行六面体
+</p>
+</div>
+<p>このことから分かることは，行列を構成する列に同じ向きを持つ（平行な）ベクトルが含まれていると行列式は必ずゼロになるということである。</p>
+<div class="figure" style="text-align: center"><span id="fig:parallel-columns"></span>
+<img src="figures/04-eigen/04-eigen.003.jpeg" alt="平行な列ベクトル"  />
+<p class="caption">
+図 4.3: 平行な列ベクトル
+</p>
+</div>
+<p>2本のベクトル<span class="math inline">\(v_1 \neq 0 \neq v_2\)</span> が面積を持つ平行四辺形を作るための必要十分条件は， <span class="math inline">\(v_1 = \alpha v_2\)</span> となるような, <span class="math inline">\(\alpha \neq 0\)</span> が存在しないことである（図<a href="eigen.html#fig:parallel-columns">4.3</a>）。 ゼロと異なる3本のベクトル <span class="math inline">\(v_1, v_2, v_3\)</span> が体積を持つ平行六面体を作るための必要十分条件は， <span class="math inline">\(v_1 = \alpha v_2 + \beta v_3\)</span> かつ <span class="math inline">\(\alpha\)</span> と <span class="math inline">\(\beta\)</span> は同時にはゼロでないというものである。 いずれかのベクトルがゼロである可能性も考慮して，次のような概念を定義すると便利である。</p>
+
+<div class="definition">
+<span id="def:unnamed-chunk-60" class="definition"><strong>定義 4.1 </strong></span><span class="math inline">\(n\)</span> 本のベクトル <span class="math inline">\(v_1, \dots, v_n\)</span> が<strong>1次独立（linearly independent）</strong>であるとは, <span class="math inline">\(\alpha_{1},\dots,\alpha_{n}\)</span> に対して <span class="math inline">\(\alpha_{1}v_{1}+ \cdots + \alpha_{n}v_{n}=0\)</span> が成り立てば，<span class="math inline">\(\alpha_{1}=\cdots=\alpha_{n}=0\)</span> が成り立つことをいう。 1次独立でないとき，ベクトルの組は <strong>1次従属（linearly dependent）</strong>であるという。
+</div>
+<p></p>
+<p>行列を構成する列ベクトルが1次独立でなければ，列基本変形によりゼロのみからなる列を構成することができる。したがって，そのような行列の行列式はゼロでなければならない。逆に，行列が1次独立な列をもつならば（後に示すように），その行列はフルランクである。したがって，行列式はゼロでない。</p>
+<p>これから先，正方行列の正則性は列ベクトルの1次独立性，行列式がゼロでないこと，行列のランクが次数と一致することなど同値な条件が形を変えて繰り返し現れることになる。これらの関係を理解しておくと動学理論を見通しよく習得できる。</p>
 </div>
 </div>
 <div id="section-4.2" class="section level2">
-<h2><span class="header-section-number">4.2</span> 固有値</h2>
+<h2><span class="header-section-number">4.2</span> 固有値と固有ベクトル</h2>
 <p>複素数 <span class="math inline">\(\lambda\)</span> が正方行列 <span class="math inline">\(A\in\mathbb{F}^{n\times n}\)</span> の<strong>固有値 (eigenvalue)</strong> であるとは，ゼロでない列ベクトル <span class="math inline">\(v\in\mathbb{C}^{n}\)</span> が存在して <span class="math display">\[
   Av=\lambda v
-\]</span> が成り立つことをいう。 ベクトル <span class="math inline">\(v\)</span> を固有値 <span class="math inline">\(\lambda\)</span> に対応する固有ベクトル (eigenvector) という. 上の方程式を変形すると線形方程式 <span class="math display">\[
+\]</span> が成り立つことをいう。ベクトル <span class="math inline">\(v\)</span> を固有値 <span class="math inline">\(\lambda\)</span> に対応する<strong>固有ベクトル (eigenvector) </strong>という。 一般に，行列を掛けるとベクトルの向きを回転させるのだが，固有ベクトルに対してだけは向きを変えないか， あるいは <span class="math inline">\(\lambda\)</span> が負であればベクトルの矢印を反転させる。</p>
+<p>固有ベクトルという言葉は，1つの固有値に対して1つの固有ベクトルがあるというような印象を与えるかもしれない。 しかし，<span class="math inline">\(v\)</span> が固有ベクトルであれば，<span class="math inline">\(2v\)</span> も <span class="math inline">\(-3v\)</span> も固有ベクトルであることが容易に確かめられる。 あるいは，1つの固有値に対して，1次独立な <span class="math inline">\(v, w\)</span> という2つの固有ベクトルが見つかることもある。 このとき <span class="math inline">\(v + w\)</span> も <span class="math inline">\(-v + 3w\)</span> も同じ固有値に対する固有ベクトルである。 固有ベクトルを特定の性質を持つベクトルの集合（固有空間 eigenspace）から任意に1つ選んだものと認識しておくとよい。</p>
+<p>方程式<span class="math inline">\(Av=\lambda v\)</span>の自明な変形により <span class="math display">\[
   (\lambda I-A)v=0
 \]</span> が得られる。この方程式がゼロでないベクトルを解に持つための必要十分条件は <span class="math display">\[
   \phi_{A}(\lambda)=\det(\lambda I-A)=0
 \]</span> が成り立つことである。</p>
 
 <div class="exercise">
-上の事実を確認せよ。
+上の事実を確認せよ。[ヒント：正則性と行列式の関係を使う。]
 </div>
 <p></p>
-<p><span class="math inline">\(\phi_{A}(\lambda)\)</span> は <span class="math inline">\(\lambda\)</span> に関する <span class="math inline">\(n\)</span> 次多項式であり, 固有多項式 (characteristic polynomial) という。<span class="math inline">\(\phi_{A}(\lambda)=0\)</span> は重複度を込めて<span class="math inline">\(n\)</span> 個の解を持つので，<span class="math inline">\(A\)</span> は (重複度を込めて) <span class="math inline">\(n\)</span> 個の固有値を持つ[^代数学の基本定理。]。 <span class="math display">\[
+<p><span class="math inline">\(\phi_{A}(\lambda)\)</span> は <span class="math inline">\(\lambda\)</span> に関する <span class="math inline">\(n\)</span> 次多項式であり, <strong>固有多項式 (characteristic polynomial)</strong> という。<span class="math inline">\(\phi_{A}(\lambda)=0\)</span> は重複度を込めて<span class="math inline">\(n\)</span> 個の解を持つので，<span class="math inline">\(A\)</span> は (重複度を込めて) <span class="math inline">\(n\)</span> 個の固有値を持つ<a href="#fn18" class="footnoteRef" id="fnref18"><sup>18</sup></a>。</p>
+
+<div class="exercise">
+固有多項式の係数を <span class="math display">\[
   \phi_{A}(\lambda)=\lambda^{n}+c_{1}\lambda^{n-1}+\cdots+c_{n}
-\]</span> とおけば， <span class="math display">\[
-  c_{1}=-\mathrm{trace}A,\qquad c_{n}=(-1)^{n}\det A
-\]</span> である.</p>
-
-<div class="exercise">
-上の事実を確認せよ。
+\]</span> とすれば， <span class="math display">\[
+  c_{1}=-\operatorname{trace} A,\qquad c_{n}=(-1)^{n}\det A
+\]</span> が成り立つことを示せ。 なお，<span class="math inline">\(\operatorname{trace} A = \sum_{i=1}^n A_{i,i}\)</span> は行列 <span class="math inline">\(A\)</span> のトレースといい， 対角成分を足して得られる数である。
 </div>
 <p></p>
 
 <div class="theorem">
-<span id="thm:unnamed-chunk-63" class="theorem"><strong>定理 4.1 </strong></span>実行列 <span class="math inline">\(A\in\mathbb{R}^{n\times n}\)</span>が複素固有値 <span class="math inline">\(\lambda\)</span> を持てば，<span class="math inline">\(\bar{\lambda}\)</span> も<span class="math inline">\(A\)</span> の固有値である.
+<span id="thm:conju-eigen-pair" class="theorem"><strong>定理 4.1 </strong></span>実行列 <span class="math inline">\(A\in\mathbb{R}^{n\times n}\)</span>が複素固有値 <span class="math inline">\(\lambda\)</span> を持てば，<span class="math inline">\(\bar{\lambda}\)</span> も<span class="math inline">\(A\)</span> の固有値である。
 </div>
 <p></p>
 
 <div class="exercise">
-上の定理を証明せよ.
+定理<a href="eigen.html#thm:conju-eigen-pair">4.1</a>を証明せよ。
 </div>
 <p></p>
 
 <div class="theorem">
-<span id="thm:independence2" class="theorem"><strong>定理 4.2 </strong></span>異なる固有値 <span class="math inline">\(\lambda_{1}\neq\lambda_{2}\)</span> に対する固有ベクトル <span class="math inline">\(v_{1}\)</span>，<span class="math inline">\(v_{2}\)</span> は次の性質を持つ: <span class="math inline">\(\alpha_{1},\alpha_{2}\in\mathbb{C}\)</span> に対して <span class="math display">\[
+<span id="thm:independence2" class="theorem"><strong>定理 4.2 </strong></span>異なる固有値 <span class="math inline">\(\lambda_{1}\neq\lambda_{2}\)</span> に対する固有ベクトル <span class="math inline">\(v_{1}\)</span>，<span class="math inline">\(v_{2}\)</span> は1次独立である。すなわち <span class="math inline">\(\alpha_{1},\alpha_{2}\in\mathbb{C}\)</span> に対して， <span class="math display">\[
   \alpha_{1}v_{1}+\alpha_{2}v_{2}=0\Rightarrow\alpha_{1}=\alpha_{2}=0. 
 \]</span>
 </div>
- すなわち，異なる固有値に対応する固有ベクトルは<strong>1次独立（linearly independent）</strong>である。 
+<p></p>
+
 <div class="proof">
-<p><span class="proof"><em>証明. </em></span> 1次独立性が成り立たないとする。すなわち，<span class="math inline">\(\alpha_{1}\neq0\neq\alpha_{2}\)</span> があって <span class="math inline">\(\alpha_{1}v_{1}+\alpha_{2}v_{2}=0\)</span>を満すとする。このとき， <span class="math display">\[
-    \alpha_{1}Av_{1}+\alpha_{2}Av_{2}=0.
-  \]</span> 固有値の定義より <span class="math display">\[
-    \alpha_{1}\lambda_{1}v_{1}+\alpha_{2}\lambda_{2}v_{2}=0.
-  \]</span> <span class="math inline">\(\lambda_{1}\neq\lambda_{2}\)</span> より，一方はゼロでない。一般性を失うことなく<span class="math inline">\(\lambda_{1}\neq0\)</span> とできて, <span class="math display">\[
-    \alpha_{1}v_{1}+(\lambda_{2}/\lambda_{1})\alpha_{2}v_{2}=0.
-  \]</span> <span class="math inline">\(\alpha_1 v_1 + \alpha_2 v_2 = 0\)</span> より, <span class="math display">\[
-    \left[
-      1 - (\lambda_{2}/\lambda_{1})
-    \right] \alpha_{1}v_{1}=0.
-  \]</span></p>
-<span class="math inline">\(\alpha_{1}\neq0\)</span>，<span class="math inline">\(v_{1}\neq0\)</span> なので，<span class="math inline">\(\lambda_{2}/\lambda_{1}=1\)</span> が成り立たなければならないが,　これは異なる固有値を選んだという前提に矛盾する。従って，相異なる固有値に対応する固有ベクトルは1次独立でなければならない。
+<span class="proof"><em>証明. </em></span> 定理の主張に反して1次従属であったとしよう。すなわち，同時にはゼロでない <span class="math inline">\(\alpha_{1}, \alpha_{2}\)</span> があって<span class="math inline">\(\alpha_{1}v_{1}+\alpha_{2}v_{2}=0\)</span>を満たすとする。 一般性を失うことなく，<span class="math inline">\(\alpha_1 \neq 0\)</span> とできる。 このとき， <span class="math display">\[
+  \alpha_{1}Av_{1}+\alpha_{2}Av_{2}=0.
+\]</span> 固有値の定義より <span class="math display">\[
+  \alpha_{1}\lambda_{1}v_{1}+\alpha_{2}\lambda_{2}v_{2}=0.
+\]</span> <span class="math inline">\(\lambda_{1}\neq\lambda_{2}\)</span> より，一方はゼロでない。一般性を失うことなく<span class="math inline">\(\lambda_{1}\neq0\)</span> とできて, <span class="math display">\[
+  \alpha_{1}v_{1}+(\lambda_{2}/\lambda_{1})\alpha_{2}v_{2}=0.
+\]</span> <span class="math inline">\(\alpha_1 v_1 + \alpha_2 v_2 = 0\)</span> より, <span class="math display">\[
+  \left[
+    1 - (\lambda_{2}/\lambda_{1})
+  \right] \alpha_{1}v_{1}=0.
+\]</span> <span class="math inline">\(\alpha_{1}\neq0\)</span>，<span class="math inline">\(v_{1}\neq0\)</span> なので，<span class="math inline">\(\lambda_{2}/\lambda_{1}=1\)</span> が成り立たなければならないが,　これは異なる固有値を選んだという前提に矛盾する 従って，相異なる固有値に対応する固有ベクトルは1次独立でなければならない。
 </div>
 <p></p>
 <p>2つ以上の異なる固有値についても同様のことが証明できる。</p>
@@ -348,143 +377,328 @@ A =
 </div>
 <div id="section-4.3" class="section level2">
 <h2><span class="header-section-number">4.3</span> 対角化</h2>
-<div id="-" class="section level3">
-<h3><span class="header-section-number">4.3.1</span> 例題: 対角化</h3>
+<div id="section-4.3.1" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> 計算方法の確認</h3>
+<p>対角化（diagonalization）というのは，行列の標準形（canonical form）の中でももっとも基本的なものであるから， きちんと理解して使えるようになってほしい。 理論的な解説は次章以降に譲って，ここでは計算方法を思い出してもらおう。</p>
+<p>簡単のため，行列 <span class="math inline">\(A \in \mathbb R^{n \times n}\)</span> の固有値<span class="math inline">\(\lambda_1,\dots, \lambda_n \in \mathbb C\)</span> が互いに異なると仮定する。対応する固有ベクトルをそれぞれ <span class="math inline">\(v_1,\dots, v_n \in \mathbb C^n\)</span> とすれば， <span class="math display">\[
+Av_1 = \lambda_1 v_1, \dots, Av_n = \lambda_n v_n
+\]</span> が成り立つ。<span class="math inline">\(v_1, \dots, v_n\)</span> を並べた行列 <span class="math display">\[
+V = \begin{bmatrix} v_1 &amp; \cdots &amp; v_n \end{bmatrix}
+\]</span> を定義すれば， <span class="math display">\[
+\begin{aligned}
+AV &amp;= \begin{bmatrix} Av_1 &amp; \cdots &amp; Av_n \end{bmatrix} \\
+   &amp;= \begin{bmatrix} \lambda_1 v_1 &amp; \cdots &amp; \lambda_n v_n \end{bmatrix}\\
+   &amp;= \begin{bmatrix} v_1 &amp; \cdots &amp; v_n \end{bmatrix}
+   \begin{bmatrix} 
+     \lambda_1 &amp;        &amp; \\
+               &amp; \ddots &amp; \\
+               &amp;        &amp; \lambda_n
+   \end{bmatrix} \\
+   &amp;= VD
+\end{aligned}
+\]</span> が成り立つ。ただし， <span class="math display">\[
+D = 
+\begin{bmatrix} 
+\lambda_1 &amp;        &amp; \\
+          &amp; \ddots &amp; \\
+          &amp;        &amp; \lambda_n
+\end{bmatrix} 
+\]</span> とおいた。</p>
+<p>もとの行列と対角化行列を行き来するために，固有ベクトルを並べた行列<span class="math inline">\(V\)</span> が重要な役割を果たす。 実際，定理<a href="eigen.html#thm:independenceN">4.3</a> によって<span class="math inline">\(V\)</span>が正則であることが分かる。<span class="math inline">\(V^{-1}\)</span>が存在するので， <span class="math display">\[
+A = VDV^{-1}, \qquad D = V^{-1}AV
+\]</span> という公式を得る。</p>
+</div>
+<div id="section-4.3.2" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> 例題</h3>
 <p>行列 <span class="math display">\[
-J=\left[\begin{array}{cc}
-0 &amp; -1\\
-1 &amp; 0
-\end{array}\right]
+J =
+\begin{bmatrix}
+  0 &amp; -1\\
+  1 &amp; 0
+\end{bmatrix}
 \]</span> の固有値と固有ベクトルを計算してみよう。 <span class="math display">\[
-\det(\lambda J-I)=\left|\left[\begin{array}{cc}
-\lambda &amp; 1\\
--1 &amp; \lambda
-\end{array}\right]\right|=\lambda^{2}+1
-\]</span> だから，固有値は <span class="math inline">\(\pm j\)</span> である。固有値 <span class="math inline">\(j\)</span> に対する固有ベクトルは， <span class="math display">\[
-\left[\begin{array}{cc}
-0 &amp; -1\\
-1 &amp; 0
-\end{array}\right]\left[\begin{array}{c}
-x\\
-y
-\end{array}\right]=j\left[\begin{array}{c}
-x\\
-y
-\end{array}\right]
+\det(\lambda J-I) 
+  = 
+  \left|
+    \begin{bmatrix}
+      \lambda &amp; 1\\
+      -1      &amp; \lambda
+    \end{bmatrix}
+  \right|
+  =
+  \lambda^2 + 1
+\]</span> だから，固有値は <span class="math inline">\(\pm i\)</span> である。固有値 <span class="math inline">\(i\)</span> に対する固有ベクトルは， <span class="math display">\[
+\begin{bmatrix}
+  0 &amp; -1\\
+  1 &amp; 0
+\end{bmatrix}
+\begin{bmatrix}
+  x\\
+  y
+\end{bmatrix}
+=
+i \begin{bmatrix}
+  x\\
+  y
+\end{bmatrix}
 \]</span> の解であり， <span class="math display">\[
-x=jy
+  x = iy
 \]</span> によって特徴付けられる。例えば， <span class="math display">\[
-v_{j}=\left[\begin{array}{c}
-j\\
-1
-\end{array}\right]
-\]</span> が固有ベクトルである。固有値 <span class="math inline">\(-j\)</span> に対する固有ベクトルは， <span class="math display">\[
-\left[\begin{array}{cc}
-0 &amp; -1\\
-1 &amp; 0
-\end{array}\right]\left[\begin{array}{c}
-x\\
-y
-\end{array}\right]=-j\left[\begin{array}{c}
-x\\
-y
-\end{array}\right]
+v_i = \begin{bmatrix}i\\1\end{bmatrix}
+\]</span> が固有ベクトルである。固有値 <span class="math inline">\(- i\)</span> に対する固有ベクトルは， <span class="math display">\[
+\begin{bmatrix}
+  0 &amp; -1\\
+  1 &amp; 0
+\end{bmatrix}
+\begin{bmatrix} x\\ y \end{bmatrix}
+=
+- i \begin{bmatrix} x\\y \end{bmatrix}
 \]</span> の解であり， <span class="math display">\[
-jx=y
+ix=y
 \]</span> によって特徴付けられる。例えば， <span class="math display">\[
-v_{-j}=\left[\begin{array}{c}
-1\\
-j
-\end{array}\right]
+v_{-i}=\begin{bmatrix} 1\\ i \end{bmatrix}
 \]</span> が固有ベクトルである。</p>
-固有ベクトル<span class="math inline">\(v_{j}\)</span> と <span class="math inline">\(v_{-j}\)</span>を並べた行列 <span class="math display">\[
-V=[\begin{array}{cc}
-v_{j} &amp; v_{-j}\end{array}]=\left[\begin{array}{cc}
-j &amp; 1\\
-1 &amp; j
-\end{array}\right]
-\]</span> は正則であり， <span class="math display">\[
-V^{-1}=\frac{1}{j^{2}-1}\left[\begin{array}{cc}
-j &amp; -1\\
--1 &amp; j
-\end{array}\right]=\left[\begin{array}{cc}
--j/2 &amp; 1/2\\
-1/2 &amp; -j/2
-\end{array}\right].
-\]</span>
-\begin{align*}
-V\left[\begin{array}{cc}
-j &amp; 0\\
-0 &amp; -j
-\end{array}\right]V^{-1} &amp; =\left[\begin{array}{cc}
-j &amp; 1\\
-1 &amp; j
-\end{array}\right]\left[\begin{array}{cc}
-j &amp; 0\\
-0 &amp; -j
-\end{array}\right]\left[\begin{array}{cc}
--j/2 &amp; 1/2\\
-1/2 &amp; -j/2
-\end{array}\right]\\
- &amp; =\left[\begin{array}{cc}
--1 &amp; -j\\
-j &amp; 1
-\end{array}\right]\left[\begin{array}{cc}
--j/2 &amp; 1/2\\
-1/2 &amp; -j/2
-\end{array}\right]\\
- &amp; =\left[\begin{array}{cc}
-0 &amp; -1\\
-1 &amp; 0
-\end{array}\right]\\
- &amp; =J.
-\end{align*}
-<p>あるいは <span class="math display">\[
-\left[\begin{array}{cc}
-j &amp; 0\\
-0 &amp; -j
-\end{array}\right]=V^{-1}JV
-\]</span> が成り立つ。固有値を並べた行列によって <span class="math inline">\(J\)</span> を対角行列に変形 (対角化) することができる。あらゆる行列に対してこのような変形ができる訳ではないことには注意が必要である. すべての固有値が相異なる場合や，対称行列などが対角化が可能である。</p>
-\section{補論}
-行列 <span class="math display">\[
-J=\left[\begin{array}{cc}
-0 &amp; -1\\
-1 &amp; 0
-\end{array}\right]
+固有ベクトル<span class="math inline">\(v_{i}\)</span> と <span class="math inline">\(v_{-i}\)</span>を並べた行列 <span class="math display">\[
+V = \begin{bmatrix} v_{j} &amp; v_{-j} \end{bmatrix} 
+= 
+\begin{bmatrix}
+  i &amp; 1\\
+  1 &amp; i
+\end{bmatrix}
+\]</span> は正則であり（<span class="math inline">\(\det V = i^2 - 1 = -2\)</span>）， <span class="math display">\[
+V^{-1}
+=
+\frac{1}{i^2-1}
+\begin{bmatrix}
+  i &amp; -1\\
+  -1 &amp; i
+\end{bmatrix}
+=
+\begin{bmatrix}
+  -i/2 &amp; 1/2\\
+  1/2 &amp; -i/2
+\end{bmatrix}.
+\]</span> <span class="math display">\[
+\begin{aligned}
+  V\begin{bmatrix}
+    i &amp; 0\\
+    0 &amp; -i
+  \end{bmatrix}V^{-1} 
+  &amp; =
+  \begin{bmatrix}
+    i &amp; 1\\
+    1 &amp; i
+  \end{bmatrix}\begin{bmatrix}
+    i &amp; 0\\
+    0 &amp; -i
+  \end{bmatrix}\begin{bmatrix}
+    -i/2 &amp; 1/2\\
+    1/2 &amp; -i/2
+  \end{bmatrix}\\
+  &amp; =
+  \begin{bmatrix}
+    -1 &amp; -i\\
+     i &amp; 1
+  \end{bmatrix}\begin{bmatrix}
+    -i/2 &amp; 1/2\\
+    1/2 &amp; -i/2
+  \end{bmatrix}\\
+  &amp; =
+  \begin{bmatrix}
+    0 &amp; -1\\
+    1 &amp; 0
+  \end{bmatrix}\\
+   &amp; = J.
+\end{aligned}
+\]</span> あるいは
+\begin{equation}
+\begin{bmatrix}
+i &amp; 0\\
+0 &amp; -i
+\end{bmatrix}
+=
+V^{-1}JV
+(\#eq:J-matrix)
+\end{equation}
+<p>が成り立つ。固有ベクトルを並べた行列<span class="math inline">\(V\)</span>によって <span class="math inline">\(J\)</span> を対角行列に変形 (対角化) することができた。 あらゆる行列に対してこのような変形ができる訳ではないことには注意が必要である。 すべての固有値が相異なる場合や，対称行列などが対角化が可能である。</p>
+</div>
+<div id="section-4.3.3" class="section level3">
+<h3><span class="header-section-number">4.3.3</span> 複素数の行列表現</h3>
+<p>行列 <span class="math display">\[
+J = \begin{bmatrix}
+  0 &amp; -1\\
+  1 &amp; 0
+\end{bmatrix}
 \]</span> に対して <span class="math display">\[
 J^{2}=-I
-\]</span> が成り立つ，<span class="math inline">\(J\)</span> は虚数単位の行列表現である。複素数 <span class="math inline">\(z=a+bj\)</span> を行列を用いて表現すると <span class="math display">\[
-Z=aI+bJ=\left[\begin{array}{cc}
-a &amp; -b\\
-b &amp; a
-\end{array}\right].
-\]</span> <span class="math inline">\(r=\sqrt{a^{2}+b^{2}}\)</span>，<span class="math inline">\(\theta=\arctan(b/a)\)</span> とすれば (<span class="math inline">\(a=0\)</span>，<span class="math inline">\(b&gt;0\)</span> のとき<span class="math inline">\(\theta=\pi/2\)</span>，<span class="math inline">\(a=0\)</span>，<span class="math inline">\(b&lt;0\)</span> のとき<span class="math inline">\(\theta=-\pi/2\)</span> とする)， <span class="math display">\[
-Z=r\left[\begin{array}{cc}
+\]</span> が成り立つことに注意しよう。<span class="math inline">\(I\)</span> を実数の単位（すなわち，<span class="math inline">\(1\)</span>）と対応させれば， <span class="math inline">\(J\)</span> が虚数単位と同じ性質を持つことが想像できるだろう。複素数 <span class="math inline">\(z = a + bi\)</span> を行列を用いて <span class="math display">\[
+Z 
+= 
+aI+bJ
+=
+\begin{bmatrix}
+  a &amp; -b\\
+  b &amp; a
+\end{bmatrix}
+\]</span> と表すことができる。これをさらに極形式 <span class="math inline">\(z = re^{i \theta} = r\cos \theta + i(r \sin \theta)\)</span>， <span class="math inline">\(r \ge 0, 0 \le \theta &lt; 2\pi\)</span> の記号を用いて書き直せば， <span class="math display">\[
+Z=r\begin{bmatrix}
 \cos\theta &amp; -\sin\theta\\
 \sin\theta &amp; \cos\theta
-\end{array}\right]
-\]</span> と書ける。
-\begin{align*}
-Z\left[\begin{array}{c}
-x_{1}\\
-x_{2}
-\end{array}\right] &amp; =r\left[\begin{array}{cc}
-\cos\theta &amp; -\sin\theta\\
-\sin\theta &amp; \cos\theta
-\end{array}\right]\left[\begin{array}{c}
-x_{1}\\
-x_{2}
-\end{array}\right]
-\end{align*}
-<p>がベクトルの伸縮と回転という複素数積と同様の性質を持っていることを確認しておいてほしい。この考え方は実係数の範囲で行列を標準化 (ブロック対角化, 実ジョルダン標準化)する場合などに役に立つ. 固有値に複素数 <span class="math inline">\(a\pm bj\)</span> が含まれる場合，対角ブロックに <span class="math inline">\(aI+bJ\)</span> を含むブロック対角行列が得られるのである。</p>
+\end{bmatrix}
+\]</span> とできる。 <span class="math display">\[
+  Z^n
+  \begin{bmatrix}
+    x_{1}\\
+    x_{2}
+  \end{bmatrix} 
+  =
+  r^n
+  \begin{bmatrix}
+    \cos n\theta &amp; -\sin n\theta\\
+    \sin n\theta &amp; \cos n\theta
+  \end{bmatrix}
+  \begin{bmatrix}
+    x_{1}\\
+    x_{2}
+  \end{bmatrix}
+\]</span> をR上で計算し，<span class="math inline">\(Z\)</span> がベクトルの伸縮と回転という複素数積と同様の性質を持っていることを確認しておこう。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">r =<span class="st"> </span><span class="fl">0.8</span>; theta =<span class="st"> </span>pi /<span class="st"> </span><span class="dv">6</span> <span class="co"># polar form</span>
+Z =<span class="st"> </span>r *<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="kw">cos</span>(theta), -<span class="kw">sin</span>(theta), 
+                 <span class="kw">sin</span>(theta),  <span class="kw">cos</span>(theta)), <span class="dt">nrow=</span><span class="dv">2</span>, <span class="dt">byrow=</span><span class="ot">TRUE</span>)
+v0 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">0</span>) <span class="co"># initial vector</span>
+
+<span class="co"># iterative multiplication </span>
+simulation_size =<span class="st"> </span><span class="dv">50</span> <span class="co"># &gt;= 2</span>
+res =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x1 =</span> <span class="kw">numeric</span>(simulation_size),
+             <span class="dt">x2 =</span> <span class="kw">numeric</span>(simulation_size))
+
+res$x1[<span class="dv">1</span>] =<span class="st"> </span>v0[<span class="dv">1</span>]; res$x2[<span class="dv">1</span>] =<span class="st"> </span>v0[<span class="dv">2</span>]
+for (i in <span class="dv">2</span>:simulation_size) {
+  v1 =<span class="st"> </span>Z %*%<span class="st"> </span>v0
+  res$x1[i] =<span class="st"> </span>v1[<span class="dv">1</span>]; res$x2[i] =<span class="st"> </span>v1[<span class="dv">2</span>]
+  v0 =<span class="st"> </span>v1
+}
+
+<span class="co"># plot</span>
+<span class="kw">ggplot</span>(res, <span class="kw">aes</span>(x1, x2)) +<span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="linear-economic-dynamics_files/figure-html/unnamed-chunk-66-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="section-4.3.4" class="section level3">
+<h3><span class="header-section-number">4.3.4</span> 実対角化</h3>
+<p>複素数を実係数の行列で表現できるという考え方は，実係数の範囲で行列を標準化（ブロック対角化, 実ジョルダン標準化）する場合などに役に立つ。一般に固有値・固有ベクトルは複素数・複素ベクトルであるが，考えたいモデルの自然な表現が実数である場合には，実標準形の方が望ましいというケースもあるだろう。また，<span class="citation">Klein (<a href="#ref-Klein2000">2000</a>)</span> が議論しているように，実標準形を用いる方が数値計算を高速に実行できるケースもある。</p>
+<p>本書では複素数の範囲で標準化を考えるが，基本的な方針だけを述べておこう。</p>
+<p>例えば，2次正方行列<span class="math inline">\(A \in \mathbb R^2\)</span> が対角化の手続きによって， <span class="math display">\[
+  AP = P \begin{bmatrix} a + bi &amp; 0 \\ 0 &amp; a - bi \end{bmatrix}
+\]</span> と対角化できたとしよう。 定理<a href="eigen.html#thm:conju-eigen-pair">4.1</a>より共役複素数が必ずペアで現れることに注意せよ。 <span class="math inline">\(P\)</span> は固有ベクトルを並べた行列である。式<a href="#eq:J-matrix">(<strong>??</strong>)</a>より， <span class="math display">\[
+\begin{aligned}
+  AP 
+  &amp;= P \left(
+    a I + b \begin{bmatrix} i &amp; 0 \\ 0 &amp; - i \end{bmatrix}
+  \right) \\
+  &amp;=
+  P(aV^{-1}IV + b V^{-1} J V)\\
+  &amp;=
+  PV^{-1} (aI + bJ) V
+\end{aligned}
+\]</span> したがって， <span class="math display">\[
+A(PV^{-1}) = (PV^{-1})(aI + bJ)
+\]</span> あるいは， <span class="math display">\[
+A = (PV^{-1})(aI + bJ)(PV^{-1})^{-1}
+\]</span> とできる。これが<span class="math inline">\(A\)</span>の実行列の範囲での標準化（real canonical form）の基本である。 2次より大きい行列の場合には， 現れる複素数の数だけ <span class="math inline">\(aI + bJ\)</span> の形式のブロックが対角成分に並ぶ。 実対角化の結果は，例えば次のようなブロック対角行列になる。 <span class="math display">\[
+\begin{bmatrix}
+  a_1 &amp; -b_1 &amp;     &amp;      &amp;       &amp;        \\
+  b_1 &amp;  a_1 &amp;     &amp;      &amp;       &amp;        \\
+      &amp;      &amp; a_2 &amp; -b_2 &amp;       &amp;        \\
+      &amp;      &amp; b_2 &amp;  a_2 &amp;       &amp;        \\
+      &amp;      &amp;     &amp;      &amp;\ddots &amp;        \\
+      &amp;      &amp;     &amp;      &amp;       &amp; \ddots
+ \end{bmatrix}
+\]</span></p>
+</div>
+</div>
+<div id="section-4.4" class="section level2">
+<h2><span class="header-section-number">4.4</span> 線形動学方程式と固有値</h2>
+<p>再び，線形動学方程式 <span class="math display">\[
+x_{t+1} = Ax_t
+\]</span> を考えよう。行列 <span class="math inline">\(A\)</span> が <span class="math inline">\(AV = VD\)</span> によって対角化されたとすると， $y_t = <span class="math display">\[
+x_{t+1} = AVV^{-1}x_t = VDV^{-1} x_t.
+\]</span> <span class="math inline">\(y = V^{-1}x\)</span> と定義すれば， <span class="math display">\[
+y_{t+1} = Dy_t
+\]</span> とできる。<span class="math inline">\(y_t = D^t y_0\)</span> は容易に計算することができる。実際， <span class="math display">\[
+D = 
+\begin{bmatrix} 
+  \lambda_1 &amp;        &amp; \\
+            &amp; \ddots &amp; \\
+            &amp;        &amp; \lambda_n
+\end{bmatrix}
+\]</span> とすれば， <span class="math display">\[
+D^t =
+\begin{bmatrix} 
+  \lambda_1^t &amp;        &amp; \\
+              &amp; \ddots &amp; \\
+              &amp;        &amp; \lambda_n^t
+\end{bmatrix}, \qquad t = 0,1,\dots
+\]</span> が成り立つ。<span class="math inline">\(A^t = (VDV^{-1})^t= VD^tV^{-1}\)</span> により, 固有値を用いて<span class="math inline">\(x_t\)</span> の振る舞いを分析できる。</p>
+<p>固有値がすべて複素平面上の単位円の内側にあれば，原点は大域的に漸近安定である。 線形システムは安定であり，任意の初期値 <span class="math inline">\(x_0\)</span> に対して <span class="math inline">\(\lim_{t\to\infty} x_t \to 0\)</span> が成り立つ。すべての固有値が単位円の外側にあれば， 任意の初期値<span class="math inline">\(x_0 \neq 0\)</span> に対して，<span class="math inline">\(x_t\)</span> は発散する。すなわち，<span class="math inline">\(\| x_t \| \to \infty\)</span> が成り立つ<a href="#fn19" class="footnoteRef" id="fnref19"><sup>19</sup></a>。 このような挙動を指してシステムが<strong>反安定 antistable</strong>であると呼ぼう。</p>
+<p>絶対値が1より小さい固有値を<strong>安定固有値（stable eigenvalue）</strong>, 1より大きい固有値を<strong>不安定固有値（unstable eigenvalue）</strong>と呼ぶ。 （ただし，この呼び方は離散時間システムを考えている限りにおいてのみ意味がある。 連続時間システムでは別の条件によって安定性が特徴付けられる。）</p>
+<p>経済学においては，固有値のいくつかが安定であり， 残りが不安定であるというのが典型的である。このような原点を<strong>鞍点（saddle）</strong>， システムの鞍点周りの挙動を鞍点安定（saddle-point stability）と呼んでいる。 力学系の理論では，通常，不安定性の一種として扱われることが多いのだが， 経済学ではすべての初期条件が与えられていない問題を考えるという事情によって 鞍点安定なシステムにおける収束経路に重要な解釈を与えている。 すなわち，発散する経路ではなく原点に収束していく経路が経済主体の意思決定によって選ばれるのである。これを仮定することもあれば，モデルの解が満たす条件として得られるケースもある。</p>
+<p>実際には反安定となるケースもあるにはあるのだが，鞍点の方が発生しやすい。 ラムゼーモデルを通して観察してみよう。</p>
+</div>
+<div id="section-4.5" class="section level2">
+<h2><span class="header-section-number">4.5</span> ラムゼーモデルと固有値</h2>
+<p>再びラムゼーモデルの不動点を考えよう。<span class="citation">Levhari and Liviatan (<a href="#ref-LevhariLiviatan1972">1972</a>)</span> によれば，<span class="math inline">\(\lambda\)</span> が固有値であれば，<span class="math inline">\(1/(\beta \lambda)\)</span> も固有値である。したがって， ラムゼーモデルの不動点の固有値は複素平面上で原点を中心とする半径<span class="math inline">\(1/\beta\)</span> の円を挟むように分布する。</p>
+<p>1セクターモデルではいずれも実数になるから，図<a href="eigen.html#fig:ramsey-onesector-saddle">4.4</a> あるいは， 図<a href="eigen.html#fig:ramsey-onesector-unstable">4.5</a> といったケースが典型的である。</p>
+<div class="figure" style="text-align: center"><span id="fig:ramsey-onesector-saddle"></span>
+<img src="figures/04-eigen/04-eigen.004.jpeg" alt="鞍点（1セクター）"  />
+<p class="caption">
+図 4.4: 鞍点（1セクター）
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:ramsey-onesector-unstable"></span>
+<img src="figures/04-eigen/04-eigen.005.jpeg" alt="不安定（1セクター）"  />
+<p class="caption">
+図 4.5: 不安定（1セクター）
+</p>
+</div>
+<p>一般のセクターに対しては定理<a href="complexnumbers.html#thm:levhari-liviatan-santos-onesec">2.3</a> は成り立たない。 複素固有値 <span class="math inline">\(\lambda\)</span> が存在すれば，定理<a href="eigen.html#thm:conju-eigen-pair">4.1</a> によって<span class="math inline">\(\bar \lambda\)</span> も固有値である。さらに，<span class="citation">Levhari and Liviatan (<a href="#ref-LevhariLiviatan1972">1972</a>)</span> によれば <span class="math inline">\(1/(\beta \lambda)\)</span> と <span class="math inline">\(1/(\beta \bar \lambda)\)</span>も固有値である。1つの複素固有値から3つの複素固有値が派生する。図<a href="#fig:remasey-multsector-saddle"><strong>??</strong></a>, 図<a href="eigen.html#fig:ramsey-multsector-unstable">4.7</a>。</p>
+<div class="figure" style="text-align: center"><span id="fig:ramsey-multsector-saddle"></span>
+<img src="figures/04-eigen/04-eigen.006.jpeg" alt="鞍点（マルチセクター）"  />
+<p class="caption">
+図 4.6: 鞍点（マルチセクター）
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:ramsey-multsector-unstable"></span>
+<img src="figures/04-eigen/04-eigen.007.jpeg" alt="不安定（マルチセクター）"  />
+<p class="caption">
+図 4.7: 不安定（マルチセクター）
+</p>
+</div>
+<p>不動点は鞍点であるか，あるいは反安定となる。図から想像できるように， <span class="math inline">\(\beta\)</span> が1に近づくにつれて，安定な固有値が生じて鞍点になりやすい。 実は<span class="math inline">\(\beta\)</span> が十分1に近いとき，ラムゼーモデルは大域的に安定な経路を持つことが知られている。 大域的安定性の研究はターンパイク（turnpike）理論と呼ばれる一大分野を形成している。<span class="citation">(McKenzie <a href="#ref-McKenzie1986">1986</a>)</span></p>
+<p>逆に，<span class="math inline">\(\beta\)</span>が小さくなると安定性が失われ，不安定挙動（周期軌道，カオス）が現れる。 例えば <span class="citation">Deneckere and Pelikan (<a href="#ref-DeneckerePelikan1986">1986</a>)</span> を見よ。</p>
 
 </div>
+</div>
+<h3>参考文献</h3>
+<div id="refs" class="references">
+<div id="ref-Klein2000">
+<p>Klein, Paul. 2000. “Using the Generalized Schur Form to Solve a Multivariate Linear Rational Expectations Model.” <em>Journal of Economic Dynamics &amp; Control</em> 24: 1405–23.</p>
+</div>
+<div id="ref-LevhariLiviatan1972">
+<p>Levhari, David, and Nissan Liviatan. 1972. “On Stability in the Saddle-Point Sense.” <em>Journal of Economic Theory</em> 4: 88–93.</p>
+</div>
+<div id="ref-McKenzie1986">
+<p>McKenzie, Lionel W. 1986. “Optimal Economic Growth, Turnpike Theorems and Comparative Dynamics.” In <em>Handbook of Mathematical Economics, Vol. III</em>, edited by Kenneth J. Arrow and M. D. Intriligator. North-Holland.</p>
+</div>
+<div id="ref-DeneckerePelikan1986">
+<p>Deneckere, Raymond, and Steve Pelikan. 1986. “Competitive Chaos.” <em>Journal of Economic Theory</em> 40 (1). Elsevier: 13–25.</p>
 </div>
 </div>
 <div class="footnotes">
 <hr />
 <ol start="17">
 <li id="fn17"><p>命題<span class="math inline">\(P\)</span>: <span class="math inline">\(A \Longrightarrow B\)</span> が真（true）のとき，またそのときに限り， 命題<span class="math inline">\(P&#39;\)</span>: <span class="math inline">\(\neg B \Longrightarrow \neg A\)</span> は真である。ただし，<span class="math inline">\(\neg A\)</span> は<span class="math inline">\(A\)</span> の否定。 命題<span class="math inline">\(P&#39;\)</span>を命題<span class="math inline">\(P\)</span>の対偶命題という。主命題を証明するよりも対偶命題の証明が易しい （思いつきやすい）場合には対偶命題を示せばよい。<a href="eigen.html#fnref17">↩</a></p></li>
+<li id="fn18"><p>代数学の基本定理（定理<a href="complexnumbers.html#thm:fundamental-theorem-algebra">2.1</a>）。<a href="eigen.html#fnref18">↩</a></p></li>
+<li id="fn19"><p><span class="math inline">\(\|x\| = \sqrt{\sum_i x_i^2}\)</span> （ユークリッドノルム，Euclidean norm）。あるいは任意のノルム。<a href="eigen.html#fnref19">↩</a></p></li>
 </ol>
 </div>
             </section>
