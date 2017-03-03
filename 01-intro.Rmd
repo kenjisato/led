@@ -97,7 +97,7 @@ $\mathbb E_t$ は条件付き期待値である。
 本書ではモデルの導出に深く踏み込まないが，価格や消費といった変数は将来に対する予想を反映して (forward-looking) 決まるということだけ意識しておけば十分だろう。
 予想を反映して価格が決まるという関係は次のような例を通して理解できる。
 
-```{block2, type="example"}
+```{example}
 企業の株価はその企業が将来的に生み出す価値を利子率 (あるいは割引率) を考慮して割引いた値と一致するように決まる，というのが経済理論の基本公式である。
 なお， 「割引」(discount) というのは収益を手にするまでに待たなければいけない時間分だけ減価調整することである。
 
@@ -392,14 +392,8 @@ R/chapternumber_descriptive_name.R
 
 試しにプロンプトに
 
-```{r, eval=FALSE}
-library(tidyverse)
-```
-
 ```{r, include=FALSE}
-library(ggplot2)
-library(tibble)
-library(dplyr)
+library(tidyverse)
 ```
 
 と打ち込んでみよう. エラーが出る場合には次のコマンドでインストールしてから, 再度実行する. 
