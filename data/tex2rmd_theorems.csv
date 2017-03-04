@@ -1,0 +1,11 @@
+tex,bookdown,engine
+thm,theorem,TRUE
+defn,definition,TRUE
+prop,proposition,TRUE
+proof,proof,TRUE
+lem,lemma,TRUE
+cor,corollary,TRUE
+example,example,TRUE
+rem,remark,FALSE
+fact,fact,FALSE
+xca,exercise,FALSE

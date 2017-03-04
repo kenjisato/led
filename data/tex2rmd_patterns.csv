@@ -1,0 +1,16 @@
+pattern,replace
+\\chapter\{(.*)\},# \1
+\\section\{(.*)\},## \1
+\\subsection\{(.*)\},### \1
+\\subsubsection\{(.*)\},#### \1
+\\paragraph\{(.*)\},##### \1
+\\section\*\{(.*)\},## \1 {-}
+\\subsection\*\{(.*)\},### \1 {-}
+\\subsubsection\*\{(.*)\},#### \1 {-}
+\\paragraph\*\{(.*)\},###### \1 {-}
+(\\\[|\\\]),$$
+\\begin\{align\*\},$$\n\\begin{aligned}
+\\end\{align\*\},\\end{aligned}\n$$
+\\begin\{equation\},$$
+\\end\{equation\},$$
+\\cite(t|p)?\{(.*?)\},@\2
