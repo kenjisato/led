@@ -19,6 +19,7 @@ language:
 
 rmd_files:
   - index.Rmd
+  - 00-preface.Rmd
   - 01-intro.Rmd
   - 02-complex_numbers.Rmd
   - 03-matrix.Rmd
