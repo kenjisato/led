@@ -147,7 +147,7 @@ convert_list = function(doc) {
                              paste0(strrep(" ", 4 * (length(nesting) - 1)), "1."))
       }
     }
-    if (startsWith(doc[i], "\\end{itemize}")) {
+    if (startsWith(doc[i], "\\end{itemize}") || startsWith(doc[i], "\\end{enumerate}")) {
       doc[i] = ""
       nesting = head(nesting, length(nesting) - 1)
     }
