@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>経済動学: 線形編</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="経済動学 講義ノート">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="経済動学: 線形編" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="経済動学 講義ノート" />
+  <meta name="github-repo" content="kenjisato/economicdynamics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="経済動学: 線形編" />
+  
+  <meta name="twitter:description" content="経済動学 講義ノート" />
+  
+
+<meta name="author" content="佐藤 健治">
+
+
+<meta name="date" content="2017-03-04">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="eigen.html">
+<link rel="next" href="section-6.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Linear Economic Dynamics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>序文</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e6a78be68890"><i class="fa fa-check"></i>構成</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#e8ac9de8be9e"><i class="fa fa-check"></i>謝辞</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> はじめに</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#section-1.1"><i class="fa fa-check"></i><b>1.1</b> 経済動学</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#section-1.2"><i class="fa fa-check"></i><b>1.2</b> 対象とするモデル</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#section-1.2.1"><i class="fa fa-check"></i><b>1.2.1</b> 決定論モデル</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#section-1.2.2"><i class="fa fa-check"></i><b>1.2.2</b> 制御理論との違い</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#section-1.2.3"><i class="fa fa-check"></i><b>1.2.3</b> 安定性と決定性</a></li>
+<li class="chapter" data-level="1.2.4" data-path="intro.html"><a href="intro.html#section-1.2.4"><i class="fa fa-check"></i><b>1.2.4</b> 合理的期待モデル</a></li>
+<li class="chapter" data-level="1.2.5" data-path="intro.html"><a href="intro.html#section-1.2.5"><i class="fa fa-check"></i><b>1.2.5</b> マルコフスイッチングモデル</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#section-1.3"><i class="fa fa-check"></i><b>1.3</b> プログラミング環境</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#rstudio"><i class="fa fa-check"></i><b>1.3.1</b> RStudio</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#section-1.3.2"><i class="fa fa-check"></i><b>1.3.2</b> 準備</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#section-1.3.3"><i class="fa fa-check"></i><b>1.3.3</b> パッケージ</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="complexnumbers.html"><a href="complexnumbers.html"><i class="fa fa-check"></i><b>2</b> 複素数</a><ul>
+<li class="chapter" data-level="2.1" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> はじめに</a></li>
+<li class="chapter" data-level="2.2" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> 複素数</a></li>
+<li class="chapter" data-level="2.3" data-path="complexnumbers.html"><a href="complexnumbers.html#imaginary-plane"><i class="fa fa-check"></i><b>2.3</b> 複素平面（imaginary plane）</a></li>
+<li class="chapter" data-level="2.4" data-path="complexnumbers.html"><a href="complexnumbers.html#r-"><i class="fa fa-check"></i><b>2.4</b> R コード</a><ul>
+<li class="chapter" data-level="" data-path="complexnumbers.html"><a href="complexnumbers.html#e59b9be58987e6bc94e7ae97"><i class="fa fa-check"></i>四則演算</a></li>
+<li class="chapter" data-level="" data-path="complexnumbers.html"><a href="complexnumbers.html#e8a487e7b4a0e5b9b3e99da2e4b88ae381aee59bb3e7a4ba"><i class="fa fa-check"></i>複素平面上の図示</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.5"><i class="fa fa-check"></i><b>2.5</b> 極形式</a></li>
+<li class="chapter" data-level="2.6" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.6"><i class="fa fa-check"></i><b>2.6</b> 共役複素数</a></li>
+<li class="chapter" data-level="2.7" data-path="complexnumbers.html"><a href="complexnumbers.html#complexramsey"><i class="fa fa-check"></i><b>2.7</b> 補遺：ラムゼーモデル</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>3</b> 行列論の基礎</a><ul>
+<li class="chapter" data-level="3.1" data-path="matrix.html"><a href="matrix.html#section-3.1"><i class="fa fa-check"></i><b>3.1</b> 行列の形</a></li>
+<li class="chapter" data-level="3.2" data-path="matrix.html"><a href="matrix.html#section-3.2"><i class="fa fa-check"></i><b>3.2</b> 行列の演算</a></li>
+<li class="chapter" data-level="3.3" data-path="matrix.html"><a href="matrix.html#section-3.3"><i class="fa fa-check"></i><b>3.3</b> 線形方程式</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="matrix.html"><a href="matrix.html#section-3.3.1"><i class="fa fa-check"></i><b>3.3.1</b> 線形連立方程式の変形</a></li>
+<li class="chapter" data-level="3.3.2" data-path="matrix.html"><a href="matrix.html#section-3.3.2"><i class="fa fa-check"></i><b>3.3.2</b> 行基本変形</a></li>
+<li class="chapter" data-level="3.3.3" data-path="matrix.html"><a href="matrix.html#section-3.3.3"><i class="fa fa-check"></i><b>3.3.3</b> 列基本変形</a></li>
+<li class="chapter" data-level="3.3.4" data-path="matrix.html"><a href="matrix.html#section-3.3.4"><i class="fa fa-check"></i><b>3.3.4</b> 初等変形</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="eigen.html"><a href="eigen.html"><i class="fa fa-check"></i><b>4</b> 固有値</a><ul>
+<li class="chapter" data-level="4.1" data-path="eigen.html"><a href="eigen.html#section-4.1"><i class="fa fa-check"></i><b>4.1</b> 行列式</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="eigen.html"><a href="eigen.html#section-4.1.1"><i class="fa fa-check"></i><b>4.1.1</b> 置換</a></li>
+<li class="chapter" data-level="4.1.2" data-path="eigen.html"><a href="eigen.html#section-4.1.2"><i class="fa fa-check"></i><b>4.1.2</b> 行列式の定義</a></li>
+<li class="chapter" data-level="4.1.3" data-path="eigen.html"><a href="eigen.html#section-4.1.3"><i class="fa fa-check"></i><b>4.1.3</b> 行列式の意味</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="eigen.html"><a href="eigen.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 固有値と固有ベクトル</a></li>
+<li class="chapter" data-level="4.3" data-path="eigen.html"><a href="eigen.html#section-4.3"><i class="fa fa-check"></i><b>4.3</b> 対角化</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="eigen.html"><a href="eigen.html#section-4.3.1"><i class="fa fa-check"></i><b>4.3.1</b> 計算方法の確認</a></li>
+<li class="chapter" data-level="4.3.2" data-path="eigen.html"><a href="eigen.html#section-4.3.2"><i class="fa fa-check"></i><b>4.3.2</b> 例題</a></li>
+<li class="chapter" data-level="4.3.3" data-path="eigen.html"><a href="eigen.html#section-4.3.3"><i class="fa fa-check"></i><b>4.3.3</b> 複素数の行列表現</a></li>
+<li class="chapter" data-level="4.3.4" data-path="eigen.html"><a href="eigen.html#section-4.3.4"><i class="fa fa-check"></i><b>4.3.4</b> 実対角化</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="eigen.html"><a href="eigen.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 線形動学方程式と固有値</a></li>
+<li class="chapter" data-level="4.5" data-path="eigen.html"><a href="eigen.html#section-4.5"><i class="fa fa-check"></i><b>4.5</b> ラムゼーモデルと固有値</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="linspace.html"><a href="linspace.html"><i class="fa fa-check"></i><b>5</b> 線形空間論</a><ul>
+<li class="chapter" data-level="5.1" data-path="linspace.html"><a href="linspace.html#section-5.1"><i class="fa fa-check"></i><b>5.1</b> 線形空間</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="linspace.html"><a href="linspace.html#section-5.1.1"><i class="fa fa-check"></i><b>5.1.1</b> 定義</a></li>
+<li class="chapter" data-level="5.1.2" data-path="linspace.html"><a href="linspace.html#section-5.1.2"><i class="fa fa-check"></i><b>5.1.2</b> 線形部分空間</a></li>
+<li class="chapter" data-level="5.1.3" data-path="linspace.html"><a href="linspace.html#section-5.1.3"><i class="fa fa-check"></i><b>5.1.3</b> 1次独立性</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="linspace.html"><a href="linspace.html#section-5.2"><i class="fa fa-check"></i><b>5.2</b> 線形写像</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="linspace.html"><a href="linspace.html#section-5.2.1"><i class="fa fa-check"></i><b>5.2.1</b> 基本的な定義の復習</a></li>
+<li class="chapter" data-level="5.2.2" data-path="linspace.html"><a href="linspace.html#section-5.2.2"><i class="fa fa-check"></i><b>5.2.2</b> 線型性</a></li>
+<li class="chapter" data-level="5.2.3" data-path="linspace.html"><a href="linspace.html#--"><i class="fa fa-check"></i><b>5.2.3</b> 像空間, 核, 商空間</a></li>
+<li class="chapter" data-level="5.2.4" data-path="linspace.html"><a href="linspace.html#section-5.2.4"><i class="fa fa-check"></i><b>5.2.4</b> 座標</a></li>
+<li class="chapter" data-level="5.2.5" data-path="linspace.html"><a href="linspace.html#section-5.2.5"><i class="fa fa-check"></i><b>5.2.5</b> 行列</a></li>
+<li class="chapter" data-level="5.2.6" data-path="linspace.html"><a href="linspace.html#section-5.2.6"><i class="fa fa-check"></i><b>5.2.6</b> 基底の変換</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="linspace.html"><a href="linspace.html#section-5.3"><i class="fa fa-check"></i><b>5.3</b> 不変部分空間</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="linspace.html"><a href="linspace.html#section-5.3.1"><i class="fa fa-check"></i><b>5.3.1</b> ブロック対角化</a></li>
+<li class="chapter" data-level="5.3.2" data-path="linspace.html"><a href="linspace.html#section-5.3.2"><i class="fa fa-check"></i><b>5.3.2</b> 固有値分解</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="section-6.html"><a href="section-6.html"><i class="fa fa-check"></i><b>6</b> 行列の標準形</a><ul>
+<li class="chapter" data-level="6.1" data-path="section-6.html"><a href="section-6.html#section-6.1"><i class="fa fa-check"></i><b>6.1</b> 一般固有空間への分解</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="section-6.html"><a href="section-6.html#section-6.1.1"><i class="fa fa-check"></i><b>6.1.1</b> ハミルトン・ケーリーの定理</a></li>
+<li class="chapter" data-level="6.1.2" data-path="section-6.html"><a href="section-6.html#section-6.1.2"><i class="fa fa-check"></i><b>6.1.2</b> 最小多項式</a></li>
+<li class="chapter" data-level="6.1.3" data-path="complexnumbers.html"><a href="complexnumbers.html#-1"><i class="fa fa-check"></i><b>6.1.3</b> 一般固有空間への分解</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="section-6.html"><a href="section-6.html#section-6.2"><i class="fa fa-check"></i><b>6.2</b> 一般化固有値問題</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="section-6.html"><a href="section-6.html#section-6.2.1"><i class="fa fa-check"></i><b>6.2.1</b> 一般化固有値</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="section-6.html"><a href="section-6.html#section-6.3"><i class="fa fa-check"></i><b>6.3</b> ハミルトン・ケーリーの定理の証明</a></li>
+<li class="chapter" data-level="6.4" data-path="section-6.html"><a href="section-6.html#section-6.4"><i class="fa fa-check"></i><b>6.4</b> ワイエルシュトラス標準形の導出</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e58f82e88083e69687e78cae.html"><a href="e58f82e88083e69687e78cae.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/kenjisato/linear-economic-dynamics" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">経済動学: 線形編</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="linspace" class="section level1">
+<h1><span class="header-section-number">第5章</span> 線形空間論</h1>
+<p>これまでは縦横に数字を並べたものとして行列を定義したが, これから線形空間の間の線形写像を表現としたものとして定式化する. 数ベクトル空間 <span class="math inline">\(\mathbb{F}^{n\times1}\)</span> を超えてより抽象的な線形空間の理論を持ち出す理由は, さもなくばシステム表現の変更に際して「変化しない実体」を見失ってしまう恐れがあるからである. 対角化やジョルダン標準形の理論, システムの正準形を理解する上で重要な役割を果たす.</p>
+<div id="section-5.1" class="section level2">
+<h2><span class="header-section-number">5.1</span> 線形空間</h2>
+<div id="section-5.1.1" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> 定義</h3>
+<span class="math inline">\(X\)</span> を集合, <span class="math inline">\(\mathbb{F}\)</span> を体とする. 
+<div class="definition">
+<p><span id="def:unnamed-chunk-67" class="definition"><strong>定義 5.1 </strong></span><span class="math inline">\(X\)</span> が <span class="math inline">\(\mathbb{F}\)</span> 上の線形空間 (ベクトル空間, linear space over <span class="math inline">\(\mathbb{F}\)</span>) であるとは, 和 <span class="math display">\[
+X\times X\ni(x,y)\mapsto x+y\in X
+\]</span> とスカラー倍 <span class="math display">\[
+X\times\mathbb{F}\ni(x,\alpha)\mapsto\alpha x\in X
+\]</span> が定義されていて, 以下の諸条件を満たすことをいう. 線形空間の元をベクトルと呼ぶ.</p>
+<ul>
+<li>任意の <span class="math inline">\(x,y,z\in X\)</span> に対して, <span class="math inline">\((x+y)+z=x+(y+z)\)</span> が成り立つ.</li>
+<li>任意の <span class="math inline">\(x,y\in X\)</span> に対して, <span class="math inline">\(x+y=y+x\)</span> が成り立つ.</li>
+<li>任意の <span class="math inline">\(x\in X\)</span> に対して <span class="math inline">\(\theta+x=x\)</span> なる <span class="math inline">\(\theta\in X\)</span> が存在する. これをゼロベクトルと呼び, <span class="math inline">\(0\)</span> で表す.</li>
+<li>任意の <span class="math inline">\(x\in X\)</span> に対して, <span class="math inline">\(x+x&#39;=0\)</span> なる <span class="math inline">\(x&#39;\in X\)</span> が存在する. これを逆元と呼び <span class="math inline">\(-x\)</span> で表す.</li>
+<li>任意の <span class="math inline">\(x\in X\)</span> と <span class="math inline">\(\alpha,\beta\in\mathbb{F}\)</span> に対して, <span class="math inline">\((\alpha+\beta)x=\alpha x+\beta x\)</span> が成り立つ.</li>
+<li>任意の <span class="math inline">\(x\in X\)</span> と <span class="math inline">\(\alpha,\beta\in\mathbb{F}\)</span> に対して, <span class="math inline">\(\alpha(x+y)=\alpha x+\alpha y\)</span> が成り立つ.</li>
+<li>任意の <span class="math inline">\(x\in X\)</span> と <span class="math inline">\(\alpha,\beta\in\mathbb{F}\)</span> に対して, <span class="math inline">\((\alpha\beta)x=\alpha(\beta x)\)</span> が成り立つ.</li>
+<li>任意の <span class="math inline">\(x\in X\)</span> について, <span class="math inline">\(1x=x\)</span>.</li>
+</ul>
+</div>
+<p></p>
+
+<div class="example">
+<span id="ex:unnamed-chunk-68" class="example"><strong>例 5.1 </strong></span>数ベクトル空間 <span class="math inline">\(\mathbb{F}^{n}\)</span> <span class="math display">\[
+\mathbb{F}^{n}=\left\{ x=\begin{bmatrix}x_{1}\\
+x_{2}\\
+\vdots\\
+x_{n}
+\end{bmatrix}\ \mid\ x_{i}\in\mathbb{R},\ i=1,2,\dots,n\right\} 
+\]</span> は成分ごとの和とスカラー倍によってベクトル空間となる.
+</div>
+<p></p>
+
+<div class="example">
+<span id="ex:unnamed-chunk-69" class="example"><strong>例 5.2 </strong></span><span class="math inline">\(m\times n\)</span> 行列全体の集合は線形空間をなす. 資料  の第1節を参照.
+</div>
+<p></p>
+
+<div class="example">
+<span id="ex:unnamed-chunk-70" class="example"><strong>例 5.3 </strong></span>高々 <span class="math inline">\(n\)</span> 次の多項式全体の集合 <span class="math inline">\(P^{n}[z]\)</span> も通常の和と定数倍に関してベクトル空間となる.
+</div>
+<p></p>
+
+<div class="example">
+<span id="ex:unnamed-chunk-71" class="example"><strong>例 5.4 </strong></span>数列全体の空間 <span class="math inline">\(\{x_{n}\}_{n=1}^{\infty}\subset\mathbb{R}\)</span> も成分ごとの和とスカラー倍を導入すると<span class="math inline">\(\mathbb{R}\)</span> 上のベクトル空間となる.
+</div>
+<p></p>
+
+<div class="example">
+<span id="ex:unnamed-chunk-72" class="example"><strong>例 5.5 </strong></span>有限期待値を持つ実確率変数の空間は<span class="math inline">\(\mathbb{R}\)</span> 上のベクトル空間となる.
+</div>
+<p></p>
+</div>
+<div id="section-5.1.2" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> 線形部分空間</h3>
+
+<div class="definition">
+<span id="def:unnamed-chunk-73" class="definition"><strong>定義 5.2 </strong></span><span class="math inline">\(X\)</span> を <span class="math inline">\(\mathbb{F}\)</span>上の線形空間, <span class="math inline">\(Y\)</span> を <span class="math inline">\(X\)</span> の部分集合とする. <span class="math inline">\(Y\)</span> が<span class="math inline">\(X\)</span> に定義された演算について線形空間になるとき, <span class="math inline">\(Y\)</span> は<span class="math inline">\(X\)</span>の線形部分空間であるという.
+</div>
+<p></p>
+<span class="math inline">\(X\)</span> 自身と <span class="math inline">\(\{0\}\)</span> は必ず線形部分空間になる. 
+<div class="fact">
+<span class="math inline">\(Y\)</span> が<span class="math inline">\(X\)</span>の線形部分空間であるための必要十分条件は, <span class="math inline">\(Y\)</span> が和とスカラー倍について閉じていることである. すなわち, 任意の <span class="math inline">\(y_{1},y_{2}\in Y\)</span>, <span class="math inline">\(\alpha\in\mathbb{F}\)</span>について, <span class="math inline">\(y_{1}+y_{2}\in Y\)</span> と <span class="math inline">\(\alpha y_{1}\in Y\)</span>が成り立つことを確認すればよい.
+</div>
+<p></p>
+
+<div class="proof">
+<span class="proof"><em>証明. </em></span> 確認せよ.
+</div>
+<p></p>
+
+<div class="definition">
+<span id="def:unnamed-chunk-76" class="definition"><strong>定義 5.3 </strong></span>ベクトル<span class="math inline">\(x_{1},\dots,x_{n}\in X\)</span> をすべて含む最小の線形部分空間を, <span class="math inline">\(\{x_{1},\dots,x_{n}\}\)</span> によって張られる線形部分空間といい, <span class="math inline">\(\mathrm{span}\{x_{1},\dots,x_{n}\}\)</span> と書く. <span class="math display">\[
+\mathrm{span}\{x_{1},\dots,x_{n}\}=\left\{ \alpha_{1}x_{1}+\cdots+\alpha_{n}x_{n}\ \mid\ \alpha_{1},\dots,\alpha_{n}\in\mathbb{F}\right\} 
+\]</span> である. なお, <span class="math inline">\(\alpha_{1}x_{1}+\cdots+\alpha_{n}x_{n}\)</span> の形のベクトルは <span class="math inline">\(\{x_{1},\dots,x_{n}\}\)</span> の1次結合であるという.
+</div>
+<p></p>
+2つの部分空間 <span class="math inline">\(Y\)</span>, <span class="math inline">\(W\)</span> があったとき, <span class="math inline">\(Y\cap W\)</span> はまた線形部分空間になる. 一方, <span class="math inline">\(Y\cup W\)</span> は一般には線形部分空間にならない. 
+<div class="definition">
+<span id="def:unnamed-chunk-77" class="definition"><strong>定義 5.4 </strong></span><span class="math inline">\(X\)</span> を<span class="math inline">\(\mathbb{F}\)</span> 上の線形空間, <span class="math inline">\(Y,W\)</span> を<span class="math inline">\(X\)</span> の線形部分空間とする. 部分空間の和 <span class="math inline">\(Y+W\)</span> は<span class="math inline">\(Y\)</span> と<span class="math inline">\(W\)</span> の元をすべて含む最小の線形部分空間と定義される. すなわち
+\begin{equation}
+Y+W=\{\alpha y+\beta w\ \mid\ y\in Y,\ w\in W,\ \alpha,\beta\in\mathbb{F}\}.\label{eq:sum}
+\end{equation}
+</div>
+<p></p>
+上の定義 () は和とスカラー倍について閉じているように作られているので部分空間となる. 
+<div class="definition">
+<span id="def:unnamed-chunk-78" class="definition"><strong>定義 5.5 </strong></span><span class="math inline">\(M\)</span>, <span class="math inline">\(N\)</span> を<span class="math inline">\(X\)</span> の線型部分空間, <span class="math inline">\(M\cap N=\{0\}\)</span> とする. 和 <span class="math inline">\(M+N\)</span> を特に直和といい, <span class="math inline">\(M\oplus N\)</span> と記す.
+</div>
+<p></p>
+
+<div class="fact">
+<span class="math inline">\(M\oplus N\)</span> のベクトル <span class="math inline">\(x\)</span> は一意的な分解 <span class="math inline">\(x=u+v\)</span>, <span class="math inline">\(u\in M\)</span>, <span class="math inline">\(v\in N\)</span> をもつ.
+</div>
+<p></p>
+
+<div class="proof">
+<span class="proof"><em>証明. </em></span> <span class="math inline">\(M\)</span>の非ゼロ元と<span class="math inline">\(N\)</span> の非ゼロ元が常に1次独立であることを確認すればよい. <span class="math inline">\(u,u&#39;\in M\)</span> と <span class="math inline">\(v,v&#39;\in N\)</span> がともに <span class="math inline">\(x=u+v\)</span> と <span class="math inline">\(x=u&#39;+v&#39;\)</span> を満たすとしよう. <span class="math inline">\(u-u&#39;=v&#39;-v\in M\cap N=\{0\}\)</span> より <span class="math inline">\(u=u&#39;\)</span> と <span class="math inline">\(v=v&#39;\)</span> が分かる.
+</div>
+<p></p>
+</div>
+<div id="section-5.1.3" class="section level3">
+<h3><span class="header-section-number">5.1.3</span> 1次独立性</h3>
+
+<div class="definition">
+<span id="def:unnamed-chunk-81" class="definition"><strong>定義 5.6 </strong></span>ベクトル <span class="math inline">\(x_{1},\dots,x_{d}\in X\)</span> が1次独立であるとは, <span class="math display">\[
+\alpha_{1}x_{1}+\cdots+\alpha_{d}x_{d}=0\Longrightarrow\alpha_{1}=\cdots=\alpha_{d}=0
+\]</span> が成り立つことをいう. 1次独立でないとき 1次従属であるという.
+</div>
+<p></p>
+<p>ベクトルの組 <span class="math inline">\(\{x_{1},\dots,x_{d}\}\)</span> が1次従属であれば, そのうちの1つが他のベクトルの1次結合でかける. 例えば, 1つはゼロでない <span class="math inline">\((\alpha_{1},\dots,\alpha_{d})\)</span> が存在して, <span class="math display">\[
+\alpha_{1}x_{1}+\cdots+\alpha_{d}x_{d}=0
+\]</span> となるとする. 一般性を失うことなく, <span class="math inline">\(\alpha_{1}\neq0\)</span> とできて <span class="math display">\[
+x_{1}=\sum_{k=2}^{d}-\frac{\alpha_{k}}{\alpha_{1}}x_{k}
+\]</span> と書ける. 逆も成り立つことが簡単に示せるので, 確認しておくこと.</p>
+
+<div class="definition">
+<span id="def:unnamed-chunk-82" class="definition"><strong>定義 5.7 </strong></span>ある自然数 <span class="math inline">\(N\)</span> が存在し, <span class="math inline">\(N\)</span>個より大きい数のベクトルの組が必ず1次従属になるとき, <span class="math inline">\(X\)</span> は有限次元であるという. そのような <span class="math inline">\(N\)</span> が存在しないとき, <span class="math inline">\(X\)</span> は無限次元であるという.
+</div>
+<p></p>
+
+<div class="definition">
+<span id="def:unnamed-chunk-83" class="definition"><strong>定義 5.8 </strong></span>有限次元ベクトル空間 <span class="math inline">\(X\)</span> のベクトルの組 <span class="math inline">\(V=\{v_{1},\dots,v_{n}\}\)</span> が基底であるとは, <span class="math inline">\(V\)</span> が1次独立であり, <span class="math inline">\(V\)</span> に<span class="math inline">\(X\)</span> のいかなるベクトルを加えても必ず1次従属になることをいう. あるいは同じことだが, <span class="math inline">\(\mathrm{span}(V)=X\)</span>.
+</div>
+<p></p>
+
+<div class="fact">
+<span class="math inline">\(X\)</span> を<span class="math inline">\(\mathbb{F}\)</span>上の有限次元ベクトル空間, <span class="math inline">\(\{v_{1},\dots,v_{n}\}\)</span> を <span class="math inline">\(X\)</span> の任意の基底とする. 任意の <span class="math inline">\(x\in X\)</span> は <span class="math inline">\(\{v_{1},\dots,v_{n}\}\)</span> の線形結合で書ける. すなわち, <span class="math inline">\(\alpha_{1},\dots,\alpha_{n}\in\mathbb{F}\)</span> があって <span class="math display">\[
+x=\alpha_{1}v_{1}+\cdots+\alpha_{n}v_{n}
+\]</span> となる. この表現は (基底ごとに) 一意的に定まる.
+</div>
+<p></p>
+
+<div class="proof">
+<span class="proof"><em>証明. </em></span> 確認せよ.
+</div>
+<p></p>
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-86" class="theorem"><strong>定理 5.1 </strong></span>有限次元ベクトル空間の基底の数は基底の選び方にかかわらず一定である.
+</div>
+<p></p>
+
+<div class="proof">
+<span class="proof"><em>証明. </em></span> <span class="math inline">\(X\)</span>を有限次元ベクトル空間とする. <span class="math inline">\(\{v_{1},\dots,v_{n}\}\)</span> と<span class="math inline">\(\{w_{1},\dots,w_{m}\}\)</span> がともに基底であるとしよう.　<span class="math inline">\(m\neq n\)</span> を仮定して矛盾を導く. 一般性を失うことなく <span class="math inline">\(m&gt;n\)</span> としてよい. <span class="math inline">\(w_{1},\dots,w_{m}\)</span> はすべて <span class="math inline">\(v_{1},\dots,v_{n}\)</span> の1次結合でかけるので, <span class="math display">\[
+w_{i}=\sum_{j=1}^{n}\alpha_{ij}v_{j},\quad\alpha_{ij}\in\mathbb{F},\ i=1,\dots,m.
+\]</span> <span class="math inline">\(\beta_{1},\dots,\beta_{m}\in\mathbb{F}\)</span> を<span class="math inline">\(\beta_{1}w_{1}+\cdots+\beta_{m}w_{m}=0\)</span> が成り立つ数としよう. <span class="math display">\[
+\begin{aligned}
+\beta_{1}w_{1}+\cdots+\beta_{m}w_{m} &amp; =\sum_{i=1}^{m}\beta_{i}\sum_{j=1}^{n}\alpha_{ij}v_{j}\\
+ &amp; =\sum_{j=1}^{n}\left(\sum_{i=1}^{m}\beta_{i}\alpha_{ij}\right)v_{j}
+\end{aligned}
+\]</span> であり, <span class="math inline">\(\{v_{1},\dots,v_{n}\}\)</span> は基底であるから,
+\begin{equation}
+\sum_{i=1}^{m}\beta_{i}\alpha_{ij}=0,\quad j=1,\dots,n\label{eq:1}
+\end{equation}
+が成り立たなければならない. 線形方程式を行列表示すると <span class="math display">\[
+\begin{bmatrix}\beta_{1} &amp; \cdots &amp; \beta_{m}\end{bmatrix}\begin{bmatrix}\alpha_{11} &amp; \cdots &amp; \alpha_{1n}\\
+\vdots &amp; \ddots &amp; \vdots\\
+\alpha_{m1} &amp; \cdots &amp; \alpha_{mn}
+\end{bmatrix}=0.
+\]</span> 同値な変形を施して, <span class="math display">\[
+\begin{bmatrix}\beta_{1} &amp; \cdots &amp; \beta_{m}\end{bmatrix}P^{-1}\begin{bmatrix}I_{n\times n}\\
+O_{(m-n)\times n}
+\end{bmatrix}Q^{-1}=0
+\]</span> を得る. さらに右から<span class="math inline">\(Q\)</span>をかければ <span class="math display">\[
+\begin{bmatrix}\beta_{1} &amp; \cdots &amp; \beta_{m}\end{bmatrix}P^{-1}\begin{bmatrix}I_{n\times n}\\
+O_{(m-n)\times n}
+\end{bmatrix}=\begin{bmatrix}\tilde{\beta}_{1} &amp; \cdots &amp; \tilde{\beta}_{m}\end{bmatrix}\begin{bmatrix}I_{n\times n}\\
+O_{(m-n)\times n}
+\end{bmatrix}=0.
+\]</span> したがって, <span class="math display">\[
+\begin{bmatrix}\tilde{\beta}_{1} &amp; \cdots &amp; \tilde{\beta}_{m}\end{bmatrix}=\begin{bmatrix}0 &amp; \cdots &amp; 0 &amp; c_{n+1} &amp; \cdots &amp; c_{m}\end{bmatrix}
+\]</span> である. <span class="math inline">\(c_{n+1},\dots,c_{m}\)</span> は任意の定数. 逆変形を行えば <span class="math display">\[
+\begin{bmatrix}\beta_{1} &amp; \cdots &amp; \beta_{m}\end{bmatrix}=\begin{bmatrix}0 &amp; \cdots &amp; 0 &amp; c_{n+1} &amp; \cdots &amp; c_{m}\end{bmatrix}P
+\]</span> より, <span class="math inline">\(\beta_{1},\dots,\beta_{m}\)</span> のすべてがゼロでなくても () を成り立たせることができることが分かる (右から掛ける <span class="math inline">\(P\)</span> は列基本変形であることに注目する). <span class="math inline">\(\{w_{1},\dots,w_{m}\}\)</span> が基底であることに矛盾する.
+</div>
+<p></p>
+
+<div class="definition">
+<span id="def:unnamed-chunk-88" class="definition"><strong>定義 5.9 </strong></span>有限次元ベクトル空間 <span class="math inline">\(X\)</span> の基底に含まれるベクトルの数は空間固有の量である. これを次元と呼び <span class="math inline">\(\dim X\)</span> と書く.
+</div>
+<p></p>
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-89" class="theorem"><strong>定理 5.2 </strong></span><span class="math inline">\(X\)</span> を<span class="math inline">\(n\)</span>次元ベクトル空間とする. 1次独立なベクトルの組 <span class="math inline">\(\{x_{1},\dots,x_{r}\}\subset X\)</span>, <span class="math inline">\(r&lt;n\)</span>, に <span class="math inline">\((n-r)\)</span> 本のベクトル <span class="math inline">\(\{x_{m+1},\dots,x_{n}\}\)</span> を付け加えて <span class="math inline">\(\{x_{1},\dots,x_{m},x_{m+1},\dots,x_{n}\}\)</span> が <span class="math inline">\(X\)</span> の基底となるようにできる.
+</div>
+<p></p>
+
+<div class="proof">
+<span class="proof"><em>証明. </em></span> <span class="math inline">\(\{v_{1},\dots,v_{n}\}\)</span> を<span class="math inline">\(X\)</span>の基底とする. <span class="math inline">\(v_{1},\dots,v_{n}\)</span> の中に <span class="math inline">\(x_{1},\dots,x_{r}\)</span> の1次結合で書けないものが存在する. さもなくば <span class="math inline">\(\{x_{1},\dots,x_{r}\}\)</span> が基底となり, 定理 () により矛盾. <span class="math inline">\(v_{1}\)</span> がそのような元であるとしよう. すると <span class="math inline">\(\{x_{1},\dots,x_{r},x_{r+1}\}\)</span>, <span class="math inline">\(x_{r+1}:=v_{1}\)</span>, は1次独立になる. これが基底であれば終了, そうでなければ <span class="math inline">\(\{v_{2},\dots,v_{n}\}\)</span> の中に<span class="math inline">\(\{x_{1},\dots,x_{r},x_{r+1}\}\)</span> の1次結合で書けないものが存在する. このような手続きを <span class="math inline">\(n-r\)</span> 回実行すれば基底 <span class="math inline">\(\{x_{1},\dots,x_{n}\}\)</span> を構成できる.
+</div>
+<p></p>
+</div>
+</div>
+<div id="section-5.2" class="section level2">
+<h2><span class="header-section-number">5.2</span> 線形写像</h2>
+<div id="section-5.2.1" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> 基本的な定義の復習</h3>
+<p><span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span> を集合とする. 以下の概念は基本的である.</p>
+<div id="section-5.2.1.0.1" class="section level5">
+<h5><span class="header-section-number">5.2.1.0.1</span> 写像・グラフ</h5>
+<p>集合 <span class="math inline">\(M\)</span> を<span class="math inline">\(X\times Y\)</span> の部分集合であって, 任意の<span class="math inline">\(x\in X\)</span> について <span class="math inline">\((x,y)\in M\)</span> を満たす <span class="math inline">\(y\in Y\)</span> が必ず存在し, しかもその数が1つだけであるものとしよう. この <span class="math inline">\(y\)</span> を <span class="math inline">\(f(x)\)</span> と書けば <span class="math inline">\(M=\{(x,f(x))\ \mid\ x\in X\}\)</span> が成り立っている. <span class="math inline">\(M\)</span> によって定まる <span class="math inline">\(x\)</span> から <span class="math inline">\(y\)</span> への対応関係 (<span class="math inline">\(x\mapsto y\)</span>) を <span class="math inline">\(X\)</span> から <span class="math inline">\(Y\)</span> への写像 (mapping)といい, <span class="math inline">\(f:X\to Y\)</span> と書く. <span class="math inline">\(M\)</span> を <span class="math inline">\(f\)</span> のグラフ (graph) といい, <span class="math inline">\(\mathrm{graph}f\)</span> と書く.</p>
+</div>
+<div id="section-5.2.1.0.2" class="section level5">
+<h5><span class="header-section-number">5.2.1.0.2</span> 像・逆像</h5>
+<p><span class="math inline">\(f:X\to Y\)</span>, <span class="math inline">\(M\subset X\)</span> に対して, <span class="math display">\[
+f(M)=\{f(x)\in Y\ \mid\ x\in M\}\subset Y
+\]</span> を<span class="math inline">\(M\)</span> の<span class="math inline">\(f\)</span> による像 (image) という. <span class="math inline">\(f(X)\)</span> を <span class="math inline">\(\mathrm{im}X\)</span> と書くこともある.</p>
+<p><span class="math inline">\(N\subset X\)</span> に対して, <span class="math display">\[
+f^{-1}(N)=\{x\in X\ \mid\ f(x)\in N\}\subset X
+\]</span> を<span class="math inline">\(N\)</span>の<span class="math inline">\(f\)</span> による逆像 (inverse image) と呼ぶ. 逆像は空集合となることもある.</p>
+</div>
+<div id="section-5.2.1.0.3" class="section level5">
+<h5><span class="header-section-number">5.2.1.0.3</span> 恒等写像</h5>
+<p>写像 <span class="math inline">\(x\mapsto x\)</span> を恒等写像といい <span class="math inline">\(\mathrm{Id}_{X}\)</span> あるいは <span class="math inline">\(I_{X}\)</span>と書く.</p>
+</div>
+<div id="section-5.2.1.0.4" class="section level5">
+<h5><span class="header-section-number">5.2.1.0.4</span> 全射</h5>
+<p>任意の <span class="math inline">\(y\in Y\)</span> について, <span class="math inline">\(x\in X\)</span> が存在して<span class="math inline">\(y=f(x)\)</span> が成り立つとき, <span class="math inline">\(f\)</span> は全射 (surjection, onto mapping)であるという.</p>
+</div>
+<div id="section-5.2.1.0.5" class="section level5">
+<h5><span class="header-section-number">5.2.1.0.5</span> 単射</h5>
+<p><span class="math inline">\(f(x_{1})=f(x_{2})\)</span> ならば <span class="math inline">\(x_{1}=x_{2}\)</span> が成り立つとき, <span class="math inline">\(f\)</span> は単射 (injection, one-to-one mapping) であるという.</p>
+</div>
+<div id="section-5.2.1.0.6" class="section level5">
+<h5><span class="header-section-number">5.2.1.0.6</span> 全単射・逆写像</h5>
+<p>全射かつ単射である写像を全単射 (bijection, one-to-one and onto mapping)という. <span class="math inline">\(f:X\to Y\)</span> を全単射とすれば, <span class="math inline">\(f^{-1}:Y\to X\)</span> を <span class="math display">\[
+\mathrm{graph}f^{-1}=\{(y,x)\ \mid\ (x,y)\in\mathrm{graph}f\}
+\]</span> によって定義できる. <span class="math inline">\(f^{-1}\)</span> を <span class="math inline">\(f\)</span> の逆写像 (inverse) という.</p>
+</div>
+<div id="section-5.2.1.0.7" class="section level5">
+<h5><span class="header-section-number">5.2.1.0.7</span> 合成写像</h5>
+<p><span class="math inline">\(f:X\to Y\)</span>, <span class="math inline">\(g:Y\to Z\)</span> に対して, 写像 <span class="math inline">\(X\to Z\)</span> を <span class="math display">\[
+x\mapsto g(f(x))
+\]</span> によって定める. これを <span class="math inline">\(f\)</span> と <span class="math inline">\(g\)</span> の合成写像といい, <span class="math inline">\(g\circ f\)</span> と記す. 全単射 <span class="math inline">\(f:X\to Y\)</span>に対して, <span class="math inline">\(f^{-1}\circ f=\mathrm{Id}_{X}\)</span>, <span class="math inline">\(f\circ f^{-1}=\mathrm{Id}_{Y}\)</span> である. 写像の合成には結合法則が成り立つ. すなわち <span class="math display">\[
+f\circ(g\circ h)=(f\circ g)\circ h.
+\]</span> したがって, <span class="math inline">\(f\circ g\circ h\)</span> などと書いても曖昧さは生じない.</p>
+</div>
+</div>
+<div id="section-5.2.2" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> 線型性</h3>
+
+<div class="definition">
+<span id="def:unnamed-chunk-91" class="definition"><strong>定義 5.10 </strong></span><span class="math inline">\(X,Y\)</span> を<span class="math inline">\(\mathbb{F}\)</span>上の線形空間とする. 写像 <span class="math inline">\(f\)</span> が線形であるとは, 任意の <span class="math inline">\(\alpha,\beta\in\mathbb{F}\)</span>, <span class="math inline">\(x_{1},x_{2}\in X\)</span> について <span class="math display">\[
+f(\alpha x_{1}+\beta x_{2})=\alpha f(x_{1})+\beta f(x_{2})
+\]</span> が成り立つことをいう.
+</div>
+<p></p>
+<p>写像が線形である場合, <span class="math inline">\(f(x)\)</span> と書かずに括弧を省略して <span class="math inline">\(fx\)</span> と書くこともある. 無限次元空間の間の写像を作用素 (operator) ということもある.</p>
+<span class="math inline">\(X\)</span>と<span class="math inline">\(Y\)</span>の間に全単射線形写像を(線形)同型写像という. 同型写像が存在するとき, <span class="math inline">\(X\)</span> と <span class="math inline">\(Y\)</span> は同型であるといい, <span class="math inline">\(X\simeq Y\)</span> と書く. 
+<div class="example">
+<span id="ex:unnamed-chunk-92" class="example"><strong>例 5.6 </strong></span>期待値が有限である実数値確率変数の空間における期待値作用素 <span class="math inline">\(\mathbb{E}\)</span> は線形である. (本質的には積分の線形性である.)
+</div>
+<p></p>
+
+<div class="example">
+<span id="ex:unnamed-chunk-93" class="example"><strong>例 5.7 </strong></span><span class="math inline">\(P^{n}[x]\)</span> をたかだか<span class="math inline">\(n\)</span> 次の多項式が作る線形空間とする. すなわち <span class="math display">\[
+P^{n}[x]=\left\{ p(x)=\sum_{k=0}^{n}a_{k}x^{k}\ \mid\ a_{0},\dots,a_{n}\in\mathbb{R}\right\} 
+\]</span> 微分作用素 <span class="math display">\[
+\frac{d}{dx}:\sum_{k=0}^{n}a_{k}x^{k}\mapsto\sum_{k=1}^{n}ka_{k}x^{k-1}
+\]</span> は線形である.
+</div>
+<p></p>
+</div>
+<div id="--" class="section level3">
+<h3><span class="header-section-number">5.2.3</span> 像空間, 核, 商空間</h3>
+<span class="math inline">\(X,Y\)</span> を<span class="math inline">\(\mathbb{F}\)</span>上の線形空間とする. 線形写像 <span class="math inline">\(f:X\to Y\)</span> の核 (kernel) <span class="math display">\[
+\ker f:=\{x\in X\ \mid\ f(x)=0\}\subset X,
+\]</span> および像 <span class="math display">\[
+\mathrm{im}f:=\{f(x)\ \mid\ x\in X\}\subset Y
+\]</span> はそれぞれ, <span class="math inline">\(X,Y\)</span> の線形部分空間である. <span class="math inline">\(\mathrm{im}f\)</span> の次元をランクという: <span class="math inline">\(\mathrm{rank}f=\dim\mathrm{im}f\)</span>. 
+<div class="fact">
+<span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span> を線形空間, 線形写像 <span class="math inline">\(f:X\to Y\)</span> が単射であることと <span class="math inline">\(\ker f=\{0\}\)</span> は同値である.
+</div>
+<p></p>
+<span class="math inline">\(M\)</span> を<span class="math inline">\(X\)</span> の部分空間とする. <span class="math inline">\(X\)</span> の2項関係 <span class="math inline">\(\sim_{M}\)</span> を <span class="math display">\[
+x&#39;\sim_{M}x&#39;&#39;:\Leftrightarrow x&#39;-x&#39;&#39;\in M
+\]</span> によって定める. <span class="math inline">\(\sim_{M}\)</span> は同値関係である. すなわち, <span class="math display">\[
+x\sim_{M}x,
+\]</span> <span class="math display">\[
+x&#39;\sim_{M}x&#39;&#39;\Rightarrow x&#39;&#39;\sim_{M}x&#39;,
+\]</span> および <span class="math display">\[
+x&#39;\sim_{M}x&#39;&#39;,\ x&#39;&#39;\sim_{M}x&#39;&#39;&#39;\Rightarrow x&#39;\sim_{M}x&#39;&#39;&#39;
+\]</span> を満たす. 同値類と呼ばれる集合を <span class="math display">\[
+[x]:=\{x&#39;\sim_{M}x\ \mid\ x&#39;\in X\}
+\]</span> と定義し, 同値類の間の演算を <span class="math display">\[
+\begin{aligned}
+[x]+[x&#39;] &amp; :=[x+x&#39;],\\
+\alpha[x] &amp; :=[\alpha x]
+\end{aligned}
+\]</span> と定めれば同値類全体の集合 <span class="math display">\[
+\left\{ [x]\ \mid\ x\in X\right\} 
+\]</span> は線形空間をなす(確認せよ). この空間を商空間 (quotient space)と呼び <span class="math inline">\(X/M\)</span> と書く. 
+<div class="lemma">
+<span id="lem:unnamed-chunk-95" class="lemma"><strong>補題 5.1 </strong></span><span class="math inline">\(X\)</span> を有限次元ベクトル空間, <span class="math inline">\(M\)</span> を <span class="math inline">\(X\)</span> の部分空間とする. このとき <span class="math inline">\(\dim X/M=\dim X-\dim M\)</span> が成り立つ.
+</div>
+<p></p>
+
+<div class="proof">
+<p><span class="proof"><em>証明. </em></span> <span class="math inline">\(\dim M=r\)</span>, <span class="math inline">\(\dim X=n\)</span> とする. <span class="math inline">\(M\)</span> の基底 <span class="math inline">\(\{v_{1},\dots,v_{r}\}\)</span> を定め, これに <span class="math inline">\(n-r\)</span> 本のベクトルを追加して<span class="math inline">\(X\)</span> の基底 <span class="math inline">\(\{v_{1},\dots,v_{r},\dots,v_{n}\}\)</span> を構成する. <span class="math inline">\(\{[v_{r+1}],\dots,[v_{n}]\}\)</span> が<span class="math inline">\(X/M\)</span> の基底をなすことを示せば十分である. <span class="math inline">\([0]=M\)</span> であるから, <span class="math display">\[
+\alpha_{r+1}[v_{r+1}]+\cdots+\alpha_{n}[v_{n}]=[\alpha_{r+1}v_{r+1}+\cdots+\alpha_{n}v_{n}]=[0]
+\]</span> は <span class="math display">\[
+\alpha_{r+1}v_{r+1}+\cdots+\alpha_{n}v_{n}\in M
+\]</span> を意味する. しかし, <span class="math inline">\(v_{r+1},\dots,v_{n}\)</span> の選び方からこれが成り立つのは <span class="math inline">\(\alpha_{r+1}=\cdots=\alpha_{n}=0\)</span> のときだけである. よって, <span class="math inline">\(\{[v_{r+1}],\dots,[v_{n}]\}\)</span> は<span class="math inline">\(X/M\)</span> の1次独立なベクトルの組である. 任意の <span class="math inline">\(x\in X\)</span> について</p>
+<span class="math display">\[
+[x]=\left[\sum_{i=1}^{n}x_{i}v_{i}\right]=\left[\sum_{i=r+1}^{n}x_{i}v_{i}\right]=\sum_{i=r+1}^{n}x_{i}[v_{i}]
+\]</span> が成り立つので, <span class="math inline">\(X/M=\mathrm{span}\{[v_{r+1}],\dots,[v_{n}]\}\)</span> が成り立つ.
+</div>
+<p></p>
+<span class="math inline">\(f:X\to Y\)</span> を線形写像とする. <span class="math inline">\(M=\ker f\)</span> に対する商空間 <span class="math inline">\(X/\ker f\)</span> はひときわ重要な性質をもっている. 
+<div class="theorem">
+<span id="thm:unnamed-chunk-97" class="theorem"><strong>定理 5.3  (準同型定理) </strong></span><span class="math inline">\(X/\ker f\simeq\mathrm{im}f\)</span>.
+</div>
+<p></p>
+
+<div class="proof">
+<span class="proof"><em>証明. </em></span> 同型写像が存在することを示せばよい. 表記を簡略化するため <span class="math inline">\(\sim_{\ker f}\)</span> を単に <span class="math inline">\(\sim\)</span> と書く. <span class="math inline">\(x\sim x&#39;\Leftrightarrow x-x&#39;\in\ker f\Leftrightarrow f(x)=f(x&#39;)\)</span> に注意せよ. 写像 <span class="math inline">\(\pi:X/\ker f\to\mathrm{im}f\)</span> を <span class="math display">\[
+\pi:[x]\mapsto f(x)
+\]</span> によって定めれば, <span class="math inline">\(\pi\)</span>は全単射になる. 線形性も定義から明らかである.
+</div>
+<p></p>
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-99" class="theorem"><strong>定理 5.4 </strong></span><span class="math inline">\(\dim X=\dim(\ker f)+\mathrm{rank}f.\)</span>
+</div>
+<p></p>
+
+<div class="proof">
+<span class="proof"><em>証明. </em></span> 補題と定理より, <span class="math display">\[
+\mathrm{rank}f=\dim\mathrm{im}f=\dim(X/\ker f)=\dim X-\dim\ker f.
+\]</span>
+</div>
+<p></p>
+% 
+<div class="corollary">
+<span id="cor:unnamed-chunk-101" class="corollary"><strong>系 5.1 </strong></span><span class="math inline">\(X\)</span> を有限次元線形空間とする. 線形写像 <span class="math inline">\(f:X\to X\)</span> は単射であれば全射である.
+</div>
+<p></p>
+
+<div class="proof">
+<span class="proof"><em>証明. </em></span> <span class="math inline">\(\dim\mathrm{im}f=\dim X-\dim\{0\}=\dim X\)</span> より, <span class="math inline">\(\mathrm{im}f=X\)</span> が成り立つ.
+</div>
+<p></p>
+</div>
+<div id="section-5.2.4" class="section level3">
+<h3><span class="header-section-number">5.2.4</span> 座標</h3>
+<span class="math inline">\(X\)</span> を <span class="math inline">\(\mathbb{F}\)</span> 上の有限次元ベクトル空間, <span class="math inline">\(\{v_{1},\dots,v_{n}\}\)</span> を<span class="math inline">\(X\)</span> の基底とする. 1次結合による表現 <span class="math display">\[
+x=x_{1}v_{1}+\cdots+x_{n}v_{n},\quad x_{1},\dots,x_{n}\in\mathbb{F}
+\]</span> は一意的なので <span class="math display">\[
+\begin{aligned}
+ &amp; x\mapsto x_{1}\\
+ &amp; \quad\vdots\\
+ &amp; x\mapsto x_{n}
+\end{aligned}
+\]</span> なる写像が定まる. これを <span class="math inline">\(x_{1}(x),\dots,x_{n}(x)\)</span> のように書くと 
+<div class="fact">
+写像 <span class="math inline">\(x\mapsto x_{i}\)</span>, <span class="math inline">\(i=1,2,\dots,n\)</span> は線形写像である.
+</div>
+<p></p>
+
+<div class="proof">
+<span class="proof"><em>証明. </em></span> <span class="math inline">\(x&#39;,x&#39;&#39;\in X\)</span>, <span class="math inline">\(\alpha,\beta\in\mathbb{F}\)</span> とする. <span class="math inline">\(\alpha x&#39;+\beta x&#39;&#39;=\sum_{k=1}^{n}(\alpha x&#39;_{k}+\beta x_{k}&#39;&#39;)v_{k}\)</span> より, <span class="math inline">\(x_{i}(\alpha x&#39;+\beta x&#39;&#39;)=\alpha x_{i}(x&#39;)+\beta x_{i}(x&#39;&#39;)\)</span> が成り立つ.
+</div>
+<p></p>
+
+<div class="fact">
+写像 <span class="math display">\[
+X\ni x\mapsto\begin{bmatrix}x_{1}(x)\\
+\vdots\\
+x_{n}(x)
+\end{bmatrix}\in\mathbb{F}^{n}
+\]</span> は全単射線形写像である. したがって, <span class="math inline">\(\mathbb{F}\)</span> 上の <span class="math inline">\(n\)</span> 次元ベクトル空間はすべて <span class="math inline">\(\mathbb{F}^{n}\)</span> と同型である.
+</div>
+<p></p>
+</div>
+<div id="section-5.2.5" class="section level3">
+<h3><span class="header-section-number">5.2.5</span> 行列</h3>
+<p><span class="math inline">\(X,Y\)</span> を<span class="math inline">\(\mathbb{F}\)</span>上の有限次元ベクトル空間とする. <span class="math inline">\(X\)</span> の基底 <span class="math inline">\(\{v_{1},\dots,v_{n}\}\)</span>と <span class="math inline">\(Y\)</span> の基底 <span class="math inline">\(\{w_{1},\dots,w_{m}\}\)</span> を1つ定める. 線形写像 <span class="math inline">\(f:X\to Y\)</span>, <span class="math inline">\(x\in X\)</span> の1次結合による表現を <span class="math inline">\(x=x_{1}v_{1}+\cdots+x_{n}v_{n}\)</span> とすれば <span class="math display">\[
+f(x)=x_{1}f(v_{1})+\cdots+x_{n}f(v_{n}).
+\]</span> したがって, <span class="math inline">\(f\)</span> による基底の像を定めれば線形写像が定まる. <span class="math inline">\(f(v_{1}),\dots,f(v_{n})\)</span> を <span class="math inline">\(\{w_{1},\dots,w_{n}\}\)</span> の1次結合で表現すると, <span class="math display">\[
+\begin{aligned}
+f(v_{1}) &amp; =a_{11}w_{1}+\cdots+a_{m1}w_{m}\\
+ &amp; \vdots\\
+f(v_{n}) &amp; =a_{1n}w_{1}+\cdots+a_{mn}w_{m}.
+\end{aligned}
+\]</span> したがって, <span class="math display">\[
+\begin{aligned}
+f(x) &amp; =x_{1}f(v_{1})+\cdots+x_{n}f(v_{n})\\
+ &amp; =\left(a_{11}x_{1}+\cdots+a_{1n}x_{n}\right)w_{1}\\
+ &amp; \qquad+\cdots+\left(a_{m1}x_{1}+\cdots+a_{mn}x_{n}\right)w_{m}.
+\end{aligned}
+\]</span> 対応関係 <span class="math display">\[
+X\ni x=x_{1}v_{1}+\cdots+x_{n}v_{n}\leftrightarrow\begin{bmatrix}x_{1}\\
+\vdots\\
+x_{n}
+\end{bmatrix}\in\mathbb{F}^{n}
+\]</span> および <span class="math display">\[
+Y\ni y=y_{1}w_{1}+\cdots+y_{m}w_{m}\leftrightarrow\begin{bmatrix}y_{1}\\
+\vdots\\
+y_{m}
+\end{bmatrix}\in\mathbb{F}^{m}
+\]</span> によって次の関係を得る. <span class="math display">\[
+f(x)\leftrightarrow\begin{bmatrix}a_{11}x_{1}+\cdots+a_{1n}x_{n}\\
+\vdots\\
+a_{m1}x_{1}+\cdots+a_{mn}x_{n}
+\end{bmatrix}=\begin{bmatrix}a_{11} &amp; \cdots &amp; a_{1n}\\
+\vdots &amp; \ddots &amp; \vdots\\
+a_{m1} &amp; \cdots &amp; a_{mn}
+\end{bmatrix}\begin{bmatrix}x_{1}\\
+\vdots\\
+x_{n}
+\end{bmatrix}.
+\]</span> <span class="math inline">\(y=f(x)\)</span> という関係が特定の基底に依存しない表現であったのに対し, 座標を用いた表現 <span class="math display">\[
+\begin{bmatrix}y_{1}\\
+\vdots\\
+y_{m}
+\end{bmatrix}=\begin{bmatrix}a_{11} &amp; \cdots &amp; a_{1n}\\
+\vdots &amp; \ddots &amp; \vdots\\
+a_{m1} &amp; \cdots &amp; a_{mn}
+\end{bmatrix}\begin{bmatrix}x_{1}\\
+\vdots\\
+x_{n}
+\end{bmatrix}
+\]</span> は, <span class="math inline">\(X\)</span> および <span class="math inline">\(Y\)</span> の基底を定めた上で得られたことに注意してほしい.</p>
+</div>
+<div id="section-5.2.6" class="section level3">
+<h3><span class="header-section-number">5.2.6</span> 基底の変換</h3>
+線形写像 <span class="math inline">\(f:X\to Y\)</span> に関して, <span class="math inline">\(X\)</span> の基底 <span class="math inline">\(\{v_{1},\dots,v_{n}\}\)</span> と <span class="math inline">\(Y\)</span> の基底 <span class="math inline">\(\{w_{1},\dots,w_{m}\}\)</span> を決めて得られた行列表現 <span class="math display">\[
+\begin{bmatrix}y_{1}\\
+\vdots\\
+y_{m}
+\end{bmatrix}=\begin{bmatrix}a_{11} &amp; \cdots &amp; a_{1n}\\
+\vdots &amp; \ddots &amp; \vdots\\
+a_{m1} &amp; \cdots &amp; a_{mn}
+\end{bmatrix}\begin{bmatrix}x_{1}\\
+\vdots\\
+x_{n}
+\end{bmatrix}
+\]</span> は基底を取り替えることでどのように変化するだろうか. 今, <span class="math inline">\(X\)</span> の新しい基底 <span class="math inline">\(\{\tilde{v}_{1},\dots,\tilde{v}_{n}\}\)</span> と, <span class="math inline">\(Y\)</span> の新しい基底 <span class="math inline">\(\{\tilde{w}_{1},\dots,\tilde{w}_{m}\}\)</span> に取り替えるとしよう. <span class="math inline">\(\{v_{1},\dots,v_{n}\}\)</span> と <span class="math inline">\(\{\tilde{v}_{1},\dots,\tilde{v}_{n}\}\)</span> との間には互いに線形結合によって表現できるという関係があるので, 正則行列 <span class="math inline">\(P\)</span> を用いて <span class="math display">\[
+\begin{bmatrix}v_{1} &amp; \cdots &amp; v_{n}\end{bmatrix}P=\begin{bmatrix}\tilde{v}_{1} &amp; \cdots &amp; \tilde{v}_{n}\end{bmatrix}
+\]</span> と表現できる. 同様に正則行列 <span class="math inline">\(Q\)</span> を用いて <span class="math display">\[
+\begin{bmatrix}w_{1} &amp; \cdots &amp; w_{m}\end{bmatrix}Q=\begin{bmatrix}\tilde{w}_{1} &amp; \cdots &amp; \tilde{w}_{m}\end{bmatrix}
+\]</span> とできる. <span class="math display">\[
+\begin{aligned}
+\begin{bmatrix}f(\tilde{v}_{1}) &amp; \cdots &amp; f(\tilde{v}_{n})\end{bmatrix} &amp; =\begin{bmatrix}\sum_{i=1}^{n}p_{i1}f(v_{i}) &amp; \cdots &amp; \sum_{i=1}^{n}p_{in}f(v_{n})\end{bmatrix}\\
+ &amp; =\begin{bmatrix}f(v_{1}) &amp; \cdots &amp; f(v_{n})\end{bmatrix}P
+\end{aligned}
+\]</span> および <span class="math display">\[
+\begin{bmatrix}f(v_{1}) &amp; \cdots &amp; f(v_{n})\end{bmatrix}=\begin{bmatrix}w_{1} &amp; \cdots &amp; w_{m}\end{bmatrix}A
+\]</span> に注意すれば,
+\begin{align}
+\begin{bmatrix}f(\tilde{v}_{1}) &amp; \cdots &amp; f(\tilde{v}_{n})\end{bmatrix} &amp; =\begin{bmatrix}f(v_{1}) &amp; \cdots &amp; f(v_{n})\end{bmatrix}P\nonumber \\
+ &amp; =\begin{bmatrix}w_{1} &amp; \cdots &amp; w_{m}\end{bmatrix}AP\nonumber \\
+ &amp; =\begin{bmatrix}\tilde{w}_{1} &amp; \cdots &amp; \tilde{w}_{m}\end{bmatrix}Q^{-1}AP\label{eq:change}
+\end{align}
+<p>を得る. これは, 新しい基底に関する<span class="math inline">\(f\)</span> の行列表現が <span class="math inline">\(Q^{-1}AP\)</span> であることを表している.</p>
+</div>
+</div>
+<div id="section-5.3" class="section level2">
+<h2><span class="header-section-number">5.3</span> 不変部分空間</h2>
+<p><span class="math inline">\(X\)</span> を有限次元ベクトル空間, <span class="math inline">\(M\subset X\)</span> を部分空間とする. 線形写像 <span class="math inline">\(f:X\to X\)</span> が<span class="math inline">\(M\)</span></p>
+<p><span class="math display">\[
+f(M)\subset M
+\]</span> を満たすとき, <span class="math inline">\(M\)</span> は<span class="math inline">\(f\)</span> の不変部分空間 (invariant subspace) であるという.</p>
+<div id="section-5.3.1" class="section level3">
+<h3><span class="header-section-number">5.3.1</span> ブロック対角化</h3>
+<p><span class="math inline">\(X\)</span> が不変部分空間の直和として <span class="math display">\[
+X=M_{1}\oplus M_{2}\oplus\cdots\oplus M_{k}
+\]</span> と分解されるとき, <span class="math inline">\(f\)</span> の行列表現がブロック対角行列となることを示そう.</p>
+<span class="math inline">\(M_{i}\)</span> の基底を <span class="math inline">\(\{v_{i1},\dots,v_{in_{i}}\}\)</span>, <span class="math inline">\(i=1,\dots,k\)</span>, とすると, <span class="math display">\[
+\bigcup_{i=1}^{k}\{v_{i1},\dots,v_{in_{i}}\},\qquad\dim X=n_{1}+\cdots+n_{k}
+\]</span> は<span class="math inline">\(X\)</span>の基底を成す. <span class="math inline">\(f(M_{i})\subset M_{i}\)</span> より <span class="math inline">\(v_{j\ell}\)</span>, <span class="math inline">\(\ell=1,\dots,n_{\ell}\)</span>, <span class="math inline">\(j\neq i\)</span> に対して <span class="math inline">\(f(v_{j\ell})=0\)</span> となる. したがって, <span class="math display">\[
+\begin{aligned}
+f(v_{i1}) &amp; =a_{i,11}v_{i1}+\cdots+a_{i,n_{i}1}v_{in_{i}}\\
+ &amp; \qquad\vdots\\
+f(v_{in_{i}}) &amp; =a_{i,1n_{i}}v_{i1}+\cdots+a_{i,n_{i}n_{i}}v_{in_{i}}.
+\end{aligned}
+\]</span> <span class="math inline">\(f|_{M_{i}}:M_{i}\to M_{i}\)</span> の行列表現を <span class="math inline">\(A_{i}=(a_{i,st})\)</span> とすれば <span class="math display">\[
+\begin{bmatrix}f(v_{i1}) &amp; \cdots &amp; f(v_{in_{i}})\end{bmatrix}=\begin{bmatrix}v_{i1} &amp; \cdots &amp; v_{in_{i}}\end{bmatrix}A_{i}.
+\]</span> <span class="math inline">\(f\)</span> の行列表現<span class="math inline">\(A\)</span>は
+\begin{multline*}
+\begin{bmatrix}f(v_{11}) &amp; \cdots &amp; f(v_{1n_{1}}) &amp; \cdots &amp; \cdots &amp; f(v_{k1}) &amp; \cdots &amp; f(v_{kn_{k}})\end{bmatrix}\\
+=\begin{bmatrix}v_{11} &amp; \cdots &amp; v_{1n_{1}} &amp; \cdots &amp; \cdots &amp; v_{k1} &amp; \cdots &amp; v_{kn_{k}}\end{bmatrix}\begin{bmatrix}A_{1}\\
+ &amp; \ddots\\
+ &amp;  &amp; A_{k}
+\end{bmatrix}
+\end{multline*}
+</div>
+<div id="section-5.3.2" class="section level3">
+<h3><span class="header-section-number">5.3.2</span> 固有値分解</h3>
+<p><span class="math inline">\(X\)</span> を<span class="math inline">\(n\)</span>次元ベクトル空間, <span class="math inline">\(f:X\to X\)</span> が相異なる固有値 <span class="math inline">\(\lambda_{1},\dots,\lambda_{n}\)</span>; <span class="math display">\[
+f(v_{i})=\lambda_{i}v_{i},\quad v_{i}\neq0,\quad i=1,\dots,n
+\]</span> を持つとしよう. このとき, <span class="math display">\[
+E_{i}:=\{v_{i}\ \mid\ f(v_{i})=\lambda_{i}v_{i}\}
+\]</span> は1次元の線形部分空間であり, <span class="math display">\[
+X=E_{1}\oplus\cdots\oplus E_{n}
+\]</span> が成り立つ. <span class="math inline">\(E_{i}\)</span> を固有値 <span class="math inline">\(\lambda_{i}\)</span> に対応する固有空間という. 非ゼロベクトル <span class="math inline">\(v_{1}\in E_{1},\dots,v_{n}\in E_{n}\)</span> は<span class="math inline">\(X\)</span> の基底をなす.</p>
+<p>線形写像 <span class="math inline">\(f\)</span> を適当な基底 <span class="math inline">\(\{e_{1},\dots,e_{n}\}\)</span> について行列表現したものを <span class="math inline">\(A\)</span> とする. 固有空間が決める新しい基底 <span class="math inline">\(\{v_{1},\dots,v_{n}\}\)</span> への変換行列を <span class="math inline">\(P\)</span> とすれば <span class="math display">\[
+\begin{aligned}
+\begin{bmatrix}v_{1} &amp; \cdots &amp; v_{n}\end{bmatrix} &amp; =\begin{bmatrix}e_{1} &amp; \cdots &amp; e_{n}\end{bmatrix}P
+\end{aligned}
+\]</span> である. 式 () より <span class="math display">\[
+\begin{aligned}
+\begin{bmatrix}f(v_{1}) &amp; \cdots &amp; f(v_{n})\end{bmatrix} &amp; =\begin{bmatrix}f(e_{1}) &amp; \cdots &amp; f(e_{n})\end{bmatrix}P\\
+ &amp; =\begin{bmatrix}e_{1} &amp; \cdots &amp; e_{n}\end{bmatrix}AP\\
+ &amp; =\begin{bmatrix}v_{1} &amp; \cdots &amp; v_{n}\end{bmatrix}P^{-1}AP
+\end{aligned}
+\]</span> が成り立つ. 前小節の結果から, <span class="math inline">\(P^{-1}AP\)</span> は対角行列であることが分かる. すなわち, <span class="math display">\[
+P^{-1}AP=\begin{bmatrix}\lambda_{1}\\
+ &amp; \ddots\\
+ &amp;  &amp; \lambda_{n}
+\end{bmatrix}.
+\]</span></p>
+<p>固有値は一般には複素数であるので, 実行列であっても<span class="math inline">\(\mathbb{C}^{n}\)</span>の範囲で対角化は考える必要がある. <span class="math inline">\(\mathbb{C}\)</span>が<span class="math inline">\(\mathbb{R}^{2}\)</span>で表されることをふまえると, 見かけ上次元が増えてしまうようにも思える. しかし, 複素固有値 <span class="math inline">\(\lambda=a+bj\)</span>, <span class="math inline">\(a,b\in\mathbb{R}\)</span> に対しては共役複素数 <span class="math inline">\(a-bj\)</span> も固有値であること, <span class="math inline">\(a+bj\)</span>に対する複素固有ベクトルは <span class="math inline">\(v+jw\)</span>, <span class="math inline">\(v,w\in\mathbb{R}^{n}\)</span> は <span class="math inline">\(a-bj\)</span> に対応する固有ベクトル <span class="math inline">\(v-jw\)</span> と必ずペアで現れる. これは <span class="math display">\[
+\begin{aligned}
+A(v+jw) &amp; =(a+bj)(v+jw)
+\end{aligned}
+\]</span> の共役複素数を取ると <span class="math display">\[
+A(v-jw)=(a-bj)(v-jw)
+\]</span> が成り立つことから直ちに分かる. これら2式を足し上げると, <span class="math display">\[
+Av=-bw+av.
+\]</span> 2式の差を取ると <span class="math display">\[
+Aw=aw+bv
+\]</span> を得る. すなわち, 2次元の(実) 部分空間 <span class="math inline">\(\mathrm{span}\{w,v\}\)</span> が複素固有値 <span class="math inline">\(\lambda\)</span> に対応している. これを基底にしたときの表現行列は <span class="math display">\[
+\begin{aligned}
+\begin{bmatrix}Aw &amp; Av\end{bmatrix} &amp; =\begin{bmatrix}w &amp; v\end{bmatrix}\begin{bmatrix}a &amp; -b\\
+b &amp; a
+\end{bmatrix}.
+\end{aligned}
+\]</span> すなわち <span class="math inline">\(aI+bJ\)</span>.</p>
+以上をまとめると, 次の定理を得る. 
+<div class="theorem">
+<span id="thm:unnamed-chunk-106" class="theorem"><strong>定理 5.5 </strong></span>有限次元ベクトル空間上の線形写像 <span class="math inline">\(f:X\to X\)</span> が相異なる固有値を持つとき, 表現行列を複素数の範囲で対角化できる. 実数の範囲ではブロック対角化できる.
+</div>
+<p></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="eigen.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-6.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"lib_dir": "assets",
+"search": true,
+"toolbar": {
+"position": "fixed"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
