@@ -23,4 +23,6 @@ rmd_files:
   - 02-complex_numbers.Rmd
   - 03-matrix.Rmd
   - 04-eigen.Rmd
+  - 05-linear_space.Rmd
+  - 06-canonical_form.Rmd
   - 99-bibliography.Rmd
