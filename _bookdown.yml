@@ -26,4 +26,5 @@ rmd_files:
   - 04-eigen.Rmd
   - 05-linear_space.Rmd
   - 06-canonical_form.Rmd
+  - 10-blanchardkahn.Rmd
   - 99-bibliography.Rmd
