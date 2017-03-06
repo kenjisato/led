@@ -1,7 +1,6 @@
-start_preview <- function() {
-  bookdown::serve_book(output_dir = "_book",
-                       preview = TRUE, in_session = TRUE,
-                       daemon = TRUE, initpath = 'index.html')
+start_preview <- function(...) {
+  bookdown::serve_book(dir = ".", output_dir = "_book", preview = TRUE,
+                       in_session = TRUE, daemon = FALSE, ...)
 }
 
 stop_preview <- function(which = NULL) {
