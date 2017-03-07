@@ -155,7 +155,7 @@ $A_{22}\in\mathbb{F}^{p\times q}$ に分解するなどである.[^colondef] $A_
 [^colondef]: $P:=Q$ という表現は，$P$ を $Q$ で定義するという意味，$P =:Q$ は $Q$ 
              を$P$ で定義するという意味である.
 
-## 行列の演算
+## 行列の演算 {#matrix-operation}
 
 #### スカラー倍 {-}
 
@@ -571,7 +571,7 @@ $$
 ```
 
 
-```{proposition}
+```{proposition, elementary-matrix}
 任意の行列 $A\in\mathbb{F}^{m\times n}$ に対して，適当に初等変形 $P$，$Q$ を選べば
 $$
   PAQ=\left[\begin{array}{c|c}

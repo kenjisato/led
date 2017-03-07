@@ -1,47 +1,81 @@
 # 線形空間論 {#linspace}
 
-これまでは縦横に数字を並べたものとして行列を定義したが, これから線形空間の間の線形写像を表現としたものとして定式化する. 数ベクトル空間
-$\mathbb{F}^{n\times1}$ を超えてより抽象的な線形空間の理論を持ち出す理由は, さもなくばシステム表現の変更に際して「変化しない実体」を見失ってしまう恐れがあるからである.
-対角化やジョルダン標準形の理論, システムの正準形を理解する上で重要な役割を果たす. 
-
-## 線形空間
-
-### 定義
-
-$X$ を集合, $\mathbb{F}$ を体とする. 
-```{definition}
-$X$ が $\mathbb{F}$ 上の線形空間 (ベクトル空間, linear space over $\mathbb{F}$)
-であるとは, 和
+これまでは縦横に数字を並べたものとして行列を定義した。行列積が数ベクトルに対して作用すると，
+数ベクトルを変換するように働く。例えば，$A = [a_{i,j}] \in \mathbb R^{m \times n}$ が 
+$x = [x_1, \dots, x_n]^\top \in \mathbb R^n$ に作用すると
 $$
-X\times X\ni(x,y)\mapsto x+y\in X
+  Ax =
+  \begin{bmatrix}
+    \sum_{j = 1}^n a_{1, j} x_j \\
+    \vdots \\
+    \sum_{j = 1}^n a_{m, j} x_j
+  \end{bmatrix}
+  \in \mathbb R^m
 $$
-とスカラー倍
+という $\mathbb R^m$ に属する数ベクトルに変換される。写像（mapping），あるいは関数（function）の記法を採用すれば次のように書くことができるだろう[^05-domaincodomain]。
+$$
+\begin{aligned}
+  f :\ & \mathbb R^n \to \mathbb R^m\\
+       & x \mapsto Ax 
+\end{aligned}
+$$
+
+[^05-domaincodomain]: $f: X \to Y$ という記法は，すべての $x \in X$ に対して$f(x)$ がただ1つ定まり $f(x) \in Y$ が成り立つということ。$X$を定義域（domain），$Y$を終域（codomain）という。$x \mapsto f(x)$ という記法は，関数$f$の終域での表現に注目している。例えば，$f(x) = x^2 + 1$ という書き方に馴染みのある読者も多いだろうが，そう書く代わりに $x \mapsto x^2 + 1$ と書いていると思えばよい。
+
+行列積の定義により，写像 $f$ は次の性質を持つ。任意の $x_1, x_2 \in \mathbb R^n$ と $\alpha \in \mathbb R$ に対して
+$$
+\begin{aligned}
+  f(x_1 + x_2)  &= f(x_1) + f(x_2), \\
+  f(\alpha x_1) &= \alpha f(x_1).
+\end{aligned}
+$$
+```{block2, type="exercise"}
+上の関係を確認せよ。
+```
+この性質を**線形性（lineariry）**といい，経済動学理論を習得する上で最も重要な概念の1つである。
+
+本節では，数ベクトル空間を抽象化した**線形空間（vector space）**を導入し，線形空間の間の**線形写像（linear mapping）**として行列を再導入する。
+多くの読者にとって馴染み深い行列は，線形空間の間の線形写像を表形式で表現したものであり，
+その要素は定義域・終域にあたる線形空間の「基底」（basis）ごとに定まる。
+したがって，基底を変更すると行列は変わる。
+対角化の方法を前章で確認したが，これは対角化の手続きによって線形空間の基底が変更されたことによる。次章以降で紹介する標準化の理論は，行列の分析にとって最も望ましい基底を探すための手続きに外ならない。
+
+やや逆説的に聞こえるかもしれないが，抽象的な理論を持ち出す理由はシステム表現の変更に際して「変化しない実体」を見失わないようにするためである。しっかり身につけてほしい。
+
+## 線形空間 {#linspace-definition}
+
+$X$ を集合，$\mathbb{F} = \mathbb R$ または $\mathbb C$ とする。
+
+```{definition, name = "線形空間"}
+$X$ が $\mathbb{F}$ 上の線形空間 (ベクトル空間，linear space over $\mathbb{F}$)
+であるとは，**和（addition）**
+$$
+X \times X \ni (x,y) \mapsto x + y \in X
+$$
+と**スカラー倍（scalar multiplication）**
 $$
 X\times\mathbb{F}\ni(x,\alpha)\mapsto\alpha x\in X
 $$
-が定義されていて,\footnote{写像 $f$ の定義域 (domain) が $X$, 終域 (codomain) が $Y$ であるとき $f:X\to Y$
-と書く. すなわち, 任意の $x\in X$ について$f(x)$ が $Y$ の元として1つ定まる, ということを $f:X\to Y$
-で表す. 一方, $f:x\mapsto y$ という表現もしばしば用いられる. 矢印の形が少し違うだけだが, 用途がかなり違うので注意が必要である.
-$f:x\mapsto y$ と書いたとき, $x$ は $f$ によって $y$ に写されるという意味になる. 従って,
-$x$ も $y$ も既知であるようなときにその対応関係を$f$ によって表すという意味で使われる. 上の場合は, $+$
-という記号を和の写像を表すのに使うという程度の意味である. } 以下の諸条件を満たすことをいう. 線形空間の元をベクトルと呼ぶ. 
+が定義されていて, 以下の諸条件を満たすことをいう。線形空間の元をベクトルと呼ぶ。
 
 
-- 任意の $x,y,z\in X$ に対して, $(x+y)+z=x+(y+z)$ が成り立つ.
-- 任意の $x,y\in X$ に対して, $x+y=y+x$ が成り立つ. 
-- 任意の $x\in X$ に対して $\theta+x=x$ なる $\theta\in X$ が存在する. これをゼロベクトルと呼び,
-$0$ で表す. 
-- 任意の $x\in X$ に対して, $x+x'=0$ なる $x'\in X$ が存在する. これを逆元と呼び $-x$
-で表す. 
-- 任意の $x\in X$ と $\alpha,\beta\in\mathbb{F}$ に対して, $(\alpha+\beta)x=\alpha x+\beta x$
-が成り立つ. 
-- 任意の $x\in X$ と $\alpha,\beta\in\mathbb{F}$ に対して, $\alpha(x+y)=\alpha x+\alpha y$
-が成り立つ.
-- 任意の $x\in X$ と $\alpha,\beta\in\mathbb{F}$ に対して, $(\alpha\beta)x=\alpha(\beta x)$
-が成り立つ.
-- 任意の $x\in X$ について, $1x=x$. 
+- 任意の $x,y,z\in X$ に対して，$(x+y)+z=x+(y+z)$ が成り立つ。
+- 任意の $x,y\in X$ に対して，$x+y=y+x$ が成り立つ。
+- 任意の $x\in X$ に対して $\theta+x=x$ なる $\theta\in X$ が存在する。これをゼロベクトルと呼び，
+$0$ で表す。
+- 任意の $x\in X$ に対して，$x+x'=0$ なる $x'\in X$ が存在する。これを逆元と呼び $-x$
+で表す。
+- 任意の $x\in X$ と $\alpha,\beta\in\mathbb{F}$ に対して，$(\alpha+\beta)x=\alpha x+\beta x$
+が成り立つ。
+- 任意の $x\in X$ と $\alpha,\beta\in\mathbb{F}$ に対して，$\alpha(x+y)=\alpha x+\alpha y$
+が成り立つ。
+- 任意の $x\in X$ と $\alpha,\beta\in\mathbb{F}$ に対して，$(\alpha\beta)x=\alpha(\beta x)$
+が成り立つ。
+- 任意の $x\in X$ について，$1x=x$。
 
 ```
+
+いくつか具体例を確認しておこう。
 
 ```{example}
 数ベクトル空間 $\mathbb{F}^{n}$ 
@@ -52,169 +86,188 @@ x_{2}\\
 x_{n}
 \end{bmatrix}\ \mid\ x_{i}\in\mathbb{R},\ i=1,2,\dots,n\right\} 
 $$
-は成分ごとの和とスカラー倍によってベクトル空間となる. 
+は成分ごとの和とスカラー倍によって線形空間となる。
 ```
 
 
 ```{example}
-$m\times n$ 行列全体の集合は線形空間をなす. 資料 \href{http://16ED02\#page=4}{[16ED02]}
-の第1節を参照.
+$m\times n$ 行列全体の集合は線形空間をなす。節\@ref(matrix-operation) を参照。
 ```
 
 
 ```{example}
-高々 $n$ 次の多項式全体の集合 $P^{n}[z]$ も通常の和と定数倍に関してベクトル空間となる. 
+高々 $n$ 次の多項式全体の集合 $P^{n}[z]$ も通常の和と定数倍に関して線形空間となる。
 ```
 
 
 ```{example}
 数列全体の空間 $\{x_{n}\}_{n=1}^{\infty}\subset\mathbb{R}$ も成分ごとの和とスカラー倍を導入すると$\mathbb{R}$
-上のベクトル空間となる.
+上の線形空間となる。
 ```
 
 
 ```{example}
-有限期待値を持つ実確率変数の空間は$\mathbb{R}$ 上のベクトル空間となる.\footnote{$\mathbb{E}[X+Y]=\mathbb{E}X+\mathbb{E}Y$ といった式が成り立つ.} 
+有限期待値を持つ実確率変数の空間は$\mathbb{R}$ 上の線形空間となる.^[$\mathbb{E}[X+Y]=\mathbb{E}X+\mathbb{E}Y$ といった式が成り立つ。] 
 ```
 
 
-### 線形部分空間
+## 線形部分空間 {#linspace-subspace}
+
 ```{definition}
-$X$ を $\mathbb{F}$上の線形空間, $Y$ を $X$ の部分集合とする. $Y$ が$X$ に定義された演算について線形空間になるとき,
-$Y$ は$X$の線形部分空間であるという.
+$X$ を $\mathbb{F}$上の線形空間，$Y$ を $X$ の部分集合とする。$Y$ が$X$ に定義された演算について線形空間になるとき，
+$Y$ は$X$の線形部分空間であるという。
 ```
 
-$X$ 自身と $\{0\}$ は必ず線形部分空間になる.
+$X$ 自身と $\{0\}$ は必ず線形部分空間になる。
+
 ```{block2, type='fact'}
-$Y$ が$X$の線形部分空間であるための必要十分条件は, $Y$ が和とスカラー倍について閉じていることである. すなわち,
-任意の $y_{1},y_{2}\in Y$, $\alpha\in\mathbb{F}$について, $y_{1}+y_{2}\in Y$
-と $\alpha y_{1}\in Y$が成り立つことを確認すればよい. 
+$Y \subset X$ が$X$の線形部分空間であるための必要十分条件は，$Y$ が和とスカラー倍について閉じていることである。
 ```
 
-```{proof}
-確認せよ. 
+すなわち，ある部分集合 $Y$ が線形部分空間であることを確認するには，任意の $y_{1},y_{2}\in Y$，$\alpha\in\mathbb{F}$について，$y_{1}+y_{2}\in Y$ と $\alpha y_{1}\in Y$が成り立つことを示しさえすればよい。
+
+```{block2, type = "exercise"}
+上の事実を確認せよ。
 ```
 
 ```{definition}
-ベクトル$x_{1},\dots,x_{n}\in X$ をすべて含む最小の線形部分空間を, $\{x_{1},\dots,x_{n}\}$
-によって張られる線形部分空間といい, $\mathrm{span}\{x_{1},\dots,x_{n}\}$ と書く. 
+ベクトル$x_{1},\dots,x_{n}\in X$ をすべて含む最小の線形部分空間を，$\{x_{1},\dots,x_{n}\}$
+によって張られる線形部分空間（linear space spanned by ...）といい，$\mathrm{span}\{x_{1},\dots,x_{n}\}$ と書く。
 $$
-\mathrm{span}\{x_{1},\dots,x_{n}\}=\left\{ \alpha_{1}x_{1}+\cdots+\alpha_{n}x_{n}\ \mid\ \alpha_{1},\dots,\alpha_{n}\in\mathbb{F}\right\} 
+\mathrm{span}\{x_{1},\dots,x_{n}\}
+=
+\left\{ 
+  \alpha_{1}x_{1}+\cdots+\alpha_{n}x_{n}\ 
+  \mid\ 
+  \alpha_{1},\dots,\alpha_{n}\in\mathbb{F}
+\right\} 
 $$
-である. なお, $\alpha_{1}x_{1}+\cdots+\alpha_{n}x_{n}$ の形のベクトルは $\{x_{1},\dots,x_{n}\}$
-の1次結合であるという.
+である。なお，$\alpha_{1}x_{1}+\cdots+\alpha_{n}x_{n}$ の形のベクトルは
+$\{x_{1},\dots,x_{n}\}$ の線形結合（linear combination）であるという。
 ```
 
 
-2つの部分空間 $Y$, $W$ があったとき, $Y\cap W$ はまた線形部分空間になる. 一方, $Y\cup W$
-は一般には線形部分空間にならない. 
+2つの部分空間 $Y$，$W$ があったとき，積集合 $Y\cap W$ はまた線形部分空間になる。
+一方，和集合 $Y\cup W$ は一般には線形部分空間にならない。
 ```{definition}
-$X$ を$\mathbb{F}$ 上の線形空間, $Y,W$ を$X$ の線形部分空間とする. 部分空間の和 $Y+W$
-は$Y$ と$W$ の元をすべて含む最小の線形部分空間と定義される. すなわち
+$X$ を$\mathbb{F}$ 上の線形空間，$Y,W$ を$X$ の線形部分空間とする。部分空間の和 $Y+W$
+は$Y$ と$W$ の元をすべて含む最小の線形部分空間と定義される。すなわち
 \begin{equation}
-Y+W=\{\alpha y+\beta w\ \mid\ y\in Y,\ w\in W,\ \alpha,\beta\in\mathbb{F}\}.\label{eq:sum}
+Y+W=\{\alpha y+\beta w\ \mid\ y\in Y,\ w\in W,\ \alpha,\beta\in\mathbb{F}\}.(\#eq:05-sum)
 \end{equation}
 ```
 
-上の定義 (\ref{eq:sum}) は和とスカラー倍について閉じているように作られているので部分空間となる. 
+上の定義 \@ref(eq:05-sum)  は和とスカラー倍について閉じているように作られているので部分空間となる。
 ```{definition}
-$M$, $N$ を$X$ の線型部分空間, $M\cap N=\{0\}$ とする. 和 $M+N$ を特に直和といい,
-$M\oplus N$ と記す. 
+$M$，$N$ を$X$ の線型部分空間，$M\cap N=\{0\}$ とする。和 $M+N$ を特に直和といい，
+$M\oplus N$ と記す。
 ```
 
 ```{block2, type='fact'}
-$M\oplus N$ のベクトル $x$ は一意的な分解 $x=u+v$, $u\in M$, $v\in N$ をもつ. 
+$M\oplus N$ のベクトル $x$ は一意的な分解 $x=u+v$，$u\in M$，$v\in N$ をもつ。
 ```
 
 ```{proof}
-$M$の非ゼロ元と$N$ の非ゼロ元が常に1次独立であることを確認すればよい. $u,u'\in M$ と $v,v'\in N$
-がともに $x=u+v$ と $x=u'+v'$ を満たすとしよう. $u-u'=v'-v\in M\cap N=\{0\}$
-より $u=u'$ と $v=v'$ が分かる.
+$M$の非ゼロ元と$N$ の非ゼロ元が常に1次独立であることを確認すればよい。$u,u'\in M$ と 
+$v,v'\in N$がともに $x=u+v$ と $x=u'+v'$ を満たすとしよう。$u-u'=v'-v\in M\cap N=\{0\}$
+より $u=u'$ と $v=v'$ が分かる。
 ```
 
 
-### 1次独立性
+## 1次独立性 {#linspace-independence}
+
 ```{definition}
-ベクトル $x_{1},\dots,x_{d}\in X$ が1次独立であるとは, 
+ベクトル $x_{1},\dots,x_{d}\in X$ が1次独立であるとは，
 $$
-\alpha_{1}x_{1}+\cdots+\alpha_{d}x_{d}=0\Longrightarrow\alpha_{1}=\cdots=\alpha_{d}=0
+\alpha_{1}x_{1} + \cdots + \alpha_{d}x_{d} = 0
+\Longrightarrow
+\alpha_{1} = \cdots = \alpha_{d} = 0
 $$
-が成り立つことをいう. 1次独立でないとき 1次従属であるという. 
+が成り立つことをいう。1次独立でないとき 1次従属であるという。
 ```
 
-ベクトルの組 $\{x_{1},\dots,x_{d}\}$ が1次従属であれば, そのうちの1つが他のベクトルの1次結合でかける.
-例えば, 1つはゼロでない $(\alpha_{1},\dots,\alpha_{d})$ が存在して, 
+ベクトルの組 $\{x_{1},\dots,x_{d}\}$ が1次従属であれば，そのうちの1つが他のベクトルの1次結合でかける。
+例えば，1つはゼロでない $(\alpha_{1},\dots,\alpha_{d})$ が存在して，
 $$
 \alpha_{1}x_{1}+\cdots+\alpha_{d}x_{d}=0
 $$
-となるとする. 一般性を失うことなく, $\alpha_{1}\neq0$ とできて
+となるとする。一般性を失うことなく，$\alpha_{1}\neq0$ とできて
 $$
 x_{1}=\sum_{k=2}^{d}-\frac{\alpha_{k}}{\alpha_{1}}x_{k}
 $$
-と書ける. 逆も成り立つことが簡単に示せるので, 確認しておくこと. 
+と書ける。
+
+```{block2, type = "exercise"}
+逆が成り立つことを確認せよ。
+```
 
 ```{definition}
-ある自然数 $N$ が存在し, $N$個より大きい数のベクトルの組が必ず1次従属になるとき, $X$ は有限次元であるという.
-そのような $N$ が存在しないとき, $X$ は無限次元であるという. 
+ある自然数 $N$ が存在し，$N$個より大きい数のベクトルの組が必ず1次従属になるとき，$X$ は有限次元であるという。
+そのような $N$ が存在しないとき，$X$ は無限次元であるという。
 ```
 
 
 ```{definition}
-有限次元ベクトル空間 $X$ のベクトルの組 $V=\{v_{1},\dots,v_{n}\}$ が基底であるとは, $V$
-が1次独立であり, $V$ に$X$ のいかなるベクトルを加えても必ず1次従属になることをいう. あるいは同じことだが, $\mathrm{span}(V)=X$. 
+有限次元ベクトル空間 $X$ のベクトルの組 $V=\{v_{1},\dots,v_{n}\}$ が基底であるとは，$V$
+が1次独立であり，$V$ に$X$ のいかなるベクトルを加えても必ず1次従属になることをいう。あるいは同じことだが，$\mathrm{span}(V)=X$。
 ```
 
 ```{block2, type='fact'}
-$X$ を$\mathbb{F}$上の有限次元ベクトル空間, $\{v_{1},\dots,v_{n}\}$ を $X$ の任意の基底とする.
-任意の $x\in X$ は $\{v_{1},\dots,v_{n}\}$ の線形結合で書ける. すなわち, $\alpha_{1},\dots,\alpha_{n}\in\mathbb{F}$
+$X$ を$\mathbb{F}$上の有限次元ベクトル空間，$\{v_{1},\dots,v_{n}\}$ を $X$ の任意の基底とする。
+任意の $x\in X$ は $\{v_{1},\dots,v_{n}\}$ の線形結合で書ける。すなわち，$\alpha_{1},\dots,\alpha_{n}\in\mathbb{F}$
 があって
 $$
 x=\alpha_{1}v_{1}+\cdots+\alpha_{n}v_{n}
 $$
-となる. この表現は (基底ごとに) 一意的に定まる. 
+となる。この表現は (基底ごとに) 一意的に定まる。
 ```
 
 ```{proof}
-確認せよ. 
+確認せよ。
 ```
 
-```{theorem}
-\label{thm:dim}有限次元ベクトル空間の基底の数は基底の選び方にかかわらず一定である.
+```{theorem, dim}
+有限次元ベクトル空間の基底の数は基底の選び方にかかわらず一定である。
 ```
 
 ```{proof}
-$X$を有限次元ベクトル空間とする. $\{v_{1},\dots,v_{n}\}$ と$\{w_{1},\dots,w_{m}\}$
-がともに基底であるとしよう.　$m\neq n$ を仮定して矛盾を導く. 一般性を失うことなく $m>n$ としてよい. $w_{1},\dots,w_{m}$
-はすべて $v_{1},\dots,v_{n}$ の1次結合でかけるので, 
+$X$を有限次元ベクトル空間とする。$\{v_{1},\dots,v_{n}\}$ と$\{w_{1},\dots,w_{m}\}$
+がともに基底であるとしよう.　$m\neq n$ を仮定して矛盾を導く。一般性を失うことなく $m>n$ としてよい。$w_{1},\dots,w_{m}$
+はすべて $v_{1},\dots,v_{n}$ の1次結合でかけるので，
 $$
 w_{i}=\sum_{j=1}^{n}\alpha_{ij}v_{j},\quad\alpha_{ij}\in\mathbb{F},\ i=1,\dots,m.
 $$
 $\beta_{1},\dots,\beta_{m}\in\mathbb{F}$ を$\beta_{1}w_{1}+\cdots+\beta_{m}w_{m}=0$
-が成り立つ数としよう. 
+が成り立つ数としよう。
 $$
 \begin{aligned}
 \beta_{1}w_{1}+\cdots+\beta_{m}w_{m} & =\sum_{i=1}^{m}\beta_{i}\sum_{j=1}^{n}\alpha_{ij}v_{j}\\
  & =\sum_{j=1}^{n}\left(\sum_{i=1}^{m}\beta_{i}\alpha_{ij}\right)v_{j}
 \end{aligned}
 $$
-であり, $\{v_{1},\dots,v_{n}\}$ は基底であるから, 
+であり，$\{v_{1},\dots,v_{n}\}$ は基底であるから，
 \begin{equation}
-\sum_{i=1}^{m}\beta_{i}\alpha_{ij}=0,\quad j=1,\dots,n\label{eq:1}
+\sum_{i=1}^{m}\beta_{i}\alpha_{ij}=0,\quad j=1,\dots,n(\#eq:05-1)
 \end{equation}
-が成り立たなければならない. 線形方程式を行列表示すると
+が成り立たなければならない。線形方程式を行列表示すると
 $$
 \begin{bmatrix}\beta_{1} & \cdots & \beta_{m}\end{bmatrix}\begin{bmatrix}\alpha_{11} & \cdots & \alpha_{1n}\\
 \vdots & \ddots & \vdots\\
 \alpha_{m1} & \cdots & \alpha_{mn}
 \end{bmatrix}=0.
 $$
-同値な変形を施して, 
+同値な変形を施して，
 $$
-\begin{bmatrix}\beta_{1} & \cdots & \beta_{m}\end{bmatrix}P^{-1}\begin{bmatrix}I_{n\times n}\\
-O_{(m-n)\times n}
+\begin{bmatrix}
+  \beta_{1} & \cdots & \beta_{m}
+\end{bmatrix}
+P^{-1}
+\begin{bmatrix}
+  I_{n\times n}\\
+  O_{(m-n)\times n}
 \end{bmatrix}Q^{-1}=0
 $$
-を得る.\footnote{資料 {[}16ED02{]} を参照. } さらに右から$Q$をかければ
+を得る（命題 \@ref(prp:elementary-matrix)）。さらに右から$Q$をかければ
 $$
 \begin{bmatrix}\beta_{1} & \cdots & \beta_{m}\end{bmatrix}P^{-1}\begin{bmatrix}I_{n\times n}\\
 O_{(m-n)\times n}
@@ -222,126 +275,126 @@ O_{(m-n)\times n}
 O_{(m-n)\times n}
 \end{bmatrix}=0.
 $$
-したがって, 
+したがって，
 $$
 \begin{bmatrix}\tilde{\beta}_{1} & \cdots & \tilde{\beta}_{m}\end{bmatrix}=\begin{bmatrix}0 & \cdots & 0 & c_{n+1} & \cdots & c_{m}\end{bmatrix}
 $$
-である. $c_{n+1},\dots,c_{m}$ は任意の定数. 逆変形を行えば 
+である。$c_{n+1},\dots,c_{m}$ は任意の定数。逆変形を行えば 
 $$
 \begin{bmatrix}\beta_{1} & \cdots & \beta_{m}\end{bmatrix}=\begin{bmatrix}0 & \cdots & 0 & c_{n+1} & \cdots & c_{m}\end{bmatrix}P
 $$
-より, $\beta_{1},\dots,\beta_{m}$ のすべてがゼロでなくても (\ref{eq:1}) を成り立たせることができることが分かる
-(右から掛ける $P$ は列基本変形であることに注目する). $\{w_{1},\dots,w_{m}\}$ が基底であることに矛盾する. 
+より，$\beta_{1},\dots,\beta_{m}$ のすべてがゼロでなくても \@ref(eq:05-1)  を成り立たせることができることが分かる
+(右から掛ける $P$ は列基本変形であることに注目する)。$\{w_{1},\dots,w_{m}\}$ が基底であることに矛盾する。
 ```
 
 ```{definition}
-有限次元ベクトル空間 $X$ の基底に含まれるベクトルの数は空間固有の量である. これを次元と呼び $\dim X$ と書く.\footnote{$\dim X<\infty$ や $\dim X=\infty$ と書いてそれぞれ有限次元ベクトル空間, 無限次元ベクトル空間であることを表すことがある.}
+有限次元ベクトル空間 $X$ の基底に含まれるベクトルの数は空間固有の量である。これを次元と呼び $\dim X$ と書く.\footnote{$\dim X<\infty$ や $\dim X=\infty$ と書いてそれぞれ有限次元ベクトル空間，無限次元ベクトル空間であることを表すことがある.}
 ```
 
 ```{theorem}
-$X$ を$n$次元ベクトル空間とする. 1次独立なベクトルの組 $\{x_{1},\dots,x_{r}\}\subset X$,
-$r<n$, に $(n-r)$ 本のベクトル $\{x_{m+1},\dots,x_{n}\}$ を付け加えて $\{x_{1},\dots,x_{m},x_{m+1},\dots,x_{n}\}$
-が $X$ の基底となるようにできる. 
+$X$ を$n$次元ベクトル空間とする。1次独立なベクトルの組 $\{x_{1},\dots,x_{r}\}\subset X$，
+$r<n$，に $(n-r)$ 本のベクトル $\{x_{m+1},\dots,x_{n}\}$ を付け加えて $\{x_{1},\dots,x_{m},x_{m+1},\dots,x_{n}\}$
+が $X$ の基底となるようにできる。
 ```
 
 ```{proof}
-$\{v_{1},\dots,v_{n}\}$ を$X$の基底とする. $v_{1},\dots,v_{n}$ の中に $x_{1},\dots,x_{r}$
-の1次結合で書けないものが存在する. さもなくば $\{x_{1},\dots,x_{r}\}$ が基底となり, 定理 (\ref{thm:dim})
-により矛盾. $v_{1}$ がそのような元であるとしよう. すると $\{x_{1},\dots,x_{r},x_{r+1}\}$,
-$x_{r+1}:=v_{1}$, は1次独立になる. これが基底であれば終了, そうでなければ $\{v_{2},\dots,v_{n}\}$
-の中に$\{x_{1},\dots,x_{r},x_{r+1}\}$ の1次結合で書けないものが存在する. このような手続きを $n-r$
-回実行すれば基底 $\{x_{1},\dots,x_{n}\}$ を構成できる. 
+$\{v_{1},\dots,v_{n}\}$ を$X$の基底とする。$v_{1},\dots,v_{n}$ の中に $x_{1},\dots,x_{r}$
+の1次結合で書けないものが存在する。さもなくば $\{x_{1},\dots,x_{r}\}$ が基底となり，定理 \@ref(thm:dim)
+により矛盾。$v_{1}$ がそのような元であるとしよう。すると $\{x_{1},\dots,x_{r},x_{r+1}\}$，
+$x_{r+1}:=v_{1}$，は1次独立になる。これが基底であれば終了，そうでなければ $\{v_{2},\dots,v_{n}\}$
+の中に$\{x_{1},\dots,x_{r},x_{r+1}\}$ の1次結合で書けないものが存在する。このような手続きを $n-r$
+回実行すれば基底 $\{x_{1},\dots,x_{n}\}$ を構成できる。
 ```
 
 
-## 線形写像
+## 線形写像 {#linspace-linearmap}
 
 ### 基本的な定義の復習
 
-$X$, $Y$ を集合とする. 以下の概念は基本的である. 
+$X$，$Y$ を集合とする。以下の概念は基本的である。
 
-##### 写像・グラフ
+#### 写像・グラフ {-}
 
-集合 $M$ を$X\times Y$ の部分集合であって, 任意の$x\in X$ について $(x,y)\in M$ を満たす
-$y\in Y$ が必ず存在し, しかもその数が1つだけであるものとしよう. この $y$ を $f(x)$ と書けば $M=\{(x,f(x))\ \mid\ x\in X\}$
-が成り立っている. $M$ によって定まる $x$ から $y$ への対応関係 ($x\mapsto y$) を $X$
-から $Y$ への写像 (mapping)といい, $f:X\to Y$ と書く. $M$ を $f$ のグラフ (graph)
-といい, $\mathrm{graph}f$ と書く.
+集合 $M$ を$X\times Y$ の部分集合であって，任意の$x\in X$ について $(x,y)\in M$ を満たす
+$y\in Y$ が必ず存在し，しかもその数が1つだけであるものとしよう。この $y$ を $f(x)$ と書けば $M=\{(x,f(x))\ \mid\ x\in X\}$
+が成り立っている。$M$ によって定まる $x$ から $y$ への対応関係 ($x\mapsto y$) を $X$
+から $Y$ への写像 (mapping)といい，$f:X\to Y$ と書く。$M$ を $f$ のグラフ (graph)
+といい，$\mathrm{graph}f$ と書く。
 
-##### 像・逆像
+### 像・逆像 {-}
 
-$f:X\to Y$, $M\subset X$ に対して, 
+$f:X\to Y$，$M\subset X$ に対して，
 $$
 f(M)=\{f(x)\in Y\ \mid\ x\in M\}\subset Y
 $$
-を$M$ の$f$ による像 (image) という. $f(X)$ を $\mathrm{im}X$ と書くこともある. 
+を$M$ の$f$ による像 (image) という。$f(X)$ を $\mathrm{im}X$ と書くこともある。
 
-$N\subset X$ に対して, 
+$N\subset X$ に対して，
 $$
 f^{-1}(N)=\{x\in X\ \mid\ f(x)\in N\}\subset X
 $$
-を$N$の$f$ による逆像 (inverse image) と呼ぶ. 逆像は空集合となることもある. 
+を$N$の$f$ による逆像 (inverse image) と呼ぶ。逆像は空集合となることもある。
 
-##### 恒等写像
+#### 恒等写像 {-}
 
-写像 $x\mapsto x$ を恒等写像といい $\mathrm{Id}_{X}$ あるいは $I_{X}$と書く. 
+写像 $x\mapsto x$ を恒等写像といい $\mathrm{Id}_{X}$ あるいは $I_{X}$と書く。
 
-##### 全射
+#### 全射 {-}
 
-任意の $y\in Y$ について, $x\in X$ が存在して$y=f(x)$ が成り立つとき, $f$ は全射 (surjection,
-onto mapping)であるという.\footnote{$f:X\to Y$ は通常, ``$f$ maps $X$ into $Y$'' と読むが, $f$ が全射のときは ``$f$
-maps $X$ onto $Y$'' と読む. }
+任意の $y\in Y$ について，$x\in X$ が存在して$y=f(x)$ が成り立つとき，$f$ は全射 (surjection，
+onto mapping)であるという^[$f:X\to Y$ は通常，"$f$ maps $X$ into $Y$" と読むが，$f$
+が全射のときは "$f$ maps $X$ onto $Y$" と読む。]
 
-##### 単射
+#### 単射 {-}
 
-$f(x_{1})=f(x_{2})$ ならば $x_{1}=x_{2}$ が成り立つとき, $f$ は単射 (injection,
-one-to-one mapping) であるという. 
+$f(x_{1})=f(x_{2})$ ならば $x_{1}=x_{2}$ が成り立つとき，$f$ は単射 (injection，
+one-to-one mapping) であるという。
 
-##### 全単射・逆写像
+#### 全単射・逆写像 {-}
 
-全射かつ単射である写像を全単射 (bijection, one-to-one and onto mapping)という. $f:X\to Y$
-を全単射とすれば, $f^{-1}:Y\to X$ を 
+全射かつ単射である写像を全単射 (bijection，one-to-one and onto mapping)という。$f:X\to Y$
+を全単射とすれば，$f^{-1}:Y\to X$ を 
 $$
 \mathrm{graph}f^{-1}=\{(y,x)\ \mid\ (x,y)\in\mathrm{graph}f\}
 $$
-によって定義できる. $f^{-1}$ を $f$ の逆写像 (inverse) という. 
+によって定義できる。$f^{-1}$ を $f$ の逆写像 (inverse) という。
 
-##### 合成写像
+#### 合成写像 {-}
 
-$f:X\to Y$, $g:Y\to Z$ に対して, 写像 $X\to Z$ を 
+$f:X\to Y$，$g:Y\to Z$ に対して，写像 $X\to Z$ を 
 $$
 x\mapsto g(f(x))
 $$
-によって定める. これを $f$ と $g$ の合成写像といい, $g\circ f$ と記す. 全単射 $f:X\to Y$に対して,
-$f^{-1}\circ f=\mathrm{Id}_{X}$, $f\circ f^{-1}=\mathrm{Id}_{Y}$
-である. 写像の合成には結合法則が成り立つ. すなわち
+によって定める。これを $f$ と $g$ の合成写像といい，$g\circ f$ と記す。全単射 $f:X\to Y$に対して，
+$f^{-1}\circ f=\mathrm{Id}_{X}$，$f\circ f^{-1}=\mathrm{Id}_{Y}$
+である。写像の合成には結合法則が成り立つ。すなわち
 $$
 f\circ(g\circ h)=(f\circ g)\circ h.
 $$
-したがって, $f\circ g\circ h$ などと書いても曖昧さは生じない. 
+したがって，$f\circ g\circ h$ などと書いても曖昧さは生じない。
 
-### 線型性
+### 線形性
 ```{definition}
-$X,Y$ を$\mathbb{F}$上の線形空間とする. 写像 $f$ が線形であるとは, 任意の $\alpha,\beta\in\mathbb{F}$,
+$X,Y$ を$\mathbb{F}$上の線形空間とする。写像 $f$ が線形であるとは，任意の $\alpha,\beta\in\mathbb{F}$，
 $x_{1},x_{2}\in X$ について
 $$
 f(\alpha x_{1}+\beta x_{2})=\alpha f(x_{1})+\beta f(x_{2})
 $$
-が成り立つことをいう. 
+が成り立つことをいう。
 ```
 
-写像が線形である場合, $f(x)$ と書かずに括弧を省略して $fx$ と書くこともある. 無限次元空間の間の写像を作用素 (operator)
-ということもある.
+写像が線形である場合，$f(x)$ と書かずに括弧を省略して $fx$ と書くこともある。無限次元空間の間の写像を作用素 (operator)
+ということもある。
 
-$X$と$Y$の間に全単射線形写像を(線形)同型写像という. 同型写像が存在するとき, $X$ と $Y$ は同型であるといい,
-$X\simeq Y$ と書く. 
+$X$と$Y$の間に全単射線形写像を(線形)同型写像という。同型写像が存在するとき，$X$ と $Y$ は同型であるといい，
+$X\simeq Y$ と書く。
 ```{example}
-期待値が有限である実数値確率変数の空間における期待値作用素 $\mathbb{E}$ は線形である. (本質的には積分の線形性である.)
+期待値が有限である実数値確率変数の空間における期待値作用素 $\mathbb{E}$ は線形である。(本質的には積分の線形性である.)
 ```
 
 
 ```{example}
-$P^{n}[x]$ をたかだか$n$ 次の多項式が作る線形空間とする. すなわち
+$P^{n}[x]$ をたかだか$n$ 次の多項式が作る線形空間とする。すなわち
 $$
 P^{n}[x]=\left\{ p(x)=\sum_{k=0}^{n}a_{k}x^{k}\ \mid\ a_{0},\dots,a_{n}\in\mathbb{R}\right\} 
 $$
@@ -349,30 +402,30 @@ $$
 $$
 \frac{d}{dx}:\sum_{k=0}^{n}a_{k}x^{k}\mapsto\sum_{k=1}^{n}ka_{k}x^{k-1}
 $$
-は線形である. 
+は線形である。
 ```
 
 
-### 像空間, 核, 商空間
+### 像空間，核，商空間
 
-$X,Y$ を$\mathbb{F}$上の線形空間とする. 線形写像 $f:X\to Y$ の核 (kernel)
+$X,Y$ を$\mathbb{F}$上の線形空間とする。線形写像 $f:X\to Y$ の核 (kernel)
 $$
-\ker f:=\{x\in X\ \mid\ f(x)=0\}\subset X,
+\ker f:=\{x\in X\ \mid\ f(x)=0\}\subset X，
 $$
 および像
 $$
 \mathrm{im}f:=\{f(x)\ \mid\ x\in X\}\subset Y
 $$
-はそれぞれ, $X,Y$ の線形部分空間である. $\mathrm{im}f$ の次元をランクという: $\mathrm{rank}f=\dim\mathrm{im}f$. 
+はそれぞれ，$X,Y$ の線形部分空間である。$\mathrm{im}f$ の次元をランクという: $\mathrm{rank}f=\dim\mathrm{im}f$。
 ```{block2, type='fact'}
-$X$, $Y$ を線形空間, 線形写像 $f:X\to Y$ が単射であることと $\ker f=\{0\}$ は同値である.
+$X$，$Y$ を線形空間，線形写像 $f:X\to Y$ が単射であることと $\ker f=\{0\}$ は同値である。
 ```
 
-$M$ を$X$ の部分空間とする. $X$ の2項関係 $\sim_{M}$ を
+$M$ を$X$ の部分空間とする。$X$ の2項関係 $\sim_{M}$ を
 $$
 x'\sim_{M}x'':\Leftrightarrow x'-x''\in M
 $$
- によって定める. $\sim_{M}$ は同値関係である. すなわち,
+ によって定める。$\sim_{M}$ は同値関係である。すなわち，
 $$
 x\sim_{M}x,
 $$
@@ -383,11 +436,11 @@ $$
 $$
 x'\sim_{M}x'',\ x''\sim_{M}x'''\Rightarrow x'\sim_{M}x'''
 $$
-を満たす. 同値類と呼ばれる集合を 
+を満たす。同値類と呼ばれる集合を 
 $$
 [x]:=\{x'\sim_{M}x\ \mid\ x'\in X\}
 $$
-と定義し, 同値類の間の演算を 
+と定義し，同値類の間の演算を 
 $$
 \begin{aligned}
 [x]+[x'] & :=[x+x'],\\
@@ -398,17 +451,17 @@ $$
 $$
 \left\{ [x]\ \mid\ x\in X\right\} 
 $$
-は線形空間をなす(確認せよ). この空間を商空間 (quotient space)と呼び $X/M$ と書く. 
+は線形空間をなす(確認せよ)。この空間を商空間 (quotient space)と呼び $X/M$ と書く。
 ```{lemma}
-\label{lem:dim0}$X$ を有限次元ベクトル空間, $M$ を $X$ の部分空間とする. このとき $\dim X/M=\dim X-\dim M$
-が成り立つ. 
+\label{lem:dim0}$X$ を有限次元ベクトル空間，$M$ を $X$ の部分空間とする。このとき $\dim X/M=\dim X-\dim M$
+が成り立つ。
 ```
 
 ```{proof}
-$\dim M=r$, $\dim X=n$ とする. $M$ の基底 $\{v_{1},\dots,v_{r}\}$ を定め,
+$\dim M=r$，$\dim X=n$ とする。$M$ の基底 $\{v_{1},\dots,v_{r}\}$ を定め，
 これに $n-r$ 本のベクトルを追加して$X$ の基底 $\{v_{1},\dots,v_{r},\dots,v_{n}\}$
-を構成する. $\{[v_{r+1}],\dots,[v_{n}]\}$ が$X/M$ の基底をなすことを示せば十分である. $[0]=M$
-であるから, 
+を構成する。$\{[v_{r+1}],\dots,[v_{n}]\}$ が$X/M$ の基底をなすことを示せば十分である。$[0]=M$
+であるから，
 $$
 \alpha_{r+1}[v_{r+1}]+\cdots+\alpha_{n}[v_{n}]=[\alpha_{r+1}v_{r+1}+\cdots+\alpha_{n}v_{n}]=[0]
 $$
@@ -416,28 +469,28 @@ $$
 $$
 \alpha_{r+1}v_{r+1}+\cdots+\alpha_{n}v_{n}\in M
 $$
-を意味する. しかし, $v_{r+1},\dots,v_{n}$ の選び方からこれが成り立つのは $\alpha_{r+1}=\cdots=\alpha_{n}=0$
-のときだけである. よって, $\{[v_{r+1}],\dots,[v_{n}]\}$ は$X/M$ の1次独立なベクトルの組である.
+を意味する。しかし，$v_{r+1},\dots,v_{n}$ の選び方からこれが成り立つのは $\alpha_{r+1}=\cdots=\alpha_{n}=0$
+のときだけである。よって，$\{[v_{r+1}],\dots,[v_{n}]\}$ は$X/M$ の1次独立なベクトルの組である。
 任意の $x\in X$ について
 
 $$
 [x]=\left[\sum_{i=1}^{n}x_{i}v_{i}\right]=\left[\sum_{i=r+1}^{n}x_{i}v_{i}\right]=\sum_{i=r+1}^{n}x_{i}[v_{i}]
 $$
-が成り立つので, $X/M=\mathrm{span}\{[v_{r+1}],\dots,[v_{n}]\}$ が成り立つ. 
+が成り立つので，$X/M=\mathrm{span}\{[v_{r+1}],\dots,[v_{n}]\}$ が成り立つ。
 ```
 
-$f:X\to Y$ を線形写像とする. $M=\ker f$ に対する商空間 $X/\ker f$ はひときわ重要な性質をもっている.
+$f:X\to Y$ を線形写像とする。$M=\ker f$ に対する商空間 $X/\ker f$ はひときわ重要な性質をもっている。
 ```{theorem, name='準同型定理'}
-\label{thm:jundokei}$X/\ker f\simeq\mathrm{im}f$. 
+\label{thm:jundokei}$X/\ker f\simeq\mathrm{im}f$。
 ```
 
 ```{proof}
-同型写像が存在することを示せばよい. 表記を簡略化するため $\sim_{\ker f}$ を単に $\sim$ と書く. $x\sim x'\Leftrightarrow x-x'\in\ker f\Leftrightarrow f(x)=f(x')$
-に注意せよ. 写像 $\pi:X/\ker f\to\mathrm{im}f$ を
+同型写像が存在することを示せばよい。表記を簡略化するため $\sim_{\ker f}$ を単に $\sim$ と書く。$x\sim x'\Leftrightarrow x-x'\in\ker f\Leftrightarrow f(x)=f(x')$
+に注意せよ。写像 $\pi:X/\ker f\to\mathrm{im}f$ を
 $$
 \pi:[x]\mapsto f(x)
 $$
-によって定めれば, $\pi$は全単射になる. 線形性も定義から明らかである. 
+によって定めれば，$\pi$は全単射になる。線形性も定義から明らかである。
 ```
 
 ```{theorem}
@@ -445,7 +498,7 @@ $\dim X=\dim(\ker f)+\mathrm{rank}f.$
 ```
 
 ```{proof}
-補題\ref{lem:dim0}と定理\ref{thm:jundokei}より,
+補題\ref{lem:dim0}と定理\ref{thm:jundokei}より，
 $$
 \mathrm{rank}f=\dim\mathrm{im}f=\dim(X/\ker f)=\dim X-\dim\ker f.
 $$
@@ -453,19 +506,19 @@ $$
 
 %
 ```{corollary}
-$X$ を有限次元線形空間とする. 線形写像 $f:X\to X$ は単射であれば全射である. 
+$X$ を有限次元線形空間とする。線形写像 $f:X\to X$ は単射であれば全射である。
 ```
 
 ```{proof}
-$\dim\mathrm{im}f=\dim X-\dim\{0\}=\dim X$ より, $\mathrm{im}f=X$
-が成り立つ. 
+$\dim\mathrm{im}f=\dim X-\dim\{0\}=\dim X$ より，$\mathrm{im}f=X$
+が成り立つ。
 ```
 
 
 ### 座標
 
-$X$ を $\mathbb{F}$ 上の有限次元ベクトル空間, $\{v_{1},\dots,v_{n}\}$ を$X$
-の基底とする. 1次結合による表現 
+$X$ を $\mathbb{F}$ 上の有限次元ベクトル空間，$\{v_{1},\dots,v_{n}\}$ を$X$
+の基底とする。1次結合による表現 
 $$
 x=x_{1}v_{1}+\cdots+x_{n}v_{n},\quad x_{1},\dots,x_{n}\in\mathbb{F}
 $$
@@ -477,15 +530,15 @@ $$
  & x\mapsto x_{n}
 \end{aligned}
 $$
-なる写像が定まる. これを $x_{1}(x),\dots,x_{n}(x)$ のように書くと
+なる写像が定まる。これを $x_{1}(x),\dots,x_{n}(x)$ のように書くと
 ```{block2, type='fact'}
-写像 $x\mapsto x_{i}$, $i=1,2,\dots,n$ は線形写像である.
+写像 $x\mapsto x_{i}$，$i=1,2,\dots,n$ は線形写像である。
 ```
 
 ```{proof}
-$x',x''\in X$, $\alpha,\beta\in\mathbb{F}$ とする. $\alpha x'+\beta x''=\sum_{k=1}^{n}(\alpha x'_{k}+\beta x_{k}'')v_{k}$
-より, $x_{i}(\alpha x'+\beta x'')=\alpha x_{i}(x')+\beta x_{i}(x'')$
-が成り立つ. 
+$x',x''\in X$，$\alpha,\beta\in\mathbb{F}$ とする。$\alpha x'+\beta x''=\sum_{k=1}^{n}(\alpha x'_{k}+\beta x_{k}'')v_{k}$
+より，$x_{i}(\alpha x'+\beta x'')=\alpha x_{i}(x')+\beta x_{i}(x'')$
+が成り立つ。
 ```
 
 ```{block2, type='fact'}
@@ -496,21 +549,23 @@ X\ni x\mapsto\begin{bmatrix}x_{1}(x)\\
 x_{n}(x)
 \end{bmatrix}\in\mathbb{F}^{n}
 $$
-は全単射線形写像である. したがって, $\mathbb{F}$ 上の $n$ 次元ベクトル空間はすべて $\mathbb{F}^{n}$
-と同型である. 
+は全単射線形写像である。したがって，$\mathbb{F}$ 上の $n$ 次元ベクトル空間はすべて $\mathbb{F}^{n}$
+と同型である。
 ```
 
 
-### 行列
+## 行列 {#linspace-matrix}
 
-$X,Y$ を$\mathbb{F}$上の有限次元ベクトル空間とする. $X$ の基底 $\{v_{1},\dots,v_{n}\}$と
-$Y$ の基底 $\{w_{1},\dots,w_{m}\}$ を1つ定める. 線形写像 $f:X\to Y$, $x\in X$
+### 線形写像の表現としての行列
+
+$X,Y$ を$\mathbb{F}$上の有限次元ベクトル空間とする。$X$ の基底 $\{v_{1},\dots,v_{n}\}$と
+$Y$ の基底 $\{w_{1},\dots,w_{m}\}$ を1つ定める。線形写像 $f:X\to Y$，$x\in X$
 の1次結合による表現を $x=x_{1}v_{1}+\cdots+x_{n}v_{n}$ とすれば
 $$
 f(x)=x_{1}f(v_{1})+\cdots+x_{n}f(v_{n}).
 $$
-したがって, $f$ による基底の像を定めれば線形写像が定まる. $f(v_{1}),\dots,f(v_{n})$ を $\{w_{1},\dots,w_{n}\}$
-の1次結合で表現すると, 
+したがって，$f$ による基底の像を定めれば線形写像が定まる。$f(v_{1}),\dots,f(v_{n})$ を $\{w_{1},\dots,w_{n}\}$
+の1次結合で表現すると，
 $$
 \begin{aligned}
 f(v_{1}) & =a_{11}w_{1}+\cdots+a_{m1}w_{m}\\
@@ -518,7 +573,7 @@ f(v_{1}) & =a_{11}w_{1}+\cdots+a_{m1}w_{m}\\
 f(v_{n}) & =a_{1n}w_{1}+\cdots+a_{mn}w_{m}.
 \end{aligned}
 $$
-したがって, 
+したがって，
 $$
 \begin{aligned}
 f(x) & =x_{1}f(v_{1})+\cdots+x_{n}f(v_{n})\\
@@ -540,7 +595,7 @@ Y\ni y=y_{1}w_{1}+\cdots+y_{m}w_{m}\leftrightarrow\begin{bmatrix}y_{1}\\
 y_{m}
 \end{bmatrix}\in\mathbb{F}^{m}
 $$
-によって次の関係を得る. 
+によって次の関係を得る。
 $$
 f(x)\leftrightarrow\begin{bmatrix}a_{11}x_{1}+\cdots+a_{1n}x_{n}\\
 \vdots\\
@@ -553,7 +608,7 @@ a_{m1} & \cdots & a_{mn}
 x_{n}
 \end{bmatrix}.
 $$
-$y=f(x)$ という関係が特定の基底に依存しない表現であったのに対し, 座標を用いた表現 
+$y=f(x)$ という関係が特定の基底に依存しない表現であったのに対し，座標を用いた表現 
 $$
 \begin{bmatrix}y_{1}\\
 \vdots\\
@@ -566,11 +621,11 @@ a_{m1} & \cdots & a_{mn}
 x_{n}
 \end{bmatrix}
 $$
-は, $X$ および $Y$ の基底を定めた上で得られたことに注意してほしい. 
+は，$X$ および $Y$ の基底を定めた上で得られたことに注意してほしい。
 
 ### 基底の変換
 
-線形写像 $f:X\to Y$ に関して, $X$ の基底 $\{v_{1},\dots,v_{n}\}$ と $Y$ の基底
+線形写像 $f:X\to Y$ に関して，$X$ の基底 $\{v_{1},\dots,v_{n}\}$ と $Y$ の基底
 $\{w_{1},\dots,w_{m}\}$ を決めて得られた行列表現
 $$
 \begin{bmatrix}y_{1}\\
@@ -584,19 +639,19 @@ a_{m1} & \cdots & a_{mn}
 x_{n}
 \end{bmatrix}
 $$
-は基底を取り替えることでどのように変化するだろうか. 今, $X$ の新しい基底 $\{\tilde{v}_{1},\dots,\tilde{v}_{n}\}$
-と, $Y$ の新しい基底 $\{\tilde{w}_{1},\dots,\tilde{w}_{m}\}$ に取り替えるとしよう.
+は基底を取り替えることでどのように変化するだろうか。今，$X$ の新しい基底 $\{\tilde{v}_{1},\dots,\tilde{v}_{n}\}$
+と，$Y$ の新しい基底 $\{\tilde{w}_{1},\dots,\tilde{w}_{m}\}$ に取り替えるとしよう。
 $\{v_{1},\dots,v_{n}\}$ と $\{\tilde{v}_{1},\dots,\tilde{v}_{n}\}$
-との間には互いに線形結合によって表現できるという関係があるので, 正則行列 $P$ を用いて 
+との間には互いに線形結合によって表現できるという関係があるので，正則行列 $P$ を用いて 
 $$
 \begin{bmatrix}v_{1} & \cdots & v_{n}\end{bmatrix}P=\begin{bmatrix}\tilde{v}_{1} & \cdots & \tilde{v}_{n}\end{bmatrix}
 $$
-と表現できる.\footnote{$P=[p_{ij}]_{ij}$ とすれば, $\tilde{v}_{i}=\sum_{i=1}^{n}p_{ij}v_{i}$
-なる関係をこのように表現している. あるいは列に対する初等変形と考えてもよい. } 同様に正則行列 $Q$ を用いて 
+と表現できる^[$P=[p_{ij}]_{ij}$ とすれば，$\tilde{v}_{i}=\sum_{i=1}^{n}p_{ij}v_{i}$
+なる関係をこのように表現している。あるいは列に対する初等変形と考えてもよい。]。 同様に正則行列 $Q$ を用いて 
 $$
 \begin{bmatrix}w_{1} & \cdots & w_{m}\end{bmatrix}Q=\begin{bmatrix}\tilde{w}_{1} & \cdots & \tilde{w}_{m}\end{bmatrix}
 $$
-とできる. 
+とできる。
 $$
 \begin{aligned}
 \begin{bmatrix}f(\tilde{v}_{1}) & \cdots & f(\tilde{v}_{n})\end{bmatrix} & =\begin{bmatrix}\sum_{i=1}^{n}p_{i1}f(v_{i}) & \cdots & \sum_{i=1}^{n}p_{in}f(v_{n})\end{bmatrix}\\
@@ -607,22 +662,22 @@ $$
 $$
 \begin{bmatrix}f(v_{1}) & \cdots & f(v_{n})\end{bmatrix}=\begin{bmatrix}w_{1} & \cdots & w_{m}\end{bmatrix}A
 $$
-に注意すれば, 
+に注意すれば，
 \begin{align}
 \begin{bmatrix}f(\tilde{v}_{1}) & \cdots & f(\tilde{v}_{n})\end{bmatrix} & =\begin{bmatrix}f(v_{1}) & \cdots & f(v_{n})\end{bmatrix}P\nonumber \\
  & =\begin{bmatrix}w_{1} & \cdots & w_{m}\end{bmatrix}AP\nonumber \\
- & =\begin{bmatrix}\tilde{w}_{1} & \cdots & \tilde{w}_{m}\end{bmatrix}Q^{-1}AP\label{eq:change}
+ & =\begin{bmatrix}\tilde{w}_{1} & \cdots & \tilde{w}_{m}\end{bmatrix}Q^{-1}AP(\#eq:05-change)
 \end{align}
-を得る. これは, 新しい基底に関する$f$ の行列表現が $Q^{-1}AP$ であることを表している. 
+を得る。これは，新しい基底に関する$f$ の行列表現が $Q^{-1}AP$ であることを表している。
 
-## 不変部分空間
+## 不変部分空間 {#linspace-invariant}
 
-$X$ を有限次元ベクトル空間, $M\subset X$ を部分空間とする. 線形写像 $f:X\to X$ が$M$
+$X$ を有限次元ベクトル空間，$M\subset X$ を部分空間とする。線形写像 $f:X\to X$ が$M$
 
 $$
 f(M)\subset M
 $$
-を満たすとき, $M$ は$f$ の不変部分空間 (invariant subspace) であるという. 
+を満たすとき，$M$ は$f$ の不変部分空間 (invariant subspace) であるという。
 
 ### ブロック対角化
 
@@ -630,14 +685,14 @@ $X$ が不変部分空間の直和として
 $$
 X=M_{1}\oplus M_{2}\oplus\cdots\oplus M_{k}
 $$
-と分解されるとき, $f$ の行列表現がブロック対角行列となることを示そう. 
+と分解されるとき，$f$ の行列表現がブロック対角行列となることを示そう。
 
-$M_{i}$ の基底を $\{v_{i1},\dots,v_{in_{i}}\}$, $i=1,\dots,k$, とすると,
+$M_{i}$ の基底を $\{v_{i1},\dots,v_{in_{i}}\}$，$i=1,\dots,k$，とすると，
 $$
 \bigcup_{i=1}^{k}\{v_{i1},\dots,v_{in_{i}}\},\qquad\dim X=n_{1}+\cdots+n_{k}
 $$
-は$X$の基底を成す. $f(M_{i})\subset M_{i}$ より $v_{j\ell}$, $\ell=1,\dots,n_{\ell}$,
-$j\neq i$ に対して $f(v_{j\ell})=0$ となる. したがって, 
+は$X$の基底を成す。$f(M_{i})\subset M_{i}$ より $v_{j\ell}$，$\ell=1,\dots,n_{\ell}$，
+$j\neq i$ に対して $f(v_{j\ell})=0$ となる。したがって，
 $$
 \begin{aligned}
 f(v_{i1}) & =a_{i,11}v_{i1}+\cdots+a_{i,n_{i}1}v_{in_{i}}\\
@@ -661,29 +716,29 @@ $f$ の行列表現$A$は
 
 ### 固有値分解
 
-$X$ を$n$次元ベクトル空間, $f:X\to X$ が相異なる固有値 $\lambda_{1},\dots,\lambda_{n}$;
+$X$ を$n$次元ベクトル空間，$f:X\to X$ が相異なる固有値 $\lambda_{1},\dots,\lambda_{n}$;
 $$
 f(v_{i})=\lambda_{i}v_{i},\quad v_{i}\neq0,\quad i=1,\dots,n
 $$
-を持つとしよう. このとき,
+を持つとしよう。このとき，
 $$
 E_{i}:=\{v_{i}\ \mid\ f(v_{i})=\lambda_{i}v_{i}\}
 $$
-は1次元の線形部分空間であり, 
+は1次元の線形部分空間であり，
 $$
 X=E_{1}\oplus\cdots\oplus E_{n}
 $$
-が成り立つ. $E_{i}$ を固有値 $\lambda_{i}$ に対応する固有空間という. 非ゼロベクトル $v_{1}\in E_{1},\dots,v_{n}\in E_{n}$
-は$X$ の基底をなす. 
+が成り立つ。$E_{i}$ を固有値 $\lambda_{i}$ に対応する固有空間という。非ゼロベクトル $v_{1}\in E_{1},\dots,v_{n}\in E_{n}$
+は$X$ の基底をなす。
 
-線形写像 $f$ を適当な基底 $\{e_{1},\dots,e_{n}\}$ について行列表現したものを $A$ とする.
+線形写像 $f$ を適当な基底 $\{e_{1},\dots,e_{n}\}$ について行列表現したものを $A$ とする。
 固有空間が決める新しい基底 $\{v_{1},\dots,v_{n}\}$ への変換行列を $P$ とすれば 
 $$
 \begin{aligned}
 \begin{bmatrix}v_{1} & \cdots & v_{n}\end{bmatrix} & =\begin{bmatrix}e_{1} & \cdots & e_{n}\end{bmatrix}P
 \end{aligned}
 $$
-である. 式 (\ref{eq:change}) より
+である。式 \@ref(eq:05-change)  より
 $$
 \begin{aligned}
 \begin{bmatrix}f(v_{1}) & \cdots & f(v_{n})\end{bmatrix} & =\begin{bmatrix}f(e_{1}) & \cdots & f(e_{n})\end{bmatrix}P\\
@@ -691,7 +746,7 @@ $$
  & =\begin{bmatrix}v_{1} & \cdots & v_{n}\end{bmatrix}P^{-1}AP
 \end{aligned}
 $$
-が成り立つ. 前小節の結果から, $P^{-1}AP$ は対角行列であることが分かる. すなわち, 
+が成り立つ。前小節の結果から，$P^{-1}AP$ は対角行列であることが分かる。すなわち，
 $$
 P^{-1}AP=\begin{bmatrix}\lambda_{1}\\
  & \ddots\\
@@ -699,10 +754,10 @@ P^{-1}AP=\begin{bmatrix}\lambda_{1}\\
 \end{bmatrix}.
 $$
 
-固有値は一般には複素数であるので, 実行列であっても$\mathbb{C}^{n}$の範囲で対角化は考える必要がある. $\mathbb{C}$が$\mathbb{R}^{2}$で表されることをふまえると,
-見かけ上次元が増えてしまうようにも思える. しかし, 複素固有値 $\lambda=a+bj$, $a,b\in\mathbb{R}$
-に対しては共役複素数 $a-bj$ も固有値であること, $a+bj$に対する複素固有ベクトルは $v+jw$, $v,w\in\mathbb{R}^{n}$
-は $a-bj$ に対応する固有ベクトル $v-jw$ と必ずペアで現れる. これは
+固有値は一般には複素数であるので，実行列であっても$\mathbb{C}^{n}$の範囲で対角化は考える必要がある。$\mathbb{C}$が$\mathbb{R}^{2}$で表されることをふまえると，
+見かけ上次元が増えてしまうようにも思える。しかし，複素固有値 $\lambda=a+bj$，$a,b\in\mathbb{R}$
+に対しては共役複素数 $a-bj$ も固有値であること，$a+bj$に対する複素固有ベクトルは $v+jw$，$v,w\in\mathbb{R}^{n}$
+は $a-bj$ に対応する固有ベクトル $v-jw$ と必ずペアで現れる。これは
 $$
 \begin{aligned}
 A(v+jw) & =(a+bj)(v+jw)
@@ -712,7 +767,7 @@ $$
 $$
 A(v-jw)=(a-bj)(v-jw)
 $$
-が成り立つことから直ちに分かる. これら2式を足し上げると,
+が成り立つことから直ちに分かる。これら2式を足し上げると，
 $$
 Av=-bw+av.
 $$
@@ -720,8 +775,8 @@ $$
 $$
 Aw=aw+bv
 $$
-を得る. すなわち, 2次元の(実) 部分空間 $\mathrm{span}\{w,v\}$ が複素固有値 $\lambda$
-に対応している. これを基底にしたときの表現行列は
+を得る。すなわち，2次元の(実) 部分空間 $\mathrm{span}\{w,v\}$ が複素固有値 $\lambda$
+に対応している。これを基底にしたときの表現行列は
 $$
 \begin{aligned}
 \begin{bmatrix}Aw & Av\end{bmatrix} & =\begin{bmatrix}w & v\end{bmatrix}\begin{bmatrix}a & -b\\
@@ -729,11 +784,11 @@ b & a
 \end{bmatrix}.
 \end{aligned}
 $$
-すなわち $aI+bJ$. 
+すなわち $aI+bJ$。
 
-以上をまとめると, 次の定理を得る. 
+以上をまとめると，次の定理を得る。
 ```{theorem}
-有限次元ベクトル空間上の線形写像 $f:X\to X$ が相異なる固有値を持つとき, 表現行列を複素数の範囲で対角化できる. 実数の範囲ではブロック対角化できる. 
+有限次元ベクトル空間上の線形写像 $f:X\to X$ が相異なる固有値を持つとき，表現行列を複素数の範囲で対角化できる。実数の範囲ではブロック対角化できる。
 ```
 
 
