@@ -13,7 +13,14 @@ biblio-style: apalike
 link-citations: yes
 ---
 
-`r if (knitr:::is_html_output()) "# {-}"`
+```{r, results="asis"}
+if (knitr:::is_html_output()) {
+  cat("# {#top-page .unnumbered}",
+      "**改訂履歴**",
+      sep = "\n")
+  knitr::kable(journal_read())
+}
+```
 
 ```{r, include=FALSE}
 if (knitr:::is_html_output()) {
@@ -21,10 +28,7 @@ if (knitr:::is_html_output()) {
 } else {
   knitr::opts_chunk$set(fig.align = 'center', out.width='350px') 
 }
-```
 
-
-```{r include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
