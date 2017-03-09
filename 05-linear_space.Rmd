@@ -120,14 +120,14 @@ $Y$ は$X$の線形部分空間であるという。
 
 $X$ 自身と $\{0\}$ は必ず線形部分空間になる。
 
-```{block2, type='fact'}
-$Y \subset X$ が$X$の線形部分空間であるための必要十分条件は，$Y$ が和とスカラー倍について閉じていることである。
+```{proposition, subspace-condition}
+$Y \subset X$ が $X$ の線形部分空間であるための必要十分条件は，$Y$ が和とスカラー倍について閉じていることである。
 ```
 
-すなわち，ある部分集合 $Y$ が線形部分空間であることを確認するには，任意の $y_{1},y_{2}\in Y$，$\alpha\in\mathbb{F}$について，$y_{1}+y_{2}\in Y$ と $\alpha y_{1}\in Y$が成り立つことを示しさえすればよい。
+すなわち，ある部分集合 $Y$ が線形部分空間であることを確認するには，任意の $y_{1},y_{2}\in Y$，$\alpha\in\mathbb{F}$について，$y_{1}+y_{2}\in Y$ と $\alpha y_{1}\in Y$ が成り立つことを示しさえすればよい。
 
 ```{block2, type = "exercise"}
-上の事実を確認せよ。
+命題 \@ref(prp:subspace-condition) を証明せよ。
 ```
 
 ```{definition}
@@ -142,29 +142,35 @@ $$
   \alpha_{1},\dots,\alpha_{n}\in\mathbb{F}
 \right\} 
 $$
-である。なお，$\alpha_{1}x_{1}+\cdots+\alpha_{n}x_{n}$ の形のベクトルは
-$\{x_{1},\dots,x_{n}\}$ の線形結合（linear combination）であるという。
+である。
 ```
+
+$\alpha_{1}x_{1}+\cdots+\alpha_{n}x_{n}$ の形のベクトルは
+$\{x_{1},\dots,x_{n}\}$ の**線形結合（linear combination）**であるという。
 
 
 2つの部分空間 $Y$，$W$ があったとき，積集合 $Y\cap W$ はまた線形部分空間になる。
 一方，和集合 $Y\cup W$ は一般には線形部分空間にならない。
 ```{definition}
-$X$ を$\mathbb{F}$ 上の線形空間，$Y,W$ を$X$ の線形部分空間とする。部分空間の和 $Y+W$
-は$Y$ と$W$ の元をすべて含む最小の線形部分空間と定義される。すなわち
+$X$ を$\mathbb{F}$ 上の線形空間，$Y,W$ を$X$ の線形部分空間とする。部分空間の和（sum） $Y+W$
+を$Y$ と$W$ の元をすべて含む最小の線形部分空間と定義する[^05ft-minimality]。すなわち
 \begin{equation}
 Y+W=\{\alpha y+\beta w\ \mid\ y\in Y,\ w\in W,\ \alpha,\beta\in\mathbb{F}\}.(\#eq:05-sum)
 \end{equation}
 ```
 
-上の定義 \@ref(eq:05-sum)  は和とスカラー倍について閉じているように作られているので部分空間となる。
+[^05ft-minimality]: 集合 $A$ がある性質をもつ「最小の集合」であるとは，$A$ がその性質を満たし，かつ，$A$ の真部分集合でその性質を満たすものが存在しないことをいう。
+
+上の定義 \@ref(eq:05-sum)  は和とスカラー倍をすべて含むように作られており，
+命題\@ref(prp:subspace-condition)  により線形部分空間となる。
+
 ```{definition}
-$M$，$N$ を$X$ の線型部分空間，$M\cap N=\{0\}$ とする。和 $M+N$ を特に直和といい，
-$M\oplus N$ と記す。
+$M$，$N$ を$X$ の線形部分空間とする。$M \cap N = \{ 0 \}$ のとき，和 $M + N$ を特に直和といい，
+$M \oplus N$ と記す。
 ```
 
 ```{block2, type='fact'}
-$M\oplus N$ のベクトル $x$ は一意的な分解 $x=u+v$，$u\in M$，$v\in N$ をもつ。
+$M \oplus N$ のベクトル $x$ は一意的な分解 $x = u + v$，$u\in M$，$v\in N$ をもつ。
 ```
 
 ```{proof}
