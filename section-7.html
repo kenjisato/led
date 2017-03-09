@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>経済動学: 線形編</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="経済動学 講義ノート">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="経済動学: 線形編" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="経済動学 講義ノート" />
+  <meta name="github-repo" content="kenjisato/economicdynamics" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="経済動学: 線形編" />
+  
+  <meta name="twitter:description" content="経済動学 講義ノート" />
+  
+
+<meta name="author" content="佐藤 健治">
+
+
+<meta name="date" content="2017-03-09">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="section-6.html">
+<link rel="next" href="e58f82e88083e69687e78cae.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Linear Economic Dynamics</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#top-page"></a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>序文</a><ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#e6a78be68890"><i class="fa fa-check"></i>構成</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#e8ac9de8be9e"><i class="fa fa-check"></i>謝辞</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> はじめに</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#intro-economic-dynamics"><i class="fa fa-check"></i><b>1.1</b> 経済動学</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#intro-target-model"><i class="fa fa-check"></i><b>1.2</b> 対象とするモデル</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#intro-deterministic"><i class="fa fa-check"></i><b>1.2.1</b> 決定論モデル</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#intro-control-theory"><i class="fa fa-check"></i><b>1.2.2</b> 制御理論との違い</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#intro-stability-determinacy"><i class="fa fa-check"></i><b>1.2.3</b> 安定性と決定性</a></li>
+<li class="chapter" data-level="1.2.4" data-path="intro.html"><a href="intro.html#intro-RE"><i class="fa fa-check"></i><b>1.2.4</b> 合理的期待モデル</a></li>
+<li class="chapter" data-level="1.2.5" data-path="intro.html"><a href="intro.html#intro-MSRE"><i class="fa fa-check"></i><b>1.2.5</b> マルコフスイッチングモデル</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#intro-programing"><i class="fa fa-check"></i><b>1.3</b> プログラミング環境</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#intro-rstudio"><i class="fa fa-check"></i><b>1.3.1</b> RStudio</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#intro-prepare"><i class="fa fa-check"></i><b>1.3.2</b> 準備</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#section-1.3.3"><i class="fa fa-check"></i><b>1.3.3</b> パッケージ</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="complexnumbers.html"><a href="complexnumbers.html"><i class="fa fa-check"></i><b>2</b> 複素数</a><ul>
+<li class="chapter" data-level="2.1" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> はじめに</a></li>
+<li class="chapter" data-level="2.2" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> 複素数</a></li>
+<li class="chapter" data-level="2.3" data-path="complexnumbers.html"><a href="complexnumbers.html#imaginary-plane"><i class="fa fa-check"></i><b>2.3</b> 複素平面（imaginary plane）</a></li>
+<li class="chapter" data-level="2.4" data-path="complexnumbers.html"><a href="complexnumbers.html#r-"><i class="fa fa-check"></i><b>2.4</b> R コード</a><ul>
+<li class="chapter" data-level="" data-path="complexnumbers.html"><a href="complexnumbers.html#e59b9be58987e6bc94e7ae97"><i class="fa fa-check"></i>四則演算</a></li>
+<li class="chapter" data-level="" data-path="complexnumbers.html"><a href="complexnumbers.html#e8a487e7b4a0e5b9b3e99da2e4b88ae381aee59bb3e7a4ba"><i class="fa fa-check"></i>複素平面上の図示</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.5"><i class="fa fa-check"></i><b>2.5</b> 極形式</a></li>
+<li class="chapter" data-level="2.6" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.6"><i class="fa fa-check"></i><b>2.6</b> 共役複素数</a></li>
+<li class="chapter" data-level="2.7" data-path="complexnumbers.html"><a href="complexnumbers.html#complexramsey"><i class="fa fa-check"></i><b>2.7</b> 補遺：ラムゼーモデル</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>3</b> 行列論の基礎</a><ul>
+<li class="chapter" data-level="3.1" data-path="matrix.html"><a href="matrix.html#section-3.1"><i class="fa fa-check"></i><b>3.1</b> 行列の形</a></li>
+<li class="chapter" data-level="3.2" data-path="matrix.html"><a href="matrix.html#matrix-operation"><i class="fa fa-check"></i><b>3.2</b> 行列の演算</a></li>
+<li class="chapter" data-level="3.3" data-path="matrix.html"><a href="matrix.html#section-3.3"><i class="fa fa-check"></i><b>3.3</b> 線形方程式</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="matrix.html"><a href="matrix.html#section-3.3.1"><i class="fa fa-check"></i><b>3.3.1</b> 線形連立方程式の変形</a></li>
+<li class="chapter" data-level="3.3.2" data-path="matrix.html"><a href="matrix.html#section-3.3.2"><i class="fa fa-check"></i><b>3.3.2</b> 行基本変形</a></li>
+<li class="chapter" data-level="3.3.3" data-path="matrix.html"><a href="matrix.html#section-3.3.3"><i class="fa fa-check"></i><b>3.3.3</b> 列基本変形</a></li>
+<li class="chapter" data-level="3.3.4" data-path="matrix.html"><a href="matrix.html#section-3.3.4"><i class="fa fa-check"></i><b>3.3.4</b> 初等変形</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="eigen.html"><a href="eigen.html"><i class="fa fa-check"></i><b>4</b> 固有値</a><ul>
+<li class="chapter" data-level="4.1" data-path="eigen.html"><a href="eigen.html#section-4.1"><i class="fa fa-check"></i><b>4.1</b> 行列式</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="eigen.html"><a href="eigen.html#section-4.1.1"><i class="fa fa-check"></i><b>4.1.1</b> 置換</a></li>
+<li class="chapter" data-level="4.1.2" data-path="eigen.html"><a href="eigen.html#section-4.1.2"><i class="fa fa-check"></i><b>4.1.2</b> 行列式の定義</a></li>
+<li class="chapter" data-level="4.1.3" data-path="eigen.html"><a href="eigen.html#section-4.1.3"><i class="fa fa-check"></i><b>4.1.3</b> 行列式の意味</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="eigen.html"><a href="eigen.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 固有値と固有ベクトル</a></li>
+<li class="chapter" data-level="4.3" data-path="eigen.html"><a href="eigen.html#section-4.3"><i class="fa fa-check"></i><b>4.3</b> 対角化</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="eigen.html"><a href="eigen.html#section-4.3.1"><i class="fa fa-check"></i><b>4.3.1</b> 計算方法の確認</a></li>
+<li class="chapter" data-level="4.3.2" data-path="eigen.html"><a href="eigen.html#section-4.3.2"><i class="fa fa-check"></i><b>4.3.2</b> 例題</a></li>
+<li class="chapter" data-level="4.3.3" data-path="eigen.html"><a href="eigen.html#section-4.3.3"><i class="fa fa-check"></i><b>4.3.3</b> 複素数の行列表現</a></li>
+<li class="chapter" data-level="4.3.4" data-path="eigen.html"><a href="eigen.html#section-4.3.4"><i class="fa fa-check"></i><b>4.3.4</b> 実対角化</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="eigen.html"><a href="eigen.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 線形動学方程式と固有値</a></li>
+<li class="chapter" data-level="4.5" data-path="eigen.html"><a href="eigen.html#section-4.5"><i class="fa fa-check"></i><b>4.5</b> ラムゼーモデルと固有値</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="linspace.html"><a href="linspace.html"><i class="fa fa-check"></i><b>5</b> 線形空間論</a><ul>
+<li class="chapter" data-level="5.1" data-path="linspace.html"><a href="linspace.html#linspace-definition"><i class="fa fa-check"></i><b>5.1</b> 線形空間</a></li>
+<li class="chapter" data-level="5.2" data-path="linspace.html"><a href="linspace.html#linspace-subspace"><i class="fa fa-check"></i><b>5.2</b> 線形部分空間</a></li>
+<li class="chapter" data-level="5.3" data-path="linspace.html"><a href="linspace.html#linspace-independence"><i class="fa fa-check"></i><b>5.3</b> 1次独立性</a></li>
+<li class="chapter" data-level="5.4" data-path="linspace.html"><a href="linspace.html#linspace-linearmap"><i class="fa fa-check"></i><b>5.4</b> 線形写像</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="linspace.html"><a href="linspace.html#section-5.4.1"><i class="fa fa-check"></i><b>5.4.1</b> 基本的な定義の復習</a></li>
+<li class="chapter" data-level="" data-path="linspace.html"><a href="linspace.html#e5838fe383bbe98086e5838f"><i class="fa fa-check"></i>像・逆像</a></li>
+<li class="chapter" data-level="5.4.2" data-path="linspace.html"><a href="linspace.html#section-5.4.2"><i class="fa fa-check"></i><b>5.4.2</b> 線形性</a></li>
+<li class="chapter" data-level="5.4.3" data-path="linspace.html"><a href="linspace.html#section-5.4.3"><i class="fa fa-check"></i><b>5.4.3</b> 像空間，核，商空間</a></li>
+<li class="chapter" data-level="5.4.4" data-path="linspace.html"><a href="linspace.html#section-5.4.4"><i class="fa fa-check"></i><b>5.4.4</b> 座標</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="linspace.html"><a href="linspace.html#linspace-matrix"><i class="fa fa-check"></i><b>5.5</b> 行列</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="linspace.html"><a href="linspace.html#section-5.5.1"><i class="fa fa-check"></i><b>5.5.1</b> 線形写像の表現としての行列</a></li>
+<li class="chapter" data-level="5.5.2" data-path="linspace.html"><a href="linspace.html#section-5.5.2"><i class="fa fa-check"></i><b>5.5.2</b> 基底の変換</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="linspace.html"><a href="linspace.html#linspace-invariant"><i class="fa fa-check"></i><b>5.6</b> 不変部分空間</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="linspace.html"><a href="linspace.html#section-5.6.1"><i class="fa fa-check"></i><b>5.6.1</b> ブロック対角化</a></li>
+<li class="chapter" data-level="5.6.2" data-path="linspace.html"><a href="linspace.html#section-5.6.2"><i class="fa fa-check"></i><b>5.6.2</b> 固有値分解</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="section-6.html"><a href="section-6.html"><i class="fa fa-check"></i><b>6</b> 行列の標準形</a><ul>
+<li class="chapter" data-level="6.1" data-path="section-6.html"><a href="section-6.html#section-6.1"><i class="fa fa-check"></i><b>6.1</b> 一般固有空間への分解</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="section-6.html"><a href="section-6.html#section-6.1.1"><i class="fa fa-check"></i><b>6.1.1</b> ハミルトン・ケーリーの定理</a></li>
+<li class="chapter" data-level="6.1.2" data-path="section-6.html"><a href="section-6.html#section-6.1.2"><i class="fa fa-check"></i><b>6.1.2</b> 最小多項式</a></li>
+<li class="chapter" data-level="6.1.3" data-path="complexnumbers.html"><a href="complexnumbers.html#-1"><i class="fa fa-check"></i><b>6.1.3</b> 一般固有空間への分解</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="section-6.html"><a href="section-6.html#section-6.2"><i class="fa fa-check"></i><b>6.2</b> 一般化固有値問題</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="section-6.html"><a href="section-6.html#section-6.2.1"><i class="fa fa-check"></i><b>6.2.1</b> 一般化固有値</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="section-6.html"><a href="section-6.html#section-6.3"><i class="fa fa-check"></i><b>6.3</b> ハミルトン・ケーリーの定理の証明</a></li>
+<li class="chapter" data-level="6.4" data-path="section-6.html"><a href="section-6.html#section-6.4"><i class="fa fa-check"></i><b>6.4</b> ワイエルシュトラス標準形の導出</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="section-7.html"><a href="section-7.html"><i class="fa fa-check"></i><b>7</b> 線形システムの分析</a><ul>
+<li class="chapter" data-level="7.1" data-path="section-7.html"><a href="section-7.html#section-7.1"><i class="fa fa-check"></i><b>7.1</b> 行列公式</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="section-7.html"><a href="section-7.html#section-7.1.1"><i class="fa fa-check"></i><b>7.1.1</b> 逆行列公式</a></li>
+<li class="chapter" data-level="7.1.2" data-path="section-7.html"><a href="section-7.html#section-7.1.2"><i class="fa fa-check"></i><b>7.1.2</b> シルベスタ方程式</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="section-7.html"><a href="section-7.html#blanchard-kahn-case"><i class="fa fa-check"></i><b>7.2</b> <span class="math inline">\(E=I\)</span> のケース</a><ul>
+<li class="chapter" data-level="" data-path="section-7.html"><a href="section-7.html#e59bb3e8a7a3"><i class="fa fa-check"></i>図解</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="section-7.html"><a href="section-7.html#e-neq-i-"><i class="fa fa-check"></i><b>7.3</b> <span class="math inline">\(E \neq I\)</span> のケース</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="section-7.html"><a href="section-7.html#section-7.3.1"><i class="fa fa-check"></i><b>7.3.1</b> アイデア</a></li>
+<li class="chapter" data-level="7.3.2" data-path="section-7.html"><a href="section-7.html#section-7.3.2"><i class="fa fa-check"></i><b>7.3.2</b> 解の存在と一意性</a></li>
+<li class="chapter" data-level="7.3.3" data-path="section-7.html"><a href="section-7.html#u-"><i class="fa fa-check"></i><b>7.3.3</b> <span class="math inline">\(u\)</span> の特定化</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e58f82e88083e69687e78cae.html"><a href="e58f82e88083e69687e78cae.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/kenjisato/linear-economic-dynamics" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">経済動学: 線形編</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="section-7" class="section level1">
+<h1><span class="header-section-number">第7章</span> 線形システムの分析</h1>
+<p>動学的マクロ経済モデルの典型的なパターンは, 均衡経路の拘束条件をストック変数に関する初期条件と, 価格に関する終端条件 (横断性条件) で与えるというものである. ストックは過去の経済活動によって定まるため過去の情報から決定される (先決変数). 一方, 価格は将来価値を反映して決まるものなので, 未来の情報を用いて決定される (非先決変数). したがって, 経済モデルは時間の流れに沿って決まっていく成分と, 時間の流れを逆行して決まる成分が組み合わさって成り立っているのが普通である. ゆえに経済モデルの解析は線形システムであっても比較的複雑なものになる. 基本モデルの解法をきちんと理解しておくことは大変重要である.</p>
+<p>本稿では, <span class="citation">Blanchard and Kahn (<a href="#ref-BlanchardKahn1980">1980</a>)</span> および <span class="citation">Klein (<a href="#ref-Klein2000">2000</a>)</span> の決定論バージョンを考察しよう<a href="#fn25" class="footnoteRef" id="fnref25"><sup>25</sup></a>。具体的には, ジョルダン標準形およびワイエルシュトラス標準形を用いた分析を確率的な要因が一切存在しないモデルに対して適用する. 確率的な要因を入れたモデルでも基本的な考え方は変わらないので, ここでの分析手法をよく理解してほしい. 条件付き期待値のルールを一通り理解すれば確率的なモデルに容易に拡張できる.</p>
+<p>ただし, すでに指摘した通り, ジョルダン標準形やワイエルシュトラス標準形は数値計算では通常用いることができない. 固有値の重複度に関して浮動小数点数を用いた判定が難しいからである. この問題はSchur 分解や QZ 分解あるいは特異値分解を利用することで解決するのであるが, それは次回以降に譲って理論的な結果をまず見てみよう.</p>
+<div id="section-7.1" class="section level2">
+<h2><span class="header-section-number">7.1</span> 行列公式</h2>
+<p>本題に入る前にいくつかの行列公式をまとめておこう.</p>
+<div id="section-7.1.1" class="section level3">
+<h3><span class="header-section-number">7.1.1</span> 逆行列公式</h3>
+本稿の計算結果を既存研究の結果と比較すると (記号の違いという明白な相違点以外にも) 見かけ上異なる解を得ていることが分かるだろう. これは導出方法が異なるために発生した見せかけの違いであって本質的なものではない. 文献と比較する際には次の行列公式を念頭においておくとよい. 
+<div class="theorem">
+<span id="thm:blockinv" class="theorem"><strong>定理 7.1 </strong></span><span class="math inline">\(A,B,C,D\)</span> は適当な次元の行列であるとする. <span class="math inline">\(A\)</span> および <span class="math inline">\(D-CA^{-1}B\)</span> を正則とする. このとき<span class="math inline">\(\left[\begin{smallmatrix}A &amp; B\\ C &amp; D \end{smallmatrix}\right]\)</span> は正則であり, 次式が成立する. <span class="math display">\[
+\begin{bmatrix}A &amp; B\\
+C &amp; D
+\end{bmatrix}^{-1}=\begin{bmatrix}A^{-1}+A^{-1}B(D-CA^{-1}B)^{-1}CA^{-1} &amp; -A^{-1}B(D-CA^{-1}B)^{-1}\\
+-(D-CA^{-1}B)^{-1}CA^{-1} &amp; (D-CA^{-1}B)^{-1}
+\end{bmatrix}.
+\]</span>
+</div>
+<p></p>
+% 
+<div class="corollary">
+<span id="cor:blockcor" class="corollary"><strong>系 7.1 </strong></span><span class="math inline">\(A,C,D\)</span> は適当な次元の行列であるとする. <span class="math inline">\(A\)</span> および <span class="math inline">\(D\)</span> を正則とする. このとき<span class="math inline">\(\left[\begin{smallmatrix}A &amp; 0\\ C &amp; D \end{smallmatrix}\right]\)</span> は正則であり, 次式が成立する. <span class="math display">\[
+\begin{bmatrix}A &amp; 0\\
+C &amp; D
+\end{bmatrix}^{-1}=\begin{bmatrix}A^{-1} &amp; 0\\
+-D^{-1}CA^{-1} &amp; D^{-1}
+\end{bmatrix}.
+\]</span>
+</div>
+<p></p>
+
+<div class="exercise">
+定理<a href="section-7.html#thm:blockinv">7.1</a> および系@ref{cor:blockcor)を証明せよ.
+</div>
+<p></p>
+</div>
+<div id="section-7.1.2" class="section level3">
+<h3><span class="header-section-number">7.1.2</span> シルベスタ方程式</h3>
+<p>2つの演算を定義しよう. 行列の各列を縦に積み上げる写像を <span class="math inline">\(\mathrm{vec}:\mathbb{F}^{m\times n}\to\mathbb{F}^{mn}\)</span> と書く. すなわち, <span class="math display">\[
+\begin{aligned}
+\mathrm{vec}\left(\begin{bmatrix}a_{11} &amp; \cdots &amp; a_{1n}\\
+\vdots &amp; \ddots &amp; \vdots\\
+a_{m1} &amp; \cdots &amp; a_{mn}
+\end{bmatrix}\right)=\begin{bmatrix}a_{11} &amp; \cdots &amp; a_{m1} &amp; \cdots &amp; \cdots &amp; a_{1n} &amp; \cdots &amp; a_{mn}\end{bmatrix}^{\top}.
+\end{aligned}
+\]</span> 容易に分かることだが, <span class="math inline">\(\mathrm{vec}\)</span> は線形写像である.</p>
+<span class="math inline">\(A\in\mathbb{F}^{m\times n}\)</span> と <span class="math inline">\(B\in\mathbb{F}^{p\times q}\)</span> のクロネッカー積 <span class="math inline">\(A\otimes B\in\mathbb{F}^{mp\times nq}\)</span> を <span class="math display">\[
+A\otimes B:=\begin{bmatrix}a_{11}B &amp; \cdots &amp; a_{1n}B\\
+\vdots &amp; \ddots &amp; \vdots\\
+a_{m1}B &amp; \cdots &amp; a_{mn}B
+\end{bmatrix}
+\]</span> によって定義する. 次の補題を証明しよう. 
+<div class="lemma">
+<span id="lem:vecformula" class="lemma"><strong>補題 7.1 </strong></span><span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span> を適当なサイズの行列とする. このとき, <span class="math inline">\(\mathrm{vec}(ABC)=(C^{\top}\otimes A)\mathrm{vec}(B)\)</span> が成り立つ.
+</div>
+<p></p>
+
+<div class="proof">
+<span class="proof"><em>証明. </em></span> <span class="math inline">\(A\in\mathbb{F}^{m\times n}\)</span>, <span class="math inline">\(B\in\mathbb{F}^{n\times p}\)</span>, <span class="math inline">\(C\in\mathbb{F}^{p\times q}\)</span> とする. <span class="math inline">\(B=\begin{bmatrix}B_{1} &amp; \cdots &amp; B_{p}\end{bmatrix}\)</span>, <span class="math inline">\(C=\begin{bmatrix}C_{1} &amp; \cdots &amp; C_{q}\end{bmatrix}\)</span>とすれば <span class="math display">\[
+\begin{aligned}
+\left(C^{\top}\otimes A\right)\mathrm{vec}(B) &amp; =\begin{bmatrix}c_{11}A &amp; \cdots &amp; c_{p1}A\\
+\vdots &amp; \ddots &amp; \vdots\\
+c_{1q}A &amp; \cdots &amp; c_{pq}A
+\end{bmatrix}\begin{bmatrix}B_{1}\\
+\vdots\\
+B_{p}
+\end{bmatrix}=\begin{bmatrix}c_{11}AB_{1}+\cdots+c_{p1}AB_{p}\\
+\vdots\\
+c_{1q}AB_{1}+\cdots+c_{pq}AB_{p}
+\end{bmatrix}\\
+ &amp; =\begin{bmatrix}\begin{bmatrix}AB_{1} &amp; \cdots &amp; AB_{p}\end{bmatrix}C_{1}\\
+\vdots\\
+\begin{bmatrix}AB_{1} &amp; \cdots &amp; AB_{p}\end{bmatrix}C_{q}
+\end{bmatrix}=\begin{bmatrix}ABC_{1}\\
+\vdots\\
+ABC_{q}
+\end{bmatrix}=\mathrm{vec}(ABC).
+\end{aligned}
+\]</span>
+</div>
+<p></p>
+
+<div class="theorem">
+<span id="thm:sylv" class="theorem"><strong>定理 7.2  (離散時間シルベスタ方程式) </strong></span><span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, C を適当なサイズの行列, <span class="math inline">\(I-\left(B^{\top}\otimes A\right)\)</span> は正則であるとする. 行列方程式 <span class="math inline">\(AXB-X+C=0\)</span>の解 <span class="math inline">\(X\)</span> は, <span class="math display">\[
+\mathrm{vec}(X)=\left[I-\left(B^{\top}\otimes A\right)\right]^{-1}\mathrm{vec}(C)
+\]</span> によって与えられる.
+</div>
+<p></p>
+
+<div class="proof">
+<span class="proof"><em>証明. </em></span> 全体を <span class="math inline">\(\mathrm{vec}\)</span> で写して, <span class="math inline">\(\mathrm{vec}(AXB)-\mathrm{vec}(X)+\mathrm{vec}(C)=0\)</span>を得る. 補題 <a href="section-7.html#lem:vecformula">7.1</a> より<span class="math inline">\(\left(B^{\top}\otimes A\right)\mathrm{vec}(X)-\mathrm{vec}(X)=-\mathrm{vec}(C)\)</span>. したがって, <span class="math inline">\(\mathrm{vec}(X)=\left[I-\left(B^{\top}\otimes A\right)\right]^{-1}\mathrm{vec}(C)\)</span>.
+</div>
+<p></p>
+</div>
+</div>
+<div id="blanchard-kahn-case" class="section level2">
+<h2><span class="header-section-number">7.2</span> <span class="math inline">\(E=I\)</span> のケース</h2>
+無限期間のシステム方程式 <span class="math inline">\(Ex_{t+1}=Ax_{t}+Bu_{t}\)</span> において <span class="math inline">\(E=I\)</span> なるケースを考える. すなわち,
+\begin{equation}
+  x_{t+1}=Ax_{t}+Bu_{t},\quad t=0,1,\dots,(\#eq:bk-sys)
+\end{equation}
+各ベクトルと行列のサイズは <span class="math inline">\(x\in\mathbb{R}^{n}\)</span>, <span class="math inline">\(u\in\mathbb{R}^{m}\)</span>, <span class="math inline">\(A\in\mathbb{R}^{n\times n}\)</span>, <span class="math inline">\(B\in\mathbb{R}^{n\times m}\)</span> とする. <span class="math inline">\(u\)</span> は外生的に与えられるショックである. 序文に述べた通り, <span class="math inline">\(x\)</span> を構成する変数の一部に初期条件が与えられている状況を想定している. 具体的には変数 <span class="math inline">\(x\)</span> が <span class="math inline">\(x^{1}\in\mathbb{R}^{n_{1}}\)</span> および <span class="math inline">\(x^{2}\in\mathbb{R}^{n_{2}}\)</span> によって
+\begin{equation}
+  x_{t}=\begin{bmatrix}x_{t}^{1}\\
+  x_{t}^{2}
+  \end{bmatrix} (\#eq:bk-12)
+\end{equation}
+と記述でき, 初期条件が <span class="math display">\[
+x_{0}^{1}=\bar{x}_{0}^{1},
+\]</span> で与えられているとする. 終端条件として経路の発散スピードが幾何数列の発散スピードを超えないことを仮定する. すなわち, 任意の <span class="math inline">\(-1&lt;\rho&lt;1\)</span> について
+\begin{equation}
+  \lim_{T\to\infty}\rho^{T}\|x_{T}\|=0 (\#eq:bk-tvc)
+\end{equation}
+<p>が成り立つ <span class="math inline">\(x\)</span> を実行可能な解であるとする. 式 <a href="#eq:bk-sys">(<strong>??</strong>)</a> を式 <a href="#eq:bk-12">(<strong>??</strong>)</a> に適合するようにブロック行列表現すると</p>
+<p><span class="math display">\[
+\begin{bmatrix}x_{t+1}^{1}\\
+x_{t+1}^{2}
+\end{bmatrix}=\begin{bmatrix}A_{11} &amp; A_{12}\\
+A_{21} &amp; A_{22}
+\end{bmatrix}\begin{bmatrix}x_{t}^{1}\\
+x_{t}^{2}
+\end{bmatrix}+\begin{bmatrix}B_{1}\\
+B_{2}
+\end{bmatrix}u_{t}
+\]</span> と書ける. <span class="math inline">\(A\)</span> のジョルダン分解 <span class="math display">\[
+\begin{bmatrix}A_{11} &amp; A_{12}\\
+A_{21} &amp; A_{22}
+\end{bmatrix}=P\begin{bmatrix}J_{s} &amp; 0\\
+0 &amp; J_{u}
+\end{bmatrix}P^{-1}
+\]</span> に基いて状態方程式<a href="#eq:bk-sys">(<strong>??</strong>)</a>を変形し, <span class="math display" id="eq:bk-jordan">\[
+P^{-1}\begin{bmatrix}x_{t+1}^{1}\\
+x_{t+1}^{2}
+\end{bmatrix}=\begin{bmatrix}J_{s} &amp; 0\\
+0 &amp; J_{u}
+\end{bmatrix}P^{-1}\begin{bmatrix}x_{t}^{1}\\
+x_{t}^{2}
+\end{bmatrix}+P^{-1}\begin{bmatrix}B_{1}\\
+B_{2}
+\end{bmatrix}u_{t}
+\]</span> を得る. <span class="math inline">\(P\)</span> をうまく選んで, <span class="math inline">\(J_{s}\)</span> の対角成分には絶対値が1以下の固有値, <span class="math inline">\(J_{u}\)</span> の対角成分には絶対値が <span class="math inline">\(1\)</span> より大きい固有値が並んでいるとしよう. この結果, <span class="math inline">\(J_{u}\)</span> は正則になる. <span class="math inline">\(y:=P^{-1}x\)</span>, <span class="math inline">\(C:=P^{-1}B\)</span> と変数変換することで</p>
+\begin{equation}
+  \begin{bmatrix}y_{t+1}^{s}\\
+  y_{t+1}^{u}
+  \end{bmatrix}=\begin{bmatrix}J_{s} &amp; 0\\
+  0 &amp; J_{u}
+  \end{bmatrix}\begin{bmatrix}y_{t}^{s}\\
+  y_{t}^{u}
+  \end{bmatrix}+\begin{bmatrix}C_{s}\\
+  C_{u}
+  \end{bmatrix}u_{t} \tag{7.1}
+\end{equation}
+<p>を得る. ただし, <span class="math display" id="eq:bk-det0" id="eq:bk-9" id="eq:bk-7" id="eq:bk-cross" id="eq:bk-yu" id="eq:bk-yt">\[
+y^{s}\in\mathbb{R}^{n_{s}},\ y^{u}\in\mathbb{R}^{n_{u}}
+\]</span> であり, 行列, およびその各ブロックはすべて適合するサイズをもつものとする.</p>
+<p>典型的なケースでは初期条件の数が変数の次元に対して不足しているため, 最終期までの情報を使って不足した <span class="math inline">\(t=0\)</span> 時点の条件を補ってから解を決定する. やや天下り的ではあるが, 式<a href="section-7.html#eq:bk-jordan">(7.1)</a> 下段のシステムを, <span class="math inline">\(t\)</span> 期から <span class="math inline">\(T\)</span> 期までの情報を使って後ろ向きに (forward-looking に) 解いてみよう<a href="#fn26" class="footnoteRef" id="fnref26"><sup>26</sup></a>。</p>
+\begin{align}
+y_{t}^{u} &amp; =J_{u}^{-1}y_{t+1}^{u}-J_{u}^{-1}C_{u}u_{t}\nonumber \\
+ &amp; =J_{u}^{-1}\left(J_{u}^{-1}y_{t+2}^{u}-J_{u}^{-1}C_{u}u_{t+1}\right)-J_{u}^{-1}C_{u}u_{t}\nonumber \\
+ &amp; =J_{u}^{-2}\left(J_{u}^{-1}y_{t+3}^{u}-J_{u}^{-1}C_{u}u_{t+2}\right)-J_{u}^{-2}C_{u}u_{t+1}-J_{u}^{-1}C_{u}u_{t}\nonumber \\
+ &amp; =J_{u}^{-3}y_{t+3}^{u}-J_{u}^{-3}C_{u}u_{t+2}-J_{u}^{-2}C_{u}u_{t+1}-J_{u}^{-1}C_{u}u_{t}\nonumber \\
+ &amp; =\cdots\nonumber \\
+ &amp; =J_{u}^{t-T}y_{T}^{u}-\sum_{k=0}^{T-t-1}J_{u}^{-k-1}C_{u}u_{t+k}. \tag{7.2}
+\end{align}
+<p>ここで, <span class="math inline">\(J_{u}^{-1}\)</span> は安定行列であり, <span class="math inline">\(T\to\infty\)</span> のとき幾何数列のオーダーで減衰する. 一方 <span class="math inline">\(y_{T}^{u}\)</span> は <span class="math inline">\(x_{T}\)</span> の1次結合であるから, 仮定<a href="#eq:bk-tvc">(<strong>??</strong>)</a>により<span class="math inline">\(\lim_{T\to\infty}\|J_{u}^{t-T}y_{T}^{u}\|=0\)</span>. つまり,</p>
+\begin{equation}
+y_{t}^{u}=-\sum_{k=0}^{\infty}J_{u}^{-k-1}C_{u}u_{t+k} \tag{7.3}
+\end{equation}
+<p>が成り立つ.<a href="#fn27" class="footnoteRef" id="fnref27"><sup>27</sup></a></p>
+変数 <span class="math inline">\(x\)</span> と <span class="math inline">\(y\)</span> の関係から任意の <span class="math inline">\(t\)</span> に対して
+\begin{equation}
+\begin{bmatrix}x_{t}^{1}\\
+x_{t}^{2}
+\end{bmatrix}=P\begin{bmatrix}y_{t}^{s}\\
+y_{t}^{u}
+\end{bmatrix}=\begin{bmatrix}P_{1s} &amp; P_{1u}\\
+P_{2s} &amp; P_{2u}
+\end{bmatrix}\begin{bmatrix}y_{t}^{s}\\
+y_{t}^{u}
+\end{bmatrix} \tag{7.4}
+\end{equation}
+が成り立つ. <span class="math inline">\(t=0\)</span> したとき, <a href="section-7.html#eq:bk-cross">(7.4)</a> に現れる変数の内 <span class="math inline">\(x_{0}^{1}=\bar{x}_{0}^{1}\)</span> と <span class="math inline">\(y_{0}^{u}=\bar{y}_{0}^{u}\)</span> が定まっている. ここで, <span class="math inline">\(P_{1s}\in\mathbb{R}^{n_{1}\times n_{s}}\)</span>, <span class="math inline">\(P_{1u}\in\mathbb{R}^{n_{1}\times n_{u}}\)</span>, <span class="math inline">\(P_{2s}\in\mathbb{R}^{n_{2}\times n_{s}}\)</span> および <span class="math inline">\(P_{2u}\in\mathbb{R}^{n_{2}\times n_{u}}\)</span> に注意せよ. この情報から, <span class="math inline">\(x_{0}^{2}\)</span> および <span class="math inline">\(y_{0}^{s}\)</span>を決定できれば解軌道が完全に定まる. <span class="math inline">\(t=0\)</span> で成立する線形方程式
+\begin{align}
+\bar{x}_{0}^{1} &amp; =P_{1s}y_{0}^{s}+P_{1u}\bar{y}_{0}^{u} \tag{7.5}\\
+x_{0}^{2} &amp; =P_{2s}y_{0}^{s}+P_{2u}\bar{y}_{0}^{u}\tag{7.6}
+\end{align}
+を変形し, 未知量 <span class="math inline">\((x_{0}^{2},y_{0}^{s})\)</span> に関する次の線形方程式を得る.
+\begin{equation}
+  \begin{bmatrix}P_{1s} &amp; 0\\
+  P_{2s} &amp; -I_{n_{2}}
+  \end{bmatrix}\begin{bmatrix}y_{0}^{s}\\
+  x_{0}^{2}
+  \end{bmatrix}=\begin{bmatrix}I_{n_{1}} &amp; -P_{1u}\\
+  0 &amp; -P_{2u}
+  \end{bmatrix}\begin{bmatrix}\bar{x}_{0}^{1}\\
+  \bar{y}_{0}^{u}
+  \end{bmatrix}.\tag{7.7}
+\end{equation}
+<p>ベクトルと行列のサイズはそれぞれ <span class="math display">\[
+  \begin{bmatrix}y_{0}^{s}\\
+  x_{0}^{s}
+  \end{bmatrix}\in\mathbb{R}^{n_{s}+n_{2}},\quad\begin{bmatrix}\bar{x}_{0}^{1}\\
+  \bar{y}_{0}^{u}
+  \end{bmatrix}\in\mathbb{R}^{n_{1}+n_{u}},
+\]</span></p>
+<p><span class="math display">\[
+\Pi_{1}:=\begin{bmatrix}P_{1s} &amp; 0\\
+P_{2s} &amp; -I
+\end{bmatrix}\in\mathbb{R}^{n\times(n_{s}+n_{2})},\quad\Pi_{2}:=\begin{bmatrix}I &amp; -P_{1u}\\
+0 &amp; -P_{2u}
+\end{bmatrix}\in\mathbb{R}^{n\times(n_{1}+n_{u})}.
+\]</span> 解の決定に際して, 3つの場合に場合分けをする.</p>
+<div id="n_sn_2n" class="section level5 unnumbered">
+<h5><span class="math inline">\(n_{s}+n_{2}&gt;n\)</span></h5>
+<p><span class="math display">\[
+n_{s}+n_{2}&gt;n=n_{1}+n_{2}\Longleftrightarrow n_{s}&gt;n_{1}
+\]</span> が成り立つとすれば, 方程式 <a href="section-7.html#eq:bk-det0">(7.7)</a> の係数行列 <span class="math inline">\(\Pi_{1}\in\mathbb{R}^{n\times(n_{s}+n_{2})}\)</span> は横長の行列である. したがって, 方程式 <a href="section-7.html#eq:bk-det0">(7.7)</a> を満たす <span class="math inline">\((y_{0}^{s},x_{0}^{2})\)</span> は無数に存在する. 解軌道が無数に存在するので解は<strong>不決定 (indeterminate)</strong>であるという. 一般に, 初期値の選び方に自由度がある場合に不決定性があるという.</p>
+</div>
+<div id="n_sn_2n-1" class="section level5 unnumbered">
+<h5><span class="math inline">\(n_{s}+n_{2}&lt;n\)</span></h5>
+<p><span class="math display">\[
+n_{s}+n_{2}&lt;n=n_{1}+n_{2}\Longleftrightarrow n_{s}&lt;n_{1}
+\]</span> が成り立つとしよう. このとき, 係数行列 <span class="math inline">\(\Pi_{1}\)</span> は縦長の行列であるから, 方程式 <a href="section-7.html#eq:bk-det0">(7.7)</a> を満たす <span class="math inline">\((y_{0}^{s},x_{0}^{2})\)</span> は一般には存在しない. 解の存在を保証するためには, <span class="math display">\[
+\Pi_{2}\begin{bmatrix}\bar{x}_{0}^{1}\\
+\bar{y}_{0}^{u}
+\end{bmatrix}\in\mathrm{im}\Pi_{1}
+\]</span> となるように初期条件と入力を決めなければならない.</p>
+</div>
+<div id="n_sn_2n-2" class="section level5 unnumbered">
+<h5><span class="math inline">\(n_{s}+n_{2}=n\)</span></h5>
+<p>最後に</p>
+<span class="math display">\[
+n_{s}+n_{2}=n=n_{1}+n_{2}\Longleftrightarrow n_{s}=n_{1}
+\]</span> が成り立つとしよう. このとき, <span class="math inline">\(\Pi_{1}\)</span> は正方行列である. さらにこれが正則であれば解 <span class="math inline">\((y_{0}^{1},x_{0}^{2})\)</span> が一意的に定まる. <span class="math inline">\(\det\Pi_{1}=\det P_{1s}\)</span> より, <span class="math inline">\(\Pi_{1}\)</span> の正則性は <span class="math inline">\(P_{1s}\)</span> の正則性と同値である. <span class="math inline">\(P_{1s}\)</span> が正則でない場合は再び解の不決定性が現れる. 系<a href="section-7.html#cor:blockcor">7.1</a> より<span class="math inline">\(P_{1s}\)</span> が正則であれば <span class="math display">\[
+\Pi_{1}^{-1}=\begin{bmatrix}P_{1s}^{-1} &amp; 0\\
+P_{2s}P_{1s}^{-1} &amp; -I
+\end{bmatrix}.
+\]</span> したがって, <span class="math display">\[
+\begin{aligned}
+\begin{bmatrix}y_{0}^{s}\\
+x_{0}^{2}
+\end{bmatrix} &amp; =\begin{bmatrix}P_{1s}^{-1} &amp; 0\\
+P_{2s}P_{1s}^{-1} &amp; -I
+\end{bmatrix}\begin{bmatrix}I &amp; -P_{1u}\\
+0 &amp; -P_{2u}
+\end{bmatrix}\begin{bmatrix}\bar{x}_{0}^{1}\\
+\bar{y}_{0}^{u}
+\end{bmatrix}\\
+ &amp; =\begin{bmatrix}P_{1s}^{-1} &amp; -P_{1s}^{-1}P_{1u}\\
+P_{2s}P_{1s}^{-1} &amp; P_{2u}-P_{2s}P_{1s}^{-1}P_{1u}
+\end{bmatrix}\begin{bmatrix}\bar{x}_{0}^{1}\\
+\bar{y}_{0}^{u}
+\end{bmatrix}
+\end{aligned}
+\]</span> によって <span class="math inline">\(t=0\)</span> における変数値が完全に決定される. この等式は任意の <span class="math inline">\(t=0\)</span> 以外でも成り立つことに注意をしておく. <span class="math display" id="eq:bk-recur">\[
+\begin{aligned}
+\begin{bmatrix}y_{t}^{s}\\
+x_{t}^{2}
+\end{bmatrix} &amp; =\begin{bmatrix}P_{1s}^{-1} &amp; -P_{1s}^{-1}P_{1u}\\
+P_{2s}P_{1s}^{-1} &amp; P_{2u}-P_{2s}P_{1s}^{-1}P_{1u}
+\end{bmatrix}\begin{bmatrix}x_{t}^{1}\\
+y_{t}^{u}
+\end{bmatrix}
+\end{aligned}
+\]</span> この関係を使って, 次の方程式を得る.
+\begin{align}
+\begin{bmatrix}x_{t+1}^{1}\\
+x_{t+1}^{2}
+\end{bmatrix} &amp; =P\begin{bmatrix}y_{t+1}^{s}\\
+y_{t+1}^{u}
+\end{bmatrix}\nonumber \\
+ &amp; =\begin{bmatrix}P_{1s} &amp; P_{1u}\\
+P_{2s} &amp; P_{2u}
+\end{bmatrix}\begin{bmatrix}J_{s}\\
+ &amp; J_{u}
+\end{bmatrix}\begin{bmatrix}y_{t}^{s}\\
+y_{t}^{u}
+\end{bmatrix}+Bu_{t}\nonumber \\
+ &amp; =\begin{bmatrix}P_{1s} &amp; P_{1u}\\
+P_{2s} &amp; P_{2u}
+\end{bmatrix}\begin{bmatrix}J_{s}\\
+ &amp; J_{u}
+\end{bmatrix}\begin{bmatrix}P_{1s}^{-1}x_{t}^{1}-P_{1s}^{-1}P_{1u}y_{t}^{u}\\
+y_{t}^{u}
+\end{bmatrix}+Bu_{t}\nonumber \\
+ &amp; =\begin{bmatrix}P_{1s} &amp; P_{1u}\\
+P_{2s} &amp; P_{2u}
+\end{bmatrix}\begin{bmatrix}J_{s}P_{1s}^{-1}x_{t}^{1}-J_{s}P_{1s}^{-1}P_{1u}y_{t}^{u}\\
+J_{u}y_{t}^{u}
+\end{bmatrix}+Bu_{t}\nonumber \\
+ &amp; =\begin{bmatrix}P_{1s}J_{s}P_{1s}^{-1}x_{t}^{1}+(P_{1u}J_{u}-P_{1s}J_{s}P_{1s}^{-1}P_{1u})y_{t}^{u}\\
+P_{2s}J_{s}P_{1s}^{-1}x_{t}^{1}+(P_{2u}J_{u}-P_{2s}J_{s}P_{1s}^{-1}P_{1u})y_{t}^{u}
+\end{bmatrix}+Bu_{t}.\tag{7.8}
+\end{align}
+<p><span class="math inline">\(y_{t}^{u}\)</span> は式<a href="section-7.html#eq:bk-yu">(7.3)</a> によって決定していることに注意せよ. なお, 式<a href="#eq:recur">(<strong>??</strong>)</a> には <span class="math inline">\(x^{2}\)</span> が過去の情報に依存して決まっているという問題がある. <span class="math inline">\(x^{2}\)</span> は初期条件が与えられない変数なので, 同時点の <span class="math inline">\(x^{1}\)</span>, <span class="math inline">\(u\)</span> および未来の <span class="math inline">\(u\)</span> にのみ依存する形で記述できなければならない.</p>
+<p><a href="mailto:少し計算を進めて@BlanchardKahn1980">少し計算を進めて@BlanchardKahn1980</a> の再帰公式 (p. 1308 (2), (3)式) を導出しよう. 彼らのモデルは確率的なモデルであるが, われわれの決定論モデルでも解の構造はまったく変わらない.</p>
+<p>式<a href="section-7.html#eq:bk-recur">(7.8)</a> を使って, <span class="math inline">\(x_{t}^{1}\)</span> を消去する. <span class="math inline">\(x_{t}^{1}\)</span> の係数行列をそろえて</p>
+<span class="math display">\[
+\begin{aligned}
+P_{2s}P_{1s}^{-1}x_{t+1}^{1} &amp; =P_{2s}J_{s}P_{1s}^{-1}x_{t}^{1}+(P_{2s}P_{1s}^{-1}P_{1u}J_{u}-P_{2s}J_{s}P_{1s}^{-1}P_{1u})y_{t}^{u}+P_{2s}P_{1s}^{-1}B_{1}u_{t}\\
+x_{t+1}^{2} &amp; =P_{2s}J_{s}P_{1s}^{-1}x_{t}^{1}+(P_{2u}J_{u}-P_{2s}J_{s}P_{1s}^{-1}P_{1u})y_{t}^{u}+B_{2}u_{t},
+\end{aligned}
+\]</span> これらの差を取る. <span class="math display">\[
+\begin{aligned}
+ &amp; x_{t+1}^{2}-P_{2s}P_{1s}^{-1}x_{t+1}^{1}\\
+ &amp; =(P_{2u}-P_{2s}P_{1s}^{-1}P_{1u})J_{u}y_{t}^{u}+(B_{2}-P_{2s}P_{1s}^{-1}B_{1})u_{t}\\
+ &amp; =-(P_{2u}-P_{2s}P_{1s}^{-1}P_{1u})J_{u}\sum_{k=0}^{\infty}J_{u}^{-k-1}C_{u}u_{t+k}+(B_{2}-P_{2s}P_{1s}^{-1}B_{1})u_{t}\\
+ &amp; =-(P_{2u}-P_{2s}P_{1s}^{-1}P_{1u})\sum_{k=0}^{\infty}J_{u}^{-k}C_{u}u_{t+k}+(B_{2}-P_{2s}P_{1s}^{-1}B_{1})u_{t}\\
+ &amp; =-(P_{2u}-P_{2s}P_{1s}^{-1}P_{1u})\left(C_{u}u_{t}+\sum_{k=0}^{\infty}J_{u}^{-k-1}C_{u}u_{t+k+1}\right)+(B_{2}-P_{2s}P_{1s}^{-1}B_{1})u_{t}\\
+ &amp; =(P_{2u}-P_{2s}P_{1s}^{-1}P_{1u})y_{t+1}^{u}.
+\end{aligned}
+\]</span> 最後の等式には次の関係を使った. <span class="math display">\[
+(P_{2u}-P_{2s}P_{1s}^{-1}P_{1u})C_{u}=B_{2}-P_{2s}P_{1s}^{-1}B_{1}.
+\]</span> 定理としてまとめておこう. 
+<div class="theorem">
+<span id="thm:blkn" class="theorem"><strong>定理 7.3 </strong></span><span class="math inline">\(n_{1}=n_{s}\)</span> かつ <span class="math inline">\(\det P_{1s}\neq0\)</span> とする. このとき, <a href="#eq:bk-sys">(<strong>??</strong>)</a> の解は一意に定まり, <span class="math inline">\(t=0,1,\dots\)</span> について <span class="math inline">\(x_{t}\)</span> は次式で与えられる. <span class="math display">\[
+\begin{aligned}
+x_{t+1}^{1} &amp; =P_{1s}J_{s}P_{1s}^{-1}x_{t}^{1}+(P_{1u}J_{u}-P_{1s}J_{s}P_{1s}^{-1}P_{1u})y_{t}^{u},\\
+x_{t}^{2} &amp; =P_{2s}P_{1s}^{-1}x_{t}^{1}+(P_{2u}-P_{2s}P_{1s}^{-1}P_{1u})y_{t}^{u},\\
+y_{t}^{u} &amp; =-\sum_{k=0}^{\infty}J_{u}^{-k-1}C_{u}u_{t+k},\\
+x_{0}^{1} &amp; :\ \text{given.}
+\end{aligned}
+\]</span>
+</div>
+<p></p>
+<p><span class="citation">Blanchard and Kahn (<a href="#ref-BlanchardKahn1980">1980</a>)</span> では再帰的でない解表現を得ているが, 単純な計算で導出できるのでここではあえて述べることはしない. 各自確認してほしい.</p>
+</div>
+<div id="e59bb3e8a7a3" class="section level3 unnumbered">
+<h3>図解</h3>
+<p>2次元の場合に Blanchard-Kahn の定理を図解しよう.</p>
+<p>図<a href="#bk-beforetransformation"><strong>??</strong></a> はジョルダン標準形に変換する前の座標系を表している. 初期時点 <span class="math inline">\(t=0\)</span> で <span class="math inline">\(x\)</span> が取りうる範囲は赤線で表された直線である. 1次元の自由度が与えられているのは, <span class="math inline">\(x_{0}^{1}\)</span> が固定されている一方で, <span class="math inline">\(x_{0}^{2}\)</span> が未知であることを反映している.</p>
+<div class="figure" style="text-align: center"><span id="fig:bk-beforetransformation"></span>
+<img src="figures/10-blanchardkahn/10-blanchardkahn.001.jpeg" alt="変換前の直交座標系. \(x_{0}^{1}\) だけが所与であり, \((x_{0}^{1},x_{0}^{2})\)は赤色実線上のどこかにある."  />
+<p class="caption">
+図 7.1: 変換前の直交座標系. <span class="math inline">\(x_{0}^{1}\)</span> だけが所与であり, <span class="math inline">\((x_{0}^{1},x_{0}^{2})\)</span>は赤色実線上のどこかにある.
+</p>
+</div>
+
+<p>図 <a href="section-7.html#fig:bk-aftertransformation">7.2</a> はジョルダン標準形に変換した後の座標系である. すなわち, <span class="math inline">\(P=[P_{1}\ P_{2}]\)</span> を基底とした座標系を表している. 一般に<span class="math inline">\(P\)</span> は直交性を保たないので, 斜交座標系を描いている. 異なる座標系は同一の点を表現する別の方法を定めるだけであるから, <span class="math inline">\((x_{0}^{1},x_{0}^{2})\)</span> の位置を表す赤色の直線は動かない. あくまで目盛りを変えただけである. 座標系の変更により <span class="math inline">\(y^{u}\)</span> 軸に平行なサブシステム（不安定固有値に対応する固有空間上のシステム）と<span class="math inline">\(y^{s}\)</span>軸に平行なサブシステム（安定固有値に対応する固有空間上のシステム）に分離することができる. 式 <a href="section-7.html#eq:bk-jordan">(7.1)</a> を確認せよ.</p>
+<div class="figure" style="text-align: center"><span id="fig:bk-aftertransformation"></span>
+<img src="figures/10-blanchardkahn/10-blanchardkahn.002.jpeg" alt="ジョルダン標準形に変換した後の斜交座標系. 座標系を変更しても赤色実線は動かない."  />
+<p class="caption">
+図 7.2: ジョルダン標準形に変換した後の斜交座標系. 座標系を変更しても赤色実線は動かない.
+</p>
+</div>
+
+<p>式 <a href="section-7.html#eq:bk-yu">(7.3)</a> は不安定固有値に対応する固有空間 (<span class="math inline">\(y_{u}\)</span> 軸) に沿って後ろ向きに <span class="math inline">\(y_{0}^{u}\)</span> を見つける手続きである. 将来にわたって <span class="math inline">\(u\)</span> が決定していれば, <span class="math inline">\(t=\infty\)</span> から <span class="math inline">\(t=0\)</span> まで時間を逆向きに解いて <span class="math inline">\(y_{0}^{u}\)</span> を決めることができる. この時点ではまだ <span class="math inline">\(y_{0}^{s}\)</span> が決定しないので, <span class="math inline">\((y_{0}^{s},y_{0}^{u})\)</span> は <span class="math inline">\((0,y_{0}^{u})\)</span> を通り <span class="math inline">\(y^{s}\)</span> 軸と平行な直線上にある. 図<a href="#fig:bk-init-manifold"><strong>??</strong></a> の青色実線を参照せよ. この直線は安定行列 <span class="math inline">\(J_{u}^{-1}\)</span> によって特徴づけられる時間反転システムの極限を集めたものである.</p>
+<p>直交座標の <span class="math inline">\((x_{0}^{1},x_{0}^{2})\)</span> と斜交座標の<span class="math inline">\((y_{0}^{s},y_{0}^{u})\)</span> が同じ点を表す場合に限り, それらは式<a href="#eq:bk-sys">(<strong>??</strong>)</a> の<span class="math inline">\(t=0\)</span> における値として適切に選ばれていると言ってよい. 一方を他方の座標系で表して一致することを確かめればよいので, 式<a href="section-7.html#eq:bk-7">(7.5)</a>, <a href="section-7.html#eq:bk-9">(7.6)</a> を解けばよいことが分かるだろう. もちろんこれは <a href="section-7.html#eq:bk-det0">(7.7)</a> と同値である. 解の一意決定性のための条件は, 赤線と青線の交点が一意に存在するための条件に外ならない (図???). なお, <span class="math inline">\(P_{1s}\)</span> の正則性は赤色の実線と青色の実線が平行にならないことを保証している.</p>
+<div class="figure" style="text-align: center"><span id="fig:bk-initmanifold"></span>
+<img src="figures/10-blanchardkahn/10-blanchardkahn.003.jpeg" alt="安定な後ろ向き (forward-looking) サブシステム \(y_{t}^{u}=J_{u}^{-1}y_{t+1}^{u}-J_{u}^{-1}C_{u}u_{t}\) の 極限 (\(t=0\))で \(y_{0}^{u}\) が決まる."  />
+<p class="caption">
+図 7.3: 安定な後ろ向き (forward-looking) サブシステム <span class="math inline">\(y_{t}^{u}=J_{u}^{-1}y_{t+1}^{u}-J_{u}^{-1}C_{u}u_{t}\)</span> の 極限 (<span class="math inline">\(t=0\)</span>)で <span class="math inline">\(y_{0}^{u}\)</span> が決まる.
+</p>
+</div>
+
+<div class="figure" style="text-align: center"><span id="fig:bk-determinacy"></span>
+<img src="figures/10-blanchardkahn/10-blanchardkahn.003.jpeg" alt="青色と赤色の直線が交わる点で \((x_{0}^{1},x_{0}^{2})\) あるいは \((y_{0}^{s},y_{0}^{u})\) が定まる."  />
+<p class="caption">
+図 7.4: 青色と赤色の直線が交わる点で <span class="math inline">\((x_{0}^{1},x_{0}^{2})\)</span> あるいは <span class="math inline">\((y_{0}^{s},y_{0}^{u})\)</span> が定まる.
+</p>
+</div>
+
+<p><span class="math inline">\((y_{0}^{s},y_{0}^{u})\)</span> あるいは <span class="math inline">\((x_{0}^{1},x_{0}^{2})\)</span> が定まれば, 式<a href="#eq:bk-sys">(<strong>??</strong>)</a> を繰り返し適用することで解軌道を決定できる.</p>
+<p>最後に, 解が存在しないケースと不決定の場合について述べる. まず, 固有値が2つとも不安定固有値である場合, すなわち <span class="math inline">\(n_{u}=n=2\)</span>, <span class="math inline">\(0=n_{s}&lt;n_{1}=1\)</span> のケースを考えよう. 図<a href="section-7.html#fig:bk-nonexistence">7.5</a> で示されている通り, 後ろ向き (forward-looking) サブシステム <span class="math inline">\(y_{t}^{u}=J_{u}^{-1}y_{t+1}^{u}-J_{u}^{-1}C_{u}u_{t}\)</span> は一点 <span class="math inline">\((y_{0}^{u1},y_{0}^{u2})\)</span> を定める. 赤色の実線と一般には交わらないので, 解が存在しない. 次に　<span class="math inline">\(n_{u}=0\)</span>, <span class="math inline">\(2=n_{s}&gt;n_{1}=1\)</span> のケースを考える. この場合には後ろ向きのサブシステムはないので, <span class="math inline">\(y_{0}\)</span> に関して情報を得ることができない. したがって, 2次元平面<span class="math inline">\((y^{s1},y^{s2})\)</span>のすべての点が <span class="math inline">\((y_{0}^{s1},y_{0}^{s2})\)</span> の候補となる (図 <a href="section-7.html#fig:bk-indeterminacy">7.6</a>). 青色領域と赤色直線が交わる点は1次元の自由度を持つ無限個の点の集まりであるから <span class="math inline">\(x_{0}^{2}\)</span> を定めることもできない.</p>
+<div class="figure" style="text-align: center"><span id="fig:bk-nonexistence"></span>
+<img src="figures/10-blanchardkahn/10-blanchardkahn.005.jpeg" alt="\(n_{s}&lt;n_{1}\) のケース. バックワードサブシステムが過剰に初期値を定めてしまう. 一般に解は存在しない."  />
+<p class="caption">
+図 7.5: <span class="math inline">\(n_{s}&lt;n_{1}\)</span> のケース. バックワードサブシステムが過剰に初期値を定めてしまう. 一般に解は存在しない.
+</p>
+</div>
+
+<div class="figure" style="text-align: center"><span id="fig:bk-indeterminacy"></span>
+<img src="figures/10-blanchardkahn/10-blanchardkahn.006.jpeg" alt="\(n_{s}&gt;n_{1}\) のケース. バックワードサブシステムの情報が不足しており, 赤色直線上の任意の点から出発した経路が解の性質を満たす."  />
+<p class="caption">
+図 7.6: <span class="math inline">\(n_{s}&gt;n_{1}\)</span> のケース. バックワードサブシステムの情報が不足しており, 赤色直線上の任意の点から出発した経路が解の性質を満たす.
+</p>
+</div>
+
+</div>
+</div>
+<div id="e-neq-i-" class="section level2">
+<h2><span class="header-section-number">7.3</span> <span class="math inline">\(E \neq I\)</span> のケース</h2>
+<div id="section-7.3.1" class="section level3">
+<h3><span class="header-section-number">7.3.1</span> アイデア</h3>
+<p>次にシステム方程式がデスクリプタ方程式</p>
+<p><span class="math display" id="eq:bk-sing">\[
+Ex_{t+1}=Ax_{t}+Bu_{t},\quad t=0,1,\dots,\tag{7.9}
+\]</span> で与えられている場合の解を求めよう. 前節と同様に, 初期時点における変数 <span class="math display" id="eq:bk-j" id="eq:bk-a" id="eq:bk-e">\[
+x_{0}=\begin{bmatrix}x_{0}^{1}\\
+x_{0}^{2}
+\end{bmatrix}\in\mathbb{R}^{n_{1}}\times\mathbb{R}^{n_{2}}
+\]</span> について <span class="math inline">\(x_{0}^{1}=\bar{x}_{0}^{1}\in\mathbb{R}^{n_{1}}\)</span> のみ拘束条件が与えられているとする.</p>
+<span class="math inline">\(E=I\)</span> のケースでは <span class="math inline">\(A\)</span> のジョルダン標準形を求めることで解を計算したが, <span class="math inline">\(E\neq I\)</span> の場合, 特に <span class="math inline">\(\det E\neq0\)</span> の場合には<span class="math inline">\((E,A)\)</span> のワイエルシュトラス標準形によって解を特徴付ける. 資料 {[}16ED04{]} で見たとおり, 適当な正則行列 <span class="math inline">\(V,W\)</span> が存在して,
+\begin{align}
+W^{-1}EV &amp; =\begin{bmatrix}I\\
+ &amp; N
+\end{bmatrix},\tag{7.10}\\
+W^{-1}AV &amp; =\begin{bmatrix}J\\
+ &amp; I
+\end{bmatrix},\tag{7.11}
+\end{align}
+が成り立つ . ここで, <span class="math inline">\(J\)</span> は<span class="math inline">\((E,A)\)</span> の有限固有値を対角成分にもつジョルダン標準形行列, <span class="math inline">\(N\)</span> は対角成分がすべてゼロであるジョルダン標準形行列である. もちろん <span class="math inline">\(\det E\neq0\)</span> であれば, <span class="math inline">\(N\)</span> は現れない. ここで, <span class="math inline">\(J\)</span> は
+\begin{equation}
+  J=\begin{bmatrix}J_{fs}\\
+   &amp; J_{fu}
+  \end{bmatrix}\tag{7.12}
+\end{equation}
+<p>というブロックに分かれており, <span class="math inline">\(J_{fs}\)</span> の対角成分に絶対値が1以下の一般固有値, <span class="math inline">\(J_{fu}\)</span>の対角成分に絶対値が1未満の一般固有値が並ぶようにする. <span class="math inline">\(V\)</span>, <span class="math inline">\(W\)</span> の選び方は {[}16ED04{]} で解説した通りである. <span class="math inline">\(V\)</span> は一般化固有ベクトルを並べたもの, <span class="math inline">\(W\)</span> はそれに <span class="math inline">\((E,A)\)</span> を掛けたものであるから, ベクトルの並びによって固有値の順序を自由に設定できる.</p>
+変数変換 <span class="math inline">\(y=V^{-1}x\)</span>, 変数の分割 <span class="math inline">\(y=(y^{fs},y^{fu},y^{b})\in\mathbb{R}^{n_{fs}}\times\mathbb{R}^{n_{fu}}\times\mathbb{R}^{n_{b}}\)</span>, <span class="math inline">\(W^{-1}B=(C_{fs},C_{fu},C_{b})\)</span> を施して <span class="math display" id="eq:bk-init1" id="eq:bk-init" id="eq:bk-yb" id="eq:bk-yfu" id="eq:bk-backward" id="eq:bk-forward">\[
+\begin{bmatrix}I_{n_{fs}}\\
+ &amp; I_{n_{fu}}\\
+ &amp;  &amp; N
+\end{bmatrix}\begin{bmatrix}y_{t+1}^{fs}\\
+y_{t+1}^{fu}\\
+y_{t+1}^{b}
+\end{bmatrix}=\begin{bmatrix}J_{fs}\\
+ &amp; J_{fu}\\
+ &amp;  &amp; I
+\end{bmatrix}\begin{bmatrix}y_{t}^{fs}\\
+y_{t}^{fu}\\
+y_{t}^{b}
+\end{bmatrix}+\begin{bmatrix}C_{fs}\\
+C_{fu}\\
+C_{b}
+\end{bmatrix}u_{t}.
+\]</span> を得る. このシステムを以下のように2つのサブシステムに分解する.
+\begin{align}
+y_{t+1}^{fs} &amp; =J_{fs}y_{t}^{fs}+C_{fs}u_{t}\tag{7.13}\\
+\begin{bmatrix}y_{t}^{fu}\\
+y_{t}^{b}
+\end{bmatrix} &amp; =\begin{bmatrix}J_{fu}^{-1}\\
+ &amp; N
+\end{bmatrix}\begin{bmatrix}y_{t+1}^{fu}\\
+y_{t+1}^{b}
+\end{bmatrix}-\begin{bmatrix}J_{fu}^{-1}C_{fu}\\
+C_{b}
+\end{bmatrix}u_{t}\tag{7.14}\\
+ &amp; =:\hat{J}_{u}y_{t+1}^{u}-D_{u}u_{t}.
+\end{align}
+<p>{[}16ED04{]} の場合と異なり, 式 <a href="section-7.html#eq:bk-backward">(7.14)</a> が不安定な有限固有値に対応するサブシステムを時間反転して付加していることに注意してほしい. <span class="math inline">\((E,A)\)</span> の有限不安定固有値と無限大固有値をいずれも不安定固有値とみなすならば, 前節の結果を応用すれば解軌道が求まることも想像に難くないだろう. ただし, <span class="math inline">\(N\)</span> の非正則性に伴うデリケートな問題が生じることに注意をしておこう. システム<a href="#eq:bk-sys">(<strong>??</strong>)</a> では, 初期値を定めるために後ろ向きのシステムを作ったが, あくまでも順方向に決定されるシステムであり, 再帰的な構造を見つけることができた. しかし, システム <a href="section-7.html#eq:bk-sing">(7.9)</a> には無限大固有値に対応する本質的に非因果的な成分が含まれるので, <span class="math inline">\(\det E=0\)</span> である場合, 一般には再帰的に (因果的に) 記述できるとは限らない.</p>
+</div>
+<div id="section-7.3.2" class="section level3">
+<h3><span class="header-section-number">7.3.2</span> 解の存在と一意性</h3>
+まずは, 式 <a href="section-7.html#eq:bk-backward">(7.14)</a> を解いてみよう.
+\begin{align}
+y_{t}^{fu} &amp; =-\sum_{k=0}^{\infty}J_{fu}^{-k-1}C_{fu}u_{t+k},\tag{7.15}\\
+y_{t}^{b} &amp; =N\left(Ny_{t+2}^{b}-C_{b}u_{t+1}\right)-C_{b}u_{t}\nonumber \\
+ &amp; =N^{n_{b}}y_{t+n_{b}}^{b}-\sum_{k=0}^{n_{b}-1}N^{k}C_{b}u_{t+k}\nonumber \\
+ &amp; =-\sum_{k=0}^{n_{b}-1}N^{k}C_{b}u_{t+k}.\tag{7.16}
+\end{align}
+ここでも, <span class="math inline">\(\lim_{T}\|J_{fu}^{-T}C_{fu}u_{T}\|=0\)</span> と <span class="math inline">\(y_{t}^{fu}\)</span> に現れる級数の収束性が成り立つように <span class="math inline">\(u_{t}\)</span> を制限しているものとする. 初期時点の変数を決定する線形方程式は次式で与えられる.
+\begin{align}
+  \begin{bmatrix}\bar{x}_{0}^{1}\\
+  x_{0}^{2}
+  \end{bmatrix} &amp; =\left[\begin{array}{c|cc}
+  V_{1fs} &amp; V_{1fu} &amp; V_{1b}\\
+  \hline V_{2fs} &amp; V_{2fu} &amp; V_{2b}
+  \end{array}\right]\left[\begin{array}{c}
+  y_{0}^{fs}\\
+  \hline \bar{y}_{0}^{fu}\\
+  \bar{y}_{0}^{b}
+  \end{array}\right].\tag{7.17}\\
+   &amp; =:\left[\begin{array}{c|c}
+  V_{1fs} &amp; V_{1u}\\
+  \hline V_{2fs} &amp; V_{2u}
+  \end{array}\right]\begin{bmatrix}y_{0}^{fs}\\
+  \bar{y}_{0}^{u}
+  \end{bmatrix}
+\end{align}
+すでに決定している変数には上線を付している. 第<a href="section-7.html#blanchard-kahn-case">7.2</a>節のケースと同様に式<a href="section-7.html#eq:bk-init">(7.17)</a>を <span class="math inline">\((y_{0}^{fs},x_{0}^{2})\)</span> について解くことができれば解軌道の存在が示される. 未知変数を左辺に集めると,
+\begin{equation}
+  \begin{bmatrix}V_{1fs} &amp; 0\\
+  V_{2fs} &amp; -I
+  \end{bmatrix}\begin{bmatrix}y_{0}^{fs}\\
+  x_{0}^{2}
+  \end{bmatrix}=\begin{bmatrix}I &amp; -V_{1fu} &amp; -V_{1b}\\
+  0 &amp; -V_{2fu} &amp; -V_{2b}
+  \end{bmatrix}\begin{bmatrix}\bar{x}_{0}^{1}\\
+  \bar{y}_{0}^{fu}\\
+  \bar{y}_{0}^{b}
+  \end{bmatrix}=\begin{bmatrix}I &amp; -V_{1u}\\
+  0 &amp; -V_{2u}
+  \end{bmatrix}\begin{bmatrix}\bar{x}_{0}^{1}\\
+  \bar{y}_{0}^{u}
+  \end{bmatrix}\tag{7.18}
+\end{equation}
+<p>が得られる. 式<a href="section-7.html#eq:bk-init">(7.17)</a> から <a href="section-7.html#eq:bk-init1">(7.18)</a> は <span class="math inline">\(t=0\)</span> について記述しているが, <span class="math inline">\(t=0\)</span> 以外の時点でも同様に成り立つことに注意せよ.</p>
+定理 <a href="section-7.html#thm:blkn">7.3</a> の拡張となる次の結果を得る. 
+<div class="theorem">
+<span id="thm:unnamed-chunk-155" class="theorem"><strong>定理 7.4 </strong></span>システム <a href="section-7.html#eq:bk-sing">(7.9)</a> に関して, <span class="math inline">\(n_{1}=n_{fs}\)</span> かつ <span class="math inline">\(\det V_{1fs}\neq0\)</span> が成り立てば, <span class="math inline">\((y_{0}^{fs},x_{0}^{2})\)</span> および解が一意的に定まる.
+</div>
+<p></p>
+
+<div class="exercise">
+式 <a href="section-7.html#eq:bk-init1">(7.18)</a> を用いて, 解の不存在および不決定性が起こる場合の議論を完成させなさい.
+</div>
+<p></p>
+<p>ここで得られた結果は, 有限不安定固有値と無限大固有値の区別に依存していないことに注意せよ. 無限大固有値を不安定固有値とみなせば Blanchard-Kahn の定理<a href="section-7.html#thm:blkn">7.3</a> の条件とまったく同じものと言ってよい. ただし, 解公式は同じにはならない. 前節の <span class="math inline">\(J_{u}^{-1}\)</span> は可逆 (これは当たり前のことである) であったのに対して, <span class="math inline">\(\det E=0\)</span> の場合 <span class="math inline">\(\hat{J}_{u}\)</span> は可逆ではない. したがって, 前節とは違って後ろ向きの方程式に対応する順方向の方程式は存在せず, 定理 <a href="section-7.html#thm:blkn">7.3</a> の公式は適用できない.</p>
+</div>
+<div id="u-" class="section level3">
+<h3><span class="header-section-number">7.3.3</span> <span class="math inline">\(u\)</span> の特定化</h3>
+<p>一般の <span class="math inline">\(u\)</span> について解を特徴付けようとするとかなり煩雑になるので, <span class="citation">Klein (<a href="#ref-Klein2000">2000</a>)</span> に倣って <span class="math inline">\(u\)</span> に強い条件を課した上で再帰公式を求めよう. <span class="citation">Klein (<a href="#ref-Klein2000">2000</a>)</span> では <span class="math inline">\(u\)</span> が状態方程式 <span class="math display">\[
+u_{t+1}=\Phi u_{t},\quad\Phi\in\mathbb{R}^{m\times m},\quad u_{0}:\text{ given}
+\]</span></p>
+<p>に従うと仮定する.<a href="#fn28" class="footnoteRef" id="fnref28"><sup>28</sup></a> 式 <a href="section-7.html#eq:bk-yfu">(7.15)</a>, <a href="section-7.html#eq:bk-yb">(7.16)</a> を次のように書き換えておく.<a href="#fn29" class="footnoteRef" id="fnref29"><sup>29</sup></a></p>
+<p><span class="math display">\[
+y_{t}^{u}=-\sum_{k=0}^{\infty}\hat{J}_{u}^{k}D_{u}u_{t+k}. 
+\]</span> <span class="math inline">\(u\)</span> に対する仮定から<span class="math inline">\(u_{t+k}=\Phi^{k}u_{t}\)</span>, <span class="math inline">\(k=0,1,\dots\)</span>, が成り立つので, <span class="math display">\[
+\begin{aligned}
+y_{t}^{u} &amp; =-\left(\sum_{k=0}^{\infty}\hat{J}_{u}^{k}D_{u}\Phi^{k}\right)u_{t}.\\
+ &amp; =:Mu_{t}.
+\end{aligned}
+\]</span> 行列<span class="math inline">\(M\)</span>を計算しよう. 簡単な計算から <span class="math display">\[
+M=-\left(\sum_{k=0}^{\infty}\hat{J}_{u}^{k}D_{u}\Phi^{k}\right)=-D_{u}-\sum_{k=1}^{\infty}\hat{J}_{u}^{k}D_{u}\Phi^{k}=-D_{u}-\hat{J}_{u}M\Phi
+\]</span></p>
+<p>が得られ, <span class="math inline">\(M\)</span> は離散時間シルベスタ方程式の解であることが分かる. 定理 <a href="section-7.html#thm:sylv">7.2</a> より, <span class="math display">\[
+\mathrm{vec}(M)=\left[\left(\Phi^{\top}\otimes\hat{J}_{u}\right)-I\right]^{-1}\mathrm{vec}(D_{u}).
+\]</span></p>
+<p>さらに計算を進めよう.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\begin{bmatrix}x_{t+1}^{1}\\
+x_{t+1}^{2}
+\end{bmatrix} &amp; =\begin{bmatrix}V_{1fs} &amp; V_{1u}\\
+V_{2fs} &amp; V_{2u}
+\end{bmatrix}\begin{bmatrix}y_{t+1}^{fs}\\
+y_{t+1}^{u}
+\end{bmatrix}\\
+ &amp; =\begin{bmatrix}V_{1fs} &amp; V_{1u}\\
+V_{2fs} &amp; V_{2u}
+\end{bmatrix}\begin{bmatrix}J_{fs}y_{t}^{fs}+C_{fs}u_{t}\\
+Mu_{t+1}
+\end{bmatrix}\\
+ &amp; =\begin{bmatrix}V_{1fs} &amp; V_{1u}\\
+V_{2fs} &amp; V_{2u}
+\end{bmatrix}\begin{bmatrix}J_{fs}V_{1fs}^{-1}\left(x_{t}^{1}-V_{1u}y_{t}^{u}\right)+C_{fs}u_{t}\\
+Mu_{t+1}
+\end{bmatrix}\\
+ &amp; =\begin{bmatrix}V_{1fs} &amp; V_{1u}\\
+V_{2fs} &amp; V_{2u}
+\end{bmatrix}\begin{bmatrix}J_{fs}V_{1fs}^{-1}x_{t}^{1}+(C_{fs}-J_{fs}V_{1fs}^{-1}V_{1u}M)u_{t}\\
+Mu_{t+1}
+\end{bmatrix}.
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(x_{t+1}^{2}\)</span> には<span class="math inline">\(t\)</span> 期以前の情報が入ってほしくないので, 前節と同様に過去の情報を消去する.</p>
+<p><span class="math display">\[
+\begin{aligned}
+V_{2fs}V_{1fs}^{-1}x_{t+1}^{1} &amp; =V_{2fs}J_{fs}V_{1fs}^{-1}x_{t}^{1}+V_{2fs}(C_{fs}-J_{fs}V_{1fs}^{-1}V_{1u}M)u_{t}+V_{2fs}V_{1fs}^{-1}V_{1u}Mu_{t+1}\\
+x_{t+1}^{2} &amp; =V_{2fs}J_{fs}V_{1fs}^{-1}x_{t}^{1}+V_{2fs}(C_{fs}-J_{fs}V_{1fs}^{-1}V_{1u}M)u_{t}+V_{2u}Mu_{t+1}.
+\end{aligned}
+\]</span> 上式から下式を引いて <span class="math display">\[
+V_{2fs}V_{1fs}^{-1}x_{t+1}^{1}-x_{t+1}^{2}=\left(V_{2fs}V_{1fs}^{-1}V_{1u}-V_{2u}\right)Mu_{t+1}
+\]</span></p>
+<p>を得る. これを <span class="math inline">\(x_{t+1}^{2}\)</span> について解けばよい. したがって, <span class="math display">\[
+\begin{aligned}
+x_{t+1}^{1} &amp; =V_{1fs}J_{fs}V_{1fs}^{-1}x_{t}^{1}+\left[V_{1fs}C_{fs}-V_{1fs}J_{fs}V_{1fs}^{-1}V_{1u}M+V_{1u}M\Phi\right]u_{t}\\
+x_{t}^{2} &amp; =V_{2fs}V_{1fs}^{-1}x_{t}^{1}+\left(V_{2u}-V_{2fs}V_{1fs}^{-1}V_{1u}\right)Mu_{t}.
+\end{aligned}
+\]</span> 随所に <span class="math inline">\(u_{t+1}=\Phi u_{t}\)</span> を用いている. 定理としてまとめよう.</p>
+
+<div class="theorem">
+<span id="thm:bk-summary" class="theorem"><strong>定理 7.5 </strong></span><span class="math inline">\(n_{1}=n_{fs}\)</span> かつ <span class="math inline">\(\det V_{1fs}\neq0\)</span> とする. このとき, <a href="section-7.html#eq:bk-sing">(7.9)</a> の解は一意に定まる. 外生変数 が <span class="math inline">\(u_{t+1}=\Phi u_{t}\)</span> に従うとすれば, <span class="math inline">\(x_{t}\)</span>, <span class="math inline">\(t=0,1,\dots\)</span> , は次式で与えられる. <span class="math display">\[
+\begin{aligned}
+  x_{t+1}^{1} 
+  &amp; =
+    V_{1fs}J_{fs}V_{1fs}^{-1}x_{t}^{1} +     
+    \left[
+      V_{1fs}C_{fs}-V_{1fs}J_{fs}V_{1fs}^{-1}V_{1u}M + 
+      V_{1u}M\Phi
+    \right] u_{t} \\
+  x_{t}^{2} 
+  &amp; =
+    V_{2fs}V_{1fs}^{-1}x_{t}^{1} + 
+    \left(
+      V_{2u}-V_{2fs}V_{1fs}^{-1}V_{1u}
+    \right) Mu_{t}.\\
+  x_{0}^{1} &amp; :\ \text{given}.
+\end{aligned}
+\]</span> ただし<span class="math inline">\(M\)</span>は <span class="math display">\[
+\mathrm{vec}(M)=\left[\left(\Phi^{\top}\otimes\hat{J}_{u}\right)-I\right]^{-1}\mathrm{vec}\left(D_{u}\right)
+\]</span> によって決まる行列.
+</div>
+<p></p>
+
+<div class="exercise">
+定理 <a href="section-7.html#thm:blkn">7.3</a> において <span class="math inline">\(u_{t+1}=\Phi u_{t)\)</span> を仮定したときの解の公式を導出せよ.
+</div>
+<p></p>
+
+</div>
+</div>
+</div>
+<h3>参考文献</h3>
+<div id="refs" class="references">
+<div id="ref-BlanchardKahn1980">
+<p>Blanchard, Olivier Jean, and Charles M. Kahn. 1980. “The Solution of Linear Difference Models Under Rational Expectations.” <em>Econometrica</em> 48 (5): 1305–12.</p>
+</div>
+<div id="ref-Klein2000">
+<p>Klein, Paul. 2000. “Using the Generalized Schur Form to Solve a Multivariate Linear Rational Expectations Model.” <em>Journal of Economic Dynamics &amp; Control</em> 24: 1405–23.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="25">
+<li id="fn25"><p><span class="citation">Klein (<a href="#ref-Klein2000">2000</a>)</span> はQZ分解を用いた解法を提案している. 理論的にはワイエルシュトラス標準形を使う方が綺麗な結果が得られるので, <span class="citation">Klein (<a href="#ref-Klein2000">2000</a>)</span> の方針に沿った上でワイエルシュトラス標準形を使って書き直している.<a href="section-7.html#fnref25">↩</a></p></li>
+<li id="fn26"><p>経済学で forward というと「未来から現在に向かって」という意味で使われるようである. すなわち, 観察している情報が未来（前方）にあることを意識している. しかし, 数学その他の分野で forward というと「現在から過去に向かって」という風に時間がどちらに流れているかを意識して使われるようである. 大変ややこしいが, 本稿では forward というときには「現在から過去に向かって」という意味で「時間の流れ」を意識する数学流の意味とし, 観測している情報が前方にあることを意図する経済学的な forward に対しては forward-looking という形容詞を使って区別する. backward, backward-looking, あるいは日本語の前向き, 後ろ向きについても同様である.<a href="section-7.html#fnref26">↩</a></p></li>
+<li id="fn27"><p><span class="math inline">\(u_{t+k}\)</span> の極限での振る舞いにも仮定を置かなければこの級数が収束しないかもしれない. 簡単のため級数の収束性を保証する条件が置かれているものとしよう.<a href="section-7.html#fnref27">↩</a></p></li>
+<li id="fn28"><p><span class="citation">Klein (<a href="#ref-Klein2000">2000</a>)</span> は確率的なモデルを扱っているが, ここでの取り扱いと実質的には変わらない.<a href="section-7.html#fnref28">↩</a></p></li>
+<li id="fn29"><p>この変形により <span class="math inline">\(y_{t}^{b}\)</span> は有限期先の未来にしか依存しないという情報を捨てている.<a href="section-7.html#fnref29">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="section-6.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="e58f82e88083e69687e78cae.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"lib_dir": "assets",
+"search": true,
+"toolbar": {
+"position": "fixed"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
