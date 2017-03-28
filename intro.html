@@ -26,7 +26,7 @@
 <meta name="author" content="佐藤 健治">
 
 
-<meta name="date" content="2017-03-09">
+<meta name="date" content="2017-03-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -136,7 +136,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.6" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.6"><i class="fa fa-check"></i><b>2.6</b> 共役複素数</a></li>
 <li class="chapter" data-level="2.7" data-path="complexnumbers.html"><a href="complexnumbers.html#complexramsey"><i class="fa fa-check"></i><b>2.7</b> 補遺：ラムゼーモデル</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>3</b> 行列論の基礎</a><ul>
+<li class="chapter" data-level="3" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>3</b> 行列論の復習</a><ul>
 <li class="chapter" data-level="3.1" data-path="matrix.html"><a href="matrix.html#section-3.1"><i class="fa fa-check"></i><b>3.1</b> 行列の形</a></li>
 <li class="chapter" data-level="3.2" data-path="matrix.html"><a href="matrix.html#matrix-operation"><i class="fa fa-check"></i><b>3.2</b> 行列の演算</a></li>
 <li class="chapter" data-level="3.3" data-path="matrix.html"><a href="matrix.html#section-3.3"><i class="fa fa-check"></i><b>3.3</b> 線形方程式</a><ul>
@@ -146,7 +146,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.3.4" data-path="matrix.html"><a href="matrix.html#section-3.3.4"><i class="fa fa-check"></i><b>3.3.4</b> 初等変形</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="eigen.html"><a href="eigen.html"><i class="fa fa-check"></i><b>4</b> 固有値</a><ul>
+<li class="chapter" data-level="4" data-path="eigen.html"><a href="eigen.html"><i class="fa fa-check"></i><b>4</b> 行列の固有値</a><ul>
 <li class="chapter" data-level="4.1" data-path="eigen.html"><a href="eigen.html#section-4.1"><i class="fa fa-check"></i><b>4.1</b> 行列式</a><ul>
 <li class="chapter" data-level="4.1.1" data-path="eigen.html"><a href="eigen.html#section-4.1.1"><i class="fa fa-check"></i><b>4.1.1</b> 置換</a></li>
 <li class="chapter" data-level="4.1.2" data-path="eigen.html"><a href="eigen.html#section-4.1.2"><i class="fa fa-check"></i><b>4.1.2</b> 行列式の定義</a></li>
@@ -162,7 +162,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.4" data-path="eigen.html"><a href="eigen.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 線形動学方程式と固有値</a></li>
 <li class="chapter" data-level="4.5" data-path="eigen.html"><a href="eigen.html#section-4.5"><i class="fa fa-check"></i><b>4.5</b> ラムゼーモデルと固有値</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="linspace.html"><a href="linspace.html"><i class="fa fa-check"></i><b>5</b> 線形空間論</a><ul>
+<li class="chapter" data-level="5" data-path="linspace.html"><a href="linspace.html"><i class="fa fa-check"></i><b>5</b> 線形空間論の基礎</a><ul>
 <li class="chapter" data-level="5.1" data-path="linspace.html"><a href="linspace.html#linspace-definition"><i class="fa fa-check"></i><b>5.1</b> 線形空間</a></li>
 <li class="chapter" data-level="5.2" data-path="linspace.html"><a href="linspace.html#linspace-subspace"><i class="fa fa-check"></i><b>5.2</b> 線形部分空間</a></li>
 <li class="chapter" data-level="5.3" data-path="linspace.html"><a href="linspace.html#linspace-independence"><i class="fa fa-check"></i><b>5.3</b> 1次独立性</a></li>
@@ -306,7 +306,7 @@ x_{n+1} = G(x_t, z_t)
 </ol>
 <p><span class="math inline">\(A\)</span> が正則のケースでは <a href="#eq:lsys">(<strong>??</strong>)</a> は</p>
 \begin{equation}
-  x_{t+1} = A^{-1}Bx_t + A^{-1}Cz_t (\#eq:lsys)
+  x_{t+1} = A^{-1}Bx_t + A^{-1}Cz_t (\#eq:lsys2)
 \end{equation}
 <p>と同値であるから（<span class="math inline">\(A^{-1}\)</span> は <span class="math inline">\(A\)</span> の逆行列）， 標準的な線形システム (状態空間方程式) と形式的には同じものである。</p>
 <p>続いて，<span class="math inline">\(A\)</span> が非正則のケースを扱う。上記の <a href="#eq:lsys">(<strong>??</strong>)</a> は， 制御理論の分野でデスクリプタシステム（descriptor system）， あるいは陰的システム（implicit system）として知られている対象である。 この分野で研究を進めようという人は， 同じ概念が異なる分野で異なる名前で利用されていることを知っておく方がよいだろう。</p>
@@ -314,7 +314,7 @@ x_{n+1} = G(x_t, z_t)
 </div>
 <div id="intro-control-theory" class="section level3">
 <h3><span class="header-section-number">1.2.2</span> 制御理論との違い</h3>
-<p>ただし経済学と制御理論の扱う対象が完全に同じだという訳ではない。経済モデルは， <span class="math inline">\(A\)</span>が正則であったとしても forward-looking（非因果的）な現象を表すように作られている。</p>
+<p>経済学と制御理論の扱う対象にはわずかながら違いがある。 制御理論では，制御変数を導入しなくても勝手に動作している対象を扱う一方で，経済理論では制御変数（例えば消費）は分析対象のモデルを構成する要素の一部である。したがって，経済モデルは <span class="math inline">\(A\)</span>が正則であったとしても forward-looking（非因果的）な現象を表すように作られている。</p>
 <p>力学系理論や制御理論で式<a href="#eq:lsys">(<strong>??</strong>)</a>のようなシステムを扱うときには， 通常 <span class="math inline">\(x\)</span> と同じ数だけの初期条件 (initial codition) を与える。 そのようなケースでは初期条件から出発してシステムの解を逐次的に求めることができるから， 解を求める上で特段の難しさはない。一方，経済学における forward-looking の表現は， システム方程式<a href="#eq:lsys">(<strong>??</strong>)</a>とは独立している。 すなわち，変数（ベクトル） <span class="math inline">\(x\)</span> の一部の要素に初期条件が与えられて， 残りの要素には初期条件が与えられないという形で forward-looking を扱う。 初期条件を持つ成分を<strong>先決成分 (predetermined component)</strong> とか<strong>先決変数 (predetermined variable)</strong>と呼ぶ。 初期条件を持たない成分を<strong>非先決成分 (non-predetermined component)</strong> とか<strong>非先決変数 (non-predetermined variable)</strong> と呼ぶ<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>。</p>
 <p>例えば, 株式保有量を<span class="math inline">\(a\)</span>，株価を<span class="math inline">\(p\)</span>，株価に対する外的な影響を<span class="math inline">\(u\)</span>として， ベクトル <span class="math inline">\((a, p)\)</span> が次の動学方程式を満たすというモデルを作ったとしよう。</p>
 <p><span class="math display">\[
@@ -487,7 +487,7 @@ z =<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</spa
 ## 1     1     a  TRUE
 ## 2     2     b  TRUE
 ## 3     3     c FALSE</code></pre>
-<p>base のデータフレームと比べて, tibble は次の点で扱いやすい.</p>
+<p><strong>base</strong> のデータフレームと比べて, <strong>tibble</strong> は次の点で扱いやすい.</p>
 <ul>
 <li>データのサイズを表示してくれる</li>
 <li>コラムの型情報を表示する (<code>&lt;dbl&gt;</code>, <code>&lt;chr&gt;</code>, <code>&lt;lgl&gt;</code>)</li>

@@ -26,7 +26,7 @@
 <meta name="author" content="佐藤 健治">
 
 
-<meta name="date" content="2017-03-09">
+<meta name="date" content="2017-03-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -136,7 +136,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.6" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.6"><i class="fa fa-check"></i><b>2.6</b> 共役複素数</a></li>
 <li class="chapter" data-level="2.7" data-path="complexnumbers.html"><a href="complexnumbers.html#complexramsey"><i class="fa fa-check"></i><b>2.7</b> 補遺：ラムゼーモデル</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>3</b> 行列論の基礎</a><ul>
+<li class="chapter" data-level="3" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>3</b> 行列論の復習</a><ul>
 <li class="chapter" data-level="3.1" data-path="matrix.html"><a href="matrix.html#section-3.1"><i class="fa fa-check"></i><b>3.1</b> 行列の形</a></li>
 <li class="chapter" data-level="3.2" data-path="matrix.html"><a href="matrix.html#matrix-operation"><i class="fa fa-check"></i><b>3.2</b> 行列の演算</a></li>
 <li class="chapter" data-level="3.3" data-path="matrix.html"><a href="matrix.html#section-3.3"><i class="fa fa-check"></i><b>3.3</b> 線形方程式</a><ul>
@@ -146,7 +146,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.3.4" data-path="matrix.html"><a href="matrix.html#section-3.3.4"><i class="fa fa-check"></i><b>3.3.4</b> 初等変形</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="eigen.html"><a href="eigen.html"><i class="fa fa-check"></i><b>4</b> 固有値</a><ul>
+<li class="chapter" data-level="4" data-path="eigen.html"><a href="eigen.html"><i class="fa fa-check"></i><b>4</b> 行列の固有値</a><ul>
 <li class="chapter" data-level="4.1" data-path="eigen.html"><a href="eigen.html#section-4.1"><i class="fa fa-check"></i><b>4.1</b> 行列式</a><ul>
 <li class="chapter" data-level="4.1.1" data-path="eigen.html"><a href="eigen.html#section-4.1.1"><i class="fa fa-check"></i><b>4.1.1</b> 置換</a></li>
 <li class="chapter" data-level="4.1.2" data-path="eigen.html"><a href="eigen.html#section-4.1.2"><i class="fa fa-check"></i><b>4.1.2</b> 行列式の定義</a></li>
@@ -162,7 +162,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.4" data-path="eigen.html"><a href="eigen.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 線形動学方程式と固有値</a></li>
 <li class="chapter" data-level="4.5" data-path="eigen.html"><a href="eigen.html#section-4.5"><i class="fa fa-check"></i><b>4.5</b> ラムゼーモデルと固有値</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="linspace.html"><a href="linspace.html"><i class="fa fa-check"></i><b>5</b> 線形空間論</a><ul>
+<li class="chapter" data-level="5" data-path="linspace.html"><a href="linspace.html"><i class="fa fa-check"></i><b>5</b> 線形空間論の基礎</a><ul>
 <li class="chapter" data-level="5.1" data-path="linspace.html"><a href="linspace.html#linspace-definition"><i class="fa fa-check"></i><b>5.1</b> 線形空間</a></li>
 <li class="chapter" data-level="5.2" data-path="linspace.html"><a href="linspace.html#linspace-subspace"><i class="fa fa-check"></i><b>5.2</b> 線形部分空間</a></li>
 <li class="chapter" data-level="5.3" data-path="linspace.html"><a href="linspace.html#linspace-independence"><i class="fa fa-check"></i><b>5.3</b> 1次独立性</a></li>
@@ -367,17 +367,19 @@ z +<span class="st"> </span>w </code></pre></div>
 <p>まず実部と虚部を分けてデータフレームに保存しておく。base R の <code>data.frame()</code> ではなく <code>tidyverse</code> パッケージ (<code>tibble</code> パッケージ) の <code>tibble()</code> を用いる。本書では tibble データフレーム（tbl_df）もデータフレームと呼ぶ。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">points =<span class="st"> </span>
 <span class="st">  </span><span class="kw">tibble</span>(<span class="dt">z =</span> <span class="kw">c</span>(z, w, z /<span class="st"> </span>w)) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">re =</span> <span class="kw">Re</span>(z), <span class="dt">im =</span> <span class="kw">Im</span>(z))
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Re =</span> <span class="kw">Re</span>(z), <span class="dt">Im =</span> <span class="kw">Im</span>(z))
 points</code></pre></div>
 <pre><code>## # A tibble: 3 × 3
-##            z    re    im
+##            z    Re    Im
 ##       &lt;cplx&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1 5.00+1.00i  5.00  1.00
 ## 2 4.00-3.00i  4.00 -3.00
 ## 3 0.68+0.76i  0.68  0.76</code></pre>
 <p>今作ったデータフレームの <code>re</code> 列を横軸に，<code>im</code> 列を縦軸にプロットすればよい。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(points) +<span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>re, <span class="dt">y=</span>im, <span class="dt">color=</span><span class="kw">factor</span>(z))) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">coord_fixed</span>() +<span class="st"> </span><span class="kw">xlim</span>(-<span class="dv">5</span>, <span class="dv">5</span>) +<span class="st"> </span><span class="kw">ylim</span>(-<span class="dv">5</span>, <span class="dv">5</span>) <span class="co"># この行は装飾</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(points) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Re, <span class="dt">y =</span> Im, <span class="dt">color =</span> <span class="kw">factor</span>(z))) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">coord_fixed</span>() +<span class="st"> </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;z&quot;</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">xlim</span>(-<span class="dv">5</span>, <span class="dv">5</span>) +<span class="st"> </span><span class="kw">ylim</span>(-<span class="dv">5</span>, <span class="dv">5</span>) <span class="co"># この行は装飾</span></code></pre></div>
 <p><img src="linear-economic-dynamics_files/figure-html/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="e381b9e3818de4b997" class="section level4 unnumbered">
@@ -386,14 +388,15 @@ points</code></pre></div>
   z_p = 0.5 + 0.5i
 \]</span> として，<span class="math inline">\(z_p^n\)</span> を計算する。ただし，<span class="math inline">\(z_p^n\)</span> は <span class="math inline">\(z_p\)</span> のべき乗で，実数と同様 <span class="math inline">\(z_p^0 = 1\)</span>，<span class="math inline">\(z_p^n = z_p z_p^{n-1}\)</span>，<span class="math inline">\(n &gt; 1\)</span> と定義する<a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a>。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">zp =<span class="st"> </span><span class="fl">0.5</span> +<span class="st"> </span><span class="fl">0.</span>5i
-zn =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">re =</span> <span class="kw">Re</span>(<span class="dv">1</span>), <span class="dt">im =</span> <span class="kw">Im</span>(<span class="dv">1</span>), <span class="dt">n =</span> <span class="dv">0</span>)
+zn =<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">Re =</span> <span class="kw">Re</span>(<span class="dv">1</span>), <span class="dt">Im =</span> <span class="kw">Im</span>(<span class="dv">1</span>), <span class="dt">n =</span> <span class="dv">0</span>)
 
 for (i in <span class="dv">1</span>:<span class="dv">10</span>) {
-  zn =<span class="st"> </span>zn %&gt;%<span class="st"> </span><span class="kw">add_row</span>(<span class="dt">re =</span> <span class="kw">Re</span>(zp ^<span class="st"> </span>i), <span class="dt">im =</span> <span class="kw">Im</span>(zp ^<span class="st"> </span>i), <span class="dt">n =</span> i)
+  zn =<span class="st"> </span>zn %&gt;%<span class="st"> </span><span class="kw">add_row</span>(<span class="dt">Re =</span> <span class="kw">Re</span>(zp ^<span class="st"> </span>i), <span class="dt">Im =</span> <span class="kw">Im</span>(zp ^<span class="st"> </span>i), <span class="dt">n =</span> i)
 }
 
-<span class="kw">ggplot</span>(zn) +<span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>re, <span class="dt">y=</span>im, <span class="dt">color=</span><span class="kw">factor</span>(n))) +<span class="st"> </span>
-<span class="st">  </span><span class="kw">coord_fixed</span>() +<span class="st"> </span><span class="kw">xlim</span>(-<span class="fl">1.02</span>, <span class="fl">1.02</span>) +<span class="st"> </span><span class="kw">ylim</span>(-<span class="fl">1.02</span>, <span class="fl">1.02</span>)</code></pre></div>
+<span class="kw">ggplot</span>(zn) +<span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Re, <span class="dt">y =</span> Im, <span class="dt">color =</span> <span class="kw">factor</span>(n))) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">color =</span> <span class="st">&quot;Power&quot;</span>) +<span class="st"> </span><span class="kw">coord_fixed</span>() +<span class="st"> </span>
+<span class="st">  </span><span class="kw">xlim</span>(-<span class="fl">1.02</span>, <span class="fl">1.02</span>) +<span class="st"> </span><span class="kw">ylim</span>(-<span class="fl">1.02</span>, <span class="fl">1.02</span>)</code></pre></div>
 <p><img src="linear-economic-dynamics_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><span class="math inline">\(1\)</span> に <span class="math inline">\(0.5 + 0.5i\)</span> を繰り返し掛けると次第に原点に近づいていくことが分かる。これは，実部・虚部ともに <span class="math inline">\(0.5\)</span> という比較的小さな数字だから成り立ちそうな気がする。実数の場合，<span class="math inline">\(\lim_{n\to \infty} a^n = 0\)</span> となるのは，<span class="math inline">\(-1 &lt; a &lt; 1\)</span> の場合ということを思いだしてほしい。複素数の場合には，実部・虚部のそれぞれが<span class="math inline">\(1\)</span> より小さい絶対値を持てば原点に収束するだろうか？</p>
 <p>例えば次の例を考えてみよう。 <span class="math display">\[

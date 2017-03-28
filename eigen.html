@@ -26,7 +26,7 @@
 <meta name="author" content="佐藤 健治">
 
 
-<meta name="date" content="2017-03-09">
+<meta name="date" content="2017-03-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -136,7 +136,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.6" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.6"><i class="fa fa-check"></i><b>2.6</b> 共役複素数</a></li>
 <li class="chapter" data-level="2.7" data-path="complexnumbers.html"><a href="complexnumbers.html#complexramsey"><i class="fa fa-check"></i><b>2.7</b> 補遺：ラムゼーモデル</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>3</b> 行列論の基礎</a><ul>
+<li class="chapter" data-level="3" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>3</b> 行列論の復習</a><ul>
 <li class="chapter" data-level="3.1" data-path="matrix.html"><a href="matrix.html#section-3.1"><i class="fa fa-check"></i><b>3.1</b> 行列の形</a></li>
 <li class="chapter" data-level="3.2" data-path="matrix.html"><a href="matrix.html#matrix-operation"><i class="fa fa-check"></i><b>3.2</b> 行列の演算</a></li>
 <li class="chapter" data-level="3.3" data-path="matrix.html"><a href="matrix.html#section-3.3"><i class="fa fa-check"></i><b>3.3</b> 線形方程式</a><ul>
@@ -146,7 +146,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.3.4" data-path="matrix.html"><a href="matrix.html#section-3.3.4"><i class="fa fa-check"></i><b>3.3.4</b> 初等変形</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="eigen.html"><a href="eigen.html"><i class="fa fa-check"></i><b>4</b> 固有値</a><ul>
+<li class="chapter" data-level="4" data-path="eigen.html"><a href="eigen.html"><i class="fa fa-check"></i><b>4</b> 行列の固有値</a><ul>
 <li class="chapter" data-level="4.1" data-path="eigen.html"><a href="eigen.html#section-4.1"><i class="fa fa-check"></i><b>4.1</b> 行列式</a><ul>
 <li class="chapter" data-level="4.1.1" data-path="eigen.html"><a href="eigen.html#section-4.1.1"><i class="fa fa-check"></i><b>4.1.1</b> 置換</a></li>
 <li class="chapter" data-level="4.1.2" data-path="eigen.html"><a href="eigen.html#section-4.1.2"><i class="fa fa-check"></i><b>4.1.2</b> 行列式の定義</a></li>
@@ -162,7 +162,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.4" data-path="eigen.html"><a href="eigen.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 線形動学方程式と固有値</a></li>
 <li class="chapter" data-level="4.5" data-path="eigen.html"><a href="eigen.html#section-4.5"><i class="fa fa-check"></i><b>4.5</b> ラムゼーモデルと固有値</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="linspace.html"><a href="linspace.html"><i class="fa fa-check"></i><b>5</b> 線形空間論</a><ul>
+<li class="chapter" data-level="5" data-path="linspace.html"><a href="linspace.html"><i class="fa fa-check"></i><b>5</b> 線形空間論の基礎</a><ul>
 <li class="chapter" data-level="5.1" data-path="linspace.html"><a href="linspace.html#linspace-definition"><i class="fa fa-check"></i><b>5.1</b> 線形空間</a></li>
 <li class="chapter" data-level="5.2" data-path="linspace.html"><a href="linspace.html#linspace-subspace"><i class="fa fa-check"></i><b>5.2</b> 線形部分空間</a></li>
 <li class="chapter" data-level="5.3" data-path="linspace.html"><a href="linspace.html#linspace-independence"><i class="fa fa-check"></i><b>5.3</b> 1次独立性</a></li>
@@ -230,7 +230,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="eigen" class="section level1">
-<h1><span class="header-section-number">第4章</span> 固有値</h1>
+<h1><span class="header-section-number">第4章</span> 行列の固有値</h1>
 <p>本章では，行列の固有値に関して復習する。</p>
 <div id="section-4.1" class="section level2">
 <h2><span class="header-section-number">4.1</span> 行列式</h2>
@@ -686,7 +686,7 @@ D^t =
               &amp;        &amp; \lambda_n^t
 \end{bmatrix}, \qquad t = 0,1,\dots
 \]</span> が成り立つ。<span class="math inline">\(A^t = (VDV^{-1})^t= VD^tV^{-1}\)</span> により, 固有値を用いて<span class="math inline">\(x_t\)</span> の振る舞いを分析できる。</p>
-<p>固有値がすべて複素平面上の単位円の内側にあれば，原点は大域的に漸近安定である。 線形システムは安定であり，任意の初期値 <span class="math inline">\(x_0\)</span> に対して <span class="math inline">\(\lim_{t\to\infty} x_t \to 0\)</span> が成り立つ。すべての固有値が単位円の外側にあれば， 任意の初期値<span class="math inline">\(x_0 \neq 0\)</span> に対して，<span class="math inline">\(x_t\)</span> は発散する。すなわち，<span class="math inline">\(\| x_t \| \to \infty\)</span> が成り立つ<a href="#fn19" class="footnoteRef" id="fnref19"><sup>19</sup></a>。 このような挙動を指してシステムが<strong>反安定 antistable</strong>であると呼ぼう。</p>
+<p>固有値がすべて複素平面上の単位円の内側にあれば，原点は大域的に漸近安定である。 線形システムは安定であり，任意の初期値 <span class="math inline">\(x_0 \in \mathbb R^n\)</span> に対して <span class="math inline">\(\lim_{t\to\infty} x_t \to 0\)</span> が成り立つ。すべての固有値が単位円の外側にあれば， 任意の初期値<span class="math inline">\(x_0 \neq 0\)</span> に対して，<span class="math inline">\(x_t\)</span> は発散する。すなわち，<span class="math inline">\(\| x_t \| \to \infty\)</span> が成り立つ<a href="#fn19" class="footnoteRef" id="fnref19"><sup>19</sup></a>。 このような挙動を指してシステムが<strong>反安定 antistable</strong>であると呼ぼう。</p>
 <p>絶対値が1より小さい固有値を<strong>安定固有値（stable eigenvalue）</strong>, 1より大きい固有値を<strong>不安定固有値（unstable eigenvalue）</strong>と呼ぶ。 （ただし，この呼び方は離散時間システムを考えている限りにおいてのみ意味がある。 連続時間システムでは別の条件によって安定性が特徴付けられる。）</p>
 <p>経済学においては，固有値のいくつかが安定であり， 残りが不安定であるというのが典型的である。このような原点を<strong>鞍点（saddle）</strong>， システムの鞍点周りの挙動を鞍点安定（saddle-point stability）と呼んでいる。 力学系の理論では，通常，不安定性の一種として扱われることが多いのだが， 経済学ではすべての初期条件が与えられていない問題を考えるという事情によって 鞍点安定なシステムにおける収束経路に重要な解釈を与えている。 すなわち，発散する経路ではなく原点に収束していく経路が経済主体の意思決定によって選ばれるのである。これを仮定することもあれば，モデルの解が満たす条件として得られるケースもある。</p>
 <p>実際には反安定となるケースもあるにはあるのだが，鞍点の方が発生しやすい。 ラムゼーモデルを通して観察してみよう。</p>

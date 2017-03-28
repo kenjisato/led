@@ -26,7 +26,7 @@
 <meta name="author" content="佐藤 健治">
 
 
-<meta name="date" content="2017-03-09">
+<meta name="date" content="2017-03-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -136,7 +136,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.6" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.6"><i class="fa fa-check"></i><b>2.6</b> 共役複素数</a></li>
 <li class="chapter" data-level="2.7" data-path="complexnumbers.html"><a href="complexnumbers.html#complexramsey"><i class="fa fa-check"></i><b>2.7</b> 補遺：ラムゼーモデル</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>3</b> 行列論の基礎</a><ul>
+<li class="chapter" data-level="3" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>3</b> 行列論の復習</a><ul>
 <li class="chapter" data-level="3.1" data-path="matrix.html"><a href="matrix.html#section-3.1"><i class="fa fa-check"></i><b>3.1</b> 行列の形</a></li>
 <li class="chapter" data-level="3.2" data-path="matrix.html"><a href="matrix.html#matrix-operation"><i class="fa fa-check"></i><b>3.2</b> 行列の演算</a></li>
 <li class="chapter" data-level="3.3" data-path="matrix.html"><a href="matrix.html#section-3.3"><i class="fa fa-check"></i><b>3.3</b> 線形方程式</a><ul>
@@ -146,7 +146,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.3.4" data-path="matrix.html"><a href="matrix.html#section-3.3.4"><i class="fa fa-check"></i><b>3.3.4</b> 初等変形</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="eigen.html"><a href="eigen.html"><i class="fa fa-check"></i><b>4</b> 固有値</a><ul>
+<li class="chapter" data-level="4" data-path="eigen.html"><a href="eigen.html"><i class="fa fa-check"></i><b>4</b> 行列の固有値</a><ul>
 <li class="chapter" data-level="4.1" data-path="eigen.html"><a href="eigen.html#section-4.1"><i class="fa fa-check"></i><b>4.1</b> 行列式</a><ul>
 <li class="chapter" data-level="4.1.1" data-path="eigen.html"><a href="eigen.html#section-4.1.1"><i class="fa fa-check"></i><b>4.1.1</b> 置換</a></li>
 <li class="chapter" data-level="4.1.2" data-path="eigen.html"><a href="eigen.html#section-4.1.2"><i class="fa fa-check"></i><b>4.1.2</b> 行列式の定義</a></li>
@@ -162,7 +162,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.4" data-path="eigen.html"><a href="eigen.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 線形動学方程式と固有値</a></li>
 <li class="chapter" data-level="4.5" data-path="eigen.html"><a href="eigen.html#section-4.5"><i class="fa fa-check"></i><b>4.5</b> ラムゼーモデルと固有値</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="linspace.html"><a href="linspace.html"><i class="fa fa-check"></i><b>5</b> 線形空間論</a><ul>
+<li class="chapter" data-level="5" data-path="linspace.html"><a href="linspace.html"><i class="fa fa-check"></i><b>5</b> 線形空間論の基礎</a><ul>
 <li class="chapter" data-level="5.1" data-path="linspace.html"><a href="linspace.html#linspace-definition"><i class="fa fa-check"></i><b>5.1</b> 線形空間</a></li>
 <li class="chapter" data-level="5.2" data-path="linspace.html"><a href="linspace.html#linspace-subspace"><i class="fa fa-check"></i><b>5.2</b> 線形部分空間</a></li>
 <li class="chapter" data-level="5.3" data-path="linspace.html"><a href="linspace.html#linspace-independence"><i class="fa fa-check"></i><b>5.3</b> 1次独立性</a></li>
@@ -525,7 +525,7 @@ J_{u}y_{t}^{u}
 P_{2s}J_{s}P_{1s}^{-1}x_{t}^{1}+(P_{2u}J_{u}-P_{2s}J_{s}P_{1s}^{-1}P_{1u})y_{t}^{u}
 \end{bmatrix}+Bu_{t}.\tag{7.8}
 \end{align}
-<p><span class="math inline">\(y_{t}^{u}\)</span> は式<a href="section-7.html#eq:bk-yu">(7.3)</a> によって決定していることに注意せよ. なお, 式<a href="#eq:recur">(<strong>??</strong>)</a> には <span class="math inline">\(x^{2}\)</span> が過去の情報に依存して決まっているという問題がある. <span class="math inline">\(x^{2}\)</span> は初期条件が与えられない変数なので, 同時点の <span class="math inline">\(x^{1}\)</span>, <span class="math inline">\(u\)</span> および未来の <span class="math inline">\(u\)</span> にのみ依存する形で記述できなければならない.</p>
+<p><span class="math inline">\(y_{t}^{u}\)</span> は式<a href="section-7.html#eq:bk-yu">(7.3)</a> によって決定していることに注意せよ. なお, 式<a href="section-7.html#eq:bk-recur">(7.8)</a> には <span class="math inline">\(x^{2}\)</span> が過去の情報に依存して決まっているという問題がある. <span class="math inline">\(x^{2}\)</span> は初期条件が与えられない変数なので, 同時点の <span class="math inline">\(x^{1}\)</span>, <span class="math inline">\(u\)</span> および未来の <span class="math inline">\(u\)</span> にのみ依存する形で記述できなければならない.</p>
 <p><a href="mailto:少し計算を進めて@BlanchardKahn1980">少し計算を進めて@BlanchardKahn1980</a> の再帰公式 (p. 1308 (2), (3)式) を導出しよう. 彼らのモデルは確率的なモデルであるが, われわれの決定論モデルでも解の構造はまったく変わらない.</p>
 <p>式<a href="section-7.html#eq:bk-recur">(7.8)</a> を使って, <span class="math inline">\(x_{t}^{1}\)</span> を消去する. <span class="math inline">\(x_{t}^{1}\)</span> の係数行列をそろえて</p>
 <span class="math display">\[
@@ -561,7 +561,7 @@ x_{0}^{1} &amp; :\ \text{given.}
 <div id="e59bb3e8a7a3" class="section level3 unnumbered">
 <h3>図解</h3>
 <p>2次元の場合に Blanchard-Kahn の定理を図解しよう.</p>
-<p>図<a href="#bk-beforetransformation"><strong>??</strong></a> はジョルダン標準形に変換する前の座標系を表している. 初期時点 <span class="math inline">\(t=0\)</span> で <span class="math inline">\(x\)</span> が取りうる範囲は赤線で表された直線である. 1次元の自由度が与えられているのは, <span class="math inline">\(x_{0}^{1}\)</span> が固定されている一方で, <span class="math inline">\(x_{0}^{2}\)</span> が未知であることを反映している.</p>
+<p>図<a href="section-7.html#fig:bk-beforetransformation">7.1</a> はジョルダン標準形に変換する前の座標系を表している. 初期時点 <span class="math inline">\(t=0\)</span> で <span class="math inline">\(x\)</span> が取りうる範囲は赤線で表された直線である. 1次元の自由度が与えられているのは, <span class="math inline">\(x_{0}^{1}\)</span> が固定されている一方で, <span class="math inline">\(x_{0}^{2}\)</span> が未知であることを反映している.</p>
 <div class="figure" style="text-align: center"><span id="fig:bk-beforetransformation"></span>
 <img src="figures/10-blanchardkahn/10-blanchardkahn.001.jpeg" alt="変換前の直交座標系. \(x_{0}^{1}\) だけが所与であり, \((x_{0}^{1},x_{0}^{2})\)は赤色実線上のどこかにある."  />
 <p class="caption">
@@ -577,9 +577,9 @@ x_{0}^{1} &amp; :\ \text{given.}
 </p>
 </div>
 
-<p>式 <a href="section-7.html#eq:bk-yu">(7.3)</a> は不安定固有値に対応する固有空間 (<span class="math inline">\(y_{u}\)</span> 軸) に沿って後ろ向きに <span class="math inline">\(y_{0}^{u}\)</span> を見つける手続きである. 将来にわたって <span class="math inline">\(u\)</span> が決定していれば, <span class="math inline">\(t=\infty\)</span> から <span class="math inline">\(t=0\)</span> まで時間を逆向きに解いて <span class="math inline">\(y_{0}^{u}\)</span> を決めることができる. この時点ではまだ <span class="math inline">\(y_{0}^{s}\)</span> が決定しないので, <span class="math inline">\((y_{0}^{s},y_{0}^{u})\)</span> は <span class="math inline">\((0,y_{0}^{u})\)</span> を通り <span class="math inline">\(y^{s}\)</span> 軸と平行な直線上にある. 図<a href="#fig:bk-init-manifold"><strong>??</strong></a> の青色実線を参照せよ. この直線は安定行列 <span class="math inline">\(J_{u}^{-1}\)</span> によって特徴づけられる時間反転システムの極限を集めたものである.</p>
+<p>式 <a href="section-7.html#eq:bk-yu">(7.3)</a> は不安定固有値に対応する固有空間 (<span class="math inline">\(y_{u}\)</span> 軸) に沿って後ろ向きに <span class="math inline">\(y_{0}^{u}\)</span> を見つける手続きである. 将来にわたって <span class="math inline">\(u\)</span> が決定していれば, <span class="math inline">\(t=\infty\)</span> から <span class="math inline">\(t=0\)</span> まで時間を逆向きに解いて <span class="math inline">\(y_{0}^{u}\)</span> を決めることができる. この時点ではまだ <span class="math inline">\(y_{0}^{s}\)</span> が決定しないので, <span class="math inline">\((y_{0}^{s},y_{0}^{u})\)</span> は <span class="math inline">\((0,y_{0}^{u})\)</span> を通り <span class="math inline">\(y^{s}\)</span> 軸と平行な直線上にある. 図<a href="section-7.html#fig:bk-init-manifold">7.3</a> の青色実線を参照せよ. この直線は安定行列 <span class="math inline">\(J_{u}^{-1}\)</span> によって特徴づけられる時間反転システムの極限を集めたものである.</p>
 <p>直交座標の <span class="math inline">\((x_{0}^{1},x_{0}^{2})\)</span> と斜交座標の<span class="math inline">\((y_{0}^{s},y_{0}^{u})\)</span> が同じ点を表す場合に限り, それらは式<a href="#eq:bk-sys">(<strong>??</strong>)</a> の<span class="math inline">\(t=0\)</span> における値として適切に選ばれていると言ってよい. 一方を他方の座標系で表して一致することを確かめればよいので, 式<a href="section-7.html#eq:bk-7">(7.5)</a>, <a href="section-7.html#eq:bk-9">(7.6)</a> を解けばよいことが分かるだろう. もちろんこれは <a href="section-7.html#eq:bk-det0">(7.7)</a> と同値である. 解の一意決定性のための条件は, 赤線と青線の交点が一意に存在するための条件に外ならない (図???). なお, <span class="math inline">\(P_{1s}\)</span> の正則性は赤色の実線と青色の実線が平行にならないことを保証している.</p>
-<div class="figure" style="text-align: center"><span id="fig:bk-initmanifold"></span>
+<div class="figure" style="text-align: center"><span id="fig:bk-init-manifold"></span>
 <img src="figures/10-blanchardkahn/10-blanchardkahn.003.jpeg" alt="安定な後ろ向き (forward-looking) サブシステム \(y_{t}^{u}=J_{u}^{-1}y_{t+1}^{u}-J_{u}^{-1}C_{u}u_{t}\) の 極限 (\(t=0\))で \(y_{0}^{u}\) が決まる."  />
 <p class="caption">
 図 7.3: 安定な後ろ向き (forward-looking) サブシステム <span class="math inline">\(y_{t}^{u}=J_{u}^{-1}y_{t+1}^{u}-J_{u}^{-1}C_{u}u_{t}\)</span> の 極限 (<span class="math inline">\(t=0\)</span>)で <span class="math inline">\(y_{0}^{u}\)</span> が決まる.
@@ -817,7 +817,7 @@ x_{t}^{2} &amp; =V_{2fs}V_{1fs}^{-1}x_{t}^{1}+\left(V_{2u}-V_{2fs}V_{1fs}^{-1}V_
 <p></p>
 
 <div class="exercise">
-定理 <a href="section-7.html#thm:blkn">7.3</a> において <span class="math inline">\(u_{t+1}=\Phi u_{t)\)</span> を仮定したときの解の公式を導出せよ.
+定理 <a href="section-7.html#thm:blkn">7.3</a> において <span class="math inline">\(u_{t+1}=\Phi u_{t}\)</span> を仮定したときの解の公式を導出せよ.
 </div>
 <p></p>
 
