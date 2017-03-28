@@ -329,22 +329,22 @@ ABC_{q}
 <div id="blanchard-kahn-case" class="section level2">
 <h2><span class="header-section-number">7.2</span> <span class="math inline">\(E=I\)</span> のケース</h2>
 無限期間のシステム方程式 <span class="math inline">\(Ex_{t+1}=Ax_{t}+Bu_{t}\)</span> において <span class="math inline">\(E=I\)</span> なるケースを考える. すなわち,
-\begin{equation}
-  x_{t+1}=Ax_{t}+Bu_{t},\quad t=0,1,\dots,(\#eq:bk-sys)
-\end{equation}
+<span class="math display" id="eq:bk-sys">\[\begin{equation}
+  x_{t+1}=Ax_{t}+Bu_{t},\quad t=0,1,\dots,\tag{7.1}
+\end{equation}\]</span>
 各ベクトルと行列のサイズは <span class="math inline">\(x\in\mathbb{R}^{n}\)</span>, <span class="math inline">\(u\in\mathbb{R}^{m}\)</span>, <span class="math inline">\(A\in\mathbb{R}^{n\times n}\)</span>, <span class="math inline">\(B\in\mathbb{R}^{n\times m}\)</span> とする. <span class="math inline">\(u\)</span> は外生的に与えられるショックである. 序文に述べた通り, <span class="math inline">\(x\)</span> を構成する変数の一部に初期条件が与えられている状況を想定している. 具体的には変数 <span class="math inline">\(x\)</span> が <span class="math inline">\(x^{1}\in\mathbb{R}^{n_{1}}\)</span> および <span class="math inline">\(x^{2}\in\mathbb{R}^{n_{2}}\)</span> によって
-\begin{equation}
+<span class="math display" id="eq:bk-12">\[\begin{equation}
   x_{t}=\begin{bmatrix}x_{t}^{1}\\
   x_{t}^{2}
-  \end{bmatrix} (\#eq:bk-12)
-\end{equation}
+  \end{bmatrix} \tag{7.2}
+\end{equation}\]</span>
 と記述でき, 初期条件が <span class="math display">\[
 x_{0}^{1}=\bar{x}_{0}^{1},
 \]</span> で与えられているとする. 終端条件として経路の発散スピードが幾何数列の発散スピードを超えないことを仮定する. すなわち, 任意の <span class="math inline">\(-1&lt;\rho&lt;1\)</span> について
-\begin{equation}
-  \lim_{T\to\infty}\rho^{T}\|x_{T}\|=0 (\#eq:bk-tvc)
-\end{equation}
-<p>が成り立つ <span class="math inline">\(x\)</span> を実行可能な解であるとする. 式 <a href="#eq:bk-sys">(<strong>??</strong>)</a> を式 <a href="#eq:bk-12">(<strong>??</strong>)</a> に適合するようにブロック行列表現すると</p>
+<span class="math display" id="eq:bk-tvc">\[\begin{equation}
+  \lim_{T\to\infty}\rho^{T}\|x_{T}\|=0 \tag{7.3}
+\end{equation}\]</span>
+<p>が成り立つ <span class="math inline">\(x\)</span> を実行可能な解であるとする. 式 <a href="section-7.html#eq:bk-sys">(7.1)</a> を式 <a href="section-7.html#eq:bk-12">(7.2)</a> に適合するようにブロック行列表現すると</p>
 <p><span class="math display">\[
 \begin{bmatrix}x_{t+1}^{1}\\
 x_{t+1}^{2}
@@ -361,7 +361,7 @@ A_{21} &amp; A_{22}
 \end{bmatrix}=P\begin{bmatrix}J_{s} &amp; 0\\
 0 &amp; J_{u}
 \end{bmatrix}P^{-1}
-\]</span> に基いて状態方程式<a href="#eq:bk-sys">(<strong>??</strong>)</a>を変形し, <span class="math display" id="eq:bk-jordan">\[
+\]</span> に基いて状態方程式<a href="section-7.html#eq:bk-sys">(7.1)</a>を変形し, <span class="math display">\[
 P^{-1}\begin{bmatrix}x_{t+1}^{1}\\
 x_{t+1}^{2}
 \end{bmatrix}=\begin{bmatrix}J_{s} &amp; 0\\
@@ -372,7 +372,7 @@ x_{t}^{2}
 B_{2}
 \end{bmatrix}u_{t}
 \]</span> を得る. <span class="math inline">\(P\)</span> をうまく選んで, <span class="math inline">\(J_{s}\)</span> の対角成分には絶対値が1以下の固有値, <span class="math inline">\(J_{u}\)</span> の対角成分には絶対値が <span class="math inline">\(1\)</span> より大きい固有値が並んでいるとしよう. この結果, <span class="math inline">\(J_{u}\)</span> は正則になる. <span class="math inline">\(y:=P^{-1}x\)</span>, <span class="math inline">\(C:=P^{-1}B\)</span> と変数変換することで</p>
-\begin{equation}
+<span class="math display" id="eq:bk-jordan">\[\begin{equation}
   \begin{bmatrix}y_{t+1}^{s}\\
   y_{t+1}^{u}
   \end{bmatrix}=\begin{bmatrix}J_{s} &amp; 0\\
@@ -381,27 +381,27 @@ B_{2}
   y_{t}^{u}
   \end{bmatrix}+\begin{bmatrix}C_{s}\\
   C_{u}
-  \end{bmatrix}u_{t} \tag{7.1}
-\end{equation}
-<p>を得る. ただし, <span class="math display" id="eq:bk-det0" id="eq:bk-9" id="eq:bk-7" id="eq:bk-cross" id="eq:bk-yu" id="eq:bk-yt">\[
+  \end{bmatrix}u_{t} \tag{7.4}
+\end{equation}\]</span>
+<p>を得る. ただし, <span class="math display">\[
 y^{s}\in\mathbb{R}^{n_{s}},\ y^{u}\in\mathbb{R}^{n_{u}}
 \]</span> であり, 行列, およびその各ブロックはすべて適合するサイズをもつものとする.</p>
-<p>典型的なケースでは初期条件の数が変数の次元に対して不足しているため, 最終期までの情報を使って不足した <span class="math inline">\(t=0\)</span> 時点の条件を補ってから解を決定する. やや天下り的ではあるが, 式<a href="section-7.html#eq:bk-jordan">(7.1)</a> 下段のシステムを, <span class="math inline">\(t\)</span> 期から <span class="math inline">\(T\)</span> 期までの情報を使って後ろ向きに (forward-looking に) 解いてみよう<a href="#fn26" class="footnoteRef" id="fnref26"><sup>26</sup></a>。</p>
-\begin{align}
+<p>典型的なケースでは初期条件の数が変数の次元に対して不足しているため, 最終期までの情報を使って不足した <span class="math inline">\(t=0\)</span> 時点の条件を補ってから解を決定する. やや天下り的ではあるが, 式<a href="section-7.html#eq:bk-jordan">(7.4)</a> 下段のシステムを, <span class="math inline">\(t\)</span> 期から <span class="math inline">\(T\)</span> 期までの情報を使って後ろ向きに (forward-looking に) 解いてみよう<a href="#fn26" class="footnoteRef" id="fnref26"><sup>26</sup></a>。</p>
+<span class="math display" id="eq:bk-yt">\[\begin{align}
 y_{t}^{u} &amp; =J_{u}^{-1}y_{t+1}^{u}-J_{u}^{-1}C_{u}u_{t}\nonumber \\
  &amp; =J_{u}^{-1}\left(J_{u}^{-1}y_{t+2}^{u}-J_{u}^{-1}C_{u}u_{t+1}\right)-J_{u}^{-1}C_{u}u_{t}\nonumber \\
  &amp; =J_{u}^{-2}\left(J_{u}^{-1}y_{t+3}^{u}-J_{u}^{-1}C_{u}u_{t+2}\right)-J_{u}^{-2}C_{u}u_{t+1}-J_{u}^{-1}C_{u}u_{t}\nonumber \\
  &amp; =J_{u}^{-3}y_{t+3}^{u}-J_{u}^{-3}C_{u}u_{t+2}-J_{u}^{-2}C_{u}u_{t+1}-J_{u}^{-1}C_{u}u_{t}\nonumber \\
  &amp; =\cdots\nonumber \\
- &amp; =J_{u}^{t-T}y_{T}^{u}-\sum_{k=0}^{T-t-1}J_{u}^{-k-1}C_{u}u_{t+k}. \tag{7.2}
-\end{align}
-<p>ここで, <span class="math inline">\(J_{u}^{-1}\)</span> は安定行列であり, <span class="math inline">\(T\to\infty\)</span> のとき幾何数列のオーダーで減衰する. 一方 <span class="math inline">\(y_{T}^{u}\)</span> は <span class="math inline">\(x_{T}\)</span> の1次結合であるから, 仮定<a href="#eq:bk-tvc">(<strong>??</strong>)</a>により<span class="math inline">\(\lim_{T\to\infty}\|J_{u}^{t-T}y_{T}^{u}\|=0\)</span>. つまり,</p>
-\begin{equation}
-y_{t}^{u}=-\sum_{k=0}^{\infty}J_{u}^{-k-1}C_{u}u_{t+k} \tag{7.3}
-\end{equation}
+ &amp; =J_{u}^{t-T}y_{T}^{u}-\sum_{k=0}^{T-t-1}J_{u}^{-k-1}C_{u}u_{t+k}. \tag{7.5}
+\end{align}\]</span>
+<p>ここで, <span class="math inline">\(J_{u}^{-1}\)</span> は安定行列であり, <span class="math inline">\(T\to\infty\)</span> のとき幾何数列のオーダーで減衰する. 一方 <span class="math inline">\(y_{T}^{u}\)</span> は <span class="math inline">\(x_{T}\)</span> の1次結合であるから, 仮定<a href="section-7.html#eq:bk-tvc">(7.3)</a>により<span class="math inline">\(\lim_{T\to\infty}\|J_{u}^{t-T}y_{T}^{u}\|=0\)</span>. つまり,</p>
+<span class="math display" id="eq:bk-yu">\[\begin{equation}
+y_{t}^{u}=-\sum_{k=0}^{\infty}J_{u}^{-k-1}C_{u}u_{t+k} \tag{7.6}
+\end{equation}\]</span>
 <p>が成り立つ.<a href="#fn27" class="footnoteRef" id="fnref27"><sup>27</sup></a></p>
 変数 <span class="math inline">\(x\)</span> と <span class="math inline">\(y\)</span> の関係から任意の <span class="math inline">\(t\)</span> に対して
-\begin{equation}
+<span class="math display" id="eq:bk-cross">\[\begin{equation}
 \begin{bmatrix}x_{t}^{1}\\
 x_{t}^{2}
 \end{bmatrix}=P\begin{bmatrix}y_{t}^{s}\\
@@ -410,15 +410,15 @@ y_{t}^{u}
 P_{2s} &amp; P_{2u}
 \end{bmatrix}\begin{bmatrix}y_{t}^{s}\\
 y_{t}^{u}
-\end{bmatrix} \tag{7.4}
-\end{equation}
-が成り立つ. <span class="math inline">\(t=0\)</span> したとき, <a href="section-7.html#eq:bk-cross">(7.4)</a> に現れる変数の内 <span class="math inline">\(x_{0}^{1}=\bar{x}_{0}^{1}\)</span> と <span class="math inline">\(y_{0}^{u}=\bar{y}_{0}^{u}\)</span> が定まっている. ここで, <span class="math inline">\(P_{1s}\in\mathbb{R}^{n_{1}\times n_{s}}\)</span>, <span class="math inline">\(P_{1u}\in\mathbb{R}^{n_{1}\times n_{u}}\)</span>, <span class="math inline">\(P_{2s}\in\mathbb{R}^{n_{2}\times n_{s}}\)</span> および <span class="math inline">\(P_{2u}\in\mathbb{R}^{n_{2}\times n_{u}}\)</span> に注意せよ. この情報から, <span class="math inline">\(x_{0}^{2}\)</span> および <span class="math inline">\(y_{0}^{s}\)</span>を決定できれば解軌道が完全に定まる. <span class="math inline">\(t=0\)</span> で成立する線形方程式
-\begin{align}
-\bar{x}_{0}^{1} &amp; =P_{1s}y_{0}^{s}+P_{1u}\bar{y}_{0}^{u} \tag{7.5}\\
-x_{0}^{2} &amp; =P_{2s}y_{0}^{s}+P_{2u}\bar{y}_{0}^{u}\tag{7.6}
-\end{align}
+\end{bmatrix} \tag{7.7}
+\end{equation}\]</span>
+が成り立つ. <span class="math inline">\(t=0\)</span> したとき, <a href="section-7.html#eq:bk-cross">(7.7)</a> に現れる変数の内 <span class="math inline">\(x_{0}^{1}=\bar{x}_{0}^{1}\)</span> と <span class="math inline">\(y_{0}^{u}=\bar{y}_{0}^{u}\)</span> が定まっている. ここで, <span class="math inline">\(P_{1s}\in\mathbb{R}^{n_{1}\times n_{s}}\)</span>, <span class="math inline">\(P_{1u}\in\mathbb{R}^{n_{1}\times n_{u}}\)</span>, <span class="math inline">\(P_{2s}\in\mathbb{R}^{n_{2}\times n_{s}}\)</span> および <span class="math inline">\(P_{2u}\in\mathbb{R}^{n_{2}\times n_{u}}\)</span> に注意せよ. この情報から, <span class="math inline">\(x_{0}^{2}\)</span> および <span class="math inline">\(y_{0}^{s}\)</span>を決定できれば解軌道が完全に定まる. <span class="math inline">\(t=0\)</span> で成立する線形方程式
+<span class="math display" id="eq:bk-9" id="eq:bk-7">\[\begin{align}
+\bar{x}_{0}^{1} &amp; =P_{1s}y_{0}^{s}+P_{1u}\bar{y}_{0}^{u} \tag{7.8}\\
+x_{0}^{2} &amp; =P_{2s}y_{0}^{s}+P_{2u}\bar{y}_{0}^{u}\tag{7.9}
+\end{align}\]</span>
 を変形し, 未知量 <span class="math inline">\((x_{0}^{2},y_{0}^{s})\)</span> に関する次の線形方程式を得る.
-\begin{equation}
+<span class="math display" id="eq:bk-det0">\[\begin{equation}
   \begin{bmatrix}P_{1s} &amp; 0\\
   P_{2s} &amp; -I_{n_{2}}
   \end{bmatrix}\begin{bmatrix}y_{0}^{s}\\
@@ -427,8 +427,8 @@ x_{0}^{2} &amp; =P_{2s}y_{0}^{s}+P_{2u}\bar{y}_{0}^{u}\tag{7.6}
   0 &amp; -P_{2u}
   \end{bmatrix}\begin{bmatrix}\bar{x}_{0}^{1}\\
   \bar{y}_{0}^{u}
-  \end{bmatrix}.\tag{7.7}
-\end{equation}
+  \end{bmatrix}.\tag{7.10}
+\end{equation}\]</span>
 <p>ベクトルと行列のサイズはそれぞれ <span class="math display">\[
   \begin{bmatrix}y_{0}^{s}\\
   x_{0}^{s}
@@ -447,13 +447,13 @@ P_{2s} &amp; -I
 <h5><span class="math inline">\(n_{s}+n_{2}&gt;n\)</span></h5>
 <p><span class="math display">\[
 n_{s}+n_{2}&gt;n=n_{1}+n_{2}\Longleftrightarrow n_{s}&gt;n_{1}
-\]</span> が成り立つとすれば, 方程式 <a href="section-7.html#eq:bk-det0">(7.7)</a> の係数行列 <span class="math inline">\(\Pi_{1}\in\mathbb{R}^{n\times(n_{s}+n_{2})}\)</span> は横長の行列である. したがって, 方程式 <a href="section-7.html#eq:bk-det0">(7.7)</a> を満たす <span class="math inline">\((y_{0}^{s},x_{0}^{2})\)</span> は無数に存在する. 解軌道が無数に存在するので解は<strong>不決定 (indeterminate)</strong>であるという. 一般に, 初期値の選び方に自由度がある場合に不決定性があるという.</p>
+\]</span> が成り立つとすれば, 方程式 <a href="section-7.html#eq:bk-det0">(7.10)</a> の係数行列 <span class="math inline">\(\Pi_{1}\in\mathbb{R}^{n\times(n_{s}+n_{2})}\)</span> は横長の行列である. したがって, 方程式 <a href="section-7.html#eq:bk-det0">(7.10)</a> を満たす <span class="math inline">\((y_{0}^{s},x_{0}^{2})\)</span> は無数に存在する. 解軌道が無数に存在するので解は<strong>不決定 (indeterminate)</strong>であるという. 一般に, 初期値の選び方に自由度がある場合に不決定性があるという.</p>
 </div>
 <div id="n_sn_2n-1" class="section level5 unnumbered">
 <h5><span class="math inline">\(n_{s}+n_{2}&lt;n\)</span></h5>
 <p><span class="math display">\[
 n_{s}+n_{2}&lt;n=n_{1}+n_{2}\Longleftrightarrow n_{s}&lt;n_{1}
-\]</span> が成り立つとしよう. このとき, 係数行列 <span class="math inline">\(\Pi_{1}\)</span> は縦長の行列であるから, 方程式 <a href="section-7.html#eq:bk-det0">(7.7)</a> を満たす <span class="math inline">\((y_{0}^{s},x_{0}^{2})\)</span> は一般には存在しない. 解の存在を保証するためには, <span class="math display">\[
+\]</span> が成り立つとしよう. このとき, 係数行列 <span class="math inline">\(\Pi_{1}\)</span> は縦長の行列であるから, 方程式 <a href="section-7.html#eq:bk-det0">(7.10)</a> を満たす <span class="math inline">\((y_{0}^{s},x_{0}^{2})\)</span> は一般には存在しない. 解の存在を保証するためには, <span class="math display">\[
 \Pi_{2}\begin{bmatrix}\bar{x}_{0}^{1}\\
 \bar{y}_{0}^{u}
 \end{bmatrix}\in\mathrm{im}\Pi_{1}
@@ -485,7 +485,7 @@ P_{2s}P_{1s}^{-1} &amp; P_{2u}-P_{2s}P_{1s}^{-1}P_{1u}
 \bar{y}_{0}^{u}
 \end{bmatrix}
 \end{aligned}
-\]</span> によって <span class="math inline">\(t=0\)</span> における変数値が完全に決定される. この等式は任意の <span class="math inline">\(t=0\)</span> 以外でも成り立つことに注意をしておく. <span class="math display" id="eq:bk-recur">\[
+\]</span> によって <span class="math inline">\(t=0\)</span> における変数値が完全に決定される. この等式は任意の <span class="math inline">\(t=0\)</span> 以外でも成り立つことに注意をしておく. <span class="math display">\[
 \begin{aligned}
 \begin{bmatrix}y_{t}^{s}\\
 x_{t}^{2}
@@ -496,7 +496,7 @@ y_{t}^{u}
 \end{bmatrix}
 \end{aligned}
 \]</span> この関係を使って, 次の方程式を得る.
-\begin{align}
+<span class="math display" id="eq:bk-recur">\[\begin{align}
 \begin{bmatrix}x_{t+1}^{1}\\
 x_{t+1}^{2}
 \end{bmatrix} &amp; =P\begin{bmatrix}y_{t+1}^{s}\\
@@ -523,11 +523,11 @@ J_{u}y_{t}^{u}
 \end{bmatrix}+Bu_{t}\nonumber \\
  &amp; =\begin{bmatrix}P_{1s}J_{s}P_{1s}^{-1}x_{t}^{1}+(P_{1u}J_{u}-P_{1s}J_{s}P_{1s}^{-1}P_{1u})y_{t}^{u}\\
 P_{2s}J_{s}P_{1s}^{-1}x_{t}^{1}+(P_{2u}J_{u}-P_{2s}J_{s}P_{1s}^{-1}P_{1u})y_{t}^{u}
-\end{bmatrix}+Bu_{t}.\tag{7.8}
-\end{align}
-<p><span class="math inline">\(y_{t}^{u}\)</span> は式<a href="section-7.html#eq:bk-yu">(7.3)</a> によって決定していることに注意せよ. なお, 式<a href="section-7.html#eq:bk-recur">(7.8)</a> には <span class="math inline">\(x^{2}\)</span> が過去の情報に依存して決まっているという問題がある. <span class="math inline">\(x^{2}\)</span> は初期条件が与えられない変数なので, 同時点の <span class="math inline">\(x^{1}\)</span>, <span class="math inline">\(u\)</span> および未来の <span class="math inline">\(u\)</span> にのみ依存する形で記述できなければならない.</p>
+\end{bmatrix}+Bu_{t}.\tag{7.11}
+\end{align}\]</span>
+<p><span class="math inline">\(y_{t}^{u}\)</span> は式<a href="section-7.html#eq:bk-yu">(7.6)</a> によって決定していることに注意せよ. なお, 式<a href="section-7.html#eq:bk-recur">(7.11)</a> には <span class="math inline">\(x^{2}\)</span> が過去の情報に依存して決まっているという問題がある. <span class="math inline">\(x^{2}\)</span> は初期条件が与えられない変数なので, 同時点の <span class="math inline">\(x^{1}\)</span>, <span class="math inline">\(u\)</span> および未来の <span class="math inline">\(u\)</span> にのみ依存する形で記述できなければならない.</p>
 <p><a href="mailto:少し計算を進めて@BlanchardKahn1980">少し計算を進めて@BlanchardKahn1980</a> の再帰公式 (p. 1308 (2), (3)式) を導出しよう. 彼らのモデルは確率的なモデルであるが, われわれの決定論モデルでも解の構造はまったく変わらない.</p>
-<p>式<a href="section-7.html#eq:bk-recur">(7.8)</a> を使って, <span class="math inline">\(x_{t}^{1}\)</span> を消去する. <span class="math inline">\(x_{t}^{1}\)</span> の係数行列をそろえて</p>
+<p>式<a href="section-7.html#eq:bk-recur">(7.11)</a> を使って, <span class="math inline">\(x_{t}^{1}\)</span> を消去する. <span class="math inline">\(x_{t}^{1}\)</span> の係数行列をそろえて</p>
 <span class="math display">\[
 \begin{aligned}
 P_{2s}P_{1s}^{-1}x_{t+1}^{1} &amp; =P_{2s}J_{s}P_{1s}^{-1}x_{t}^{1}+(P_{2s}P_{1s}^{-1}P_{1u}J_{u}-P_{2s}J_{s}P_{1s}^{-1}P_{1u})y_{t}^{u}+P_{2s}P_{1s}^{-1}B_{1}u_{t}\\
@@ -546,7 +546,7 @@ x_{t+1}^{2} &amp; =P_{2s}J_{s}P_{1s}^{-1}x_{t}^{1}+(P_{2u}J_{u}-P_{2s}J_{s}P_{1s
 (P_{2u}-P_{2s}P_{1s}^{-1}P_{1u})C_{u}=B_{2}-P_{2s}P_{1s}^{-1}B_{1}.
 \]</span> 定理としてまとめておこう. 
 <div class="theorem">
-<span id="thm:blkn" class="theorem"><strong>定理 7.3 </strong></span><span class="math inline">\(n_{1}=n_{s}\)</span> かつ <span class="math inline">\(\det P_{1s}\neq0\)</span> とする. このとき, <a href="#eq:bk-sys">(<strong>??</strong>)</a> の解は一意に定まり, <span class="math inline">\(t=0,1,\dots\)</span> について <span class="math inline">\(x_{t}\)</span> は次式で与えられる. <span class="math display">\[
+<span id="thm:blkn" class="theorem"><strong>定理 7.3 </strong></span><span class="math inline">\(n_{1}=n_{s}\)</span> かつ <span class="math inline">\(\det P_{1s}\neq0\)</span> とする. このとき, <a href="section-7.html#eq:bk-sys">(7.1)</a> の解は一意に定まり, <span class="math inline">\(t=0,1,\dots\)</span> について <span class="math inline">\(x_{t}\)</span> は次式で与えられる. <span class="math display">\[
 \begin{aligned}
 x_{t+1}^{1} &amp; =P_{1s}J_{s}P_{1s}^{-1}x_{t}^{1}+(P_{1u}J_{u}-P_{1s}J_{s}P_{1s}^{-1}P_{1u})y_{t}^{u},\\
 x_{t}^{2} &amp; =P_{2s}P_{1s}^{-1}x_{t}^{1}+(P_{2u}-P_{2s}P_{1s}^{-1}P_{1u})y_{t}^{u},\\
@@ -569,7 +569,7 @@ x_{0}^{1} &amp; :\ \text{given.}
 </p>
 </div>
 
-<p>図 <a href="section-7.html#fig:bk-aftertransformation">7.2</a> はジョルダン標準形に変換した後の座標系である. すなわち, <span class="math inline">\(P=[P_{1}\ P_{2}]\)</span> を基底とした座標系を表している. 一般に<span class="math inline">\(P\)</span> は直交性を保たないので, 斜交座標系を描いている. 異なる座標系は同一の点を表現する別の方法を定めるだけであるから, <span class="math inline">\((x_{0}^{1},x_{0}^{2})\)</span> の位置を表す赤色の直線は動かない. あくまで目盛りを変えただけである. 座標系の変更により <span class="math inline">\(y^{u}\)</span> 軸に平行なサブシステム（不安定固有値に対応する固有空間上のシステム）と<span class="math inline">\(y^{s}\)</span>軸に平行なサブシステム（安定固有値に対応する固有空間上のシステム）に分離することができる. 式 <a href="section-7.html#eq:bk-jordan">(7.1)</a> を確認せよ.</p>
+<p>図 <a href="section-7.html#fig:bk-aftertransformation">7.2</a> はジョルダン標準形に変換した後の座標系である. すなわち, <span class="math inline">\(P=[P_{1}\ P_{2}]\)</span> を基底とした座標系を表している. 一般に<span class="math inline">\(P\)</span> は直交性を保たないので, 斜交座標系を描いている. 異なる座標系は同一の点を表現する別の方法を定めるだけであるから, <span class="math inline">\((x_{0}^{1},x_{0}^{2})\)</span> の位置を表す赤色の直線は動かない. あくまで目盛りを変えただけである. 座標系の変更により <span class="math inline">\(y^{u}\)</span> 軸に平行なサブシステム（不安定固有値に対応する固有空間上のシステム）と<span class="math inline">\(y^{s}\)</span>軸に平行なサブシステム（安定固有値に対応する固有空間上のシステム）に分離することができる. 式 <a href="section-7.html#eq:bk-jordan">(7.4)</a> を確認せよ.</p>
 <div class="figure" style="text-align: center"><span id="fig:bk-aftertransformation"></span>
 <img src="figures/10-blanchardkahn/10-blanchardkahn.002.jpeg" alt="ジョルダン標準形に変換した後の斜交座標系. 座標系を変更しても赤色実線は動かない."  />
 <p class="caption">
@@ -577,8 +577,8 @@ x_{0}^{1} &amp; :\ \text{given.}
 </p>
 </div>
 
-<p>式 <a href="section-7.html#eq:bk-yu">(7.3)</a> は不安定固有値に対応する固有空間 (<span class="math inline">\(y_{u}\)</span> 軸) に沿って後ろ向きに <span class="math inline">\(y_{0}^{u}\)</span> を見つける手続きである. 将来にわたって <span class="math inline">\(u\)</span> が決定していれば, <span class="math inline">\(t=\infty\)</span> から <span class="math inline">\(t=0\)</span> まで時間を逆向きに解いて <span class="math inline">\(y_{0}^{u}\)</span> を決めることができる. この時点ではまだ <span class="math inline">\(y_{0}^{s}\)</span> が決定しないので, <span class="math inline">\((y_{0}^{s},y_{0}^{u})\)</span> は <span class="math inline">\((0,y_{0}^{u})\)</span> を通り <span class="math inline">\(y^{s}\)</span> 軸と平行な直線上にある. 図<a href="section-7.html#fig:bk-init-manifold">7.3</a> の青色実線を参照せよ. この直線は安定行列 <span class="math inline">\(J_{u}^{-1}\)</span> によって特徴づけられる時間反転システムの極限を集めたものである.</p>
-<p>直交座標の <span class="math inline">\((x_{0}^{1},x_{0}^{2})\)</span> と斜交座標の<span class="math inline">\((y_{0}^{s},y_{0}^{u})\)</span> が同じ点を表す場合に限り, それらは式<a href="#eq:bk-sys">(<strong>??</strong>)</a> の<span class="math inline">\(t=0\)</span> における値として適切に選ばれていると言ってよい. 一方を他方の座標系で表して一致することを確かめればよいので, 式<a href="section-7.html#eq:bk-7">(7.5)</a>, <a href="section-7.html#eq:bk-9">(7.6)</a> を解けばよいことが分かるだろう. もちろんこれは <a href="section-7.html#eq:bk-det0">(7.7)</a> と同値である. 解の一意決定性のための条件は, 赤線と青線の交点が一意に存在するための条件に外ならない (図???). なお, <span class="math inline">\(P_{1s}\)</span> の正則性は赤色の実線と青色の実線が平行にならないことを保証している.</p>
+<p>式 <a href="section-7.html#eq:bk-yu">(7.6)</a> は不安定固有値に対応する固有空間 (<span class="math inline">\(y_{u}\)</span> 軸) に沿って後ろ向きに <span class="math inline">\(y_{0}^{u}\)</span> を見つける手続きである. 将来にわたって <span class="math inline">\(u\)</span> が決定していれば, <span class="math inline">\(t=\infty\)</span> から <span class="math inline">\(t=0\)</span> まで時間を逆向きに解いて <span class="math inline">\(y_{0}^{u}\)</span> を決めることができる. この時点ではまだ <span class="math inline">\(y_{0}^{s}\)</span> が決定しないので, <span class="math inline">\((y_{0}^{s},y_{0}^{u})\)</span> は <span class="math inline">\((0,y_{0}^{u})\)</span> を通り <span class="math inline">\(y^{s}\)</span> 軸と平行な直線上にある. 図<a href="section-7.html#fig:bk-init-manifold">7.3</a> の青色実線を参照せよ. この直線は安定行列 <span class="math inline">\(J_{u}^{-1}\)</span> によって特徴づけられる時間反転システムの極限を集めたものである.</p>
+<p>直交座標の <span class="math inline">\((x_{0}^{1},x_{0}^{2})\)</span> と斜交座標の<span class="math inline">\((y_{0}^{s},y_{0}^{u})\)</span> が同じ点を表す場合に限り, それらは式<a href="section-7.html#eq:bk-sys">(7.1)</a> の<span class="math inline">\(t=0\)</span> における値として適切に選ばれていると言ってよい. 一方を他方の座標系で表して一致することを確かめればよいので, 式<a href="section-7.html#eq:bk-7">(7.8)</a>, <a href="section-7.html#eq:bk-9">(7.9)</a> を解けばよいことが分かるだろう. もちろんこれは <a href="section-7.html#eq:bk-det0">(7.10)</a> と同値である. 解の一意決定性のための条件は, 赤線と青線の交点が一意に存在するための条件に外ならない (図???). なお, <span class="math inline">\(P_{1s}\)</span> の正則性は赤色の実線と青色の実線が平行にならないことを保証している.</p>
 <div class="figure" style="text-align: center"><span id="fig:bk-init-manifold"></span>
 <img src="figures/10-blanchardkahn/10-blanchardkahn.003.jpeg" alt="安定な後ろ向き (forward-looking) サブシステム \(y_{t}^{u}=J_{u}^{-1}y_{t+1}^{u}-J_{u}^{-1}C_{u}u_{t}\) の 極限 (\(t=0\))で \(y_{0}^{u}\) が決まる."  />
 <p class="caption">
@@ -593,7 +593,7 @@ x_{0}^{1} &amp; :\ \text{given.}
 </p>
 </div>
 
-<p><span class="math inline">\((y_{0}^{s},y_{0}^{u})\)</span> あるいは <span class="math inline">\((x_{0}^{1},x_{0}^{2})\)</span> が定まれば, 式<a href="#eq:bk-sys">(<strong>??</strong>)</a> を繰り返し適用することで解軌道を決定できる.</p>
+<p><span class="math inline">\((y_{0}^{s},y_{0}^{u})\)</span> あるいは <span class="math inline">\((x_{0}^{1},x_{0}^{2})\)</span> が定まれば, 式<a href="section-7.html#eq:bk-sys">(7.1)</a> を繰り返し適用することで解軌道を決定できる.</p>
 <p>最後に, 解が存在しないケースと不決定の場合について述べる. まず, 固有値が2つとも不安定固有値である場合, すなわち <span class="math inline">\(n_{u}=n=2\)</span>, <span class="math inline">\(0=n_{s}&lt;n_{1}=1\)</span> のケースを考えよう. 図<a href="section-7.html#fig:bk-nonexistence">7.5</a> で示されている通り, 後ろ向き (forward-looking) サブシステム <span class="math inline">\(y_{t}^{u}=J_{u}^{-1}y_{t+1}^{u}-J_{u}^{-1}C_{u}u_{t}\)</span> は一点 <span class="math inline">\((y_{0}^{u1},y_{0}^{u2})\)</span> を定める. 赤色の実線と一般には交わらないので, 解が存在しない. 次に　<span class="math inline">\(n_{u}=0\)</span>, <span class="math inline">\(2=n_{s}&gt;n_{1}=1\)</span> のケースを考える. この場合には後ろ向きのサブシステムはないので, <span class="math inline">\(y_{0}\)</span> に関して情報を得ることができない. したがって, 2次元平面<span class="math inline">\((y^{s1},y^{s2})\)</span>のすべての点が <span class="math inline">\((y_{0}^{s1},y_{0}^{s2})\)</span> の候補となる (図 <a href="section-7.html#fig:bk-indeterminacy">7.6</a>). 青色領域と赤色直線が交わる点は1次元の自由度を持つ無限個の点の集まりであるから <span class="math inline">\(x_{0}^{2}\)</span> を定めることもできない.</p>
 <div class="figure" style="text-align: center"><span id="fig:bk-nonexistence"></span>
 <img src="figures/10-blanchardkahn/10-blanchardkahn.005.jpeg" alt="\(n_{s}&lt;n_{1}\) のケース. バックワードサブシステムが過剰に初期値を定めてしまう. 一般に解は存在しない."  />
@@ -617,29 +617,29 @@ x_{0}^{1} &amp; :\ \text{given.}
 <h3><span class="header-section-number">7.3.1</span> アイデア</h3>
 <p>次にシステム方程式がデスクリプタ方程式</p>
 <p><span class="math display" id="eq:bk-sing">\[
-Ex_{t+1}=Ax_{t}+Bu_{t},\quad t=0,1,\dots,\tag{7.9}
-\]</span> で与えられている場合の解を求めよう. 前節と同様に, 初期時点における変数 <span class="math display" id="eq:bk-j" id="eq:bk-a" id="eq:bk-e">\[
+Ex_{t+1}=Ax_{t}+Bu_{t},\quad t=0,1,\dots,\tag{7.12}
+\]</span> で与えられている場合の解を求めよう. 前節と同様に, 初期時点における変数 <span class="math display">\[
 x_{0}=\begin{bmatrix}x_{0}^{1}\\
 x_{0}^{2}
 \end{bmatrix}\in\mathbb{R}^{n_{1}}\times\mathbb{R}^{n_{2}}
 \]</span> について <span class="math inline">\(x_{0}^{1}=\bar{x}_{0}^{1}\in\mathbb{R}^{n_{1}}\)</span> のみ拘束条件が与えられているとする.</p>
 <span class="math inline">\(E=I\)</span> のケースでは <span class="math inline">\(A\)</span> のジョルダン標準形を求めることで解を計算したが, <span class="math inline">\(E\neq I\)</span> の場合, 特に <span class="math inline">\(\det E\neq0\)</span> の場合には<span class="math inline">\((E,A)\)</span> のワイエルシュトラス標準形によって解を特徴付ける. 資料 {[}16ED04{]} で見たとおり, 適当な正則行列 <span class="math inline">\(V,W\)</span> が存在して,
-\begin{align}
+<span class="math display" id="eq:bk-a" id="eq:bk-e">\[\begin{align}
 W^{-1}EV &amp; =\begin{bmatrix}I\\
  &amp; N
-\end{bmatrix},\tag{7.10}\\
+\end{bmatrix},\tag{7.13}\\
 W^{-1}AV &amp; =\begin{bmatrix}J\\
  &amp; I
-\end{bmatrix},\tag{7.11}
-\end{align}
+\end{bmatrix},\tag{7.14}
+\end{align}\]</span>
 が成り立つ . ここで, <span class="math inline">\(J\)</span> は<span class="math inline">\((E,A)\)</span> の有限固有値を対角成分にもつジョルダン標準形行列, <span class="math inline">\(N\)</span> は対角成分がすべてゼロであるジョルダン標準形行列である. もちろん <span class="math inline">\(\det E\neq0\)</span> であれば, <span class="math inline">\(N\)</span> は現れない. ここで, <span class="math inline">\(J\)</span> は
-\begin{equation}
+<span class="math display" id="eq:bk-j">\[\begin{equation}
   J=\begin{bmatrix}J_{fs}\\
    &amp; J_{fu}
-  \end{bmatrix}\tag{7.12}
-\end{equation}
+  \end{bmatrix}\tag{7.15}
+\end{equation}\]</span>
 <p>というブロックに分かれており, <span class="math inline">\(J_{fs}\)</span> の対角成分に絶対値が1以下の一般固有値, <span class="math inline">\(J_{fu}\)</span>の対角成分に絶対値が1未満の一般固有値が並ぶようにする. <span class="math inline">\(V\)</span>, <span class="math inline">\(W\)</span> の選び方は {[}16ED04{]} で解説した通りである. <span class="math inline">\(V\)</span> は一般化固有ベクトルを並べたもの, <span class="math inline">\(W\)</span> はそれに <span class="math inline">\((E,A)\)</span> を掛けたものであるから, ベクトルの並びによって固有値の順序を自由に設定できる.</p>
-変数変換 <span class="math inline">\(y=V^{-1}x\)</span>, 変数の分割 <span class="math inline">\(y=(y^{fs},y^{fu},y^{b})\in\mathbb{R}^{n_{fs}}\times\mathbb{R}^{n_{fu}}\times\mathbb{R}^{n_{b}}\)</span>, <span class="math inline">\(W^{-1}B=(C_{fs},C_{fu},C_{b})\)</span> を施して <span class="math display" id="eq:bk-init1" id="eq:bk-init" id="eq:bk-yb" id="eq:bk-yfu" id="eq:bk-backward" id="eq:bk-forward">\[
+変数変換 <span class="math inline">\(y=V^{-1}x\)</span>, 変数の分割 <span class="math inline">\(y=(y^{fs},y^{fu},y^{b})\in\mathbb{R}^{n_{fs}}\times\mathbb{R}^{n_{fu}}\times\mathbb{R}^{n_{b}}\)</span>, <span class="math inline">\(W^{-1}B=(C_{fs},C_{fu},C_{b})\)</span> を施して <span class="math display">\[
 \begin{bmatrix}I_{n_{fs}}\\
  &amp; I_{n_{fu}}\\
  &amp;  &amp; N
@@ -657,8 +657,8 @@ C_{fu}\\
 C_{b}
 \end{bmatrix}u_{t}.
 \]</span> を得る. このシステムを以下のように2つのサブシステムに分解する.
-\begin{align}
-y_{t+1}^{fs} &amp; =J_{fs}y_{t}^{fs}+C_{fs}u_{t}\tag{7.13}\\
+<span class="math display" id="eq:bk-backward" id="eq:bk-forward">\[\begin{align}
+y_{t+1}^{fs} &amp; =J_{fs}y_{t}^{fs}+C_{fs}u_{t}\tag{7.16}\\
 \begin{bmatrix}y_{t}^{fu}\\
 y_{t}^{b}
 \end{bmatrix} &amp; =\begin{bmatrix}J_{fu}^{-1}\\
@@ -667,22 +667,22 @@ y_{t}^{b}
 y_{t+1}^{b}
 \end{bmatrix}-\begin{bmatrix}J_{fu}^{-1}C_{fu}\\
 C_{b}
-\end{bmatrix}u_{t}\tag{7.14}\\
+\end{bmatrix}u_{t}\tag{7.17}\\
  &amp; =:\hat{J}_{u}y_{t+1}^{u}-D_{u}u_{t}.
-\end{align}
-<p>{[}16ED04{]} の場合と異なり, 式 <a href="section-7.html#eq:bk-backward">(7.14)</a> が不安定な有限固有値に対応するサブシステムを時間反転して付加していることに注意してほしい. <span class="math inline">\((E,A)\)</span> の有限不安定固有値と無限大固有値をいずれも不安定固有値とみなすならば, 前節の結果を応用すれば解軌道が求まることも想像に難くないだろう. ただし, <span class="math inline">\(N\)</span> の非正則性に伴うデリケートな問題が生じることに注意をしておこう. システム<a href="#eq:bk-sys">(<strong>??</strong>)</a> では, 初期値を定めるために後ろ向きのシステムを作ったが, あくまでも順方向に決定されるシステムであり, 再帰的な構造を見つけることができた. しかし, システム <a href="section-7.html#eq:bk-sing">(7.9)</a> には無限大固有値に対応する本質的に非因果的な成分が含まれるので, <span class="math inline">\(\det E=0\)</span> である場合, 一般には再帰的に (因果的に) 記述できるとは限らない.</p>
+\end{align}\]</span>
+<p>{[}16ED04{]} の場合と異なり, 式 <a href="section-7.html#eq:bk-backward">(7.17)</a> が不安定な有限固有値に対応するサブシステムを時間反転して付加していることに注意してほしい. <span class="math inline">\((E,A)\)</span> の有限不安定固有値と無限大固有値をいずれも不安定固有値とみなすならば, 前節の結果を応用すれば解軌道が求まることも想像に難くないだろう. ただし, <span class="math inline">\(N\)</span> の非正則性に伴うデリケートな問題が生じることに注意をしておこう. システム<a href="section-7.html#eq:bk-sys">(7.1)</a> では, 初期値を定めるために後ろ向きのシステムを作ったが, あくまでも順方向に決定されるシステムであり, 再帰的な構造を見つけることができた. しかし, システム <a href="section-7.html#eq:bk-sing">(7.12)</a> には無限大固有値に対応する本質的に非因果的な成分が含まれるので, <span class="math inline">\(\det E=0\)</span> である場合, 一般には再帰的に (因果的に) 記述できるとは限らない.</p>
 </div>
 <div id="section-7.3.2" class="section level3">
 <h3><span class="header-section-number">7.3.2</span> 解の存在と一意性</h3>
-まずは, 式 <a href="section-7.html#eq:bk-backward">(7.14)</a> を解いてみよう.
-\begin{align}
-y_{t}^{fu} &amp; =-\sum_{k=0}^{\infty}J_{fu}^{-k-1}C_{fu}u_{t+k},\tag{7.15}\\
+まずは, 式 <a href="section-7.html#eq:bk-backward">(7.17)</a> を解いてみよう.
+<span class="math display" id="eq:bk-yb" id="eq:bk-yfu">\[\begin{align}
+y_{t}^{fu} &amp; =-\sum_{k=0}^{\infty}J_{fu}^{-k-1}C_{fu}u_{t+k},\tag{7.18}\\
 y_{t}^{b} &amp; =N\left(Ny_{t+2}^{b}-C_{b}u_{t+1}\right)-C_{b}u_{t}\nonumber \\
  &amp; =N^{n_{b}}y_{t+n_{b}}^{b}-\sum_{k=0}^{n_{b}-1}N^{k}C_{b}u_{t+k}\nonumber \\
- &amp; =-\sum_{k=0}^{n_{b}-1}N^{k}C_{b}u_{t+k}.\tag{7.16}
-\end{align}
+ &amp; =-\sum_{k=0}^{n_{b}-1}N^{k}C_{b}u_{t+k}.\tag{7.19}
+\end{align}\]</span>
 ここでも, <span class="math inline">\(\lim_{T}\|J_{fu}^{-T}C_{fu}u_{T}\|=0\)</span> と <span class="math inline">\(y_{t}^{fu}\)</span> に現れる級数の収束性が成り立つように <span class="math inline">\(u_{t}\)</span> を制限しているものとする. 初期時点の変数を決定する線形方程式は次式で与えられる.
-\begin{align}
+<span class="math display" id="eq:bk-init">\[\begin{align}
   \begin{bmatrix}\bar{x}_{0}^{1}\\
   x_{0}^{2}
   \end{bmatrix} &amp; =\left[\begin{array}{c|cc}
@@ -692,16 +692,16 @@ y_{t}^{b} &amp; =N\left(Ny_{t+2}^{b}-C_{b}u_{t+1}\right)-C_{b}u_{t}\nonumber \\
   y_{0}^{fs}\\
   \hline \bar{y}_{0}^{fu}\\
   \bar{y}_{0}^{b}
-  \end{array}\right].\tag{7.17}\\
+  \end{array}\right].\tag{7.20}\\
    &amp; =:\left[\begin{array}{c|c}
   V_{1fs} &amp; V_{1u}\\
   \hline V_{2fs} &amp; V_{2u}
   \end{array}\right]\begin{bmatrix}y_{0}^{fs}\\
   \bar{y}_{0}^{u}
   \end{bmatrix}
-\end{align}
-すでに決定している変数には上線を付している. 第<a href="section-7.html#blanchard-kahn-case">7.2</a>節のケースと同様に式<a href="section-7.html#eq:bk-init">(7.17)</a>を <span class="math inline">\((y_{0}^{fs},x_{0}^{2})\)</span> について解くことができれば解軌道の存在が示される. 未知変数を左辺に集めると,
-\begin{equation}
+\end{align}\]</span>
+すでに決定している変数には上線を付している. 第<a href="section-7.html#blanchard-kahn-case">7.2</a>節のケースと同様に式<a href="section-7.html#eq:bk-init">(7.20)</a>を <span class="math inline">\((y_{0}^{fs},x_{0}^{2})\)</span> について解くことができれば解軌道の存在が示される. 未知変数を左辺に集めると,
+<span class="math display" id="eq:bk-init1">\[\begin{equation}
   \begin{bmatrix}V_{1fs} &amp; 0\\
   V_{2fs} &amp; -I
   \end{bmatrix}\begin{bmatrix}y_{0}^{fs}\\
@@ -715,17 +715,17 @@ y_{t}^{b} &amp; =N\left(Ny_{t+2}^{b}-C_{b}u_{t+1}\right)-C_{b}u_{t}\nonumber \\
   0 &amp; -V_{2u}
   \end{bmatrix}\begin{bmatrix}\bar{x}_{0}^{1}\\
   \bar{y}_{0}^{u}
-  \end{bmatrix}\tag{7.18}
-\end{equation}
-<p>が得られる. 式<a href="section-7.html#eq:bk-init">(7.17)</a> から <a href="section-7.html#eq:bk-init1">(7.18)</a> は <span class="math inline">\(t=0\)</span> について記述しているが, <span class="math inline">\(t=0\)</span> 以外の時点でも同様に成り立つことに注意せよ.</p>
+  \end{bmatrix}\tag{7.21}
+\end{equation}\]</span>
+<p>が得られる. 式<a href="section-7.html#eq:bk-init">(7.20)</a> から <a href="section-7.html#eq:bk-init1">(7.21)</a> は <span class="math inline">\(t=0\)</span> について記述しているが, <span class="math inline">\(t=0\)</span> 以外の時点でも同様に成り立つことに注意せよ.</p>
 定理 <a href="section-7.html#thm:blkn">7.3</a> の拡張となる次の結果を得る. 
 <div class="theorem">
-<span id="thm:unnamed-chunk-155" class="theorem"><strong>定理 7.4 </strong></span>システム <a href="section-7.html#eq:bk-sing">(7.9)</a> に関して, <span class="math inline">\(n_{1}=n_{fs}\)</span> かつ <span class="math inline">\(\det V_{1fs}\neq0\)</span> が成り立てば, <span class="math inline">\((y_{0}^{fs},x_{0}^{2})\)</span> および解が一意的に定まる.
+<span id="thm:unnamed-chunk-155" class="theorem"><strong>定理 7.4 </strong></span>システム <a href="section-7.html#eq:bk-sing">(7.12)</a> に関して, <span class="math inline">\(n_{1}=n_{fs}\)</span> かつ <span class="math inline">\(\det V_{1fs}\neq0\)</span> が成り立てば, <span class="math inline">\((y_{0}^{fs},x_{0}^{2})\)</span> および解が一意的に定まる.
 </div>
 <p></p>
 
 <div class="exercise">
-式 <a href="section-7.html#eq:bk-init1">(7.18)</a> を用いて, 解の不存在および不決定性が起こる場合の議論を完成させなさい.
+式 <a href="section-7.html#eq:bk-init1">(7.21)</a> を用いて, 解の不存在および不決定性が起こる場合の議論を完成させなさい.
 </div>
 <p></p>
 <p>ここで得られた結果は, 有限不安定固有値と無限大固有値の区別に依存していないことに注意せよ. 無限大固有値を不安定固有値とみなせば Blanchard-Kahn の定理<a href="section-7.html#thm:blkn">7.3</a> の条件とまったく同じものと言ってよい. ただし, 解公式は同じにはならない. 前節の <span class="math inline">\(J_{u}^{-1}\)</span> は可逆 (これは当たり前のことである) であったのに対して, <span class="math inline">\(\det E=0\)</span> の場合 <span class="math inline">\(\hat{J}_{u}\)</span> は可逆ではない. したがって, 前節とは違って後ろ向きの方程式に対応する順方向の方程式は存在せず, 定理 <a href="section-7.html#thm:blkn">7.3</a> の公式は適用できない.</p>
@@ -735,7 +735,7 @@ y_{t}^{b} &amp; =N\left(Ny_{t+2}^{b}-C_{b}u_{t+1}\right)-C_{b}u_{t}\nonumber \\
 <p>一般の <span class="math inline">\(u\)</span> について解を特徴付けようとするとかなり煩雑になるので, <span class="citation">Klein (<a href="#ref-Klein2000">2000</a>)</span> に倣って <span class="math inline">\(u\)</span> に強い条件を課した上で再帰公式を求めよう. <span class="citation">Klein (<a href="#ref-Klein2000">2000</a>)</span> では <span class="math inline">\(u\)</span> が状態方程式 <span class="math display">\[
 u_{t+1}=\Phi u_{t},\quad\Phi\in\mathbb{R}^{m\times m},\quad u_{0}:\text{ given}
 \]</span></p>
-<p>に従うと仮定する.<a href="#fn28" class="footnoteRef" id="fnref28"><sup>28</sup></a> 式 <a href="section-7.html#eq:bk-yfu">(7.15)</a>, <a href="section-7.html#eq:bk-yb">(7.16)</a> を次のように書き換えておく.<a href="#fn29" class="footnoteRef" id="fnref29"><sup>29</sup></a></p>
+<p>に従うと仮定する.<a href="#fn28" class="footnoteRef" id="fnref28"><sup>28</sup></a> 式 <a href="section-7.html#eq:bk-yfu">(7.18)</a>, <a href="section-7.html#eq:bk-yb">(7.19)</a> を次のように書き換えておく.<a href="#fn29" class="footnoteRef" id="fnref29"><sup>29</sup></a></p>
 <p><span class="math display">\[
 y_{t}^{u}=-\sum_{k=0}^{\infty}\hat{J}_{u}^{k}D_{u}u_{t+k}. 
 \]</span> <span class="math inline">\(u\)</span> に対する仮定から<span class="math inline">\(u_{t+k}=\Phi^{k}u_{t}\)</span>, <span class="math inline">\(k=0,1,\dots\)</span>, が成り立つので, <span class="math display">\[
@@ -793,7 +793,7 @@ x_{t}^{2} &amp; =V_{2fs}V_{1fs}^{-1}x_{t}^{1}+\left(V_{2u}-V_{2fs}V_{1fs}^{-1}V_
 \]</span> 随所に <span class="math inline">\(u_{t+1}=\Phi u_{t}\)</span> を用いている. 定理としてまとめよう.</p>
 
 <div class="theorem">
-<span id="thm:bk-summary" class="theorem"><strong>定理 7.5 </strong></span><span class="math inline">\(n_{1}=n_{fs}\)</span> かつ <span class="math inline">\(\det V_{1fs}\neq0\)</span> とする. このとき, <a href="section-7.html#eq:bk-sing">(7.9)</a> の解は一意に定まる. 外生変数 が <span class="math inline">\(u_{t+1}=\Phi u_{t}\)</span> に従うとすれば, <span class="math inline">\(x_{t}\)</span>, <span class="math inline">\(t=0,1,\dots\)</span> , は次式で与えられる. <span class="math display">\[
+<span id="thm:bk-summary" class="theorem"><strong>定理 7.5 </strong></span><span class="math inline">\(n_{1}=n_{fs}\)</span> かつ <span class="math inline">\(\det V_{1fs}\neq0\)</span> とする. このとき, <a href="section-7.html#eq:bk-sing">(7.12)</a> の解は一意に定まる. 外生変数 が <span class="math inline">\(u_{t+1}=\Phi u_{t}\)</span> に従うとすれば, <span class="math inline">\(x_{t}\)</span>, <span class="math inline">\(t=0,1,\dots\)</span> , は次式で与えられる. <span class="math display">\[
 \begin{aligned}
   x_{t+1}^{1} 
   &amp; =

@@ -290,9 +290,9 @@ a(f)p(f)x+b(f)q(f)x=x
 \]</span> を得る. ハミルトン・ケーリーの定理により <span class="math display">\[
 a(f)p(f)x\in\ker q(f),\quad b(f)q(f)x\in\ker p(f)
 \]</span> なので, <span class="math inline">\(\ker p(f)+\ker q(f)=X\)</span> が成り立つ. あとは, <span class="math inline">\(v\in\ker p(f)\cap\ker q(f)\)</span> なら <span class="math inline">\(v=0\)</span> であることを示せばよい. 再びハミルトン・ケーリーの定理により
-\begin{align}
+<span class="math display">\[\begin{align}
 v &amp; =a(f)p(f)v+b(f)q(f)v=0.
-\end{align}
+\end{align}\]</span>
 <p>最後の等式は <span class="math inline">\(v\in\ker p(f)\cap\ker q(f)\)</span> を使った.</p>
 次に, 各 <span class="math inline">\(\ker(f-\lambda_{i})^{n_{i}}\)</span> は <span class="math inline">\(f\)</span> の不変部分空間であることを示す. 実際, <span class="math inline">\(x\in\ker(f-\lambda_{i})^{n_{i}}\)</span> とすれば, <span class="math inline">\(f(f-\lambda_{i})^{n_{i}}x=(f-\lambda_{i})^{n_{i}}f(x)=(f-\lambda_{i})^{n_{i}}\lambda_{i}x=\lambda_{i}(f-\lambda_{i})^{n_{i}}x=0\)</span>. {[}16ED03{]} の結果によると, 上の様に構成した基底の下で <span class="math inline">\(f\)</span> はブロック対角行列になる.
 </div>
@@ -326,10 +326,10 @@ I_{2}=\begin{bmatrix}1 &amp; 0\\
 
 <div class="example">
 <span id="ex:unnamed-chunk-116" class="example"><strong>例 6.2 </strong></span>例 の記号を用いる. <span class="math inline">\(I_{2}\)</span> と <span class="math inline">\(J_{2}(1)\)</span> の最小多項式はそれぞれ
-\begin{align}
+<span class="math display">\[\begin{align}
 m_{I_{2}}(z) &amp; =z-1,\\
 m_{J_{2}(1)}(z) &amp; =(z-1)^{2}.
-\end{align}
+\end{align}\]</span>
 
 </div>
 <p></p>
@@ -404,7 +404,7 @@ F^{\bullet}V_{\tilde{n}} &amp; F^{\bullet}V_{\tilde{n}-1} &amp; F^{\bullet}V_{\t
 \]</span> および <span class="math display">\[
 (f-\lambda_{i})v_{1}=0
 \]</span> が成り立つ. <span class="math inline">\(\mathrm{span}\{v_{1},\dots,v_{k}\}\)</span> は不変部分空間を成すから, <span class="math inline">\(f\)</span> の行列表現はこの典型的な例に対する表現を対角成分に並べたブロック対角行列になる. 上の関係を整理すると,
-\begin{multline}
+<span class="math display">\[\begin{multline}
 \begin{bmatrix}fv_{1} &amp; fv_{2} &amp; \cdots &amp; fv_{k-1} &amp; fv_{k}\end{bmatrix}\\
 =\begin{bmatrix}v_{1} &amp; v_{2} &amp; \cdots &amp; v_{k-1} &amp; v_{k}\end{bmatrix}\begin{bmatrix}\lambda_{i} &amp; 1\\
  &amp; \lambda_{i} &amp; 1\\
@@ -412,7 +412,7 @@ F^{\bullet}V_{\tilde{n}} &amp; F^{\bullet}V_{\tilde{n}-1} &amp; F^{\bullet}V_{\t
  &amp;  &amp;  &amp; \lambda_{i} &amp; 1\\
  &amp;  &amp;  &amp;  &amp; \lambda_{i}
 \end{bmatrix}
-\end{multline}
+\end{multline}\]</span>
 を得る. これはジョルダン細胞 <span class="math inline">\(J_{k}(\lambda_{i})\)</span> に他ならない.
 </div>
 <p></p>
@@ -431,9 +431,7 @@ Av=\lambda Ev,\quad v\neq0,\quad v\in\mathbb{C}^{n}
 <span class="math inline">\((E,A)\)</span> の固有多項式を <span class="math display">\[
 \varphi_{E,A}(z)=\det(zE-A)
 \]</span> と定義する. 次の仮定を置く.
-\begin{assumption}
-$\varphi(z)$ は恒等的にはゼロでない. このとき, $(E,A)$ はレギュラーであるという. 
-\end{assumption}
+
 <p><span class="math inline">\(E=(e_{ij}),A=(a_{ij})\in\mathbb{R}^{2\times2}\)</span> として固有多項式を計算してみると, <span class="math display">\[
 \varphi_{E,A}(z)=(\det E)z^{2}-(e_{11}a_{22}+e_{22}a_{11}+e_{12}a_{21}+e_{21}a_{12})z+\det A
 \]</span> が成り立つ. <span class="math inline">\(\det E=0\)</span> であれば, <span class="math inline">\(\varphi_{E,A}(z)\)</span> の次数は <span class="math inline">\(n\)</span> を下回る. 一般に, <span class="math inline">\(\varphi_{E,A}(z)\)</span> が恒等的にゼロでなければ, <span class="math inline">\(\varphi_{E,A}(z)=0\)</span> は <span class="math inline">\(d\le n\)</span> 個の解を持つ. これらの解を <span class="math inline">\((E,A)\)</span> の有限固有値 (finite eigenvalues) という. 有限固有値の集合を <span class="math inline">\(\mathrm{sp}(E,A)=\{z\in\mathbb{C}\ \mid\ \varphi_{E,A}(z)=0\}\)</span> と定義する.</p>
@@ -459,7 +457,7 @@ V_{i}=\begin{bmatrix}v_{i1}^{1} &amp; \cdots &amp; v_{i1}^{k_{i1}} &amp; | &amp;
 <div id="section-6.2.1.0.3" class="section level5">
 <h5><span class="header-section-number">6.2.1.0.3</span> 表現行列</h5>
 各<span class="math inline">\(v_{ij}\)</span>, <span class="math inline">\(j=1,\dots,\eta_{i}\)</span> に対して定まる部分行列の表現は次のようになる.
-\begin{multline}
+<span class="math display">\[\begin{multline}
 \begin{bmatrix}Av_{ij}^{1} &amp; Av_{ij}^{2} &amp; \cdots &amp; Av_{ij}^{k_{ij}-1} &amp; Av_{ij}^{k_{ij}}\end{bmatrix}\\
 =\begin{bmatrix}Ev_{ij}^{1} &amp; Ev_{ij}^{2} &amp; \cdots &amp; Ev_{ij}^{k_{ij}-1} &amp; Ev_{ij}^{k_{ij}}\end{bmatrix}\begin{bmatrix}\lambda_{i} &amp; 1\\
  &amp; \lambda_{i} &amp; 1\\
@@ -467,7 +465,7 @@ V_{i}=\begin{bmatrix}v_{i1}^{1} &amp; \cdots &amp; v_{i1}^{k_{i1}} &amp; | &amp;
  &amp;  &amp;  &amp; \lambda_{i} &amp; 1\\
  &amp;  &amp;  &amp;  &amp; \lambda_{i}
 \end{bmatrix}.\label{eq:weier_a}
-\end{multline}
+\end{multline}\]</span>
 <p>終域の基底として, <span class="math inline">\(\begin{bmatrix}Ev_{ij}^{1} &amp; Ev_{ij}^{2} &amp; \cdots &amp; Ev_{ij}^{k_{ij}-1} &amp; Ev_{ij}^{k_{ij}}\end{bmatrix}\)</span> を取っていることに注意せよ.</p>
 </div>
 <div id="section-6.2.1.0.4" class="section level5">
@@ -487,7 +485,7 @@ Ev_{\infty j}^{k+1}=Av_{\infty j}^{k},\quad k\ge1
 <div id="-1" class="section level5">
 <h5><span class="header-section-number">6.2.1.0.6</span> 表現行列</h5>
 各<span class="math inline">\(v_{\infty j}\)</span>, <span class="math inline">\(j=1,\dots,\eta_{i}\)</span> に対して定まる部分行列の表現は.
-\begin{multline}
+<span class="math display">\[\begin{multline}
 \begin{bmatrix}Ev_{\infty j}^{1} &amp; Ev_{\infty j}^{2} &amp; \cdots &amp; Ev_{\infty j}^{k_{\infty j}-1} &amp; Ev_{\infty j}^{k_{\infty j}}\end{bmatrix}\\
 =\begin{bmatrix}Av_{\infty j}^{1} &amp; Av_{\infty j}^{2} &amp; \cdots &amp; Av_{\infty j}^{k_{\infty j}-1} &amp; Av_{\infty j}^{k_{\infty j}}\end{bmatrix}\begin{bmatrix}0 &amp; 1\\
  &amp; 0 &amp; 1\\
@@ -495,20 +493,20 @@ Ev_{\infty j}^{k+1}=Av_{\infty j}^{k},\quad k\ge1
  &amp;  &amp;  &amp; 0 &amp; 1\\
  &amp;  &amp;  &amp;  &amp; 0
 \end{bmatrix}.\label{eq:weier_e}
-\end{multline}
+\end{multline}\]</span>
 終域の基底として <span class="math inline">\(\begin{bmatrix}Av_{\infty j}^{1} &amp; Av_{\infty j}^{2} &amp; \cdots &amp; Av_{\infty j}^{k_{\infty j}-1} &amp; Av_{\infty j}^{k_{\infty j}}\end{bmatrix}\)</span> を取っていることに注意せよ. 
 <div class="theorem">
 <span id="thm:unnamed-chunk-122" class="theorem"><strong>定理 6.5  (ワイエルシュトラス形式) </strong></span><span class="math inline">\((E,A)\)</span> はレギュラーであるとする. このとき, 上のように得た非ゼロベクトルを並べた行列 <span class="math display">\[
 \bar{V}=[v_{ij}^{k}\ |\ v_{\infty j}^{k}],\quad\bar{W}=[Ev_{ij}^{k}\ \mid Av_{\infty j}^{k}]
 \]</span> は正則であり,
-\begin{align}
+<span class="math display">\[\begin{align}
 \bar{W}^{-1}E\bar{V} &amp; =\begin{bmatrix}I\\
  &amp; N
 \end{bmatrix},\label{eq:e}\\
 \bar{W}^{-1}A\bar{V} &amp; =\begin{bmatrix}J\\
  &amp; I
 \end{bmatrix},\label{eq:a}
-\end{align}
+\end{align}\]</span>
 ただし, <span class="math inline">\(N\)</span> は優対角成分にのみ 1をもつべきゼロ行列. <span class="math inline">\(J\)</span> は有限固有値を対角成分にもつジョルダン標準形行列である.
 </div>
 <p></p>
@@ -522,10 +520,10 @@ Ev_{\infty j}^{k+1}=Av_{\infty j}^{k},\quad k\ge1
 <span id="thm:unnamed-chunk-124" class="theorem"><strong>定理 6.6 </strong></span><span class="math inline">\((E,A)\)</span> をレギュラーとする. デスクリプタシステム <span class="math display">\[
 Ex_{t+1}=Ax_{t}+Bu_{t}\label{eq:desc}
 \]</span> を前向きのシステム方程式と, 後ろ向きのシステム方程式に分解することができる. すなわち, 適当な変数変換のもとで,
-\begin{align}
+<span class="math display">\[\begin{align}
 \hat{x}_{t+1}^{f} &amp; =J\hat{x}_{t}^{f}+B^{f}u_{t},\label{eq:forward}\\
 \hat{x}_{t}^{b} &amp; =N\hat{x}_{t+1}^{b}+B^{b}u_{t}.\label{eq:backward}
-\end{align}
+\end{align}\]</span>
 と分解できる.
 </div>
 <p></p>
@@ -549,9 +547,7 @@ Ex_{t+1}=Ax_{t}+Bu_{t}\label{eq:desc}
 </div>
 <p></p>
 % レギュラーなデスクリプタシステムは, <span class="math inline">\(\hat{x}^{f}\)</span> の初期条件と, <span class="math inline">\(\hat{x}^{b}\)</span> の終端条件, および <span class="math inline">\(u_{t}\)</span> によって解軌道が一意的に定まる. これは <span class="citation">Luenberger (<a href="#ref-Luenberger1977">1977</a>)</span> の結果である.
-\begin{problem}
-式 \eqref{eq:forward}と\eqref{eq:backward}で表されるシステムの一般解を書き下しなさい. 
-\end{problem}
+
 <p>%</p>
 </div>
 </div>
@@ -673,10 +669,10 @@ v\in\mathcal{V}_{k+1} &amp; \Longrightarrow Av\in E\mathcal{V}_{k}\\
 
 <div class="lemma">
 <span id="lem:unnamed-chunk-135" class="lemma"><strong>補題 6.4  ({Lemma 2.3, {[}BIT{]}}) </strong></span><span class="math inline">\((E,A)\)</span> をレギュラーとする. このとき, 任意の <span class="math inline">\(\lambda\in\mathbb{F}\setminus\mathrm{sp}(E,A)\)</span> と <span class="math inline">\(i=1,2,\dots\)</span> に対して,
-\begin{align}
+<span class="math display">\[\begin{align}
 \mathcal{V}_{k} &amp; =\mathrm{im}\left((A-\lambda E)^{-1}E\right)^{k}\label{eq:vs}\\
 \mathcal{W}_{k} &amp; =\ker\left((A-\lambda E)^{-1}E\right)^{k}\label{eq:ws}
-\end{align}
+\end{align}\]</span>
 が成り立つ. 特に, <span class="math display">\[
 \dim\mathcal{V}_{k}+\dim\mathcal{W}_{k}=n.
 \]</span>
@@ -735,14 +731,14 @@ w &amp; =\hat{E}(v-\lambda w)\\
 \mathcal{V}^{*} &amp; =\mathrm{im}V,\qquad\mathcal{W}^{*}=\mathrm{im}W
 \end{aligned}
 \]</span> が成り立つように選ぶ. このとき, <span class="math inline">\([V\ W]\)</span> および <span class="math inline">\([EV\ AW]\)</span> は正則であり, <span class="math inline">\(J\in\mathbb{F}^{n_{1}\times n_{1}}\)</span> と <span class="math inline">\(N\in\mathbb{F}^{n_{2}\times n_{2}}\)</span> に対して
-\begin{align}
+<span class="math display">\[\begin{align}
 [EV\ AW]^{-1}E[V\ W] &amp; =\begin{bmatrix}I_{n_{1}}\\
  &amp; N
 \end{bmatrix},\label{eq:quasi0}\\{}
 [EV\ AW]^{-1}A[V\ W] &amp; =\begin{bmatrix}J\\
  &amp; I_{n_{2}}
 \end{bmatrix}\label{eq:quasi}
-\end{align}
+\end{align}\]</span>
 が成り立つ. さらに, <span class="math inline">\(\tilde{N}\)</span> はべきゼロ行列であり, <span class="math inline">\(N^{k^{*}}=0\)</span> が成り立つ.
 </div>
 <p></p>
@@ -1044,7 +1040,7 @@ v &amp; \in\mathcal{G}_{\mu}=V\ker(J-\mu I)^{p(\mu)}
 \]</span> は <span class="math inline">\(\mathcal{V}^{*}\)</span> の基底をなす. また, <span class="math display">\[
 \bar{W}=\left[v_{\infty j}^{1},\dots,v_{\infty j}^{k_{\infty j}}\ \mid\ j=1,\dots,\eta\right]
 \]</span> は <span class="math inline">\(\mathcal{W}^{*}\)</span> の基底をなす. これで定理  の証明が完了する.</p>
-\bibliographystyle{ecta}\bibliography{16ED}
+
 
 </div>
 </div>

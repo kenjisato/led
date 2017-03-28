@@ -466,14 +466,14 @@ a_{m1}x_{1}+\cdots+a_{mn}x_{n}=b_{m}
 <div id="section-3.3.1" class="section level3">
 <h3><span class="header-section-number">3.3.1</span> 線形連立方程式の変形</h3>
 要点を理解するために簡単な例を用いよう。連立方程式
-\begin{equation}
+<span class="math display" id="eq:lineq001">\[\begin{equation}
   \begin{cases}
     x_{1}+x_{2}=1\\
     x_{1}-x_{2}=2
-  \end{cases} (\#eq:lineq001)
-\end{equation}
+  \end{cases} \tag{3.1}
+\end{equation}\]</span>
 を行列の形式で表現すると
-\begin{equation}
+<span class="math display" id="eq:lineq002">\[\begin{equation}
   \begin{bmatrix}
     1 &amp; 1\\
     1 &amp; -1
@@ -484,56 +484,56 @@ a_{m1}x_{1}+\cdots+a_{mn}x_{n}=b_{m}
   =
   \begin{bmatrix}
     1\\2
-  \end{bmatrix} (\#eq:lineq002)
-\end{equation}
-と表すことができる。式<a href="#eq:lineq001">(<strong>??</strong>)</a>と全く同じ連立方程式で，順序だけを入れ替えたもの
-\begin{equation}
+  \end{bmatrix} \tag{3.2}
+\end{equation}\]</span>
+と表すことができる。式<a href="matrix.html#eq:lineq001">(3.1)</a>と全く同じ連立方程式で，順序だけを入れ替えたもの
+<span class="math display" id="eq:lineq003">\[\begin{equation}
 \begin{cases}
 x_{1}-x_{2}=2\\
 x_{1}+x_{2}=1 
-\end{cases} (\#eq:lineq003)
-\end{equation}
+\end{cases} \tag{3.3}
+\end{equation}\]</span>
 を行列表示すると，
-\begin{equation}
+<span class="math display" id="eq:lineq004">\[\begin{equation}
 \begin{bmatrix}1 &amp; -1\\
 1 &amp; 1
 \end{bmatrix}\begin{bmatrix}x_{1}\\
 x_{2}
 \end{bmatrix}=\begin{bmatrix}2\\
 1
-\end{bmatrix} (\#eq:lineq004)
-\end{equation}
-である。式<a href="#eq:lineq002">(<strong>??</strong>)</a>と式<a href="#eq:lineq004">(<strong>??</strong>)</a>は，全く同じ <span class="math inline">\((x_{1},x_{2})\)</span> が解であるという意味で同値な方程式であるが，係数行列 <span class="math inline">\(A\)</span> と定数項 <span class="math inline">\(b\)</span> が異なっている。この他にも，式<a href="#eq:lineq001">(<strong>??</strong>)</a>の第1式を定数倍した
-\begin{equation}
+\end{bmatrix} \tag{3.4}
+\end{equation}\]</span>
+である。式<a href="matrix.html#eq:lineq002">(3.2)</a>と式<a href="matrix.html#eq:lineq004">(3.4)</a>は，全く同じ <span class="math inline">\((x_{1},x_{2})\)</span> が解であるという意味で同値な方程式であるが，係数行列 <span class="math inline">\(A\)</span> と定数項 <span class="math inline">\(b\)</span> が異なっている。この他にも，式<a href="matrix.html#eq:lineq001">(3.1)</a>の第1式を定数倍した
+<span class="math display" id="eq:lineq005">\[\begin{equation}
 \begin{cases}
 2x_{1}-2x_{2}=4\\
 x_{1}+x_{2}=1
-\end{cases} (\#eq:lineq005)
-\end{equation}
-や，式<a href="#eq:lineq001">(<strong>??</strong>)</a> の第1式を第2式に足すことで得られる
-\begin{equation}
+\end{cases} \tag{3.5}
+\end{equation}\]</span>
+や，式<a href="matrix.html#eq:lineq001">(3.1)</a> の第1式を第2式に足すことで得られる
+<span class="math display" id="eq:lineq006">\[\begin{equation}
 \begin{cases}
 x_{1}-x_{2}=2\\
 x_{1}+x_{2}+(x_{1}-x_{2})=1+2
-\end{cases} (\#eq:lineq006)
-\end{equation}
-<p>も同じ解をもつはずである。各自，式<a href="#eq:lineq005">(<strong>??</strong>)</a>，式<a href="#eq:lineq006">(<strong>??</strong>)</a> の行列表現を確認してほしい。</p>
+\end{cases} \tag{3.6}
+\end{equation}\]</span>
+<p>も同じ解をもつはずである。各自，式<a href="matrix.html#eq:lineq005">(3.5)</a>，式<a href="matrix.html#eq:lineq006">(3.6)</a> の行列表現を確認してほしい。</p>
 あるいは次の方程式 <span class="math display">\[
 \begin{cases}
 x_{2}+x_{1}=1\\
 -x_{2}+x_{1}=2
 \end{cases}
 \]</span> も全く同じ方程式を変形したものなので，その行列表示
-\begin{equation}
+<span class="math display" id="eq:lineq007">\[\begin{equation}
 \begin{bmatrix}1 &amp; 1\\
 -1 &amp; 1
 \end{bmatrix}\begin{bmatrix}x_{2}\\
 x_{1}
 \end{bmatrix}=\begin{bmatrix}1\\
 2
-\end{bmatrix}(\#eq:lineq007)
-\end{equation}
-<p>も，<span class="math inline">\(x_{1},x_{2}\)</span> の順序は入れ替わるが同じ解を導く。従って，<span class="math inline">\((x_{1},x_{2})\)</span> でなく <span class="math inline">\((x_{2},x_{1})\)</span> の順で解を得たことさえ了解していれば，式<a href="#eq:lineq007">(<strong>??</strong>)</a>と式<a href="#eq:lineq004">(<strong>??</strong>)</a> は本質的に同じ線形方程式である.</p>
+\end{bmatrix}\tag{3.7}
+\end{equation}\]</span>
+<p>も，<span class="math inline">\(x_{1},x_{2}\)</span> の順序は入れ替わるが同じ解を導く。従って，<span class="math inline">\((x_{1},x_{2})\)</span> でなく <span class="math inline">\((x_{2},x_{1})\)</span> の順で解を得たことさえ了解していれば，式<a href="matrix.html#eq:lineq007">(3.7)</a>と式<a href="matrix.html#eq:lineq004">(3.4)</a> は本質的に同じ線形方程式である.</p>
 <p>見かけ上異なる複数の行列が連立方程式の解という観点から見れば全て同じものになるという事実は応用上大変重要である。連立方程式や動学方程式を分析する上では, もっとも有利な形式に変形してから分析すれば十分なのである。特に，あらかじめ都合のよい形式に変形されているものとして理論分析を行うこともあるので, 応用者は自らそのような形式に変形し，さらに復元できなければいけない。</p>
 <p>連立方程式の求解に関していえば，同値な変形を繰り返して <span class="math display">\[
 \begin{cases}
@@ -590,7 +590,7 @@ x_{2}
   0 &amp; 1\\
   1 &amp; 0
 \end{bmatrix}.
-\]</span> 従って，式<a href="#eq:lineq002">(<strong>??</strong>)</a> と式<a href="#eq:lineq004">(<strong>??</strong>)</a>は正則行列 <span class="math inline">\(\left[\begin{smallmatrix}0 &amp; 1\\ 1 &amp; 0 \end{smallmatrix}\right]\)</span> を通して互いに変形し合う。</p>
+\]</span> 従って，式<a href="matrix.html#eq:lineq002">(3.2)</a> と式<a href="matrix.html#eq:lineq004">(3.4)</a>は正則行列 <span class="math inline">\(\left[\begin{smallmatrix}0 &amp; 1\\ 1 &amp; 0 \end{smallmatrix}\right]\)</span> を通して互いに変形し合う。</p>
 <p>より一般の <span class="math inline">\(m\times n\)</span> 行列についてどのようになるか考えてみよ。</p>
 
 <div class="exercise">
@@ -664,7 +664,7 @@ u &amp; -u
 <span class="math inline">\(A\in\mathbb{F}^{m\times n}\)</span> を任意の行列とする。行列の第<span class="math inline">\(i\)</span>列の <span class="math inline">\(a\)</span>倍を第<span class="math inline">\(j\)</span>列に加えた結果は <span class="math inline">\(AE_{ij}^{m}(a)\)</span> と一致する。
 </div>
 <p></p>
-<p>列の変形は式<a href="#eq:lineq007">(<strong>??</strong>)</a>で見た「解の並び替え」を一般化したものである。線形方程式 <span class="math display">\[
+<p>列の変形は式<a href="matrix.html#eq:lineq007">(3.7)</a>で見た「解の並び替え」を一般化したものである。線形方程式 <span class="math display">\[
 Ax=b
 \]</span> は <span class="math display">\[
 AC_{ij}^{m}\left(C_{ij}^{m}\right)^{-1}x=b
@@ -706,12 +706,12 @@ PAQ
 
 <div class="proof">
 <p><span class="proof"><em>証明. </em></span> <span class="math inline">\(A\)</span> がフルランクであると仮定する。すなわち</p>
-<span class="math display" id="eq:apq">\[
+<span class="math display">\[
   PAQ=I
 \]</span> なる初等変形 <span class="math inline">\(P\)</span>，<span class="math inline">\(Q\)</span> がある。左から <span class="math inline">\(P^{-1}\)</span>，右から <span class="math inline">\(Q^{-1}\)</span> をかけてやれば
-\begin{equation}
-  A = P^{-1}Q^{-1} \tag{3.1}
-\end{equation}
+<span class="math display" id="eq:apq">\[\begin{equation}
+  A = P^{-1}Q^{-1} \tag{3.8}
+\end{equation}\]</span>
 <p>が得られる。右辺は正則なので逆行列が存在する。すなわち <span class="math inline">\(A^{-1}=QP\)</span>.</p>
 <span class="math inline">\(A\)</span> は正則であるがフルランクでないと仮定する。すなわち，<span class="math inline">\(d&lt;n\)</span> に対して <span class="math display">\[
   PAQ=\left[\begin{array}{c|c}
@@ -723,7 +723,7 @@ PAQ(Q^{-1}A^{-1})=P
 \]</span> を得る。<span class="math inline">\(PAQ\)</span> の形状により <span class="math inline">\(P\)</span> の <span class="math inline">\((d+1)\)</span> 行目以下はすべてゼロにならなければならないが，このような行列を基本変形の積として表現することはできない. 従って，この等式は不合理である。よって<span class="math inline">\(A\)</span>はフルランクでなければならない.
 </div>
 <p></p>
-<p>式<a href="matrix.html#eq:apq">(3.1)</a> を少し変形すると</p>
+<p>式<a href="matrix.html#eq:apq">(3.8)</a> を少し変形すると</p>
 <p><span class="math display">\[
 A=P^{-1}Q^{-1}=\tilde{P}^{-1}
 \]</span></p>

@@ -348,12 +348,12 @@ x_{n}
 2つの部分空間 <span class="math inline">\(Y\)</span>，<span class="math inline">\(W\)</span> があったとき，積集合 <span class="math inline">\(Y\cap W\)</span> はまた線形部分空間になる。 一方，和集合 <span class="math inline">\(Y\cup W\)</span> は一般には線形部分空間にならない。 
 <div class="definition">
 <span id="def:unnamed-chunk-77" class="definition"><strong>定義 5.4 </strong></span><span class="math inline">\(X\)</span> を<span class="math inline">\(\mathbb{F}\)</span> 上の線形空間，<span class="math inline">\(Y,W\)</span> を<span class="math inline">\(X\)</span> の線形部分空間とする。部分空間の和（sum） <span class="math inline">\(Y+W\)</span> を<span class="math inline">\(Y\)</span> と<span class="math inline">\(W\)</span> の元をすべて含む最小の線形部分空間と定義する<a href="#fn22" class="footnoteRef" id="fnref22"><sup>22</sup></a>。すなわち
-\begin{equation}
-Y+W=\{\alpha y+\beta w\ \mid\ y\in Y,\ w\in W,\ \alpha,\beta\in\mathbb{F}\}.(\#eq:05-sum)
-\end{equation}
+<span class="math display" id="eq:05-sum">\[\begin{equation}
+Y+W=\{\alpha y+\beta w\ \mid\ y\in Y,\ w\in W,\ \alpha,\beta\in\mathbb{F}\}.\tag{5.1}
+\end{equation}\]</span>
 </div>
 <p></p>
-<p>上の定義 <a href="#eq:05-sum">(<strong>??</strong>)</a> は和とスカラー倍をすべて含むように作られており， 命題<a href="linspace.html#prp:subspace-condition">5.1</a> により線形部分空間となる。</p>
+<p>上の定義 <a href="linspace.html#eq:05-sum">(5.1)</a> は和とスカラー倍をすべて含むように作られており， 命題<a href="linspace.html#prp:subspace-condition">5.1</a> により線形部分空間となる。</p>
 
 <div class="definition">
 <span id="def:unnamed-chunk-78" class="definition"><strong>定義 5.5 </strong></span><span class="math inline">\(M\)</span>，<span class="math inline">\(N\)</span> を<span class="math inline">\(X\)</span> の線形部分空間とする。<span class="math inline">\(M \cap N = \{ 0 \}\)</span> のとき，和 <span class="math inline">\(M + N\)</span> を特に直和といい， <span class="math inline">\(M \oplus N\)</span> と記す。
@@ -428,9 +428,9 @@ w_{i}=\sum_{j=1}^{n}\alpha_{ij}v_{j},\quad\alpha_{ij}\in\mathbb{F},\ i=1,\dots,m
  &amp; =\sum_{j=1}^{n}\left(\sum_{i=1}^{m}\beta_{i}\alpha_{ij}\right)v_{j}
 \end{aligned}
 \]</span> であり，<span class="math inline">\(\{v_{1},\dots,v_{n}\}\)</span> は基底であるから，
-\begin{equation}
-\sum_{i=1}^{m}\beta_{i}\alpha_{ij}=0,\quad j=1,\dots,n(\#eq:05-1)
-\end{equation}
+<span class="math display" id="eq:05-1">\[\begin{equation}
+\sum_{i=1}^{m}\beta_{i}\alpha_{ij}=0,\quad j=1,\dots,n\tag{5.2}
+\end{equation}\]</span>
 が成り立たなければならない。線形方程式を行列表示すると <span class="math display">\[
 \begin{bmatrix}\beta_{1} &amp; \cdots &amp; \beta_{m}\end{bmatrix}\begin{bmatrix}\alpha_{11} &amp; \cdots &amp; \alpha_{1n}\\
 \vdots &amp; \ddots &amp; \vdots\\
@@ -455,7 +455,7 @@ O_{(m-n)\times n}
 \begin{bmatrix}\tilde{\beta}_{1} &amp; \cdots &amp; \tilde{\beta}_{m}\end{bmatrix}=\begin{bmatrix}0 &amp; \cdots &amp; 0 &amp; c_{n+1} &amp; \cdots &amp; c_{m}\end{bmatrix}
 \]</span> である。<span class="math inline">\(c_{n+1},\dots,c_{m}\)</span> は任意の定数。逆変形を行えば <span class="math display">\[
 \begin{bmatrix}\beta_{1} &amp; \cdots &amp; \beta_{m}\end{bmatrix}=\begin{bmatrix}0 &amp; \cdots &amp; 0 &amp; c_{n+1} &amp; \cdots &amp; c_{m}\end{bmatrix}P
-\]</span> より，<span class="math inline">\(\beta_{1},\dots,\beta_{m}\)</span> のすべてがゼロでなくても <a href="#eq:05-1">(<strong>??</strong>)</a> を成り立たせることができることが分かる (右から掛ける <span class="math inline">\(P\)</span> は列基本変形であることに注目する)。<span class="math inline">\(\{w_{1},\dots,w_{m}\}\)</span> が基底であることに矛盾する。
+\]</span> より，<span class="math inline">\(\beta_{1},\dots,\beta_{m}\)</span> のすべてがゼロでなくても <a href="linspace.html#eq:05-1">(5.2)</a> を成り立たせることができることが分かる (右から掛ける <span class="math inline">\(P\)</span> は列基本変形であることに注目する)。<span class="math inline">\(\{w_{1},\dots,w_{m}\}\)</span> が基底であることに矛盾する。
 </div>
 <p></p>
 
@@ -733,11 +733,11 @@ x_{n}
 \]</span> および <span class="math display">\[
 \begin{bmatrix}f(v_{1}) &amp; \cdots &amp; f(v_{n})\end{bmatrix}=\begin{bmatrix}w_{1} &amp; \cdots &amp; w_{m}\end{bmatrix}A
 \]</span> に注意すれば，
-\begin{align}
+<span class="math display" id="eq:05-change">\[\begin{align}
 \begin{bmatrix}f(\tilde{v}_{1}) &amp; \cdots &amp; f(\tilde{v}_{n})\end{bmatrix} &amp; =\begin{bmatrix}f(v_{1}) &amp; \cdots &amp; f(v_{n})\end{bmatrix}P\nonumber \\
  &amp; =\begin{bmatrix}w_{1} &amp; \cdots &amp; w_{m}\end{bmatrix}AP\nonumber \\
- &amp; =\begin{bmatrix}\tilde{w}_{1} &amp; \cdots &amp; \tilde{w}_{m}\end{bmatrix}Q^{-1}AP(\#eq:05-change)
-\end{align}
+ &amp; =\begin{bmatrix}\tilde{w}_{1} &amp; \cdots &amp; \tilde{w}_{m}\end{bmatrix}Q^{-1}AP\tag{5.3}
+\end{align}\]</span>
 <p>を得る。これは，新しい基底に関する<span class="math inline">\(f\)</span> の行列表現が <span class="math inline">\(Q^{-1}AP\)</span> であることを表している。</p>
 </div>
 </div>
@@ -763,13 +763,13 @@ f(v_{in_{i}}) &amp; =a_{i,1n_{i}}v_{i1}+\cdots+a_{i,n_{i}n_{i}}v_{in_{i}}.
 \]</span> <span class="math inline">\(f|_{M_{i}}:M_{i}\to M_{i}\)</span> の行列表現を <span class="math inline">\(A_{i}=(a_{i,st})\)</span> とすれば <span class="math display">\[
 \begin{bmatrix}f(v_{i1}) &amp; \cdots &amp; f(v_{in_{i}})\end{bmatrix}=\begin{bmatrix}v_{i1} &amp; \cdots &amp; v_{in_{i}}\end{bmatrix}A_{i}.
 \]</span> <span class="math inline">\(f\)</span> の行列表現<span class="math inline">\(A\)</span>は
-\begin{multline*}
+<span class="math display">\[\begin{multline*}
 \begin{bmatrix}f(v_{11}) &amp; \cdots &amp; f(v_{1n_{1}}) &amp; \cdots &amp; \cdots &amp; f(v_{k1}) &amp; \cdots &amp; f(v_{kn_{k}})\end{bmatrix}\\
 =\begin{bmatrix}v_{11} &amp; \cdots &amp; v_{1n_{1}} &amp; \cdots &amp; \cdots &amp; v_{k1} &amp; \cdots &amp; v_{kn_{k}}\end{bmatrix}\begin{bmatrix}A_{1}\\
  &amp; \ddots\\
  &amp;  &amp; A_{k}
 \end{bmatrix}
-\end{multline*}
+\end{multline*}\]</span>
 </div>
 <div id="section-5.6.2" class="section level3">
 <h3><span class="header-section-number">5.6.2</span> 固有値分解</h3>
@@ -784,7 +784,7 @@ X=E_{1}\oplus\cdots\oplus E_{n}
 \begin{aligned}
 \begin{bmatrix}v_{1} &amp; \cdots &amp; v_{n}\end{bmatrix} &amp; =\begin{bmatrix}e_{1} &amp; \cdots &amp; e_{n}\end{bmatrix}P
 \end{aligned}
-\]</span> である。式 <a href="#eq:05-change">(<strong>??</strong>)</a> より <span class="math display">\[
+\]</span> である。式 <a href="linspace.html#eq:05-change">(5.3)</a> より <span class="math display">\[
 \begin{aligned}
 \begin{bmatrix}f(v_{1}) &amp; \cdots &amp; f(v_{n})\end{bmatrix} &amp; =\begin{bmatrix}f(e_{1}) &amp; \cdots &amp; f(e_{n})\end{bmatrix}P\\
  &amp; =\begin{bmatrix}e_{1} &amp; \cdots &amp; e_{n}\end{bmatrix}AP\\

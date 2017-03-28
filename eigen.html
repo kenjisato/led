@@ -558,15 +558,15 @@ V^{-1}
    &amp; = J.
 \end{aligned}
 \]</span> あるいは
-\begin{equation}
+<span class="math display" id="eq:Jmatrix">\[\begin{equation}
 \begin{bmatrix}
 i &amp; 0\\
 0 &amp; -i
 \end{bmatrix}
 =
 V^{-1}JV
-(\#eq:Jmatrix)
-\end{equation}
+\tag{4.1}
+\end{equation}\]</span>
 <p>が成り立つ。固有ベクトルを並べた行列<span class="math inline">\(V\)</span>によって <span class="math inline">\(J\)</span> を対角行列に変形 (対角化) することができた。 あらゆる行列に対してこのような変形ができる訳ではないことには注意が必要である。 すべての固有値が相異なる場合や，対称行列などが対角化が可能である。</p>
 </div>
 <div id="section-4.3.3" class="section level3">
@@ -636,7 +636,7 @@ for (i in <span class="dv">2</span>:simulation_size) {
 <p>本書では複素数の範囲で標準化を考えるが，基本的な方針だけを述べておこう。</p>
 <p>例えば，2次正方行列<span class="math inline">\(A \in \mathbb R^2\)</span> が対角化の手続きによって， <span class="math display">\[
   AP = P \begin{bmatrix} a + bi &amp; 0 \\ 0 &amp; a - bi \end{bmatrix}
-\]</span> と対角化できたとしよう。 定理<a href="eigen.html#thm:conju-eigen-pair">4.1</a>より共役複素数が必ずペアで現れることに注意せよ。 <span class="math inline">\(P\)</span> は固有ベクトルを並べた行列である。式<a href="#eq:Jmatrix">(<strong>??</strong>)</a>より， <span class="math display">\[
+\]</span> と対角化できたとしよう。 定理<a href="eigen.html#thm:conju-eigen-pair">4.1</a>より共役複素数が必ずペアで現れることに注意せよ。 <span class="math inline">\(P\)</span> は固有ベクトルを並べた行列である。式<a href="eigen.html#eq:Jmatrix">(4.1)</a>より， <span class="math display">\[
 \begin{aligned}
   AP 
   &amp;= P \left(
@@ -734,7 +734,7 @@ D^t =
 <p>Levhari, David, and Nissan Liviatan. 1972. “On Stability in the Saddle-Point Sense.” <em>Journal of Economic Theory</em> 4: 88–93.</p>
 </div>
 <div id="ref-McKenzie1986">
-<p>McKenzie, Lionel W. 1986. “Optimal Economic Growth, Turnpike Theorems and Comparative Dynamics.” In <em>Handbook of Mathematical Economics, Vol. III</em>, edited by Kenneth J. Arrow and M. D. Intriligator. North-Holland.</p>
+<p>McKenzie, Lionel W. 1986. “Optimal Economic Growth, Turnpike Theorems and Comparative Dynamics.” In <em>Handbook of Mathematical Economics, Vol. Iii</em>, edited by Kenneth J. Arrow and M. D. Intriligator. North-Holland.</p>
 </div>
 <div id="ref-DeneckerePelikan1986">
 <p>Deneckere, Raymond, and Steve Pelikan. 1986. “Competitive Chaos.” <em>Journal of Economic Theory</em> 40 (1). Elsevier: 13–25.</p>

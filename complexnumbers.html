@@ -435,15 +435,15 @@ for (i in <span class="dv">1</span>:<span class="dv">10</span>) {
 </p>
 </div>
 絶対値が<span class="math inline">\(1\)</span> で偏角の異なる2つの複素数 <span class="math inline">\(\cos\theta_1 + i\sin\theta_1\)</span> と <span class="math inline">\(\cos\theta_2 + i\sin\theta_2\)</span> を掛け合わせると
-\begin{align}
+<span class="math display" id="eq:polar">\[\begin{align}
   &amp;(\cos\theta_1 + i\sin\theta_1)(\cos\theta_2 + i\sin\theta_2) \notag \\
   &amp;\qquad=
   (\cos\theta_1 \cos\theta_2 - \sin\theta_1\sin\theta_2)
   +
   i(\sin\theta_1\cos\theta_2 + \cos\theta_1\sin\theta_2) \notag \\
   &amp;\qquad=
-  \cos(\theta_1 + \theta_2) + i\sin(\theta_1 + \theta_2) (\#eq:polar)
-\end{align}
+  \cos(\theta_1 + \theta_2) + i\sin(\theta_1 + \theta_2) \tag{2.1}
+\end{align}\]</span>
 <p>を得る.<a href="#fn9" class="footnoteRef" id="fnref9"><sup>9</sup></a> 絶対値が<span class="math inline">\(1\)</span>でない場合にも，<span class="math inline">\(r_1, r_2 &gt; 0\)</span> として, <span class="math display">\[
 \begin{aligned}
   r_1(\cos\theta_1 + i\sin\theta_1)\cdot r_2(\cos\theta_2 + i\sin\theta_2)
@@ -455,22 +455,22 @@ for (i in <span class="dv">1</span>:<span class="dv">10</span>) {
 \]</span> つまり，複素数 <span class="math inline">\(r_2(\cos\theta_2 + i\sin\theta_2)\)</span> を掛けるという操作は，絶対値を <span class="math inline">\(r_2\)</span> 倍に伸縮し，偏角を <span class="math inline">\(+\theta_2\)</span> だけ回転させる作用がある。</p>
 <div id="e382aae382a4e383a9e383bce381aee585ace5bc8f" class="section level4 unnumbered">
 <h4>オイラーの公式</h4>
-式<a href="#eq:polar">(<strong>??</strong>)</a> は複素数の積が偏角の和に相当することを述べている。この等式を眺めて指数関数との関連性に気がつく人もいるかもしれない。実際，
-\begin{align}
-  e^{i\theta} = \cos\theta + i\sin\theta (\#eq:euler)
-\end{align}
+式<a href="complexnumbers.html#eq:polar">(2.1)</a> は複素数の積が偏角の和に相当することを述べている。この等式を眺めて指数関数との関連性に気がつく人もいるかもしれない。実際，
+<span class="math display" id="eq:euler">\[\begin{align}
+  e^{i\theta} = \cos\theta + i\sin\theta \tag{2.2}
+\end{align}\]</span>
 <p>と定義すれば，指数法則 <span class="math display">\[
   e^{i\theta_1} e^{i\theta_2} = e^{i(\theta_1 + \theta_2)}
 \]</span></p>
-<p>によって，式<a href="#eq:polar">(<strong>??</strong>)</a> を「導出」できる。本来は，<span class="math inline">\(e^{i\theta}\)</span> が意味するところをきちんと定義して，等式 <a href="#eq:euler">(<strong>??</strong>)</a> を証明する必要があるだろうが，ここでは記号として「オイラーの公式」を紹介した。関心のある読者は適当な複素関数論の教科書を読めばよい。</p>
+<p>によって，式<a href="complexnumbers.html#eq:polar">(2.1)</a> を「導出」できる。本来は，<span class="math inline">\(e^{i\theta}\)</span> が意味するところをきちんと定義して，等式 <a href="complexnumbers.html#eq:euler">(2.2)</a> を証明する必要があるだろうが，ここでは記号として「オイラーの公式」を紹介した。関心のある読者は適当な複素関数論の教科書を読めばよい。</p>
 すべての複素数が
-\begin{equation}
+<span class="math display">\[\begin{equation}
   z = re^{i\theta}, \quad r \ge 0,\ 0^\circ \le \theta &lt; 360^\circ
-\end{equation}
+\end{equation}\]</span>
 という表現を持つということを知っていればよい。なお, この表現は次のようにして, <span class="math inline">\(\theta &lt; 0^\circ\)</span>, <span class="math inline">\(\theta \ge 360^\circ\)</span> に拡張することができる: 任意の <span class="math inline">\(\theta\)</span> に対して, <span class="math inline">\(\theta = \theta_0 + n \times 360^\circ\)</span> なる整数 <span class="math inline">\(n = 0, \pm 1, \pm 2, \dots\)</span> がたった1つだけ存在する。<span class="math inline">\(e^{i360^\circ} = 1\)</span> に注意すれば,
-\begin{equation}
+<span class="math display">\[\begin{equation}
   e^{i\theta} = e^{i\theta_0}\left(e^{i360^\circ}\right)^n = e^{i\theta_0}
-\end{equation}
+\end{equation}\]</span>
 <p>を得る。</p>
 </div>
 <div id="-1" class="section level4 unnumbered">
@@ -519,9 +519,9 @@ for (i in <span class="dv">1</span>:<span class="dv">10</span>) {
 <div id="section-2.6" class="section level2">
 <h2><span class="header-section-number">2.6</span> 共役複素数</h2>
 複素数 <span class="math inline">\(z = a + bi\)</span> に対して, <span class="math inline">\(\bar z = a - bi\)</span> を<strong>共役複素数 (complex conjugate)</strong>あるいは<strong>複素共役</strong>という。<span class="math inline">\(z\)</span> は <span class="math inline">\(\bar z\)</span> の共役複素数であるから,
-\begin{equation*}
+<span class="math display">\[\begin{equation*}
   \bar{\bar z} = z 
-\end{equation*}
+\end{equation*}\]</span>
 <p>が成り立つ。（@ref(fig:conjugate））</p>
 <div class="figure" style="text-align: center"><span id="fig:conjugate"></span>
 <img src="figures/02-complex_numbers/02-complex_numbers.004.jpeg" alt="共役複素数"  />
@@ -620,22 +620,22 @@ u_2(k_{t-1}, k_t) + \beta u_1 (k_t, k_{t+1}) = 0
   + (u_{22}^* + \beta u_{11}^*) \cdot (k_t - k^*) 
   + \beta u_{12}^* \cdot (k_{t+1} - k^*) = 0
 \]</span> が得られる。ここでは<span class="math inline">\(u_{12}^* = \frac{\partial^2 u}{\partial k_t \partial k_{t+1}}(k^*, k^*)\)</span> などと置いた。 この線形化方程式は <span class="math inline">\((k_t, k_{t+1}) = (k^*, k^*)\)</span> の近傍の動学を近似する動学方程式である。 <span class="math inline">\(\hat k_t := k_t - k^*\)</span> と置き，<span class="math inline">\(u_{12}^* \neq 0\)</span> を仮定すると<a href="#fn15" class="footnoteRef" id="fnref15"><sup>15</sup></a>，</p>
-<span class="math display" id="eq:lineuler">\[
+<span class="math display">\[
   \hat k_{t+1} + \left(\frac{u_{22}^* + \beta u_{11}^*}{\beta u_{12}^*} \right) \hat k_t + \beta^{-1} \hat k_{t-1} = 0
 \]</span> このような漸化式（recurrence relation）あるいは差分方程式（difference equation）を解くには， 特性方程式（characteristic equation）
-\begin{equation}
-  \lambda^2 + \left(\frac{u_{22}^* + \beta u_{11}^*}{\beta u_{12}^*} \right) \lambda + \beta^{-1} = 0 \tag{2.1}
-\end{equation}
+<span class="math display" id="eq:lineuler">\[\begin{equation}
+  \lambda^2 + \left(\frac{u_{22}^* + \beta u_{11}^*}{\beta u_{12}^*} \right) \lambda + \beta^{-1} = 0 \tag{2.3}
+\end{equation}\]</span>
 <p>を解けばよいのであった。</p>
 <p>次の定理は <span class="citation">Levhari and Liviatan (<a href="#ref-LevhariLiviatan1972">1972</a>)</span> と <span class="citation">Santos (<a href="#ref-Santos1991">1991</a>)</span> による結果の1セクター版である。</p>
 
 <div class="theorem">
-<span id="thm:levhari-liviatan-santos-onesec" class="theorem"><strong>定理 2.3 </strong></span>方程式 <a href="complexnumbers.html#eq:lineuler">(2.1)</a> の根はともに実数である。
+<span id="thm:levhari-liviatan-santos-onesec" class="theorem"><strong>定理 2.3 </strong></span>方程式 <a href="complexnumbers.html#eq:lineuler">(2.3)</a> の根はともに実数である。
 </div>
 <p></p>
 
 <div class="proof">
-<span class="proof"><em>証明. </em></span> 2次方程式の根は2つしかないから，<span class="math inline">\(\lambda_1\)</span>, <span class="math inline">\(\lambda_2\)</span> は互いに共役（<span class="math inline">\(\bar \lambda_1 = \lambda_2\)</span>）であるか， いずれも実数（<span class="math inline">\(\lambda_1, \lambda_2 \in \mathbb R\)</span>）でなければならない。しかし，簡単に確かめられるように方程式 <a href="complexnumbers.html#eq:lineuler">(2.1)</a> の根 <span class="math inline">\(\lambda \neq 0\)</span> が1つ見つかったとき，<span class="math inline">\(\beta^{-1} \lambda^{-1}\)</span> もまた方程式 <a href="complexnumbers.html#eq:lineuler">(2.1)</a> の根である。 仮に <span class="math inline">\(\lambda\)</span> が複素根であるとすれば，<span class="math inline">\(\bar \lambda\)</span> も根であるから，<span class="math inline">\(\lambda = \beta^{-1} \lambda^{-1}\)</span> が成り立たなければ根が4つになってしまうので不合理である。<span class="math inline">\(\lambda = \beta^{-1} \lambda^{-1}\)</span> として計算を進めると方程式 <a href="complexnumbers.html#eq:lineuler">(2.1)</a> は次の方程式と同値であることが分かる（確認せよ）。 <span class="math display">\[
+<span class="proof"><em>証明. </em></span> 2次方程式の根は2つしかないから，<span class="math inline">\(\lambda_1\)</span>, <span class="math inline">\(\lambda_2\)</span> は互いに共役（<span class="math inline">\(\bar \lambda_1 = \lambda_2\)</span>）であるか， いずれも実数（<span class="math inline">\(\lambda_1, \lambda_2 \in \mathbb R\)</span>）でなければならない。しかし，簡単に確かめられるように方程式 <a href="complexnumbers.html#eq:lineuler">(2.3)</a> の根 <span class="math inline">\(\lambda \neq 0\)</span> が1つ見つかったとき，<span class="math inline">\(\beta^{-1} \lambda^{-1}\)</span> もまた方程式 <a href="complexnumbers.html#eq:lineuler">(2.3)</a> の根である。 仮に <span class="math inline">\(\lambda\)</span> が複素根であるとすれば，<span class="math inline">\(\bar \lambda\)</span> も根であるから，<span class="math inline">\(\lambda = \beta^{-1} \lambda^{-1}\)</span> が成り立たなければ根が4つになってしまうので不合理である。<span class="math inline">\(\lambda = \beta^{-1} \lambda^{-1}\)</span> として計算を進めると方程式 <a href="complexnumbers.html#eq:lineuler">(2.3)</a> は次の方程式と同値であることが分かる（確認せよ）。 <span class="math display">\[
   \left(\lambda + \frac{u_{12}^*}{u_{22}^*} \right)
   \overline{\left(\lambda + \frac{u_{12}^*}{u_{22}^*} \right)}
   +
