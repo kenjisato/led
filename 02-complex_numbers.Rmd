@@ -358,7 +358,7 @@ knitr::include_graphics("figures/02-complex_numbers/02-complex_numbers.003.jpeg"
 \begin{equation*}
   \bar{\bar z} = z 
 \end{equation*}
-が成り立つ。（\@ref(fig:conjugate））
+が成り立つ。（\@ref(fig:conjugate)）
 
 
 ```{r conjugate, fig.cap="共役複素数", echo=FALSE}
