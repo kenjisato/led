@@ -13,7 +13,7 @@ biblio-style: apalike
 link-citations: yes
 ---
 
-```{r, results="asis"}
+```{r, results="asis", echo=knitr:::is_html_output()}
 if (knitr:::is_html_output()) {
   cat("# {#top-page .unnumbered}",
       "**改訂履歴**",

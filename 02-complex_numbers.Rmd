@@ -177,15 +177,17 @@ base R の `plot()` 関数は複素数に対応しているが，残念ながら
 ```{r}
 points = 
   tibble(z = c(z, w, z / w)) %>% 
-  mutate(re = Re(z), im = Im(z))
+  mutate(Re = Re(z), Im = Im(z))
 points
 ```
 
 今作ったデータフレームの `re` 列を横軸に，`im` 列を縦軸にプロットすればよい。
 
 ```{r}
-ggplot(points) + geom_point(aes(x=re, y=im, color=factor(z))) + 
-  coord_fixed() + xlim(-5, 5) + ylim(-5, 5) # この行は装飾
+ggplot(points) + 
+  geom_point(aes(x = Re, y = Im, color = factor(z))) + 
+  coord_fixed() + labs(color = "z") + 
+  xlim(-5, 5) + ylim(-5, 5) # この行は装飾
 ```
 
 #### べき乗 {-}
@@ -198,14 +200,15 @@ $$
 
 ```{r}
 zp = 0.5 + 0.5i
-zn = tibble(re = Re(1), im = Im(1), n = 0)
+zn = tibble(Re = Re(1), Im = Im(1), n = 0)
 
 for (i in 1:10) {
-  zn = zn %>% add_row(re = Re(zp ^ i), im = Im(zp ^ i), n = i)
+  zn = zn %>% add_row(Re = Re(zp ^ i), Im = Im(zp ^ i), n = i)
 }
 
-ggplot(zn) + geom_point(aes(x=re, y=im, color=factor(n))) + 
-  coord_fixed() + xlim(-1.02, 1.02) + ylim(-1.02, 1.02)
+ggplot(zn) + geom_point(aes(x = Re, y = Im, color = factor(n))) + 
+  labs(color = "Power") + coord_fixed() + 
+  xlim(-1.02, 1.02) + ylim(-1.02, 1.02)
 ```
 
 $1$ に $0.5 + 0.5i$ を繰り返し掛けると次第に原点に近づいていくことが分かる。これは，実部・虚部ともに $0.5$ という比較的小さな数字だから成り立ちそうな気がする。実数の場合，$\lim_{n\to \infty} a^n = 0$ となるのは，$-1 < a < 1$ の場合ということを思いだしてほしい。複素数の場合には，実部・虚部のそれぞれが$1$ より小さい絶対値を持てば原点に収束するだろうか？

@@ -462,8 +462,6 @@ $u_{t}$ によって解軌道が一意的に定まる. これは @Luenberger1977
 \end{problem}
 %
 
-\appendix
-
 ## ハミルトン・ケーリーの定理の証明
 
 \label{app:a}
