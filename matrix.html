@@ -26,7 +26,7 @@
 <meta name="author" content="佐藤 健治">
 
 
-<meta name="date" content="2017-03-28">
+<meta name="date" content="2017-03-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -144,6 +144,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.3.2" data-path="matrix.html"><a href="matrix.html#section-3.3.2"><i class="fa fa-check"></i><b>3.3.2</b> 行基本変形</a></li>
 <li class="chapter" data-level="3.3.3" data-path="matrix.html"><a href="matrix.html#section-3.3.3"><i class="fa fa-check"></i><b>3.3.3</b> 列基本変形</a></li>
 <li class="chapter" data-level="3.3.4" data-path="matrix.html"><a href="matrix.html#section-3.3.4"><i class="fa fa-check"></i><b>3.3.4</b> 初等変形</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="matrix.html"><a href="matrix.html#r--1"><i class="fa fa-check"></i><b>3.4</b> R コード</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="matrix.html"><a href="matrix.html#section-3.4.1"><i class="fa fa-check"></i><b>3.4.1</b> 行列の定義</a></li>
+<li class="chapter" data-level="3.4.2" data-path="matrix.html"><a href="matrix.html#section-3.4.2"><i class="fa fa-check"></i><b>3.4.2</b> 要素の取得</a></li>
+<li class="chapter" data-level="3.4.3" data-path="matrix.html"><a href="matrix.html#section-3.4.3"><i class="fa fa-check"></i><b>3.4.3</b> 行列の演算・関数</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="eigen.html"><a href="eigen.html"><i class="fa fa-check"></i><b>4</b> 行列の固有値</a><ul>
@@ -299,27 +304,27 @@ A =
 </div>
 <div id="-diagonal-matrix" class="section level4 unnumbered">
 <h4>対角行列 (diagonal matrix)</h4>
-<p>対角成分を除いた成分がすべてゼロであるような正方行列を<strong>対角行列 (diagonal matrix)</strong>という。ときに，<span class="math inline">\(\mathrm{diag}\{a_{1},\dots,a_{n}\}\)</span> のように書いて対角成分が左上から順に <span class="math inline">\(a_{1},\dots,a_{n}\)</span> である対角行列を表すことがある。これは Matlab などで利用されている記法で，Python と Octave でも利用できる.</p>
+<p>対角成分を除いた成分がすべてゼロであるような正方行列を<strong>対角行列 (diagonal matrix)</strong>という。ときに，<span class="math inline">\(\mathrm{diag}\{a_{1},\dots,a_{n}\}\)</span> のように書いて対角成分が左上から順に <span class="math inline">\(a_{1},\dots,a_{n}\)</span> である対角行列を表すことがある。これは Matlab などで利用されている記法で，R でも類似の方法（<code>diag(c(1, 2, 3))</code>）で対角行列を定義できる。</p>
 </div>
 <div id="-identity-matrix" class="section level4 unnumbered">
 <h4>単位行列 (identity matrix)</h4>
-<p>対角成分がすべて<span class="math inline">\(1\)</span> である対角行列を単位行列という。<span class="math inline">\(n\)</span>次の単位行列を <span class="math inline">\(I_{n}\)</span> と書く。誤解の恐れがない場合は単に <span class="math inline">\(I\)</span> と書く。Python では関数 numpy.eye(n) で <span class="math inline">\(n\)</span> 次単位行列を作る.</p>
+<p>対角成分がすべて<span class="math inline">\(1\)</span> である対角行列を単位行列という。<span class="math inline">\(n\)</span>次の単位行列を <span class="math inline">\(I_{n}\)</span> と書く。誤解の恐れがない場合は単に <span class="math inline">\(I\)</span> と書く。R では <code>diag(n)</code> で <span class="math inline">\(n\)</span> 次単位行列を作る。</p>
 </div>
 <div id="-transpose-matrix" class="section level4 unnumbered">
 <h4>転置行列 (transpose matrix)</h4>
-<p><span class="math inline">\(A=[a_{ij}]\in\mathbb{F}^{m\times n}\)</span> の転置行列 <span class="math inline">\(A^{\top}\)</span> とは，<span class="math inline">\((A^{\top})_{ij}=a_{ji}\)</span>, <span class="math inline">\(i=1,\dots,m\)</span>，<span class="math inline">\(j=1,\dots n\)</span> を満たす<span class="math inline">\(m\times n\)</span>行列のことをいう。</p>
+<p><span class="math inline">\(A=[a_{ij}]\in\mathbb{F}^{m\times n}\)</span> の転置行列 <span class="math inline">\(A^{\top}\)</span> とは，<span class="math inline">\((A^{\top})_{ij}=a_{ji}\)</span>, <span class="math inline">\(i=1,\dots,m\)</span>，<span class="math inline">\(j=1,\dots n\)</span> を満たす<span class="math inline">\(m\times n\)</span>行列のことをいう。R では <code>t(A)</code> で行列 <code>A</code> の転置行列を得る。</p>
 </div>
 <div id="-conjugate-transpose" class="section level4 unnumbered">
 <h4>共役転置行列 (conjugate transpose)</h4>
-<p><span class="math inline">\(A=[a_{ij}]\in\mathbb{F}^{m\times n}\)</span> の共役転置行列 <span class="math inline">\(A^{*}\)</span> とは，<span class="math inline">\((A^{*})_{ij}=\bar{a}_{ji}\)</span>, <span class="math inline">\(i=1,\dots,m\)</span>，<span class="math inline">\(j=1,\dots n\)</span> を満たす<span class="math inline">\(m\times n\)</span>行列のことである。実行列の共役転置行列は転置行列である.</p>
+<p><span class="math inline">\(A=[a_{ij}]\in\mathbb{F}^{m\times n}\)</span> の共役転置行列 <span class="math inline">\(A^{*}\)</span> とは，<span class="math inline">\((A^{*})_{ij}=\bar{a}_{ji}\)</span>, <span class="math inline">\(i=1,\dots,m\)</span>，<span class="math inline">\(j=1,\dots n\)</span> を満たす<span class="math inline">\(m\times n\)</span>行列のことである。実行列の共役転置行列は転置行列である。 R では <code>Conj(t(A))</code> 関数で行列 <code>A</code> の転置行列を得る。</p>
 </div>
 <div id="-symmetric-matrix" class="section level4 unnumbered">
 <h4>対称行列 (symmetric matrix)</h4>
-<p><span class="math inline">\(A\in\mathbb{R}^{n\times n}\)</span> が<strong>対称行列 (symmetric matrix)</strong>であるとは，<span class="math inline">\(A^{\top}=A\)</span> が成り立つことをいう.</p>
+<p><span class="math inline">\(A\in\mathbb{R}^{n\times n}\)</span> が<strong>対称行列 (symmetric matrix)</strong>であるとは，<span class="math inline">\(A^{\top}=A\)</span> が成り立つことをいう。</p>
 </div>
 <div id="-hermitian-matrix" class="section level4 unnumbered">
 <h4>エルミート行列 (Hermitian matrix)</h4>
-<p><span class="math inline">\(A\in\mathbb{C}^{n\times n}\)</span> がエルミート行列であるとは，<span class="math inline">\(A^{*}=A\)</span> が成り立つことをいう.</p>
+<p><span class="math inline">\(A\in\mathbb{C}^{n\times n}\)</span> がエルミート行列であるとは，<span class="math inline">\(A^{*}=A\)</span> が成り立つことをいう。</p>
 </div>
 <div id="-column-vectorrow-vector" class="section level4 unnumbered">
 <h4>列ベクトル・行ベクトル (column vector，row vector)</h4>
@@ -381,7 +386,7 @@ A+(B+C) &amp; =(A+B)+C
 <h4>積</h4>
 <p>行列 <span class="math inline">\(A=[a_{ij}]\in\mathbb{F}^{m\times n}\)</span> と <span class="math inline">\(B=[b_{ij}]\in\mathbb{F}^{n\times p}\)</span> の積 <span class="math inline">\(AB\in\mathbb{F}^{m\times p}\)</span> を次のように定義する. <span class="math display">\[
 AB:=\left[\sum_{k=1}^{n}a_{ik}b_{kj}\right].
-\]</span> この定義は線形写像の合成という観点から見ればごく自然なものであることが分かる。解説は別の機会に譲ることにしよう。</p>
+\]</span> この定義は線形写像の合成という観点から見ればごく自然なものであることが分かる。解説は第<a href="linspace.html#linspace">5</a>章で行う。</p>
 <p>正方行列 <span class="math inline">\(A,B\in\mathbb{F}^{n\times n}\)</span> に対して，<span class="math inline">\(AB\)</span> と <span class="math inline">\(BA\)</span> の両方が定義される。しかし，それらは一般には一致しない。例えば， <span class="math display">\[
 \begin{aligned}
   \begin{bmatrix}
@@ -608,7 +613,8 @@ A<span class="math inline">\(\in\mathbb{F}^{m\times n}\)</span> を任意の行�
 \end{bmatrix}=\begin{bmatrix}1 &amp; 1\\
 u &amp; -u
 \end{bmatrix}.
-\]</span> 次の関係が成り立つことに注目してほしい. <span class="math display">\[
+\]</span></p>
+<p>次の関係が成り立つことに注目してほしい. <span class="math display">\[
 \begin{bmatrix}1 &amp; 0\\
 0 &amp; u
 \end{bmatrix}^{-1}=\begin{bmatrix}1 &amp; 0\\
@@ -631,7 +637,7 @@ u &amp; -u
 \end{bmatrix}=\begin{bmatrix}1+a &amp; 1-a\\
 1 &amp; -1
 \end{bmatrix}.
-\]</span> 次の関係が成り立つことに注目してほしい. <span class="math display">\[
+\]</span> 次の関係が成り立つことに注目してほしい。 <span class="math display">\[
 \begin{bmatrix}1 &amp; a\\
 0 &amp; 1
 \end{bmatrix}^{-1}=\begin{bmatrix}1 &amp; -a\\
@@ -727,7 +733,146 @@ PAQ(Q^{-1}A^{-1})=P
 <p><span class="math display">\[
 A=P^{-1}Q^{-1}=\tilde{P}^{-1}
 \]</span></p>
-<p>なる行基本変形のみ (あるいは列基本変形のみ) からなる初等変形 <span class="math inline">\(\tilde{P}\)</span> が存在することが分かる。<span class="math inline">\(A^{-1}=\tilde{P}\)</span> であるから，<span class="math inline">\(A\)</span> から <span class="math inline">\(I\)</span> に至る行基本変形を <span class="math inline">\(I\)</span> に施せば逆行列を得ることができる.</p>
+<p>なる行基本変形のみ（あるいは列基本変形のみ）からなる初等変形 <span class="math inline">\(\tilde{P}\)</span> が存在することが分かる。<span class="math inline">\(A^{-1}=\tilde{P}\)</span> であるから，<span class="math inline">\(A\)</span> から <span class="math inline">\(I\)</span> に至る行基本変形を <span class="math inline">\(I\)</span> に施せば逆行列を得ることができる.</p>
+</div>
+</div>
+</div>
+<div id="r--1" class="section level2">
+<h2><span class="header-section-number">3.4</span> R コード</h2>
+<p>線形システムの分析において行列計算は中心的な役割を果たすので，繰り返しタイプして十分に手に馴染ませて欲しい。</p>
+<div id="section-3.4.1" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> 行列の定義</h3>
+<p>定義したい行列の要素と同じ要素を持つアトミックベクタを定義してから，行列に変換するのがもっとも簡単である。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">9</span>
+(A &lt;-<span class="st"> </span><span class="kw">matrix</span>(a, <span class="dt">nrow =</span> <span class="dv">3</span>))</code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9</code></pre>
+<p>列方向に並んでいくことを確認してほしい。この振る舞いは，オプションで変更することができる。タイプする文字が増えてしまうが，次のように定義する方がコードから内容が直感的に分かりやすいかもしれない。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b &lt;-<span class="st"> </span><span class="kw">c</span>( <span class="fl">1.11</span>, <span class="fl">3.12</span>, <span class="fl">4.13</span>,
+       -<span class="fl">3.21</span>, <span class="fl">2.22</span>, <span class="fl">5.23</span>,
+        <span class="fl">0.31</span>, <span class="fl">1.32</span>, <span class="fl">8.33</span>)
+(B &lt;-<span class="st"> </span><span class="kw">matrix</span>(b, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<pre><code>##       [,1] [,2] [,3]
+## [1,]  1.11 3.12 4.13
+## [2,] -3.21 2.22 5.23
+## [3,]  0.31 1.32 8.33</code></pre>
+<div id="e789b9e588a5e381aae8a18ce58897" class="section level4 unnumbered">
+<h4>特別な行列</h4>
+<div id="e382bce383ade8a18ce58897" class="section level5 unnumbered">
+<h5>ゼロ行列</h5>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">3</span>)</code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    0    0    0
+## [2,]    0    0    0
+## [3,]    0    0    0</code></pre>
+</div>
+<div id="e5afbee8a792e8a18ce58897" class="section level5 unnumbered">
+<h5>対角行列</h5>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.11</span>, <span class="fl">3.22</span>, -<span class="fl">1.33</span>)
+<span class="kw">diag</span>(d)</code></pre></div>
+<pre><code>##      [,1] [,2]  [,3]
+## [1,] 1.11 0.00  0.00
+## [2,] 0.00 3.22  0.00
+## [3,] 0.00 0.00 -1.33</code></pre>
+</div>
+<div id="e58d98e4bd8de8a18ce58897" class="section level5 unnumbered">
+<h5>単位行列</h5>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">diag</span>(<span class="dv">1</span>, <span class="dv">4</span>)</code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    0    0    0
+## [2,]    0    1    0    0
+## [3,]    0    0    1    0
+## [4,]    0    0    0    1</code></pre>
+</div>
+</div>
+</div>
+<div id="section-3.4.2" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> 要素の取得</h3>
+<p>行列の要素を取得するには，次のような構文を使う。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">B[<span class="dv">1</span>, <span class="dv">2</span>]</code></pre></div>
+<pre><code>## [1] 3.12</code></pre>
+<p>ただし，このような要素の取得はできる限りなくす努力をするべきだ。</p>
+</div>
+<div id="section-3.4.3" class="section level3">
+<h3><span class="header-section-number">3.4.3</span> 行列の演算・関数</h3>
+<div id="-1" class="section level4 unnumbered">
+<h4>スカラー倍</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="fl">0.5</span> *<span class="st"> </span>A</code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]  0.5  2.0  3.5
+## [2,]  1.0  2.5  4.0
+## [3,]  1.5  3.0  4.5</code></pre>
+</div>
+<div id="e5928ce383bbe5b7ae" class="section level4 unnumbered">
+<h4>和・差</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A +<span class="st"> </span>B</code></pre></div>
+<pre><code>##       [,1] [,2]  [,3]
+## [1,]  2.11 7.12 11.13
+## [2,] -1.21 7.22 13.23
+## [3,]  3.31 7.32 17.33</code></pre>
+</div>
+<div id="-1" class="section level4 unnumbered">
+<h4>積</h4>
+<p>行列の積は <code>A * B</code> と計算できると期待するかもしれないが，この演算は成分ごとの積を計算する。行列積には特別な演算子 <code>%*%</code> を使わなければならない。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A %*%<span class="st"> </span>B</code></pre></div>
+<pre><code>##        [,1]  [,2]   [,3]
+## [1,]  -9.56 21.24  83.36
+## [2,] -11.35 27.90 101.05
+## [3,] -13.14 34.56 118.74</code></pre>
+</div>
+<div id="e8bba2e7bdae" class="section level4 unnumbered">
+<h4>転置</h4>
+<p>転置行列は, <code>t()</code> で計算できる。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t</span>(B)</code></pre></div>
+<pre><code>##      [,1]  [,2] [,3]
+## [1,] 1.11 -3.21 0.31
+## [2,] 3.12  2.22 1.32
+## [3,] 4.13  5.23 8.33</code></pre>
+<p>複素数を成分に持つ行列は，共役転置行列が必要だろう。次のように計算する。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">C &lt;-<span class="st"> </span>A +<span class="st"> </span>B *<span class="st"> </span>1i
+<span class="kw">Conj</span>(<span class="kw">t</span>(C))</code></pre></div>
+<pre><code>##         [,1]    [,2]    [,3]
+## [1,] 1-1.11i 2+3.21i 3-0.31i
+## [2,] 4-3.12i 5-2.22i 6-1.32i
+## [3,] 7-4.13i 8-5.23i 9-8.33i</code></pre>
+</div>
+<div id="e98086e8a18ce58897" class="section level4 unnumbered">
+<h4>逆行列</h4>
+<p>実用上利用するかどうかは別として，逆行列は次のように計算できる。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">solve</span>(B)</code></pre></div>
+<pre><code>##             [,1]        [,2]        [,3]
+## [1,]  0.14306178 -0.25353377  0.08825168
+## [2,]  0.35010078  0.09833723 -0.23532052
+## [3,] -0.06080218 -0.00614762  0.15405343</code></pre>
+<p>多くの場合，<span class="math inline">\(B^{-1} A\)</span> を計算する次の形式で使うことになる。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">solve</span>(B, A)</code></pre></div>
+<pre><code>##             [,1]       [,2]       [,3]
+## [1,] -0.09925073 -0.1659117 -0.2325726
+## [2,] -0.15918632  0.4801661  1.1195186
+## [3,]  0.38906287  0.6503737  0.9116846</code></pre>
+<p>すなわち，やや冗長に書けば，<code>solve(B)</code> は次のコードと同一である。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">solve</span>(B, <span class="kw">diag</span>(<span class="dv">3</span>))</code></pre></div>
+<pre><code>##             [,1]        [,2]        [,3]
+## [1,]  0.14306178 -0.25353377  0.08825168
+## [2,]  0.35010078  0.09833723 -0.23532052
+## [3,] -0.06080218 -0.00614762  0.15405343</code></pre>
+</div>
+<div id="-1" class="section level4 unnumbered">
+<h4>ランク</h4>
+<p>ランクの計算は四則演算からなる基本変形をほどこしてゼロでない行を数えればよい。簡単な計算だと思うかもしれないが，特定の数字が0であるかどうかを判定することは計算機には難しい。次の行列のランクはもちろんゼロである。</p>
+<p><span class="math display">\[
+M
+= 
+\begin{bmatrix}
+0.1 + 0.1 + 0.1 - 0.3 &amp; 0 \\
+0 &amp; 0\\
+\end{bmatrix}
+\]</span> しかし，数値計算で判定することは容易でない。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">M =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.1</span> +<span class="st"> </span><span class="fl">0.1</span> +<span class="st"> </span><span class="fl">0.1</span> -<span class="st"> </span><span class="fl">0.3</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)
+<span class="kw">qr</span>(M)$rank</code></pre></div>
+<pre><code>## [1] 1</code></pre>
 
 </div>
 </div>

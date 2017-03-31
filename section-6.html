@@ -26,7 +26,7 @@
 <meta name="author" content="佐藤 健治">
 
 
-<meta name="date" content="2017-03-28">
+<meta name="date" content="2017-03-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -145,6 +145,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.3.3" data-path="matrix.html"><a href="matrix.html#section-3.3.3"><i class="fa fa-check"></i><b>3.3.3</b> 列基本変形</a></li>
 <li class="chapter" data-level="3.3.4" data-path="matrix.html"><a href="matrix.html#section-3.3.4"><i class="fa fa-check"></i><b>3.3.4</b> 初等変形</a></li>
 </ul></li>
+<li class="chapter" data-level="3.4" data-path="matrix.html"><a href="matrix.html#r--1"><i class="fa fa-check"></i><b>3.4</b> R コード</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="matrix.html"><a href="matrix.html#section-3.4.1"><i class="fa fa-check"></i><b>3.4.1</b> 行列の定義</a></li>
+<li class="chapter" data-level="3.4.2" data-path="matrix.html"><a href="matrix.html#section-3.4.2"><i class="fa fa-check"></i><b>3.4.2</b> 要素の取得</a></li>
+<li class="chapter" data-level="3.4.3" data-path="matrix.html"><a href="matrix.html#section-3.4.3"><i class="fa fa-check"></i><b>3.4.3</b> 行列の演算・関数</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="eigen.html"><a href="eigen.html"><i class="fa fa-check"></i><b>4</b> 行列の固有値</a><ul>
 <li class="chapter" data-level="4.1" data-path="eigen.html"><a href="eigen.html#section-4.1"><i class="fa fa-check"></i><b>4.1</b> 行列式</a><ul>
@@ -243,7 +248,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 \phi_{P^{-1}AP}(z)=\det(zI-P^{-1}AP)=\det P^{-1}\det(zI-A)\det P=\phi_{A}(z)
 \]</span> が成り立つことに注意すると, 固有多項式は基底に依存しないことが分かる. したがって, 行列の固有値問題はその背後にある線形写像の固有値問題である. 以下では, 固有多項式を <span class="math inline">\(\phi_{f}(z)\)</span> と書く. 
 <div class="theorem">
-<span id="thm:unnamed-chunk-107" class="theorem"><strong>定理 6.1  (ハミルトン・ケーリーの定理) </strong></span> <span class="math inline">\(X\)</span> を有限次元線形空間, <span class="math inline">\(f:X\to X\)</span> を線形とする. このとき, 任意の <span class="math inline">\(x\in X\)</span> について <span class="math inline">\(\phi_{f}(f)x=0\)</span> が成り立つ. すなわち <span class="math inline">\(f\)</span> の任意の行列表現 <span class="math inline">\(A\)</span> について, <span class="math inline">\(\phi_{f}(A)\)</span> はゼロ行列となる.
+<span id="thm:unnamed-chunk-116" class="theorem"><strong>定理 6.1  (ハミルトン・ケーリーの定理) </strong></span> <span class="math inline">\(X\)</span> を有限次元線形空間, <span class="math inline">\(f:X\to X\)</span> を線形とする. このとき, 任意の <span class="math inline">\(x\in X\)</span> について <span class="math inline">\(\phi_{f}(f)x=0\)</span> が成り立つ. すなわち <span class="math inline">\(f\)</span> の任意の行列表現 <span class="math inline">\(A\)</span> について, <span class="math inline">\(\phi_{f}(A)\)</span> はゼロ行列となる.
 </div>
 <p></p>
 % 
@@ -259,24 +264,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 (f-\lambda_{1})^{n_{1}}\cdots(f-\lambda_{r})^{n_{r}}=0
 \]</span> が成り立つ. 各 <span class="math inline">\((f-\lambda_{1})^{n_{1}},\dots,(f-\lambda_{r})^{n_{r}}\)</span> は互いに可換であるから, 積 (合成) の順序が自由に交換できることに注意してほしい. 
 <div class="definition">
-<span id="def:unnamed-chunk-109" class="definition"><strong>定義 6.1 </strong></span>多項式 <span class="math inline">\(p(z)\)</span>, <span class="math inline">\(q(z)\)</span> が互いに素であるとは, 多項式 <span class="math inline">\(\tilde{p}(z)\)</span>, <span class="math inline">\(\tilde{q}(z)\)</span>, <span class="math inline">\(c(z)\)</span> が <span class="math inline">\(p(z)=\tilde{p}(z)c(z)\)</span>, <span class="math inline">\(q(z)=\tilde{q}(z)c(z)\)</span> であれば必ず <span class="math inline">\(c(z)=1\)</span> が成り立つことをいう.
+<span id="def:unnamed-chunk-118" class="definition"><strong>定義 6.1 </strong></span>多項式 <span class="math inline">\(p(z)\)</span>, <span class="math inline">\(q(z)\)</span> が互いに素であるとは, 多項式 <span class="math inline">\(\tilde{p}(z)\)</span>, <span class="math inline">\(\tilde{q}(z)\)</span>, <span class="math inline">\(c(z)\)</span> が <span class="math inline">\(p(z)=\tilde{p}(z)c(z)\)</span>, <span class="math inline">\(q(z)=\tilde{q}(z)c(z)\)</span> であれば必ず <span class="math inline">\(c(z)=1\)</span> が成り立つことをいう.
 </div>
 <p></p>
 
 <div class="lemma">
-<span id="lem:unnamed-chunk-110" class="lemma"><strong>補題 6.1 </strong></span>多項式 <span class="math inline">\(p(z)\)</span>, <span class="math inline">\(q(z)\)</span> が互いに素であれば, ある多項式 <span class="math inline">\(a(z)\)</span>, <span class="math inline">\(b(z)\)</span> が存在して <span class="math display">\[
+<span id="lem:unnamed-chunk-119" class="lemma"><strong>補題 6.1 </strong></span>多項式 <span class="math inline">\(p(z)\)</span>, <span class="math inline">\(q(z)\)</span> が互いに素であれば, ある多項式 <span class="math inline">\(a(z)\)</span>, <span class="math inline">\(b(z)\)</span> が存在して <span class="math display">\[
 a(z)p(z)+b(z)q(z)=1
 \]</span> が成り立つ.
 </div>
 <p></p>
 この等式をベズーの等式という. 単項イデアル整域と呼ばれる特別な環では常に成り立つ. 多項式全体が作る環は単項イデアル整域である. 身近な例としては整数の集合 <span class="math inline">\(\mathbb{Z}\)</span> は単項イデアル整域であり, 互いに素な整数<span class="math inline">\(p,q\)</span>にもこの等式を満たす整数 <span class="math inline">\(x,y\)</span> がある. 
 <div class="lemma">
-<span id="lem:unnamed-chunk-111" class="lemma"><strong>補題 6.2 </strong></span>実(複素)係数多項式 <span class="math inline">\(p(z)\)</span>, <span class="math inline">\(q(z)\)</span> が互いに素であることの必要十分条件は, <span class="math inline">\(\mathbb{C}\)</span> において共通根をもたないことである.
+<span id="lem:unnamed-chunk-120" class="lemma"><strong>補題 6.2 </strong></span>実(複素)係数多項式 <span class="math inline">\(p(z)\)</span>, <span class="math inline">\(q(z)\)</span> が互いに素であることの必要十分条件は, <span class="math inline">\(\mathbb{C}\)</span> において共通根をもたないことである.
 </div>
 <p></p>
 % 
 <div class="lemma">
-<span id="lem:unnamed-chunk-112" class="lemma"><strong>補題 6.3 </strong></span><span class="math inline">\(X\)</span> を次のように直和分解できる. <span class="math display">\[
+<span id="lem:unnamed-chunk-121" class="lemma"><strong>補題 6.3 </strong></span><span class="math inline">\(X\)</span> を次のように直和分解できる. <span class="math display">\[
 X=\ker(f-\lambda_{1})^{n_{1}}\oplus\cdots\oplus\ker(f-\lambda_{r})^{n_{r}}.
 \]</span> 各 <span class="math inline">\(\ker(f-\lambda_{i})^{n_{i}}\)</span> は <span class="math inline">\(f\)</span> の不変部分空間であり, 一般固有空間という. それらの基底に関する <span class="math inline">\(f\)</span> の行列表現はブロック対角行列である.
 </div>
@@ -301,7 +306,7 @@ v &amp; =a(f)p(f)v+b(f)q(f)v=0.
 \dim X=n_{1}+\cdots+n_{r}=n
 \]</span> だから, 固有値の代数的重複度が対応する部分空間の次元とならなければならない (証明せよ). 
 <div class="example">
-<span id="ex:unnamed-chunk-114" class="example"><strong>例 6.1 </strong></span>次の2つの行列 <span class="math display">\[
+<span id="ex:unnamed-chunk-123" class="example"><strong>例 6.1 </strong></span>次の2つの行列 <span class="math display">\[
 I_{2}=\begin{bmatrix}1 &amp; 0\\
 0 &amp; 1
 \end{bmatrix},\quad J_{2}(1)=\begin{bmatrix}1 &amp; 1\\
@@ -319,13 +324,13 @@ I_{2}=\begin{bmatrix}1 &amp; 0\\
 <h3><span class="header-section-number">6.1.2</span> 最小多項式</h3>
 ハミルトン・ケーリーの定理より固有多項式が <span class="math inline">\(\phi_{f}(f)=0\)</span> を満たすことを確認した. しかし, <span class="math inline">\(\phi_{f}(z)\)</span> はこの性質をもつ唯一の多項式ではない. 
 <div class="definition">
-<span id="def:unnamed-chunk-115" class="definition"><strong>定義 6.2 </strong></span>最高次の係数が 1 であり, <span class="math inline">\(m_{f}(f)=0\)</span> を満たす多項式 <span class="math inline">\(m_{f}(z)\)</span> を最小多項式という.
+<span id="def:unnamed-chunk-124" class="definition"><strong>定義 6.2 </strong></span>最高次の係数が 1 であり, <span class="math inline">\(m_{f}(f)=0\)</span> を満たす多項式 <span class="math inline">\(m_{f}(z)\)</span> を最小多項式という.
 </div>
 <p></p>
 <p>最小多項式は特定の行列表現に依存しないことに注意.</p>
 
 <div class="example">
-<span id="ex:unnamed-chunk-116" class="example"><strong>例 6.2 </strong></span>例 の記号を用いる. <span class="math inline">\(I_{2}\)</span> と <span class="math inline">\(J_{2}(1)\)</span> の最小多項式はそれぞれ
+<span id="ex:unnamed-chunk-125" class="example"><strong>例 6.2 </strong></span>例 の記号を用いる. <span class="math inline">\(I_{2}\)</span> と <span class="math inline">\(J_{2}(1)\)</span> の最小多項式はそれぞれ
 <span class="math display">\[\begin{align}
 m_{I_{2}}(z) &amp; =z-1,\\
 m_{J_{2}(1)}(z) &amp; =(z-1)^{2}.
@@ -337,7 +342,7 @@ m_{J_{2}(1)}(z) &amp; =(z-1)^{2}.
 m_{f}(z)=(z-\lambda_{1})^{\tilde{n}_{1}}\cdots(z-\lambda_{r})^{\tilde{n}_{r}}
 \]</span> とできる. 自然数 <span class="math inline">\(\tilde{n}_{1},\dots,\tilde{n}_{r}\)</span> を固有値<span class="math inline">\(\lambda_{1},\dots,\lambda_{r}\)</span> の幾何的重複度とよぶ. 
 <div class="theorem">
-<span id="thm:unnamed-chunk-117" class="theorem"><strong>定理 6.2 </strong></span>線形写像が対角化可能であることの必要十分条件は最小多項式が重根を持たないことである.
+<span id="thm:unnamed-chunk-126" class="theorem"><strong>定理 6.2 </strong></span>線形写像が対角化可能であることの必要十分条件は最小多項式が重根を持たないことである.
 </div>
 <p></p>
 
@@ -351,7 +356,7 @@ p_{1}(z)(z-\lambda_{1})+\cdots+p_{r}(z)(z-\lambda_{r})=1
 <p></p>
 % 補題  を強めて次のように分解できる. 証明は同様である. 
 <div class="theorem">
-<span id="thm:unnamed-chunk-119" class="theorem"><strong>定理 6.3 </strong></span><span class="math inline">\(X\)</span> を次のように直和分解できる. <span class="math display">\[
+<span id="thm:unnamed-chunk-128" class="theorem"><strong>定理 6.3 </strong></span><span class="math inline">\(X\)</span> を次のように直和分解できる. <span class="math display">\[
 X=\ker(f-\lambda_{1})^{\tilde{n}_{1}}\oplus\cdots\oplus\ker(f-\lambda_{r})^{\tilde{n}_{r}}.
 \]</span>
 </div>
@@ -394,7 +399,7 @@ F^{\bullet}V_{\tilde{n}} &amp; F^{\bullet}V_{\tilde{n}-1} &amp; F^{\bullet}V_{\t
 \]</span></p>
 
 <div class="theorem">
-<span id="thm:unnamed-chunk-120" class="theorem"><strong>定理 6.4 </strong></span>基底 <span class="math inline">\(V\)</span> に関する <span class="math inline">\(f\)</span> の表現行列はジョルダン標準形である.
+<span id="thm:unnamed-chunk-129" class="theorem"><strong>定理 6.4 </strong></span>基底 <span class="math inline">\(V\)</span> に関する <span class="math inline">\(f\)</span> の表現行列はジョルダン標準形である.
 </div>
 <p></p>
 
@@ -496,7 +501,7 @@ Ev_{\infty j}^{k+1}=Av_{\infty j}^{k},\quad k\ge1
 \end{multline}\]</span>
 終域の基底として <span class="math inline">\(\begin{bmatrix}Av_{\infty j}^{1} &amp; Av_{\infty j}^{2} &amp; \cdots &amp; Av_{\infty j}^{k_{\infty j}-1} &amp; Av_{\infty j}^{k_{\infty j}}\end{bmatrix}\)</span> を取っていることに注意せよ. 
 <div class="theorem">
-<span id="thm:unnamed-chunk-122" class="theorem"><strong>定理 6.5  (ワイエルシュトラス形式) </strong></span><span class="math inline">\((E,A)\)</span> はレギュラーであるとする. このとき, 上のように得た非ゼロベクトルを並べた行列 <span class="math display">\[
+<span id="thm:unnamed-chunk-131" class="theorem"><strong>定理 6.5  (ワイエルシュトラス形式) </strong></span><span class="math inline">\((E,A)\)</span> はレギュラーであるとする. このとき, 上のように得た非ゼロベクトルを並べた行列 <span class="math display">\[
 \bar{V}=[v_{ij}^{k}\ |\ v_{\infty j}^{k}],\quad\bar{W}=[Ev_{ij}^{k}\ \mid Av_{\infty j}^{k}]
 \]</span> は正則であり,
 <span class="math display">\[\begin{align}
@@ -517,7 +522,7 @@ Ev_{\infty j}^{k+1}=Av_{\infty j}^{k},\quad k\ge1
 <p></p>
 デスクリプタシステムについて次の結果を得る. 
 <div class="theorem">
-<span id="thm:unnamed-chunk-124" class="theorem"><strong>定理 6.6 </strong></span><span class="math inline">\((E,A)\)</span> をレギュラーとする. デスクリプタシステム <span class="math display">\[
+<span id="thm:unnamed-chunk-133" class="theorem"><strong>定理 6.6 </strong></span><span class="math inline">\((E,A)\)</span> をレギュラーとする. デスクリプタシステム <span class="math display">\[
 Ex_{t+1}=Ax_{t}+Bu_{t}\label{eq:desc}
 \]</span> を前向きのシステム方程式と, 後ろ向きのシステム方程式に分解することができる. すなわち, 適当な変数変換のもとで,
 <span class="math display">\[\begin{align}
@@ -578,7 +583,7 @@ Ex_{t+1}=Ax_{t}+Bu_{t}\label{eq:desc}
 \end{bmatrix}
 \]</span> と定義する. このとき, 次の結果が得られる. 
 <div class="theorem">
-<span id="thm:unnamed-chunk-128" class="theorem"><strong>定理 6.7 </strong></span>任意の <span class="math inline">\(A\in\mathbb{R}^{n\times n}\)</span> に対して次が成り立つ. <span class="math display">\[
+<span id="thm:unnamed-chunk-137" class="theorem"><strong>定理 6.7 </strong></span>任意の <span class="math inline">\(A\in\mathbb{R}^{n\times n}\)</span> に対して次が成り立つ. <span class="math display">\[
 A\left(\mathrm{adj}A\right)=\left(\mathrm{adj}A\right)A=\left(\det A\right)I_{n\times n}.
 \]</span>
 </div>
@@ -620,7 +625,7 @@ A\left(\mathrm{adj}A\right)=\left(\mathrm{adj}A\right)A=\left(\det A\right)I_{n\
 <p><span class="citation">Berger, Ilchmann, and Trenn (<a href="#ref-Berger2012">2012</a>)</span> (以下, {[}BIT{]})の議論に沿ってワイエルシュトラス標準形を導出しよう.</p>
 以下で定義する部分空間列は, <span class="citation">Wong (<a href="#ref-Wong1974">1974</a>)</span> で導入された. 極限空間がデスクリプタシステムの分析に重要な役割を果たすことが知られている. {[<a href="mailto:%7D@Lewis1984%7B">}@Lewis1984{</a>]} 
 <div class="definition">
-<span id="def:unnamed-chunk-131" class="definition"><strong>定義 6.3  (Wong sequences) </strong></span> <span class="math display">\[
+<span id="def:unnamed-chunk-140" class="definition"><strong>定義 6.3  (Wong sequences) </strong></span> <span class="math display">\[
 \begin{array}{cccccccc}
 \mathcal{V}_{k+1} &amp; := &amp; A^{-1}(E\mathcal{V}_{k}), &amp; \quad &amp; \mathcal{V}_{0}=\mathbb{F}^{n}, &amp; \quad &amp; k=1,2,\dots\\
 \mathcal{W}_{\ell+1} &amp; := &amp; E^{-1}(A\mathcal{W}_{\ell}), &amp; \quad &amp; \mathcal{W}_{0}=\{0\}, &amp; \quad &amp; \ell=1,2,\dots
@@ -663,12 +668,12 @@ v\in\mathcal{V}_{k+1} &amp; \Longrightarrow Av\in E\mathcal{V}_{k}\\
 <p></p>
 % 
 <div class="definition">
-<span id="def:unnamed-chunk-134" class="definition"><strong>定義 6.4 </strong></span><span class="math inline">\(\mathcal{V}^{*}\)</span> を初期値部分空間 (initial manifold), <span class="math inline">\(\mathcal{W}^{*}\)</span> を終端値部分空間 (final manifold) とよぶ.
+<span id="def:unnamed-chunk-143" class="definition"><strong>定義 6.4 </strong></span><span class="math inline">\(\mathcal{V}^{*}\)</span> を初期値部分空間 (initial manifold), <span class="math inline">\(\mathcal{W}^{*}\)</span> を終端値部分空間 (final manifold) とよぶ.
 </div>
 <p></p>
 
 <div class="lemma">
-<span id="lem:unnamed-chunk-135" class="lemma"><strong>補題 6.4  ({Lemma 2.3, {[}BIT{]}}) </strong></span><span class="math inline">\((E,A)\)</span> をレギュラーとする. このとき, 任意の <span class="math inline">\(\lambda\in\mathbb{F}\setminus\mathrm{sp}(E,A)\)</span> と <span class="math inline">\(i=1,2,\dots\)</span> に対して,
+<span id="lem:unnamed-chunk-144" class="lemma"><strong>補題 6.4  ({Lemma 2.3, {[}BIT{]}}) </strong></span><span class="math inline">\((E,A)\)</span> をレギュラーとする. このとき, 任意の <span class="math inline">\(\lambda\in\mathbb{F}\setminus\mathrm{sp}(E,A)\)</span> と <span class="math inline">\(i=1,2,\dots\)</span> に対して,
 <span class="math display">\[\begin{align}
 \mathcal{V}_{k} &amp; =\mathrm{im}\left((A-\lambda E)^{-1}E\right)^{k}\label{eq:vs}\\
 \mathcal{W}_{k} &amp; =\ker\left((A-\lambda E)^{-1}E\right)^{k}\label{eq:ws}
@@ -711,7 +716,7 @@ w &amp; =\hat{E}(v-\lambda w)\\
 <p></p>
 % 
 <div class="theorem">
-<p><span id="thm:unnamed-chunk-137" class="theorem"><strong>定理 6.8  ({Proposition 2.4, {[}BIT{]}}) </strong></span><span class="math inline">\((E,A)\)</span> をレギュラーとする.</p>
+<p><span id="thm:unnamed-chunk-146" class="theorem"><strong>定理 6.8  ({Proposition 2.4, {[}BIT{]}}) </strong></span><span class="math inline">\((E,A)\)</span> をレギュラーとする.</p>
 <ol style="list-style-type: decimal">
 <li><span class="math inline">\(k^{*}=\ell^{*}\)</span>,</li>
 <li><span class="math inline">\(\mathcal{V}^{*}\oplus\mathcal{W}^{*}=\mathbb{F}^{n}\)</span>,</li>
@@ -726,7 +731,7 @@ w &amp; =\hat{E}(v-\lambda w)\\
 <p></p>
 準ワイエルシュトラス形式と呼ばれる次の正準形が得られる. 
 <div class="theorem">
-<span id="thm:unnamed-chunk-139" class="theorem"><strong>定理 6.9  ({Theorem 2.6, {[}BIT{]}}) </strong></span> <span class="math inline">\((E,A)\)</span> をレギュラーとする. <span class="math inline">\(n_{1}:=\dim\mathcal{V}^{*}\)</span>, <span class="math inline">\(n_{2}:=\dim\mathcal{W}^{*}\)</span> とし, 行列 <span class="math inline">\(V\in\mathbb{F}^{n\times n_{1}}\)</span>, <span class="math inline">\(W\in\mathbb{F}^{n\times n_{1}}\)</span> を <span class="math display">\[
+<span id="thm:unnamed-chunk-148" class="theorem"><strong>定理 6.9  ({Theorem 2.6, {[}BIT{]}}) </strong></span> <span class="math inline">\((E,A)\)</span> をレギュラーとする. <span class="math inline">\(n_{1}:=\dim\mathcal{V}^{*}\)</span>, <span class="math inline">\(n_{2}:=\dim\mathcal{W}^{*}\)</span> とし, 行列 <span class="math inline">\(V\in\mathbb{F}^{n\times n_{1}}\)</span>, <span class="math inline">\(W\in\mathbb{F}^{n\times n_{1}}\)</span> を <span class="math display">\[
 \begin{aligned}
 \mathcal{V}^{*} &amp; =\mathrm{im}V,\qquad\mathcal{W}^{*}=\mathrm{im}W
 \end{aligned}
@@ -787,7 +792,7 @@ y\in\mathrm{im}WN^{s+1} &amp; \Longrightarrow\exists x\ \text{s.t.}\ y=WN^{s+1}x
 <p></p>
 
 <div class="definition">
-<span id="def:unnamed-chunk-142" class="definition"><strong>定義 6.5  (一般化固有空間) </strong></span> <span class="math inline">\(\lambda\in\mathrm{sp}(E,A)\cup\{\infty\}\)</span> に対して固有空間列 <span class="math inline">\(\mathcal{G}_{\lambda}^{1},\mathcal{G}_{\lambda}^{2},\dots\)</span> を次のように定義する. まず, <span class="math display">\[
+<span id="def:unnamed-chunk-151" class="definition"><strong>定義 6.5  (一般化固有空間) </strong></span> <span class="math inline">\(\lambda\in\mathrm{sp}(E,A)\cup\{\infty\}\)</span> に対して固有空間列 <span class="math inline">\(\mathcal{G}_{\lambda}^{1},\mathcal{G}_{\lambda}^{2},\dots\)</span> を次のように定義する. まず, <span class="math display">\[
 \begin{aligned}
 \mathcal{G}_{\lambda}^{0}: &amp; =\{0\},\\
 \mathcal{G}_{\lambda}^{k+1} &amp; :=\begin{cases}
@@ -817,7 +822,7 @@ E^{-1}\left(A\mathcal{G}_{\lambda}^{k}\right) &amp; \text{if}\ \lambda=\infty.
 <p></p>
 % 
 <div class="lemma">
-<span id="lem:unnamed-chunk-144" class="lemma"><strong>補題 6.5 </strong></span>各固有値 <span class="math inline">\(\lambda\in\mathrm{sp}(E,A)\cup\{\infty\}\)</span> に対して, ある <span class="math inline">\(p(\lambda)\in\mathbb{N}\)</span> が存在して, <span class="math display">\[
+<span id="lem:unnamed-chunk-153" class="lemma"><strong>補題 6.5 </strong></span>各固有値 <span class="math inline">\(\lambda\in\mathrm{sp}(E,A)\cup\{\infty\}\)</span> に対して, ある <span class="math inline">\(p(\lambda)\in\mathbb{N}\)</span> が存在して, <span class="math display">\[
 \mathcal{G}_{\lambda}^{0}\subsetneq\mathcal{G}_{\lambda}^{1}\subsetneq\mathcal{G}_{\lambda}^{2}\subsetneq\cdots\subsetneq\mathcal{G}_{\lambda}^{p(\lambda)}=\mathcal{G}_{\lambda}^{p(\lambda)+1}
 \]</span> が成り立つ.
 </div>
@@ -852,7 +857,7 @@ v_{ij}^{k}\in\mathcal{G}_{\lambda_{i}}^{k},\qquad j=1,\dots,\eta_{i},\ k=1,\dots
 \]</span> を見つけるのが, 本編で述べたアルゴリズムの骨子である. 各 <span class="math inline">\(i\)</span> と <span class="math inline">\(j\)</span> についてこの手続は有限で終了するのは, 補題  により <span class="math inline">\(p(\lambda_{i})\)</span> が存在することの帰結である. つまり, <span class="math inline">\(k_{ij}\le p(\lambda_{i})\)</span> が成り立つ. 容易に確かめられるように無限大固有値 <span class="math inline">\(\lambda=\infty\)</span> のときも同様である.</p>
 このようにして得られたベクトル列 <span class="math inline">\((v_{ij}^{1},v_{ij}^{2},\dots,v_{ij}^{k})\)</span>, <span class="math inline">\(k\leq k_{ij}\)</span>, を固有値 <span class="math inline">\(\lambda_{i}\in\mathrm{sp}(E,A)\)</span> に対応する固有ベクトル鎖と呼ぶ. 無限大固有値に対する固有ベクトル鎖 <span class="math inline">\((v_{\infty j}^{1},v_{\infty j}^{2},\dots,v_{\infty j}^{k_{\infty j}})\)</span>, <span class="math inline">\(k\leq k_{\infty j}\)</span>, も同様に定義する. <span class="math inline">\(\lambda=\infty\)</span> を <span class="math inline">\(i=\infty\)</span> と読み替えれば <span class="math inline">\(\lambda\in\mathrm{sp}(E,A)\cup\{\infty\}\)</span> を添字 <span class="math inline">\(i=1,\dots,r,\infty\)</span> を用いて統一的に扱うことができる. 次の定理では下付き添字を省略している. 
 <div class="lemma">
-<span id="lem:unnamed-chunk-146" class="lemma"><strong>補題 6.6 </strong></span>任意の <span class="math inline">\(k\in\mathbb{N}\cup\{0\}\)</span> について, <span class="math display">\[
+<span id="lem:unnamed-chunk-155" class="lemma"><strong>補題 6.6 </strong></span>任意の <span class="math inline">\(k\in\mathbb{N}\cup\{0\}\)</span> について, <span class="math display">\[
 \mathcal{G}_{\lambda}^{k}=\begin{cases}
 V\ker(J-\lambda I)^{k} &amp; \text{if}\quad\lambda\in\mathrm{sp}(E,A)\\
 W\ker N^{k}=\mathcal{W}_{k} &amp; \text{if}\quad\lambda=\infty
@@ -930,7 +935,7 @@ v^{s+1}\in E^{-1}\left(AW\ker N^{s}\right)=E^{-1}\left(A\mathcal{G}_{\infty}^{s}
 <p></p>
 補題  と, <span class="math inline">\(V\)</span>, <span class="math inline">\(W\)</span> の単射性が述べているのは, <span class="math inline">\((E,A)\)</span> の固有空間の構造は, 通常の固有値問題に対する一般固有空間の構造を決定する方法と同様に決定できる. したがって, 次の定理はジョルダン標準形の理論から導かれる. 
 <div class="theorem">
-<p><span id="thm:unnamed-chunk-148" class="theorem"><strong>定理 6.10  ({Proposition 3.5, {[}BIT{]}}) </strong></span>ペンシル <span class="math inline">\((E,A)\)</span> をレギュラーとする. 任意の <span class="math inline">\(\lambda\in\mathrm{sp}(E,A)\cup\{\infty\}\)</span> に対して, 次の 1〜5 が成り立つ.</p>
+<p><span id="thm:unnamed-chunk-157" class="theorem"><strong>定理 6.10  ({Proposition 3.5, {[}BIT{]}}) </strong></span>ペンシル <span class="math inline">\((E,A)\)</span> をレギュラーとする. 任意の <span class="math inline">\(\lambda\in\mathrm{sp}(E,A)\cup\{\infty\}\)</span> に対して, 次の 1〜5 が成り立つ.</p>
 <ol style="list-style-type: decimal">
 <li>任意の固有ベクトル鎖 <span class="math inline">\((v^{1},v^{2},\dots,v^{k})\)</span> に対して, <span class="math inline">\(v^{s}\in\mathcal{G}_{\lambda}^{s}\setminus\mathcal{G}_{\lambda}^{s-1}\)</span>, <span class="math inline">\(s=1,\dots,k\)</span>.</li>
 <li>任意の <span class="math inline">\(k\le p(\lambda)\)</span> と任意の <span class="math inline">\(v\in\mathcal{G}_{\lambda}^{k}\setminus\mathcal{G}_{\lambda}^{k-1}\)</span> に対して, <span class="math inline">\(v^{k}=v\)</span> なる固有ベクトル鎖 <span class="math inline">\((v^{1},\dots,v^{k})\)</span> が一意的に存在する.</li>
@@ -1006,7 +1011,7 @@ E[w^{1}\ \cdots\ w^{k}]=[Aw^{1}\ \cdots\ Aw^{k}]\begin{bmatrix}0 &amp; 1\\
 \end{bmatrix}
 \]</span> を得る. これは式 () と一致する. 
 <div class="theorem">
-<span id="thm:unnamed-chunk-150" class="theorem"><strong>定理 6.11 </strong></span><span class="math inline">\((E,A)\)</span> をレギュラーとする. 任意の <span class="math inline">\(i=1,\dots,r\)</span> と任意の <span class="math inline">\(j=1,\dots,\eta_{i}=\mathrm{gm}(\lambda_{i})\)</span> について, ある <span class="math inline">\(1\le k_{ij}\le p(\lambda_{i})\)</span> と固有ベクトル鎖 <span class="math inline">\(V_{ij}:=\left[v_{ij}^{1}\ v_{ij}^{2}\ \cdots\ v_{ij}^{k_{ij}}\right]\)</span> が存在して, <span class="math display">\[
+<span id="thm:unnamed-chunk-159" class="theorem"><strong>定理 6.11 </strong></span><span class="math inline">\((E,A)\)</span> をレギュラーとする. 任意の <span class="math inline">\(i=1,\dots,r\)</span> と任意の <span class="math inline">\(j=1,\dots,\eta_{i}=\mathrm{gm}(\lambda_{i})\)</span> について, ある <span class="math inline">\(1\le k_{ij}\le p(\lambda_{i})\)</span> と固有ベクトル鎖 <span class="math inline">\(V_{ij}:=\left[v_{ij}^{1}\ v_{ij}^{2}\ \cdots\ v_{ij}^{k_{ij}}\right]\)</span> が存在して, <span class="math display">\[
 \mathcal{G}_{\lambda_{i}}=\bigoplus_{j=1}^{\mu_{i}}\mathrm{im}V_{ij}
 \]</span> が成り立つ. さらに <span class="math display">\[
 \begin{aligned}

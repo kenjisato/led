@@ -26,7 +26,7 @@
 <meta name="author" content="佐藤 健治">
 
 
-<meta name="date" content="2017-03-28">
+<meta name="date" content="2017-03-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -144,6 +144,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.3.2" data-path="matrix.html"><a href="matrix.html#section-3.3.2"><i class="fa fa-check"></i><b>3.3.2</b> 行基本変形</a></li>
 <li class="chapter" data-level="3.3.3" data-path="matrix.html"><a href="matrix.html#section-3.3.3"><i class="fa fa-check"></i><b>3.3.3</b> 列基本変形</a></li>
 <li class="chapter" data-level="3.3.4" data-path="matrix.html"><a href="matrix.html#section-3.3.4"><i class="fa fa-check"></i><b>3.3.4</b> 初等変形</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="matrix.html"><a href="matrix.html#r--1"><i class="fa fa-check"></i><b>3.4</b> R コード</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="matrix.html"><a href="matrix.html#section-3.4.1"><i class="fa fa-check"></i><b>3.4.1</b> 行列の定義</a></li>
+<li class="chapter" data-level="3.4.2" data-path="matrix.html"><a href="matrix.html#section-3.4.2"><i class="fa fa-check"></i><b>3.4.2</b> 要素の取得</a></li>
+<li class="chapter" data-level="3.4.3" data-path="matrix.html"><a href="matrix.html#section-3.4.3"><i class="fa fa-check"></i><b>3.4.3</b> 行列の演算・関数</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="eigen.html"><a href="eigen.html"><i class="fa fa-check"></i><b>4</b> 行列の固有値</a><ul>
@@ -345,7 +350,7 @@ A =
 <p>2本のベクトル<span class="math inline">\(v_1 \neq 0 \neq v_2\)</span> が面積を持つ平行四辺形を作るための必要十分条件は， <span class="math inline">\(v_1 = \alpha v_2\)</span> となるような, <span class="math inline">\(\alpha \neq 0\)</span> が存在しないことである（図<a href="eigen.html#fig:parallel-columns">4.3</a>）。 ゼロと異なる3本のベクトル <span class="math inline">\(v_1, v_2, v_3\)</span> が体積を持つ平行六面体を作るための必要十分条件は， <span class="math inline">\(v_1 = \alpha v_2 + \beta v_3\)</span> かつ <span class="math inline">\(\alpha\)</span> と <span class="math inline">\(\beta\)</span> は同時にはゼロでないというものである。 いずれかのベクトルがゼロである可能性も考慮して，次のような概念を定義すると便利である。</p>
 
 <div class="definition">
-<span id="def:unnamed-chunk-60" class="definition"><strong>定義 4.1 </strong></span><span class="math inline">\(n\)</span> 本のベクトル <span class="math inline">\(v_1, \dots, v_n\)</span> が<strong>1次独立（linearly independent）</strong>であるとは, <span class="math inline">\(\alpha_{1},\dots,\alpha_{n}\)</span> に対して <span class="math inline">\(\alpha_{1}v_{1}+ \cdots + \alpha_{n}v_{n}=0\)</span> が成り立てば，<span class="math inline">\(\alpha_{1}=\cdots=\alpha_{n}=0\)</span> が成り立つことをいう。 1次独立でないとき，ベクトルの組は <strong>1次従属（linearly dependent）</strong>であるという。
+<span id="def:unnamed-chunk-69" class="definition"><strong>定義 4.1 </strong></span><span class="math inline">\(n\)</span> 本のベクトル <span class="math inline">\(v_1, \dots, v_n\)</span> が<strong>1次独立（linearly independent）</strong>であるとは, <span class="math inline">\(\alpha_{1},\dots,\alpha_{n}\)</span> に対して <span class="math inline">\(\alpha_{1}v_{1}+ \cdots + \alpha_{n}v_{n}=0\)</span> が成り立てば，<span class="math inline">\(\alpha_{1}=\cdots=\alpha_{n}=0\)</span> が成り立つことをいう。 1次独立でないとき，ベクトルの組は <strong>1次従属（linearly dependent）</strong>であるという。
 </div>
 <p></p>
 <p>行列を構成する列ベクトルが1次独立でなければ，列基本変形によりゼロのみからなる列を構成することができる。したがって，そのような行列の行列式はゼロでなければならない。逆に，行列が1次独立な列をもつならば（後に示すように），その行列はフルランクである。したがって，行列式はゼロでない。</p>
@@ -628,7 +633,7 @@ for (i in <span class="dv">2</span>:simulation_size) {
 
 <span class="co"># plot</span>
 <span class="kw">ggplot</span>(res, <span class="kw">aes</span>(x1, x2)) +<span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="linear-economic-dynamics_files/figure-html/unnamed-chunk-66-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="linear-economic-dynamics_files/figure-html/unnamed-chunk-75-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="section-4.3.4" class="section level3">
 <h3><span class="header-section-number">4.3.4</span> 実対角化</h3>
