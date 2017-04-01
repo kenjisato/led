@@ -15,7 +15,7 @@ addons:
   apt:
     packages:
     - fonts-ipaexfont
-    - texlive-lang-cjk
+    - texlive-luatex
 
 before_script:
   - chmod +x ./_build.sh
