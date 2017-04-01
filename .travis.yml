@@ -14,6 +14,7 @@ addons:
   apt:
     packages:
     - otf-ipaexfont
+    - texlive-lang-japanese
 
 before_script:
   - chmod +x ./_build.sh
