@@ -88,11 +88,3 @@
 
 コロンビア大学の安東宇さんから有益なコメントをいくつかいただいた.
 
-
-```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'bib/packages.bib')
-```
-
