@@ -15,7 +15,7 @@
   
   
   <meta property="og:description" content="経済動学 講義ノート" />
-  <meta name="github-repo" content="kenjisato/economicdynamics" />
+  <meta name="github-repo" content="kenjisato/led" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="経済動学: 線形編" />
@@ -26,7 +26,7 @@
 <meta name="author" content="佐藤 健治">
 
 
-<meta name="date" content="2017-03-31">
+<meta name="date" content="2017-04-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -89,7 +89,7 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="asset/css/style.css" type="text/css" />
 </head>
 
 <body>
@@ -166,6 +166,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="eigen.html"><a href="eigen.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 線形動学方程式と固有値</a></li>
 <li class="chapter" data-level="4.5" data-path="eigen.html"><a href="eigen.html#section-4.5"><i class="fa fa-check"></i><b>4.5</b> ラムゼーモデルと固有値</a></li>
+<li class="chapter" data-level="4.6" data-path="eigen.html"><a href="eigen.html#r--2"><i class="fa fa-check"></i><b>4.6</b> R コード</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="linspace.html"><a href="linspace.html"><i class="fa fa-check"></i><b>5</b> 線形空間論の基礎</a><ul>
 <li class="chapter" data-level="5.1" data-path="linspace.html"><a href="linspace.html#linspace-definition"><i class="fa fa-check"></i><b>5.1</b> 線形空間</a></li>
@@ -215,7 +216,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="" data-path="e58f82e88083e69687e78cae.html"><a href="e58f82e88083e69687e78cae.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
-<li><a href="https://github.com/kenjisato/linear-economic-dynamics" target="blank">Published with bookdown</a></li>
+<li><a href="http://led.kenjisato.jp" target="blank">Published with bookdown</a></li>
 
 </ul>
 
@@ -568,7 +569,7 @@ x_{0}^{1} &amp; :\ \text{given.}
 <p>2次元の場合に Blanchard-Kahn の定理を図解しよう.</p>
 <p>図<a href="section-7.html#fig:bk-beforetransformation">7.1</a> はジョルダン標準形に変換する前の座標系を表している. 初期時点 <span class="math inline">\(t=0\)</span> で <span class="math inline">\(x\)</span> が取りうる範囲は赤線で表された直線である. 1次元の自由度が与えられているのは, <span class="math inline">\(x_{0}^{1}\)</span> が固定されている一方で, <span class="math inline">\(x_{0}^{2}\)</span> が未知であることを反映している.</p>
 <div class="figure" style="text-align: center"><span id="fig:bk-beforetransformation"></span>
-<img src="figures/10-blanchardkahn/10-blanchardkahn.001.jpeg" alt="変換前の直交座標系. \(x_{0}^{1}\) だけが所与であり, \((x_{0}^{1},x_{0}^{2})\)は赤色実線上のどこかにある."  />
+<img src="asset/figures/10-blanchardkahn/10-blanchardkahn.001.jpeg" alt="変換前の直交座標系. \(x_{0}^{1}\) だけが所与であり, \((x_{0}^{1},x_{0}^{2})\)は赤色実線上のどこかにある."  />
 <p class="caption">
 図 7.1: 変換前の直交座標系. <span class="math inline">\(x_{0}^{1}\)</span> だけが所与であり, <span class="math inline">\((x_{0}^{1},x_{0}^{2})\)</span>は赤色実線上のどこかにある.
 </p>
@@ -576,7 +577,7 @@ x_{0}^{1} &amp; :\ \text{given.}
 
 <p>図 <a href="section-7.html#fig:bk-aftertransformation">7.2</a> はジョルダン標準形に変換した後の座標系である. すなわち, <span class="math inline">\(P=[P_{1}\ P_{2}]\)</span> を基底とした座標系を表している. 一般に<span class="math inline">\(P\)</span> は直交性を保たないので, 斜交座標系を描いている. 異なる座標系は同一の点を表現する別の方法を定めるだけであるから, <span class="math inline">\((x_{0}^{1},x_{0}^{2})\)</span> の位置を表す赤色の直線は動かない. あくまで目盛りを変えただけである. 座標系の変更により <span class="math inline">\(y^{u}\)</span> 軸に平行なサブシステム（不安定固有値に対応する固有空間上のシステム）と<span class="math inline">\(y^{s}\)</span>軸に平行なサブシステム（安定固有値に対応する固有空間上のシステム）に分離することができる. 式 <a href="section-7.html#eq:bk-jordan">(7.4)</a> を確認せよ.</p>
 <div class="figure" style="text-align: center"><span id="fig:bk-aftertransformation"></span>
-<img src="figures/10-blanchardkahn/10-blanchardkahn.002.jpeg" alt="ジョルダン標準形に変換した後の斜交座標系. 座標系を変更しても赤色実線は動かない."  />
+<img src="asset/figures/10-blanchardkahn/10-blanchardkahn.002.jpeg" alt="ジョルダン標準形に変換した後の斜交座標系. 座標系を変更しても赤色実線は動かない."  />
 <p class="caption">
 図 7.2: ジョルダン標準形に変換した後の斜交座標系. 座標系を変更しても赤色実線は動かない.
 </p>
@@ -585,14 +586,14 @@ x_{0}^{1} &amp; :\ \text{given.}
 <p>式 <a href="section-7.html#eq:bk-yu">(7.6)</a> は不安定固有値に対応する固有空間 (<span class="math inline">\(y_{u}\)</span> 軸) に沿って後ろ向きに <span class="math inline">\(y_{0}^{u}\)</span> を見つける手続きである. 将来にわたって <span class="math inline">\(u\)</span> が決定していれば, <span class="math inline">\(t=\infty\)</span> から <span class="math inline">\(t=0\)</span> まで時間を逆向きに解いて <span class="math inline">\(y_{0}^{u}\)</span> を決めることができる. この時点ではまだ <span class="math inline">\(y_{0}^{s}\)</span> が決定しないので, <span class="math inline">\((y_{0}^{s},y_{0}^{u})\)</span> は <span class="math inline">\((0,y_{0}^{u})\)</span> を通り <span class="math inline">\(y^{s}\)</span> 軸と平行な直線上にある. 図<a href="section-7.html#fig:bk-init-manifold">7.3</a> の青色実線を参照せよ. この直線は安定行列 <span class="math inline">\(J_{u}^{-1}\)</span> によって特徴づけられる時間反転システムの極限を集めたものである.</p>
 <p>直交座標の <span class="math inline">\((x_{0}^{1},x_{0}^{2})\)</span> と斜交座標の<span class="math inline">\((y_{0}^{s},y_{0}^{u})\)</span> が同じ点を表す場合に限り, それらは式<a href="section-7.html#eq:bk-sys">(7.1)</a> の<span class="math inline">\(t=0\)</span> における値として適切に選ばれていると言ってよい. 一方を他方の座標系で表して一致することを確かめればよいので, 式<a href="section-7.html#eq:bk-7">(7.8)</a>, <a href="section-7.html#eq:bk-9">(7.9)</a> を解けばよいことが分かるだろう. もちろんこれは <a href="section-7.html#eq:bk-det0">(7.10)</a> と同値である. 解の一意決定性のための条件は, 赤線と青線の交点が一意に存在するための条件に外ならない (図???). なお, <span class="math inline">\(P_{1s}\)</span> の正則性は赤色の実線と青色の実線が平行にならないことを保証している.</p>
 <div class="figure" style="text-align: center"><span id="fig:bk-init-manifold"></span>
-<img src="figures/10-blanchardkahn/10-blanchardkahn.003.jpeg" alt="安定な後ろ向き (forward-looking) サブシステム \(y_{t}^{u}=J_{u}^{-1}y_{t+1}^{u}-J_{u}^{-1}C_{u}u_{t}\) の 極限 (\(t=0\))で \(y_{0}^{u}\) が決まる."  />
+<img src="asset/figures/10-blanchardkahn/10-blanchardkahn.003.jpeg" alt="安定な後ろ向き (forward-looking) サブシステム \(y_{t}^{u}=J_{u}^{-1}y_{t+1}^{u}-J_{u}^{-1}C_{u}u_{t}\) の 極限 (\(t=0\))で \(y_{0}^{u}\) が決まる."  />
 <p class="caption">
 図 7.3: 安定な後ろ向き (forward-looking) サブシステム <span class="math inline">\(y_{t}^{u}=J_{u}^{-1}y_{t+1}^{u}-J_{u}^{-1}C_{u}u_{t}\)</span> の 極限 (<span class="math inline">\(t=0\)</span>)で <span class="math inline">\(y_{0}^{u}\)</span> が決まる.
 </p>
 </div>
 
 <div class="figure" style="text-align: center"><span id="fig:bk-determinacy"></span>
-<img src="figures/10-blanchardkahn/10-blanchardkahn.003.jpeg" alt="青色と赤色の直線が交わる点で \((x_{0}^{1},x_{0}^{2})\) あるいは \((y_{0}^{s},y_{0}^{u})\) が定まる."  />
+<img src="asset/figures/10-blanchardkahn/10-blanchardkahn.003.jpeg" alt="青色と赤色の直線が交わる点で \((x_{0}^{1},x_{0}^{2})\) あるいは \((y_{0}^{s},y_{0}^{u})\) が定まる."  />
 <p class="caption">
 図 7.4: 青色と赤色の直線が交わる点で <span class="math inline">\((x_{0}^{1},x_{0}^{2})\)</span> あるいは <span class="math inline">\((y_{0}^{s},y_{0}^{u})\)</span> が定まる.
 </p>
@@ -601,14 +602,14 @@ x_{0}^{1} &amp; :\ \text{given.}
 <p><span class="math inline">\((y_{0}^{s},y_{0}^{u})\)</span> あるいは <span class="math inline">\((x_{0}^{1},x_{0}^{2})\)</span> が定まれば, 式<a href="section-7.html#eq:bk-sys">(7.1)</a> を繰り返し適用することで解軌道を決定できる.</p>
 <p>最後に, 解が存在しないケースと不決定の場合について述べる. まず, 固有値が2つとも不安定固有値である場合, すなわち <span class="math inline">\(n_{u}=n=2\)</span>, <span class="math inline">\(0=n_{s}&lt;n_{1}=1\)</span> のケースを考えよう. 図<a href="section-7.html#fig:bk-nonexistence">7.5</a> で示されている通り, 後ろ向き (forward-looking) サブシステム <span class="math inline">\(y_{t}^{u}=J_{u}^{-1}y_{t+1}^{u}-J_{u}^{-1}C_{u}u_{t}\)</span> は一点 <span class="math inline">\((y_{0}^{u1},y_{0}^{u2})\)</span> を定める. 赤色の実線と一般には交わらないので, 解が存在しない. 次に　<span class="math inline">\(n_{u}=0\)</span>, <span class="math inline">\(2=n_{s}&gt;n_{1}=1\)</span> のケースを考える. この場合には後ろ向きのサブシステムはないので, <span class="math inline">\(y_{0}\)</span> に関して情報を得ることができない. したがって, 2次元平面<span class="math inline">\((y^{s1},y^{s2})\)</span>のすべての点が <span class="math inline">\((y_{0}^{s1},y_{0}^{s2})\)</span> の候補となる (図 <a href="section-7.html#fig:bk-indeterminacy">7.6</a>). 青色領域と赤色直線が交わる点は1次元の自由度を持つ無限個の点の集まりであるから <span class="math inline">\(x_{0}^{2}\)</span> を定めることもできない.</p>
 <div class="figure" style="text-align: center"><span id="fig:bk-nonexistence"></span>
-<img src="figures/10-blanchardkahn/10-blanchardkahn.005.jpeg" alt="\(n_{s}&lt;n_{1}\) のケース. バックワードサブシステムが過剰に初期値を定めてしまう. 一般に解は存在しない."  />
+<img src="asset/figures/10-blanchardkahn/10-blanchardkahn.005.jpeg" alt="\(n_{s}&lt;n_{1}\) のケース. バックワードサブシステムが過剰に初期値を定めてしまう. 一般に解は存在しない."  />
 <p class="caption">
 図 7.5: <span class="math inline">\(n_{s}&lt;n_{1}\)</span> のケース. バックワードサブシステムが過剰に初期値を定めてしまう. 一般に解は存在しない.
 </p>
 </div>
 
 <div class="figure" style="text-align: center"><span id="fig:bk-indeterminacy"></span>
-<img src="figures/10-blanchardkahn/10-blanchardkahn.006.jpeg" alt="\(n_{s}&gt;n_{1}\) のケース. バックワードサブシステムの情報が不足しており, 赤色直線上の任意の点から出発した経路が解の性質を満たす."  />
+<img src="asset/figures/10-blanchardkahn/10-blanchardkahn.006.jpeg" alt="\(n_{s}&gt;n_{1}\) のケース. バックワードサブシステムの情報が不足しており, 赤色直線上の任意の点から出発した経路が解の性質を満たす."  />
 <p class="caption">
 図 7.6: <span class="math inline">\(n_{s}&gt;n_{1}\)</span> のケース. バックワードサブシステムの情報が不足しており, 赤色直線上の任意の点から出発した経路が解の性質を満たす.
 </p>
@@ -882,7 +883,7 @@ gitbook.start({
 "size": 2
 },
 "edit": null,
-"download": null,
+"download": ["linear-economic-dynamics.pdf"],
 "toc": {
 "collapse": "section",
 "scroll_highlight": true

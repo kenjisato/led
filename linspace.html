@@ -15,7 +15,7 @@
   
   
   <meta property="og:description" content="経済動学 講義ノート" />
-  <meta name="github-repo" content="kenjisato/economicdynamics" />
+  <meta name="github-repo" content="kenjisato/led" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="経済動学: 線形編" />
@@ -26,7 +26,7 @@
 <meta name="author" content="佐藤 健治">
 
 
-<meta name="date" content="2017-03-31">
+<meta name="date" content="2017-04-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -89,7 +89,7 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="asset/css/style.css" type="text/css" />
 </head>
 
 <body>
@@ -166,6 +166,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="eigen.html"><a href="eigen.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 線形動学方程式と固有値</a></li>
 <li class="chapter" data-level="4.5" data-path="eigen.html"><a href="eigen.html#section-4.5"><i class="fa fa-check"></i><b>4.5</b> ラムゼーモデルと固有値</a></li>
+<li class="chapter" data-level="4.6" data-path="eigen.html"><a href="eigen.html#r--2"><i class="fa fa-check"></i><b>4.6</b> R コード</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="linspace.html"><a href="linspace.html"><i class="fa fa-check"></i><b>5</b> 線形空間論の基礎</a><ul>
 <li class="chapter" data-level="5.1" data-path="linspace.html"><a href="linspace.html#linspace-definition"><i class="fa fa-check"></i><b>5.1</b> 線形空間</a></li>
@@ -215,7 +216,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="" data-path="e58f82e88083e69687e78cae.html"><a href="e58f82e88083e69687e78cae.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
-<li><a href="https://github.com/kenjisato/linear-economic-dynamics" target="blank">Published with bookdown</a></li>
+<li><a href="http://led.kenjisato.jp" target="blank">Published with bookdown</a></li>
 
 </ul>
 
@@ -267,7 +268,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><span class="math inline">\(X\)</span> を集合，<span class="math inline">\(\mathbb{F} = \mathbb R\)</span> または <span class="math inline">\(\mathbb C\)</span> とする。</p>
 
 <div class="definition">
-<p><span id="def:unnamed-chunk-77" class="definition"><strong>定義 5.1  (線形空間) </strong></span><span class="math inline">\(X\)</span> が <span class="math inline">\(\mathbb{F}\)</span> 上の線形空間 (ベクトル空間，linear space over <span class="math inline">\(\mathbb{F}\)</span>) であるとは，<strong>和（addition）</strong> <span class="math display">\[
+<p><span id="def:unnamed-chunk-76" class="definition"><strong>定義 5.1  (線形空間) </strong></span><span class="math inline">\(X\)</span> が <span class="math inline">\(\mathbb{F}\)</span> 上の線形空間 (ベクトル空間，linear space over <span class="math inline">\(\mathbb{F}\)</span>) であるとは，<strong>和（addition）</strong> <span class="math display">\[
 X \times X \ni (x,y) \mapsto x + y \in X
 \]</span> と<strong>スカラー倍（scalar multiplication）</strong> <span class="math display">\[
 X\times\mathbb{F}\ni(x,\alpha)\mapsto\alpha x\in X
@@ -287,7 +288,7 @@ X\times\mathbb{F}\ni(x,\alpha)\mapsto\alpha x\in X
 <p>いくつか具体例を確認しておこう。</p>
 
 <div class="example">
-<span id="ex:unnamed-chunk-78" class="example"><strong>例 5.1 </strong></span>数ベクトル空間 <span class="math inline">\(\mathbb{F}^{n}\)</span> <span class="math display">\[
+<span id="ex:unnamed-chunk-77" class="example"><strong>例 5.1 </strong></span>数ベクトル空間 <span class="math inline">\(\mathbb{F}^{n}\)</span> <span class="math display">\[
 \mathbb{F}^{n}=\left\{ x=\begin{bmatrix}x_{1}\\
 x_{2}\\
 \vdots\\
@@ -298,22 +299,22 @@ x_{n}
 <p></p>
 
 <div class="example">
-<span id="ex:unnamed-chunk-79" class="example"><strong>例 5.2 </strong></span><span class="math inline">\(m\times n\)</span> 行列全体の集合は線形空間をなす。節<a href="matrix.html#matrix-operation">3.2</a> を参照。
+<span id="ex:unnamed-chunk-78" class="example"><strong>例 5.2 </strong></span><span class="math inline">\(m\times n\)</span> 行列全体の集合は線形空間をなす。節<a href="matrix.html#matrix-operation">3.2</a> を参照。
 </div>
 <p></p>
 
 <div class="example">
-<span id="ex:unnamed-chunk-80" class="example"><strong>例 5.3 </strong></span>高々 <span class="math inline">\(n\)</span> 次の多項式全体の集合 <span class="math inline">\(P^{n}[z]\)</span> も通常の和と定数倍に関して線形空間となる。
+<span id="ex:unnamed-chunk-79" class="example"><strong>例 5.3 </strong></span>高々 <span class="math inline">\(n\)</span> 次の多項式全体の集合 <span class="math inline">\(P^{n}[z]\)</span> も通常の和と定数倍に関して線形空間となる。
 </div>
 <p></p>
 
 <div class="example">
-<span id="ex:unnamed-chunk-81" class="example"><strong>例 5.4 </strong></span>数列全体の空間 <span class="math inline">\(\{x_{n}\}_{n=1}^{\infty}\subset\mathbb{R}\)</span> も成分ごとの和とスカラー倍を導入すると<span class="math inline">\(\mathbb{R}\)</span> 上の線形空間となる。
+<span id="ex:unnamed-chunk-80" class="example"><strong>例 5.4 </strong></span>数列全体の空間 <span class="math inline">\(\{x_{n}\}_{n=1}^{\infty}\subset\mathbb{R}\)</span> も成分ごとの和とスカラー倍を導入すると<span class="math inline">\(\mathbb{R}\)</span> 上の線形空間となる。
 </div>
 <p></p>
 
 <div class="example">
-<span id="ex:unnamed-chunk-82" class="example"><strong>例 5.5 </strong></span>有限期待値を持つ実確率変数の空間は<span class="math inline">\(\mathbb{R}\)</span> 上の線形空間となる.<a href="#fn21" class="footnoteRef" id="fnref21"><sup>21</sup></a>
+<span id="ex:unnamed-chunk-81" class="example"><strong>例 5.5 </strong></span>有限期待値を持つ実確率変数の空間は<span class="math inline">\(\mathbb{R}\)</span> 上の線形空間となる.<a href="#fn21" class="footnoteRef" id="fnref21"><sup>21</sup></a>
 </div>
 <p></p>
 </div>
@@ -321,7 +322,7 @@ x_{n}
 <h2><span class="header-section-number">5.2</span> 線形部分空間</h2>
 
 <div class="definition">
-<span id="def:unnamed-chunk-83" class="definition"><strong>定義 5.2 </strong></span><span class="math inline">\(X\)</span> を <span class="math inline">\(\mathbb{F}\)</span>上の線形空間，<span class="math inline">\(Y\)</span> を <span class="math inline">\(X\)</span> の部分集合とする。<span class="math inline">\(Y\)</span> が<span class="math inline">\(X\)</span> に定義された演算について線形空間になるとき， <span class="math inline">\(Y\)</span> は<span class="math inline">\(X\)</span>の線形部分空間であるという。
+<span id="def:unnamed-chunk-82" class="definition"><strong>定義 5.2 </strong></span><span class="math inline">\(X\)</span> を <span class="math inline">\(\mathbb{F}\)</span>上の線形空間，<span class="math inline">\(Y\)</span> を <span class="math inline">\(X\)</span> の部分集合とする。<span class="math inline">\(Y\)</span> が<span class="math inline">\(X\)</span> に定義された演算について線形空間になるとき， <span class="math inline">\(Y\)</span> は<span class="math inline">\(X\)</span>の線形部分空間であるという。
 </div>
 <p></p>
 <p><span class="math inline">\(X\)</span> 自身と <span class="math inline">\(\{0\}\)</span> は必ず線形部分空間になる。</p>
@@ -338,7 +339,7 @@ x_{n}
 <p></p>
 
 <div class="definition">
-<span id="def:unnamed-chunk-85" class="definition"><strong>定義 5.3 </strong></span>ベクトル<span class="math inline">\(x_{1},\dots,x_{n}\in X\)</span> をすべて含む最小の線形部分空間を，<span class="math inline">\(\{x_{1},\dots,x_{n}\}\)</span> によって張られる線形部分空間（linear space spanned by …）といい，<span class="math inline">\(\mathrm{span}\{x_{1},\dots,x_{n}\}\)</span> と書く。 <span class="math display">\[
+<span id="def:unnamed-chunk-84" class="definition"><strong>定義 5.3 </strong></span>ベクトル<span class="math inline">\(x_{1},\dots,x_{n}\in X\)</span> をすべて含む最小の線形部分空間を，<span class="math inline">\(\{x_{1},\dots,x_{n}\}\)</span> によって張られる線形部分空間（linear space spanned by …）といい，<span class="math inline">\(\mathrm{span}\{x_{1},\dots,x_{n}\}\)</span> と書く。 <span class="math display">\[
 \mathrm{span}\{x_{1},\dots,x_{n}\}
 =
 \left\{ 
@@ -352,7 +353,7 @@ x_{n}
 <p><span class="math inline">\(\alpha_{1}x_{1}+\cdots+\alpha_{n}x_{n}\)</span> の形のベクトルは <span class="math inline">\(\{x_{1},\dots,x_{n}\}\)</span> の<strong>線形結合（linear combination）</strong>であるという。</p>
 2つの部分空間 <span class="math inline">\(Y\)</span>，<span class="math inline">\(W\)</span> があったとき，積集合 <span class="math inline">\(Y\cap W\)</span> はまた線形部分空間になる。 一方，和集合 <span class="math inline">\(Y\cup W\)</span> は一般には線形部分空間にならない。 
 <div class="definition">
-<span id="def:unnamed-chunk-86" class="definition"><strong>定義 5.4 </strong></span><span class="math inline">\(X\)</span> を<span class="math inline">\(\mathbb{F}\)</span> 上の線形空間，<span class="math inline">\(Y,W\)</span> を<span class="math inline">\(X\)</span> の線形部分空間とする。部分空間の和（sum） <span class="math inline">\(Y+W\)</span> を<span class="math inline">\(Y\)</span> と<span class="math inline">\(W\)</span> の元をすべて含む最小の線形部分空間と定義する<a href="#fn22" class="footnoteRef" id="fnref22"><sup>22</sup></a>。すなわち
+<span id="def:unnamed-chunk-85" class="definition"><strong>定義 5.4 </strong></span><span class="math inline">\(X\)</span> を<span class="math inline">\(\mathbb{F}\)</span> 上の線形空間，<span class="math inline">\(Y,W\)</span> を<span class="math inline">\(X\)</span> の線形部分空間とする。部分空間の和（sum） <span class="math inline">\(Y+W\)</span> を<span class="math inline">\(Y\)</span> と<span class="math inline">\(W\)</span> の元をすべて含む最小の線形部分空間と定義する<a href="#fn22" class="footnoteRef" id="fnref22"><sup>22</sup></a>。すなわち
 <span class="math display" id="eq:05-sum">\[\begin{equation}
 Y+W=\{\alpha y+\beta w\ \mid\ y\in Y,\ w\in W,\ \alpha,\beta\in\mathbb{F}\}.\tag{5.1}
 \end{equation}\]</span>
@@ -361,7 +362,7 @@ Y+W=\{\alpha y+\beta w\ \mid\ y\in Y,\ w\in W,\ \alpha,\beta\in\mathbb{F}\}.\tag
 <p>上の定義 <a href="linspace.html#eq:05-sum">(5.1)</a> は和とスカラー倍をすべて含むように作られており， 命題<a href="linspace.html#prp:subspace-condition">5.1</a> により線形部分空間となる。</p>
 
 <div class="definition">
-<span id="def:unnamed-chunk-87" class="definition"><strong>定義 5.5 </strong></span><span class="math inline">\(M\)</span>，<span class="math inline">\(N\)</span> を<span class="math inline">\(X\)</span> の線形部分空間とする。<span class="math inline">\(M \cap N = \{ 0 \}\)</span> のとき，和 <span class="math inline">\(M + N\)</span> を特に直和といい， <span class="math inline">\(M \oplus N\)</span> と記す。
+<span id="def:unnamed-chunk-86" class="definition"><strong>定義 5.5 </strong></span><span class="math inline">\(M\)</span>，<span class="math inline">\(N\)</span> を<span class="math inline">\(X\)</span> の線形部分空間とする。<span class="math inline">\(M \cap N = \{ 0 \}\)</span> のとき，和 <span class="math inline">\(M + N\)</span> を特に直和といい， <span class="math inline">\(M \oplus N\)</span> と記す。
 </div>
 <p></p>
 
@@ -379,7 +380,7 @@ Y+W=\{\alpha y+\beta w\ \mid\ y\in Y,\ w\in W,\ \alpha,\beta\in\mathbb{F}\}.\tag
 <h2><span class="header-section-number">5.3</span> 1次独立性</h2>
 
 <div class="definition">
-<span id="def:unnamed-chunk-90" class="definition"><strong>定義 5.6 </strong></span>ベクトル <span class="math inline">\(x_{1},\dots,x_{d}\in X\)</span> が1次独立であるとは， <span class="math display">\[
+<span id="def:unnamed-chunk-89" class="definition"><strong>定義 5.6 </strong></span>ベクトル <span class="math inline">\(x_{1},\dots,x_{d}\in X\)</span> が1次独立であるとは， <span class="math display">\[
 \alpha_{1}x_{1} + \cdots + \alpha_{d}x_{d} = 0
 \Longrightarrow
 \alpha_{1} = \cdots = \alpha_{d} = 0
@@ -398,12 +399,12 @@ x_{1}=\sum_{k=2}^{d}-\frac{\alpha_{k}}{\alpha_{1}}x_{k}
 <p></p>
 
 <div class="definition">
-<span id="def:unnamed-chunk-92" class="definition"><strong>定義 5.7 </strong></span>ある自然数 <span class="math inline">\(N\)</span> が存在し，<span class="math inline">\(N\)</span>個より大きい数のベクトルの組が必ず1次従属になるとき，<span class="math inline">\(X\)</span> は有限次元であるという。 そのような <span class="math inline">\(N\)</span> が存在しないとき，<span class="math inline">\(X\)</span> は無限次元であるという。
+<span id="def:unnamed-chunk-91" class="definition"><strong>定義 5.7 </strong></span>ある自然数 <span class="math inline">\(N\)</span> が存在し，<span class="math inline">\(N\)</span>個より大きい数のベクトルの組が必ず1次従属になるとき，<span class="math inline">\(X\)</span> は有限次元であるという。 そのような <span class="math inline">\(N\)</span> が存在しないとき，<span class="math inline">\(X\)</span> は無限次元であるという。
 </div>
 <p></p>
 
 <div class="definition">
-<span id="def:unnamed-chunk-93" class="definition"><strong>定義 5.8 </strong></span>有限次元ベクトル空間 <span class="math inline">\(X\)</span> のベクトルの組 <span class="math inline">\(V=\{v_{1},\dots,v_{n}\}\)</span> が基底であるとは，<span class="math inline">\(V\)</span> が1次独立であり，<span class="math inline">\(V\)</span> に<span class="math inline">\(X\)</span> のいかなるベクトルを加えても必ず1次従属になることをいう。あるいは同じことだが，<span class="math inline">\(\mathrm{span}(V)=X\)</span>。
+<span id="def:unnamed-chunk-92" class="definition"><strong>定義 5.8 </strong></span>有限次元ベクトル空間 <span class="math inline">\(X\)</span> のベクトルの組 <span class="math inline">\(V=\{v_{1},\dots,v_{n}\}\)</span> が基底であるとは，<span class="math inline">\(V\)</span> が1次独立であり，<span class="math inline">\(V\)</span> に<span class="math inline">\(X\)</span> のいかなるベクトルを加えても必ず1次従属になることをいう。あるいは同じことだが，<span class="math inline">\(\mathrm{span}(V)=X\)</span>。
 </div>
 <p></p>
 
@@ -465,12 +466,12 @@ O_{(m-n)\times n}
 <p></p>
 
 <div class="definition">
-<span id="def:unnamed-chunk-97" class="definition"><strong>定義 5.9 </strong></span>有限次元ベクトル空間 <span class="math inline">\(X\)</span> の基底に含まれるベクトルの数は空間固有の量である。これを次元と呼び <span class="math inline">\(\dim X\)</span> と書く.
+<span id="def:unnamed-chunk-96" class="definition"><strong>定義 5.9 </strong></span>有限次元ベクトル空間 <span class="math inline">\(X\)</span> の基底に含まれるベクトルの数は空間固有の量である。これを次元と呼び <span class="math inline">\(\dim X\)</span> と書く.
 </div>
 <p></p>
 
 <div class="theorem">
-<span id="thm:unnamed-chunk-98" class="theorem"><strong>定理 5.2 </strong></span><span class="math inline">\(X\)</span> を<span class="math inline">\(n\)</span>次元ベクトル空間とする。1次独立なベクトルの組 <span class="math inline">\(\{x_{1},\dots,x_{r}\}\subset X\)</span>， <span class="math inline">\(r&lt;n\)</span>，に <span class="math inline">\((n-r)\)</span> 本のベクトル <span class="math inline">\(\{x_{m+1},\dots,x_{n}\}\)</span> を付け加えて <span class="math inline">\(\{x_{1},\dots,x_{m},x_{m+1},\dots,x_{n}\}\)</span> が <span class="math inline">\(X\)</span> の基底となるようにできる。
+<span id="thm:unnamed-chunk-97" class="theorem"><strong>定理 5.2 </strong></span><span class="math inline">\(X\)</span> を<span class="math inline">\(n\)</span>次元ベクトル空間とする。1次独立なベクトルの組 <span class="math inline">\(\{x_{1},\dots,x_{r}\}\subset X\)</span>， <span class="math inline">\(r&lt;n\)</span>，に <span class="math inline">\((n-r)\)</span> 本のベクトル <span class="math inline">\(\{x_{m+1},\dots,x_{n}\}\)</span> を付け加えて <span class="math inline">\(\{x_{1},\dots,x_{m},x_{m+1},\dots,x_{n}\}\)</span> が <span class="math inline">\(X\)</span> の基底となるようにできる。
 </div>
 <p></p>
 
@@ -528,7 +529,7 @@ f\circ(g\circ h)=(f\circ g)\circ h.
 <h3><span class="header-section-number">5.4.2</span> 線形性</h3>
 
 <div class="definition">
-<span id="def:unnamed-chunk-100" class="definition"><strong>定義 5.10 </strong></span><span class="math inline">\(X,Y\)</span> を<span class="math inline">\(\mathbb{F}\)</span>上の線形空間とする。写像 <span class="math inline">\(f\)</span> が線形であるとは，任意の <span class="math inline">\(\alpha,\beta\in\mathbb{F}\)</span>， <span class="math inline">\(x_{1},x_{2}\in X\)</span> について <span class="math display">\[
+<span id="def:unnamed-chunk-99" class="definition"><strong>定義 5.10 </strong></span><span class="math inline">\(X,Y\)</span> を<span class="math inline">\(\mathbb{F}\)</span>上の線形空間とする。写像 <span class="math inline">\(f\)</span> が線形であるとは，任意の <span class="math inline">\(\alpha,\beta\in\mathbb{F}\)</span>， <span class="math inline">\(x_{1},x_{2}\in X\)</span> について <span class="math display">\[
 f(\alpha x_{1}+\beta x_{2})=\alpha f(x_{1})+\beta f(x_{2})
 \]</span> が成り立つことをいう。
 </div>
@@ -536,12 +537,12 @@ f(\alpha x_{1}+\beta x_{2})=\alpha f(x_{1})+\beta f(x_{2})
 <p>写像が線形である場合，<span class="math inline">\(f(x)\)</span> と書かずに括弧を省略して <span class="math inline">\(fx\)</span> と書くこともある。無限次元空間の間の写像を作用素 (operator) ということもある。</p>
 <span class="math inline">\(X\)</span>と<span class="math inline">\(Y\)</span>の間に全単射線形写像を(線形)同型写像という。同型写像が存在するとき，<span class="math inline">\(X\)</span> と <span class="math inline">\(Y\)</span> は同型であるといい， <span class="math inline">\(X\simeq Y\)</span> と書く。 
 <div class="example">
-<span id="ex:unnamed-chunk-101" class="example"><strong>例 5.6 </strong></span>期待値が有限である実数値確率変数の空間における期待値作用素 <span class="math inline">\(\mathbb{E}\)</span> は線形である。(本質的には積分の線形性である.)
+<span id="ex:unnamed-chunk-100" class="example"><strong>例 5.6 </strong></span>期待値が有限である実数値確率変数の空間における期待値作用素 <span class="math inline">\(\mathbb{E}\)</span> は線形である。(本質的には積分の線形性である.)
 </div>
 <p></p>
 
 <div class="example">
-<span id="ex:unnamed-chunk-102" class="example"><strong>例 5.7 </strong></span><span class="math inline">\(P^{n}[x]\)</span> をたかだか<span class="math inline">\(n\)</span> 次の多項式が作る線形空間とする。すなわち <span class="math display">\[
+<span id="ex:unnamed-chunk-101" class="example"><strong>例 5.7 </strong></span><span class="math inline">\(P^{n}[x]\)</span> をたかだか<span class="math inline">\(n\)</span> 次の多項式が作る線形空間とする。すなわち <span class="math display">\[
 P^{n}[x]=\left\{ p(x)=\sum_{k=0}^{n}a_{k}x^{k}\ \mid\ a_{0},\dots,a_{n}\in\mathbb{R}\right\} 
 \]</span> 微分作用素 <span class="math display">\[
 \frac{d}{dx}:\sum_{k=0}^{n}a_{k}x^{k}\mapsto\sum_{k=1}^{n}ka_{k}x^{k-1}
@@ -579,7 +580,7 @@ x&#39;\sim_{M}x&#39;&#39;,\ x&#39;&#39;\sim_{M}x&#39;&#39;&#39;\Rightarrow x&#39
 \left\{ [x]\ \mid\ x\in X\right\} 
 \]</span> は線形空間をなす(確認せよ)。この空間を商空間 (quotient space)と呼び <span class="math inline">\(X/M\)</span> と書く。 
 <div class="lemma">
-<span id="lem:unnamed-chunk-104" class="lemma"><strong>補題 5.1 </strong></span><span class="math inline">\(X\)</span> を有限次元ベクトル空間，<span class="math inline">\(M\)</span> を <span class="math inline">\(X\)</span> の部分空間とする。このとき <span class="math inline">\(\dim X/M=\dim X-\dim M\)</span> が成り立つ。
+<span id="lem:unnamed-chunk-103" class="lemma"><strong>補題 5.1 </strong></span><span class="math inline">\(X\)</span> を有限次元ベクトル空間，<span class="math inline">\(M\)</span> を <span class="math inline">\(X\)</span> の部分空間とする。このとき <span class="math inline">\(\dim X/M=\dim X-\dim M\)</span> が成り立つ。
 </div>
 <p></p>
 
@@ -596,7 +597,7 @@ x&#39;\sim_{M}x&#39;&#39;,\ x&#39;&#39;\sim_{M}x&#39;&#39;&#39;\Rightarrow x&#39
 <p></p>
 <span class="math inline">\(f:X\to Y\)</span> を線形写像とする。<span class="math inline">\(M=\ker f\)</span> に対する商空間 <span class="math inline">\(X/\ker f\)</span> はひときわ重要な性質をもっている。 
 <div class="theorem">
-<span id="thm:unnamed-chunk-106" class="theorem"><strong>定理 5.3  (準同型定理) </strong></span><span class="math inline">\(X/\ker f\simeq\mathrm{im}f\)</span>。
+<span id="thm:unnamed-chunk-105" class="theorem"><strong>定理 5.3  (準同型定理) </strong></span><span class="math inline">\(X/\ker f\simeq\mathrm{im}f\)</span>。
 </div>
 <p></p>
 
@@ -608,7 +609,7 @@ x&#39;\sim_{M}x&#39;&#39;,\ x&#39;&#39;\sim_{M}x&#39;&#39;&#39;\Rightarrow x&#39
 <p></p>
 
 <div class="theorem">
-<span id="thm:unnamed-chunk-108" class="theorem"><strong>定理 5.4 </strong></span><span class="math inline">\(\dim X=\dim(\ker f)+\mathrm{rank}f.\)</span>
+<span id="thm:unnamed-chunk-107" class="theorem"><strong>定理 5.4 </strong></span><span class="math inline">\(\dim X=\dim(\ker f)+\mathrm{rank}f.\)</span>
 </div>
 <p></p>
 
@@ -620,7 +621,7 @@ x&#39;\sim_{M}x&#39;&#39;,\ x&#39;&#39;\sim_{M}x&#39;&#39;&#39;\Rightarrow x&#39
 <p></p>
 % 
 <div class="corollary">
-<span id="cor:unnamed-chunk-110" class="corollary"><strong>系 5.1 </strong></span><span class="math inline">\(X\)</span> を有限次元線形空間とする。線形写像 <span class="math inline">\(f:X\to X\)</span> は単射であれば全射である。
+<span id="cor:unnamed-chunk-109" class="corollary"><strong>系 5.1 </strong></span><span class="math inline">\(X\)</span> を有限次元線形空間とする。線形写像 <span class="math inline">\(f:X\to X\)</span> は単射であれば全射である。
 </div>
 <p></p>
 
@@ -820,7 +821,7 @@ b &amp; a
 \]</span> すなわち <span class="math inline">\(aI+bJ\)</span>。</p>
 以上をまとめると，次の定理を得る。 
 <div class="theorem">
-<span id="thm:unnamed-chunk-115" class="theorem"><strong>定理 5.5 </strong></span>有限次元ベクトル空間上の線形写像 <span class="math inline">\(f:X\to X\)</span> が相異なる固有値を持つとき，表現行列を複素数の範囲で対角化できる。実数の範囲ではブロック対角化できる。
+<span id="thm:unnamed-chunk-114" class="theorem"><strong>定理 5.5 </strong></span>有限次元ベクトル空間上の線形写像 <span class="math inline">\(f:X\to X\)</span> が相異なる固有値を持つとき，表現行列を複素数の範囲で対角化できる。実数の範囲ではブロック対角化できる。
 </div>
 <p></p>
 
@@ -871,7 +872,7 @@ gitbook.start({
 "size": 2
 },
 "edit": null,
-"download": null,
+"download": ["linear-economic-dynamics.pdf"],
 "toc": {
 "collapse": "section",
 "scroll_highlight": true

@@ -15,7 +15,7 @@
   
   
   <meta property="og:description" content="経済動学 講義ノート" />
-  <meta name="github-repo" content="kenjisato/economicdynamics" />
+  <meta name="github-repo" content="kenjisato/led" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="経済動学: 線形編" />
@@ -26,7 +26,7 @@
 <meta name="author" content="佐藤 健治">
 
 
-<meta name="date" content="2017-03-31">
+<meta name="date" content="2017-04-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -89,7 +89,7 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="asset/css/style.css" type="text/css" />
 </head>
 
 <body>
@@ -166,6 +166,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="eigen.html"><a href="eigen.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 線形動学方程式と固有値</a></li>
 <li class="chapter" data-level="4.5" data-path="eigen.html"><a href="eigen.html#section-4.5"><i class="fa fa-check"></i><b>4.5</b> ラムゼーモデルと固有値</a></li>
+<li class="chapter" data-level="4.6" data-path="eigen.html"><a href="eigen.html#r--2"><i class="fa fa-check"></i><b>4.6</b> R コード</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="linspace.html"><a href="linspace.html"><i class="fa fa-check"></i><b>5</b> 線形空間論の基礎</a><ul>
 <li class="chapter" data-level="5.1" data-path="linspace.html"><a href="linspace.html#linspace-definition"><i class="fa fa-check"></i><b>5.1</b> 線形空間</a></li>
@@ -215,7 +216,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="" data-path="e58f82e88083e69687e78cae.html"><a href="e58f82e88083e69687e78cae.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
-<li><a href="https://github.com/kenjisato/linear-economic-dynamics" target="blank">Published with bookdown</a></li>
+<li><a href="http://led.kenjisato.jp" target="blank">Published with bookdown</a></li>
 
 </ul>
 
@@ -328,21 +329,21 @@ A =
   A_2 = \begin{bmatrix} b \\ d \end{bmatrix}
 \]</span> が作る平行四辺形 (parallelogram) の（符号付き）面積と一致する（図<a href="eigen.html#fig:parallelogram">4.1</a>の色付き部分）。</p>
 <div class="figure" style="text-align: center"><span id="fig:parallelogram"></span>
-<img src="figures/04-eigen/04-eigen.001.jpeg" alt="列ベクトルが成す平行四辺形"  />
+<img src="asset/figures/04-eigen/04-eigen.001.jpeg" alt="列ベクトルが成す平行四辺形"  />
 <p class="caption">
 図 4.1: 列ベクトルが成す平行四辺形
 </p>
 </div>
 <p>一般の次数でも同様の考え方が適用できる。例えば，3次正方行列の行列式は，列ベクトルが作る平行6面体（parallelepiped）の符号付き体積と一致する（図<a href="eigen.html#fig:parallelepiped">4.2</a>）。</p>
 <div class="figure" style="text-align: center"><span id="fig:parallelepiped"></span>
-<img src="figures/04-eigen/04-eigen.002.jpeg" alt="列ベクトルが成す平行六面体"  />
+<img src="asset/figures/04-eigen/04-eigen.002.jpeg" alt="列ベクトルが成す平行六面体"  />
 <p class="caption">
 図 4.2: 列ベクトルが成す平行六面体
 </p>
 </div>
 <p>このことから分かることは，行列を構成する列に同じ向きを持つ（平行な）ベクトルが含まれていると行列式は必ずゼロになるということである。</p>
 <div class="figure" style="text-align: center"><span id="fig:parallel-columns"></span>
-<img src="figures/04-eigen/04-eigen.003.jpeg" alt="平行な列ベクトル"  />
+<img src="asset/figures/04-eigen/04-eigen.003.jpeg" alt="平行な列ベクトル"  />
 <p class="caption">
 図 4.3: 平行な列ベクトル
 </p>
@@ -350,7 +351,7 @@ A =
 <p>2本のベクトル<span class="math inline">\(v_1 \neq 0 \neq v_2\)</span> が面積を持つ平行四辺形を作るための必要十分条件は， <span class="math inline">\(v_1 = \alpha v_2\)</span> となるような, <span class="math inline">\(\alpha \neq 0\)</span> が存在しないことである（図<a href="eigen.html#fig:parallel-columns">4.3</a>）。 ゼロと異なる3本のベクトル <span class="math inline">\(v_1, v_2, v_3\)</span> が体積を持つ平行六面体を作るための必要十分条件は， <span class="math inline">\(v_1 = \alpha v_2 + \beta v_3\)</span> かつ <span class="math inline">\(\alpha\)</span> と <span class="math inline">\(\beta\)</span> は同時にはゼロでないというものである。 いずれかのベクトルがゼロである可能性も考慮して，次のような概念を定義すると便利である。</p>
 
 <div class="definition">
-<span id="def:unnamed-chunk-69" class="definition"><strong>定義 4.1 </strong></span><span class="math inline">\(n\)</span> 本のベクトル <span class="math inline">\(v_1, \dots, v_n\)</span> が<strong>1次独立（linearly independent）</strong>であるとは, <span class="math inline">\(\alpha_{1},\dots,\alpha_{n}\)</span> に対して <span class="math inline">\(\alpha_{1}v_{1}+ \cdots + \alpha_{n}v_{n}=0\)</span> が成り立てば，<span class="math inline">\(\alpha_{1}=\cdots=\alpha_{n}=0\)</span> が成り立つことをいう。 1次独立でないとき，ベクトルの組は <strong>1次従属（linearly dependent）</strong>であるという。
+<span id="def:unnamed-chunk-68" class="definition"><strong>定義 4.1 </strong></span><span class="math inline">\(n\)</span> 本のベクトル <span class="math inline">\(v_1, \dots, v_n\)</span> が<strong>1次独立（linearly independent）</strong>であるとは, <span class="math inline">\(\alpha_{1},\dots,\alpha_{n}\)</span> に対して <span class="math inline">\(\alpha_{1}v_{1}+ \cdots + \alpha_{n}v_{n}=0\)</span> が成り立てば，<span class="math inline">\(\alpha_{1}=\cdots=\alpha_{n}=0\)</span> が成り立つことをいう。 1次独立でないとき，ベクトルの組は <strong>1次従属（linearly dependent）</strong>であるという。
 </div>
 <p></p>
 <p>行列を構成する列ベクトルが1次独立でなければ，列基本変形によりゼロのみからなる列を構成することができる。したがって，そのような行列の行列式はゼロでなければならない。逆に，行列が1次独立な列をもつならば（後に示すように），その行列はフルランクである。したがって，行列式はゼロでない。</p>
@@ -633,7 +634,7 @@ for (i in <span class="dv">2</span>:simulation_size) {
 
 <span class="co"># plot</span>
 <span class="kw">ggplot</span>(res, <span class="kw">aes</span>(x1, x2)) +<span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="linear-economic-dynamics_files/figure-html/unnamed-chunk-75-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="linear-economic-dynamics_files/figure-html/unnamed-chunk-74-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="section-4.3.4" class="section level3">
 <h3><span class="header-section-number">4.3.4</span> 実対角化</h3>
@@ -701,33 +702,52 @@ D^t =
 <p>再びラムゼーモデルの不動点を考えよう。<span class="citation">Levhari and Liviatan (<a href="#ref-LevhariLiviatan1972">1972</a>)</span> によれば，<span class="math inline">\(\lambda\)</span> が固有値であれば，<span class="math inline">\(1/(\beta \lambda)\)</span> も固有値である。したがって， ラムゼーモデルの不動点の固有値は複素平面上で原点を中心とする半径<span class="math inline">\(1/\beta\)</span> の円を挟むように分布する。</p>
 <p>1セクターモデルではいずれも実数になるから，図<a href="eigen.html#fig:ramsey-onesector-saddle">4.4</a> あるいは， 図<a href="eigen.html#fig:ramsey-onesector-unstable">4.5</a> といったケースが典型的である。</p>
 <div class="figure" style="text-align: center"><span id="fig:ramsey-onesector-saddle"></span>
-<img src="figures/04-eigen/04-eigen.004.jpeg" alt="鞍点（1セクター）"  />
+<img src="asset/figures/04-eigen/04-eigen.004.jpeg" alt="鞍点（1セクター）"  />
 <p class="caption">
 図 4.4: 鞍点（1セクター）
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:ramsey-onesector-unstable"></span>
-<img src="figures/04-eigen/04-eigen.005.jpeg" alt="不安定（1セクター）"  />
+<img src="asset/figures/04-eigen/04-eigen.005.jpeg" alt="不安定（1セクター）"  />
 <p class="caption">
 図 4.5: 不安定（1セクター）
 </p>
 </div>
 <p>一般のセクターに対しては定理<a href="complexnumbers.html#thm:levhari-liviatan-santos-onesec">2.3</a> は成り立たない。 複素固有値 <span class="math inline">\(\lambda\)</span> が存在すれば，定理<a href="eigen.html#thm:conju-eigen-pair">4.1</a> によって<span class="math inline">\(\bar \lambda\)</span> も固有値である。さらに，<span class="citation">Levhari and Liviatan (<a href="#ref-LevhariLiviatan1972">1972</a>)</span> によれば <span class="math inline">\(1/(\beta \lambda)\)</span> と <span class="math inline">\(1/(\beta \bar \lambda)\)</span>も固有値である。1つの複素固有値から3つの複素固有値が派生する。図<a href="eigen.html#fig:ramsey-multsector-saddle">4.6</a>, 図<a href="eigen.html#fig:ramsey-multsector-unstable">4.7</a>。</p>
 <div class="figure" style="text-align: center"><span id="fig:ramsey-multsector-saddle"></span>
-<img src="figures/04-eigen/04-eigen.006.jpeg" alt="鞍点（マルチセクター）"  />
+<img src="asset/figures/04-eigen/04-eigen.006.jpeg" alt="鞍点（マルチセクター）"  />
 <p class="caption">
 図 4.6: 鞍点（マルチセクター）
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:ramsey-multsector-unstable"></span>
-<img src="figures/04-eigen/04-eigen.007.jpeg" alt="不安定（マルチセクター）"  />
+<img src="asset/figures/04-eigen/04-eigen.007.jpeg" alt="不安定（マルチセクター）"  />
 <p class="caption">
 図 4.7: 不安定（マルチセクター）
 </p>
 </div>
 <p>不動点は鞍点であるか，あるいは反安定となる。図から想像できるように， <span class="math inline">\(\beta\)</span> が1に近づくにつれて，安定な固有値が生じて鞍点になりやすい。 実は<span class="math inline">\(\beta\)</span> が十分1に近いとき，ラムゼーモデルは大域的に安定な経路を持つことが知られている。 大域的安定性の研究はターンパイク（turnpike）理論と呼ばれる一大分野を形成している。<span class="citation">(McKenzie <a href="#ref-McKenzie1986">1986</a>)</span></p>
 <p>逆に，<span class="math inline">\(\beta\)</span>が小さくなると安定性が失われ，不安定挙動（周期軌道，カオス）が現れる。 例えば <span class="citation">Deneckere and Pelikan (<a href="#ref-DeneckerePelikan1986">1986</a>)</span> を見よ。</p>
+</div>
+<div id="r--2" class="section level2">
+<h2><span class="header-section-number">4.6</span> R コード</h2>
+<div id="-1" class="section level4 unnumbered">
+<h4>行列式</h4>
+<p>実行列の行列式は，ずばり <code>det()</code> で計算できる。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">det</span>(A)</code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">det</span>(B)</code></pre></div>
+<pre><code>## [1] 81.00696</code></pre>
+<p>残念ながら複素行列の行列式は計算できない。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">det</span>(C)</code></pre></div>
+<pre><code>## Error in determinant.matrix(x, logarithm = TRUE, ...): &#39;determinant&#39; not currently defined for complex matrices</code></pre>
+<p>しかし，<code>det()</code> の計算をする必要があるケースは限られているだろう。</p>
+<p>どうしても必要な場合は次のように計算すればよい。</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">prod</span>(<span class="kw">eigen</span>(C, <span class="dt">only.values =</span> <span class="ot">TRUE</span>)$values)</code></pre></div>
+<pre><code>## [1] -104.7096-110.527i</code></pre>
+<p>これで行列式を計算できるのは，固有値の積が行列式と一致するという公式による。次章で説明する。</p>
 
+</div>
 </div>
 </div>
 <h3>参考文献</h3>
@@ -787,7 +807,7 @@ gitbook.start({
 "size": 2
 },
 "edit": null,
-"download": null,
+"download": ["linear-economic-dynamics.pdf"],
 "toc": {
 "collapse": "section",
 "scroll_highlight": true
