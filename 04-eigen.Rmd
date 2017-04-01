@@ -1,3 +1,7 @@
+```{r, include = FALSE}
+include_graphics = chapter_graphics("asset/figures/04-eigen")
+```
+
 # 行列の固有値 {#eigen}
 
 本章では，行列の固有値に関して復習する。
@@ -122,19 +126,19 @@ $$
 が作る平行四辺形 (parallelogram) の（符号付き）面積と一致する（図\@ref(fig:parallelogram)の色付き部分）。
 
 ```{r parallelogram, fig.cap="列ベクトルが成す平行四辺形", echo=FALSE}
-knitr::include_graphics("figures/04-eigen/04-eigen.001.jpeg")
+include_graphics("04-eigen.001.jpeg")
 ```
 
 一般の次数でも同様の考え方が適用できる。例えば，3次正方行列の行列式は，列ベクトルが作る平行6面体（parallelepiped）の符号付き体積と一致する（図\@ref(fig:parallelepiped)）。
 
 ```{r parallelepiped, fig.cap="列ベクトルが成す平行六面体", echo=FALSE}
-knitr::include_graphics("figures/04-eigen/04-eigen.002.jpeg")
+include_graphics("04-eigen.002.jpeg")
 ```
 
 このことから分かることは，行列を構成する列に同じ向きを持つ（平行な）ベクトルが含まれていると行列式は必ずゼロになるということである。
 
 ```{r parallel-columns, fig.cap="平行な列ベクトル", echo=FALSE}
-knitr::include_graphics("figures/04-eigen/04-eigen.003.jpeg")
+include_graphics("04-eigen.003.jpeg")
 ```
 
 2本のベクトル$v_1 \neq 0 \neq v_2$ が面積を持つ平行四辺形を作るための必要十分条件は，
@@ -646,11 +650,11 @@ $\lim_{t\to\infty} x_t \to 0$ が成り立つ。すべての固有値が単位�
 図\@ref(fig:ramsey-onesector-unstable) といったケースが典型的である。
 
 ```{r ramsey-onesector-saddle, fig.cap="鞍点（1セクター）", echo=FALSE}
-knitr::include_graphics("figures/04-eigen/04-eigen.004.jpeg")
+include_graphics("04-eigen.004.jpeg")
 ```
 
 ```{r ramsey-onesector-unstable, fig.cap="不安定（1セクター）", echo=FALSE}
-knitr::include_graphics("figures/04-eigen/04-eigen.005.jpeg")
+include_graphics("04-eigen.005.jpeg")
 ```
 
 
@@ -659,11 +663,11 @@ knitr::include_graphics("figures/04-eigen/04-eigen.005.jpeg")
 $1/(\beta \bar \lambda)$も固有値である。1つの複素固有値から3つの複素固有値が派生する。図\@ref(fig:ramsey-multsector-saddle), 図\@ref(fig:ramsey-multsector-unstable)。
 
 ```{r ramsey-multsector-saddle, fig.cap="鞍点（マルチセクター）", echo=FALSE}
-knitr::include_graphics("figures/04-eigen/04-eigen.006.jpeg")
+include_graphics("04-eigen.006.jpeg")
 ```
 
 ```{r ramsey-multsector-unstable, fig.cap="不安定（マルチセクター）", echo=FALSE}
-knitr::include_graphics("figures/04-eigen/04-eigen.007.jpeg")
+include_graphics("04-eigen.007.jpeg")
 ```
 
 不動点は鞍点であるか，あるいは反安定となる。図から想像できるように，
@@ -675,5 +679,33 @@ $\beta$ が1に近づくにつれて，安定な固有値が生じて鞍点に�
 例えば @DeneckerePelikan1986 を見よ。
 
 
+## R コード
 
+#### 行列式 {-}
+
+実行列の行列式は，ずばり `det()` で計算できる。
+
+```{r 03-det-real1}
+det(A)
+```
+
+```{r 03-det-real2}
+det(B)
+```
+
+残念ながら複素行列の行列式は計算できない。
+
+```{r 03-det-complex1, error = TRUE}
+det(C)
+```
+
+しかし，`det()` の計算をする必要があるケースは限られているだろう。
+
+どうしても必要な場合は次のように計算すればよい。
+
+```{r 03-det-complex2}
+prod(eigen(C, only.values = TRUE)$values)
+```
+
+これで行列式を計算できるのは，固有値の積が行列式と一致するという公式による。次章で説明する。
 

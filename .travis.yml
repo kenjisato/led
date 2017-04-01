@@ -10,6 +10,11 @@ env:
   global:
     - secure: "WyTnmuAq/scxyBUaEDk9kzZBqFlmZPm99eHFQLwnOtjSBOriBHzMM4oqLMiP9Bbw/F2wOCMB5xAfpw0Fg8zDa6HM3qd+j9oyUZ+30vZgMIEa5xtSC+RryPS3goKJT6WreAKadaPw/CRPZXLSr2xl1um72b9Wra4h1PIjFZYwmKUyplbfigC5W2VN27VFG35X5I3sq4HiYrprMLbOCpGdqL6CSQlPlqcBGjTKVSktzZDSQrj2J2q6ya+7QUjCCwisDTGYWNSsNvus1TCp74aaTDMJA26YsxNoM4zKl10v5TL3vl9Fp6mCFW8D3I5MHoZdDzdyEad59D0w73L8Ddb5q3rUfdJfFf5GYBrP2pWtA0BVV0xq1Ef092NoKlyIUU+JIjeEM4vK2i0avz+qWXFCJ+SnFs8eccbJV5TkL9RwfDLMQaA5v/3manlK9lWB89yZHXGzFSuisLwUwFPee2J0Y8pYiChR1pAzrTrxPWjfeIyClYVCbZ4EoTnvfu+GCwvKT0T2kKRDnVGabQGptKP1i8vFG8f/knIlP/57SmOOlx4nuiuX2XZYCXAGB3ZeTJnvMTVPQ+65INT/5QWwG5kg1XMmTFQVnYAwgxH369hM5TBDvXx7VARMglocIjW/4joIVYPJuPVOROraA2Rw4Rgp9ZWYpt8QQY4Y2mvQn5cMKaY="
 
+addons:
+  apt:
+    packages:
+    - otf-ipaexfont
+
 before_script:
   - chmod +x ./_build.sh
   - chmod +x ./_deploy.sh

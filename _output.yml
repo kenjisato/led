@@ -1,14 +1,14 @@
 bookdown::gitbook:
-  css: css/style.css
+  css: asset/css/style.css
   split_by: chapter
   config:
-    download: null
+    download: ["pdf"]
     edit: null
     lib_dir: assets
     search: yes
     toc:
       after: |
-        <li><a href="https://github.com/kenjisato/linear-economic-dynamics" target="blank">Published with bookdown</a></li>
+        <li><a href="http://led.kenjisato.jp" target="blank">Published with bookdown</a></li>
       before: |
         <li><a href="./">Linear Economic Dynamics</a></li>
       collapse: section
@@ -16,9 +16,9 @@ bookdown::gitbook:
     toolbar:
       position: fixed
 bookdown::pdf_book:
-  citation_package: natbib
+  #citation_package: natbib
   includes:
-    in_header: preamble.tex
+    in_header: asset/latex/preamble.tex
   keep_tex: yes
   latex_engine: lualatex
   template: null

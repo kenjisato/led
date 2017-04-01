@@ -1,19 +1,22 @@
---- 
+---
 title: "経済動学: 線形編"
 author: "佐藤 健治"
 date: '`r Sys.Date()`'
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 description: 経済動学 講義ノート
-github-repo: kenjisato/economicdynamics
+github-repo: kenjisato/led
 documentclass: scrbook
 classoption: a4paper
-bibliography: ['bib/bibliography.bib', 'bib/packages.bib']
+bibliography:
+  - asset/bib/bibliography.bib
+  - asset/bib/japanese.bib
+  - asset/bib/packages.bib
 biblio-style: apalike
 link-citations: yes
 ---
 
-```{r, results="asis", echo=knitr:::is_html_output()}
+```{r revision-history, results="asis", echo=knitr:::is_html_output()}
 if (knitr:::is_html_output()) {
   cat("# {#top-page .unnumbered}",
       "**改訂履歴**",
@@ -22,16 +25,17 @@ if (knitr:::is_html_output()) {
 }
 ```
 
-```{r, include=FALSE}
+```{r env-setup, include=FALSE}
+source("R/utility.R")
+
 if (knitr:::is_html_output()) {
   knitr::opts_chunk$set(fig.align = 'center')
 } else {
-  knitr::opts_chunk$set(fig.align = 'center', out.width='350px') 
+  knitr::opts_chunk$set(fig.align = 'center', out.width='350px')
 }
 
 # automatically create a bib database for R packages
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'bib/packages.bib')
+), 'asset/bib/packages.bib')
 ```
-

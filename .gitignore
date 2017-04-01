@@ -18,6 +18,5 @@
 /libs
 
 /linear-economic-dynamics.*
-/bib/packages.bib
-/schedule
-/temp
+/asset/bib/packages.bib
+/off-git

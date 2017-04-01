@@ -1,3 +1,7 @@
+```{r, include = FALSE}
+include_graphics = chapter_graphics("asset/figures/10-blanchardkahn")
+```
+
 # 線形システムの分析 
 
 動学的マクロ経済モデルの典型的なパターンは, 均衡経路の拘束条件をストック変数に関する初期条件と, 価格に関する終端条件 (横断性条件)
@@ -437,7 +441,7 @@ $$
 1次元の自由度が与えられているのは, $x_{0}^{1}$ が固定されている一方で, $x_{0}^{2}$ が未知であることを反映している.
 
 ```{r, bk-beforetransformation, fig.cap="(ref:cap-bk-beforetransformation)", echo=FALSE}
-knitr::include_graphics("figures/10-blanchardkahn/10-blanchardkahn.001.jpeg")
+include_graphics("10-blanchardkahn.001.jpeg")
 ```
 
 (ref:cap-bk-beforetransformation) 変換前の直交座標系. $x_{0}^{1}$ だけが所与であり, $(x_{0}^{1},x_{0}^{2})$は赤色実線上のどこかにある.
@@ -449,7 +453,7 @@ $y^{u}$ 軸に平行なサブシステム（不安定固有値に対応する固
 式 \@ref(eq:bk-jordan) を確認せよ. 
 
 ```{r bk-aftertransformation, fig.cap="(ref:cap-bk-aftertransformation)", echo=FALSE}
-knitr::include_graphics("figures/10-blanchardkahn/10-blanchardkahn.002.jpeg")
+include_graphics("10-blanchardkahn.002.jpeg")
 ```
 
 (ref:cap-bk-aftertransformation) ジョルダン標準形に変換した後の斜交座標系. 座標系を変更しても赤色実線は動かない. 
@@ -467,7 +471,7 @@ $y_{0}^{u}$ を決めることができる. この時点ではまだ $y_{0}^{s}$
 なお, $P_{1s}$ の正則性は赤色の実線と青色の実線が平行にならないことを保証している. 
 
 ```{r bk-init-manifold, fig.cap="(ref:cap-bk-init-manifold)", echo=FALSE}
-knitr::include_graphics("figures/10-blanchardkahn/10-blanchardkahn.003.jpeg")
+include_graphics("10-blanchardkahn.003.jpeg")
 ```
 
 (ref:cap-bk-init-manifold) 安定な後ろ向き (forward-looking) サブシステム $y_{t}^{u}=J_{u}^{-1}y_{t+1}^{u}-J_{u}^{-1}C_{u}u_{t}$
@@ -475,7 +479,7 @@ knitr::include_graphics("figures/10-blanchardkahn/10-blanchardkahn.003.jpeg")
 
 
 ```{r bk-determinacy, fig.cap="(ref:cap-bk-determinacy)", echo=FALSE}
-knitr::include_graphics("figures/10-blanchardkahn/10-blanchardkahn.003.jpeg")
+include_graphics("10-blanchardkahn.003.jpeg")
 ```
 
 (ref:cap-bk-determinacy) 青色と赤色の直線が交わる点で $(x_{0}^{1},x_{0}^{2})$ あるいは $(y_{0}^{s},y_{0}^{u})$
@@ -494,7 +498,7 @@ $2=n_{s}>n_{1}=1$ のケースを考える. この場合には後ろ向きのサ
 を定めることもできない. 
 
 ```{r bk-nonexistence, fig.cap="(ref:cap-bk-nonexistence)", echo=FALSE}
-knitr::include_graphics("figures/10-blanchardkahn/10-blanchardkahn.005.jpeg")
+include_graphics("10-blanchardkahn.005.jpeg")
 ```
 
 (ref:cap-bk-nonexistence) $n_{s}<n_{1}$ のケース. バックワードサブシステムが過剰に初期値を定めてしまう. 一般に解は存在しない. 
@@ -502,7 +506,7 @@ knitr::include_graphics("figures/10-blanchardkahn/10-blanchardkahn.005.jpeg")
 
 
 ```{r bk-indeterminacy, fig.cap="(ref:cap-bk-indeterminacy)", echo=FALSE}
-knitr::include_graphics("figures/10-blanchardkahn/10-blanchardkahn.006.jpeg")
+include_graphics("10-blanchardkahn.006.jpeg")
 ```
 
 (ref:cap-bk-indeterminacy) $n_{s}>n_{1}$ のケース. バックワードサブシステムの情報が不足しており, 赤色直線上の任意の点から出発した経路が解の性質を満たす.

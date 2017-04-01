@@ -1,3 +1,7 @@
+```{r, include = FALSE}
+include_graphics = chapter_graphics("asset/figures/02-complex_numbers")
+```
+
 # 複素数 {#complexnumbers}
 
 ## はじめに
@@ -64,7 +68,7 @@ $$
 図\@ref(fig:imaginary-plane) 参照。
 
 ```{r imaginary-plane, fig.cap="複素平面", echo=FALSE}
-knitr::include_graphics("figures/02-complex_numbers/02-complex_numbers.001.jpeg")
+include_graphics("02-complex_numbers.001.jpeg")
 ```
 
 複素平面は動学の分析に重要な役割を果たすので自ら図を描いて手になじませておくとよい。
@@ -252,7 +256,7 @@ $$
 という表現を持つ。この表現を複素数の**極形式 (polar form)**という。図\@ref(fig:polar-form) 参照。
 
 ```{r polar-form, fig.cap="極形式", echo=FALSE}
-knitr::include_graphics("figures/02-complex_numbers/02-complex_numbers.002.jpeg")
+include_graphics("02-complex_numbers.002.jpeg")
 ```
 
 
@@ -348,7 +352,7 @@ $$
 べき乗の収束性（安定性）は考えている複素数が複素平面上で原点を中心とする単位円（unit circle）の内側（単位円盤 unit disk の上）にあるかどうかで決まる。図\@ref(fig:unit-disk)において，$z_1$のべきは発散し，$z_2$のべきは原点に収束する。
 
 ```{r unit-disk, fig.cap="単位円", echo=FALSE}
-knitr::include_graphics("figures/02-complex_numbers/02-complex_numbers.003.jpeg")
+include_graphics("02-complex_numbers.003.jpeg")
 ```
 
 
@@ -362,7 +366,7 @@ knitr::include_graphics("figures/02-complex_numbers/02-complex_numbers.003.jpeg"
 
 
 ```{r conjugate, fig.cap="共役複素数", echo=FALSE}
-knitr::include_graphics("figures/02-complex_numbers/02-complex_numbers.004.jpeg")
+include_graphics("02-complex_numbers.004.jpeg")
 ```
 
 
