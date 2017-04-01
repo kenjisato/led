@@ -1,6 +1,7 @@
 language: r
 pandoc_version: 1.17.2
 cache: packages
+dist: trusty
 
 branches:
   only:
