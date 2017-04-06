@@ -1,0 +1,84 @@
+# Preface {#preface .unnumbered}
+
+These notes are based on lectures held at the Graduate School of Economics at Kobe University in the first quarters of 2016 and 2017. I assume as audience graduate students majoring in macroeconomics, macro econometrics and mathematical economics. However, I think that this lecture could be also beneficial for advanced degree students if not bothered by mathematical discussion. At beginning we will start from elementary notions of linear algebra, theory of dynamic system and dynamical system. Since I tried to be as complete as possible, *I think I could also make reference to the book 「Mathematics for economists」 specialized in macroeconomics.* Moreover, since I will hardly use well-known facts of economics, I think that this lecture could be also useful for students of science and engineering who began to be interested in analyzing economic models.
+
+In this lecture, we analyze the linear rational expectation models as a central issue. The main objectives of the lecture are the following three:
+
+- Theoretical analysis of linear rational expectation model
+- Computer simulation
+- Introduction of Markov-switching rational expectations model
+
+I think there are many students who use by themselves or just heard the name "Dynare"", that is a standard tool for macro quantitative analysis. On the other hand, I think that there are many students who do not know how calculations are made on the back side. *[...]* The first part of this lecture is to understand the theory and open the black box of Dynare, that is no other than an application with an excellent interface. 
+
+The second part is to get the students to acquire basic techniques of computer simulation. Since the linear rational expectation models have been playing a major role in quantitative analysis of macroeconomics in recent years, I believe it will be of great use to each research project. Unless you work very hard you cannot master mathematics and programming. 
+I want you to develop comprehensive problem solving skills while coming back and forth between theory and its implementation. In this lecture we will mainly use R language. ^[Please install the last version of [R](https://www.r-project.org/) and [RStudio](https://www.rstudio.com/). The reason why I chose the R language is that I thought that many students had already used it to learn econometrics, *[...]* It is a very popular programming language / environment so I think that it will be very benefical to learn it once.]
+
+Finally, we introduce the Markov-switching rational expectations model, a non linear model that has become very popular in the last years. Like linear models (or some kinds of), there is a characteristic to obtain a necessary and sufficient condition for the stability / instability which is theoretically easy to handle. It is known that Taylor's condition related to monetary policy rules can be relaxed, and research is actively underway from both theory and empirical research. 
+
+
+## Organization {-}
+
+These notes are made in accordance with the system of quarter that consists of 15 lectures (twice a week, 90 minutes × 8 weeks each time).
+In principle, we are going to read through each chapter in order. Since I set up 「exercises」to try to build a comprehensive understanding, I would like you tackle all of them. 
+
+The first few chapters summarize the definitions and results that you learnt in the first year of undergraduate, which are necessary for the analysis of dynamic systems, so it should be a list of things that most of students already know. Therefore, you can skip reading providing that you solve practice problems. However, since each chapter is arranged to be increasingly difficult, I recommend you to read it if you are a little worry. Furthermore, I think that it is not useful to read only the chapters of interest if you do not have a preious knowledge of this field. 
+
+#### \ref@(intro)Chapter: Introduction {-}
+
+- What kind of model do you want to solve?
+- Building a programming environment
+
+#### \ref@(complex numbers)Chapter: Complex numbers
+
+- Review of complex numbers
+- Why are complex numbers necessary? 
+
+#### \ref@(matrix)Chapter: Review of matrices {-}
+
+- Review of matrices
+- Similarity between matrix product and complex numbers product
+
+#### \ref@(eigen)Chapter: Eigenvalues of matrices
+
+- Review of eigenvalues of the matrices
+- Clarify the relationship of complex eigenvalues of linear system
+
+#### Chapter 5: Eigenspace {-}
+
+#### Chapter 6: Stability of Jordan canonical form and linear system {-}
+
+- Jordan canonical form
+- Stability
+
+#### Chapter 7: $\det A \neq 0$ {-}
+
+- @BlanchardKahn1980
+
+#### Chapter 8: Weierstrass canonical form and descriptive system {-}
+
+- $\det A = 0$
+
+#### Chapter 9: General $A$ {-}
+
+- Stock and Watson?
+
+#### Chapter 10: Numerical solution {-}
+
+- Schur analysis
+- QZ analysis
+
+#### Chapter 11: Klein's method {-}
+
+- @Klein2000
+
+#### Chapter 12: Sims' method {-}
+
+#### Chapter 13: Probabilistic system {-}
+
+#### Chapter 14: Lubik-Schorfheide {-}
+
+#### Chapter 15: Markov-switching system {-}
+
+## Acknowledgments {-}
+
+I thank you Professor Ando of Columbia University for his valuable comments.
