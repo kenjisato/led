@@ -560,8 +560,8 @@ $$
 2次方程式の根は2つしかないから，$\lambda_1$, $\lambda_2$ は互いに共役（$\bar \lambda_1 = \lambda_2$）であるか，
 いずれも実数（$\lambda_1, \lambda_2 \in \mathbb R$）でなければならない。しかし，簡単に確かめられるように方程式 \@ref(eq:lineuler) の根
 $\lambda \neq 0$ が1つ見つかったとき，$\beta^{-1} \lambda^{-1}$ もまた方程式 \@ref(eq:lineuler) の根である。
-仮に $\lambda$ が複素根であるとすれば，$\bar \lambda$ も根であるから，$\lambda = \beta^{-1} \lambda^{-1}$ 
-が成り立たなければ根が4つになってしまうので不合理である。$\lambda = \beta^{-1} \lambda^{-1}$ として計算を進めると方程式 \@ref(eq:lineuler) 
+仮に $\lambda$ が複素根であるとすれば，$\bar \lambda$ も根であるから，$\bar \lambda = \beta^{-1} \lambda^{-1}$ 
+が成り立たなければ根が4つになってしまうので不合理である。$\bar \lambda = \beta^{-1} \lambda^{-1}$ として計算を進めると方程式 \@ref(eq:lineuler) 
 は次の方程式と同値であることが分かる（確認せよ）。
 $$
   \left(\lambda + \frac{u_{12}^*}{u_{22}^*} \right)
