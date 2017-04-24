@@ -13,7 +13,7 @@ project_name = 'linear-economic-dynamics'
 $$
 \begin{aligned}
   &\max_{c\in \mathbb{R}^N_+} u(c) \\
-  &\text{subject to}\quad p \cdot c \le I  
+  &\text {subject to}\quad p \cdot c \le I  
 \end{aligned}
 $$
 価格 $p = (p_1, \dots, p_N)$ と所得 $I$ のもとで，効用 $u(c)$ を最大にする消費量の組み合わせ 

@@ -119,320 +119,113 @@ $(document).ready(function () {
 </div>
 
 
-<div id="intro" class="section level1">
-<h1>Introduction</h1>
-<div id="intro-economic-dynamics" class="section level2">
-<h2>Economic Dynamics</h2>
-<p>In 「Economic Dynamics」we study the change through time, or the absence of change,in variables (economic indicators) representing economic conditions. Let me explain what kind of problems we are going to deal with.</p>
-<p>I think that the students who took microeconomics at undergraduate level is familiar with the following optimization problem. <span class="math display">\[
-\begin{aligned}
-  &amp;\max_{c\in \mathbb{R}^N_+} u(c) \\
-  &amp;\text {subject to}\quad p \cdot c \le I  
-\end{aligned}
-\]</span></p>
-<p>The problem concerns the choice of consumption <span class="math inline">\(c = (c_1, \dots, c_N)\)</span> that maximixes utility <span class="math inline">\(u(c)\)</span> given prices <span class="math inline">\(p = (p_1, \dots, p_N)\)</span> and income <span class="math inline">\(I\)</span>. The standar assumption for this consumer model is that the economy has different types of goods <span class="math inline">\(N\)</span>, whose the price of good <span class="math inline">\(n\)</span>, <span class="math inline">\(n = 1, \dots, N\)</span>, is set at <span class="math inline">\(p_n\)</span>. Consumers wil purchase it in <span class="math inline">\(c_n\)</span> units. To purchase all goods, consumer need to pay <span class="math inline">\(p \cdot c = \sum_{n=1}^N p_n x_n\)</span> subject to its budget constraint.</p>
-<p>The order of lining up each goods <span class="math inline">\(n = 1, \dots, N\)</span> is completely arbitrary. There is also no reason for lining up <span class="math inline">\(c_n\)</span> and <span class="math inline">\(c_{n + 1}\)</span> in this order. Therefore, for example, even if <strong>monotonicity</strong>, <span class="math inline">\(c_1 &lt; c_2 &lt; c_3,\dots\)</span>, is obtained, it can not be interpreted as if it happened by chance.</p>
-<p>Let’s try to change the interpretation without changing the model. Essentially, there is only one good in the economy. For example, <span class="math inline">\(c_1\)</span> is consumed in 2001, <span class="math inline">\(c_2\)</span> in 2002, and each <span class="math inline">\(c_n\)</span> is interpreted as a variable representing economic activity at a certain point in time. Such change in the interpretation changes the interpretation of the result without changing the model to be solved. In other words, the above-mentioned monotonicity means that consumption will increase year by year. For the sake of explanation, <span class="math inline">\(N\)</span> is finite, but we often consider cases where <span class="math inline">\(N = \infty\)</span>. When <span class="math inline">\(N\)</span> is finite, this model is called <strong>finite horizon</strong> model. Otherwise, it is called <strong>infinite horizon</strong> model.</p>
-<p>Each variable solves a time-labelled model. The economic dynamics has the main task to investigate the temporal nature that the solution satisfies. We are interested in the following propositions.</p>
+<div id="preface" class="section level1 unnumbered">
+<h1>Preface</h1>
+<p>These notes are based on lectures held at the Graduate School of Economics at Kobe University in the first quarters of 2016 and 2017. I assume as audience graduate students majoring in macroeconomics, macro econometrics and mathematical economics. However, I think that this lecture could be also beneficial for advanced degree students if not bothered by mathematical discussion. At beginning we will start from elementary notions of linear algebra, theory of dynamic system and dynamical system. Since I tried to be as complete as possible, <em>I think I could also make reference to the book 「Mathematics for economists」 specialized in macroeconomics.</em> Moreover, since I will hardly use well-known facts of economics, I think that this lecture could be also useful for students of science and engineering who began to be interested in analyzing economic models.</p>
+<p>In this lecture, we analyze the linear rational expectation models as a central issue. The main objectives of the lecture are the following three:</p>
 <ul>
-<li>Is it constant throughout the time, or will it settle to a convergence state after a sufficient amount of time? Or, does we observe convergence and constant oscillation path?</li>
-<li>Is the convergence path monotonically increasing (or decreasing) or oscillating?</li>
-<li>In the case we observe constant oscillation, the oscillation is regular (periodic) or irregular (caos)?</li>
-<li>Does the economic state depend or not on the past path?</li>
-<li>Is the economic state uniquely determined …</li>
-<li>etc.</li>
+<li>Theoretical analysis of linear rational expectation model</li>
+<li>Computer simulation</li>
+<li>Introduction of Markov-switching rational expectations model</li>
 </ul>
-<p>Equations that characterize the solution of the model are called <strong>dynamic equation</strong> or <strong>dynamic system</strong>. In economic models, as an equilibrium condition satisfied by optimization problem composed of various constraints, utility maximization of consumer ・profit maximization of firms, it is possible to get equations that satisfy adjacent variables<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. <span class="math display">\[
-F(x_t, x_{t + 1}) = 0, \quad t = 1, 2, \dots
-\]</span> However, <span class="math inline">\(x_t\)</span> is a vector of economic variables of interest. We changed the index representing timeto <span class="math inline">\(t\)</span>. When dealing with cases where the economic environment changes due to external factors (shocks) such as economic policies <span class="math display">\[
-  F(x_t, x_{t+1}, z_t) = 0
-\]</span> we will obtain a dynamic equation. These systems are implicit systems in the sense that variables are determined as solutions of implicit function.</p>
-<p>In order to know the change over time of the economy, time series of <span class="math inline">\(x_1, x_2, \dots\)</span> are necessary. As consequence, ideally a sequential calculation <span class="math display">\[
-x_{n + 1} = G_t (x_t, z_t)
-\]</span> is necessary. Or, if there is no time dependency of $ G $, <span class="math display">\[
-x_{n+1} = G(x_t, z_t)
-\]</span> it could be possible. The dynamic system as exemplified above can not be solved.</p>
-</div>
-<div id="intro-target-model" class="section level2">
-<h2>Intro target model</h2>
-<p>In this lecture, we consider the following dynamic system.</p>
-<span class="math display">\[\begin{equation}
-  A\mathbb{E}_{t}x_{t+1}=Bx_{t}+Cz_{t} (\#eq:lre)
-\end{equation}\]</span>
-<p><span class="math inline">\(x_t\)</span> is a vector of variables (endogenous variables) determined to solve the model, while <span class="math inline">\(z_t\)</span> is a variable determined outside the model (exogenous variable). <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span> are matrices of appropriate size. <span class="math inline">\(\mathbb E_t\)</span> is a conditional expectation.</p>
-A system, as the above-mentioned, consisting only of a matrix product and addition is called linear system. If we rewrite the above linear equation as
-<span class="math display">\[\begin{equation}
-  Bx_{t} = A\mathbb{E}_{t}x_{t+1} - Cz_{t} (\#eq:lre2)
-\end{equation}\]</span>
-<p>we can read it as <strong>the current economic variable is determined by expectation for the future</strong>. Systems such as @ref(eq:lre) and @ref(eq:lre2) are called <strong>linear rational expectations model</strong>.</p>
-<p>Although we do not go deeper into model derivation in these notes, it would be sufficient if you were aware that variables such as price and consumption are determined to reflect forward-looking expectations. The relationship where the price is determined reflecting the expectation can be understood through the following example.</p>
-<pre class="example"><code>The basic formula of economic theory is that the stock price of a company is determined so that the value that the company produces in future will be discounted with consideration of the interest rate (or discount rate).
-Moreover, 「discount」means to adjust depreciation for the amount of time you have to wait before you get profit.
-
-The reason for establishing such a relationship can be understood relatively easily.
-Let's say that the discounted present value of the expected earnings of a company is temporarily higher than the total stock price of the company.
-If you purchase such stocks you can earn profits higher than the purchase price over a long period of time, 
-so buyers collect such stocks and market prices rise. On the other hand,
-let's suppose the expected earnings are temporarily lower than the total stock price.
-Shareholders have incentives to sell shares, but at such market prices, buyers are unwilling to buy. 
-Stock prices will fall until no shareholder wants to sell them even if the selling price would be lower.
-It is the previous price formula that is achieved as a result of eliminating the discrepancy between the anticipated value and the market price.
-
-If there is a chance to earn margins (arbitrage opportunity), the price will adjust quickly through the market, and, 
-as consequence, arbitrage opportunities will be lost.
-Based on the idea above, economic theory often makes analysis by focusing on the economic environment (equilibrium) 
-after the arbitrage opportunity has been eliminated.</code></pre>
-<p>Usually, economic models are described by non linear systems, but if you limit the analysis around <span class="math inline">\(z_t = 0\)</span> (<span class="math inline">\(t &gt; 0\)</span>), the non-stochastic equilibrium point <span class="math inline">\(x^* = x_t = x_{t+1}\)</span> is known to be well approximated by a linear system<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>.</p>
-<p>The analysis of linear systems can be incorporated into the analysis of coefficients matrices, so it is very easy to handle both theoretically and numerically. As consequence, The analytical method we learn from now is the <strong>first step to analyze what kind of change in economic variables will occur when small shocks are added to the economic equilibrium</strong>. In practice it is difficult to derive quantitative implications from only linear approximation, so to make useful analysis it is necessary to learn higher order approximation techniques. However, you cannot understand nonlinear theory without understanding linear theory. Let’s go steadily step by step.</p>
-<div id="intro-deterministic" class="section level3">
-<h3>Deterministic model</h3>
-<p>Actually, even if probabilistic factors disappear, the fundamental policy of analysis does not change. In other words, by establishing a method to analyze non-stochastic (deterministic) system</p>
-<span class="math display">\[\begin{equation}
-  Ax_{t+1} = Bx_t + Cz_t (\#eq:lsys)
-\end{equation}\]</span>
-<p>you can make a simulation/analysis of @ref(eq:lre). First, after talking about analysis of @ref(eq: lsys), let’s proceed with theoretical analysis introducing probabilistic factors.</p>
-<p>Furthermore, non-deterministic analysis will be described in several stages.</p>
-<ol style="list-style-type: decimal">
-<li><span class="math inline">\(A\)</span> is a regular case</li>
-</ol>
+<p>I think there are many students who use by themselves or just heard the name “Dynare”“, that is a standard tool for macro quantitative analysis. On the other hand, I think that there are many students who do not know how calculations are made on the back side. <em>[…]</em> The first part of this lecture is to understand the theory and open the black box of Dynare, that is no other than an application with an excellent interface.</p>
+<p>The second part is to get the students to acquire basic techniques of computer simulation. Since the linear rational expectation models have been playing a major role in quantitative analysis of macroeconomics in recent years, I believe it will be of great use to each research project. Unless you work very hard you cannot master mathematics and programming. I want you to develop comprehensive problem solving skills while coming back and forth between theory and its implementation. In this lecture we will mainly use R language. <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+<p>Finally, we introduce the Markov-switching rational expectations model, a non linear model that has become very popular in the last years. Like linear models (or some kinds of), there is a characteristic to obtain a necessary and sufficient condition for the stability / instability which is theoretically easy to handle. It is known that Taylor’s condition related to monetary policy rules can be relaxed, and research is actively underway from both theory and empirical research.</p>
+<div id="organization" class="section level2 unnumbered">
+<h2>Organization</h2>
+<p>These notes are made in accordance with the system of quarter that consists of 15 lectures (twice a week, 90 minutes × 8 weeks each time). In principle, we are going to read through each chapter in order. Since I set up 「exercises」to try to build a comprehensive understanding, I would like you tackle all of them.</p>
+<p>The first few chapters summarize the definitions and results that you learnt in the first year of undergraduate, which are necessary for the analysis of dynamic systems, so it should be a list of things that most of students already know. Therefore, you can skip reading providing that you solve practice problems. However, since each chapter is arranged to be increasingly difficult, I recommend you to read it if you are a little worry. Furthermore, I think that it is not useful to read only the chapters of interest if you do not have a preious knowledge of this field.</p>
+<div id="introchapter-introduction" class="section level4 unnumbered">
+<h4>@(intro)Chapter: Introduction</h4>
 <ul>
-<li>Analytical approach</li>
-<li>Numerical approach</li>
-</ul>
-<ol start="2" style="list-style-type: decimal">
-<li><span class="math inline">\(A\)</span> is an irregular case</li>
-</ol>
-<ul>
-<li>Analytical approach</li>
-<li>Numerical approach</li>
-</ul>
-<p>In the case where <span class="math inline">\(A\)</span> is regular, since @ref(eq: lsys) is equivalent to</p>
-<span class="math display">\[\begin{equation}
-  x_{t+1} = A^{-1}Bx_t + A^{-1}Cz_t (\#eq:lsys2)
-\end{equation}\]</span>
-<p>(<span class="math inline">\(A^{-1}\)</span> is the inverse matrix of <span class="math inline">\(A\)</span>), it is formally the same as a standard linear system (state space equation).</p>
-<p>Then, let’s deal with <span class="math inline">\(A\)</span> as irregular case. The above-mentioned @ref(eq:lsys), in the field of control theory the subject is the descriptor system, also known as implicit system. Those who are going to conduct research in this field should probably be aware that the same concept is being used with different names in different fields.</p>
-<p>By the way, the descriptor system is used to represent a 「non-causal」 system. In other words, it is a system where information of the future influences the present. Is not it a story you have heard somewhere? In economics, “forward-looking” is called non-causal in the control theory.</p>
-</div>
-<div id="intro-control-theory" class="section level3">
-<h3>Difference from control theory</h3>
-<p>Economics and control theory deal with slightly different subjects. In control theory, we deal with objects which are operating arbitrarily without introducing control variables. On the other hand, in economic theory, the control variable (eg. consumption) is a part of the elements constituting the model of the analysis target. As consequence, the economic model is designed to represent a forward-looking phenomenon even if <span class="math inline">\(A\)</span> is regular.</p>
-<p>In dynamic system theory and control theory, when dealing with a system like @ref(eq: lsys), we usually give as many initial conditions as <span class="math inline">\(x\)</span>. In such a case, since it is possible to sequentially obtain the solution of the system starting from the initial condition, there is no particular hardship in solving the solution. On the other hand, the expression of forward-looking in economics is independent of the system equation @ref(eq: lsys). That is, forward-looking is handled in such a manner that initial conditions are given to some elements of the variable (vector) <span class="math inline">\(x\)</span> and no initial condition is given to the remaining elements. Components with initial conditions are called <strong>predetermined component</strong> or <strong>predetermined variable</strong>. Components without initial conditions are called <strong>non-predetermined component</strong> or <strong>non-predetermined variable</strong><a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>.</p>
-<p>For example, let’s say that you have created a model where the share <span class="math inline">\(a\)</span>, the price of the stock <span class="math inline">\(p\)</span>, the external influence on the stock price <span class="math inline">\(u\)</span>, and the vector <span class="math inline">\((a, p)\)</span> satisfy the following dynamic equation.</p>
-<p><span class="math display">\[
-\begin{bmatrix}
-  a_{t+1} \\
-  p_{t+1}
-\end{bmatrix}
-=
-B
-\begin{bmatrix}
-  a_{t} \\
-  p_{t}
-\end{bmatrix}
-+
-\begin{bmatrix}
-  0 \\
-  u_{t}
-\end{bmatrix}
-\]</span></p>
-<p>In this case, <span class="math inline">\(a_0\)</span> is given as an initial value, but it is a matter of typical macroeconomics that <span class="math inline">\(p_0\)</span> is determined based on expectations for $a_0 $ and <span class="math inline">\(u\)</span>.</p>
-</div>
-<div id="intro-stability-determinacy" class="section level3">
-<h3>Stability and determinacy</h3>
-<p>Now, how can we solve a problem where initial condition is not given to some variables? Of course, we can not solve such problems unless we place any restrictions on <span class="math inline">\(a_1, a_2, \dots\)</span>, <span class="math inline">\(p_0, p_1, \dots\)</span>.</p>
-<p><span class="citation">@BlanchardKahn1980</span> proposed the following conditions. Economic agents do not act based on expectations that diverge at a speed faster than geometric series. In other words, if the initial value can be set to 1 as a result of excluding initial values that diverge faster than the geometric series, that point is a unique balance. However, in general there are numerous routes that satisfy the stability (non-geometric divergence) while satisfying the dynamic equation. We call the cases that are unique <strong>determinate</strong>, and the non-determinate cases <strong>indeterminate</strong>.</p>
-</div>
-<div id="intro-RE" class="section level3">
-<h3>Rational expectations model</h3>
-<p>Then we analyze the system @ref(eq: lre). The shock term <span class="math inline">\(z\)</span> is a stochastic process, but if you understand the analysis of determinism, you can understand a little by merely learning the nature of conditional expectation. There is actually no essential difference from the deterministic system since determinity can be characterized using the same concept of stability as in the deterministic model.</p>
-<p>In these notes, we introduce a kind of development topic.</p>
-</div>
-<div id="intro-MSRE" class="section level3">
-<h3>Markov switching model</h3>
-<p>Next we extend to a model in which the coefficient matrix varies according to the Markov chain.With such an extension, it becomes impossible to use the same concept of stability that is used by the traditional rational expectation model. We introduce the stability concept of <strong>Mean Square Stability</strong> and characterize the determinity.</p>
-</div>
-</div>
-<div id="intro-programing" class="section level2">
-<h2>Programming environment</h2>
-<div id="intro-rstudio" class="section level3">
-<h3>RStudio</h3>
-<p>The linear model as described above can be solved in most programming languages (thanks to widely used C, Fortran routines). In these notes we use R because I assumed it is the programming languange the students are more familiar with. Usually in Econometrics class they use Stata, in Macroeconomics Matlab and in Mathematical Economics but I think it is good that beginners in programming will be proficient in one language. Even if you move to other languages in the future, those who have learned more deeply and narrower than those who have studied broadly and shallowly will learn quickly.</p>
-<p>R is also an excellent tool for Econometrics and has a community with many users. All steps of data collection, graphic, modeling, document creation can be executed with R and RStudio. In order to increase the opportunity to understand RStudio, let’s switch feelings to create all the reports in RStudio. Write it in the format RMarkdown and compile it. Knitr and pandoc do the work smoothly. Install texlive to convert to PDF. The size is big but it is easy. To enter mathematical expressions, you need to learn the syntax of LaTeX, but since you could use it also after graduation, it will useful to learn it now. Compared to LaTeX itself, RMarkdown can be written almost naturally, and above all it is very easy to embed R code, calculation result, graph in sentences. By the way, I also wrote these notes in RStudio. A package named bookdown handles well several RMarkdown files and configuration files.</p>
-<p>If you are enough familiar with, you may feel that effort of profiling and limit of calculation speed are fictious. If this is the case, you should learn a little bit of C++. You can write C ++ code that handles only heavy processing and call it using RCpp package. When such a desire appears, and you understand the mechanism of the computer to a certain extent, I think that you can learn quickly C ++.</p>
-<p>Commentary on the code in these notes assumes that the reader is working with RStudio. Readers who have no experience in R programming may find it more confusing to build an environment similar to the one I did. In the remainder of this section, we will briefly explain how to use RStudio and create an environment.</p>
-</div>
-<div id="intro-prepare" class="section level3">
-<h3>Preparation</h3>
-<p>You can download and install easily the binary files of R and RStudio, so I will omit the details of the installation.</p>
-<p>Let’s prepare the RStudio project file for learning this course. Start RStudio, from the menu select 「File &gt; New Project…」and create a new project. You have severl choices on how to create it, but if there are any particular problems choose 「New Directory &gt; Empty Project」. Enter the necessary input items. For example, let’s set the project name linear-economic-dynamics. Under the specified directory, a new directory (folder) named linear-economic-dynamics and in it the file linear-economic-dynamics.Rproj is created.</p>
-<p>When restarting your work, double-click linear-economic-dynamics.Rproj and RStudio opens. The directory created earlier becomes the working directory. Immediately after creating the project you already moved to the working directory so you can proceed.</p>
-
-<div class="exercise">
-<p>Explain the following terms. If you can not explain, search them.</p>
-<ul>
-<li>directory, folder</li>
-<li>working directory / current directory</li>
-<li>relative path</li>
-<li>absolute path</li>
-<li>console</li>
-<li>script file</li>
+<li>What kind of model do you want to solve?</li>
+<li>Building a programming environment</li>
 </ul>
 </div>
-<p></p>
-<p>Execution of the command may be done by entering + Enter on the console, or by writing the command in a script file and executing it.</p>
-<div id="console" class="section level4 unnumbered">
-<h4>Console</h4>
-<p>Look for an area where it is written Console. If you do not tamper with the settings,<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> you should see a display saying:</p>
-<pre><code>R version 3.3.2 (2016-10-31) -- &quot;Sincere Pumpkin Patch&quot;
-Copyright (C) 2016 The R Foundation for Statistical Computing
-Platform: x86_64-apple-darwin13.4.0 (64-bit)
-
-R is free software and comes with ABSOLUTELY NO WARRANTY.
-You are welcome to redistribute it under certain conditions.
-Type 'license()' or 'licence()' for distribution details.
-
-  Natural language support but running in an English locale
-
-R is a collaborative project with many contributors.
-Type 'contributors()' for more information and
-'citation()' on how to cite R or R packages in publications.
-
-Type 'demo()' for some demos, 'help()' for on-line help, or
-'help.start()' for an HTML browser interface to help.
-Type 'q()' to quit R.
-
-&gt;</code></pre>
-<p>The last symbol 「&gt;」is called 「prompt」. It means that you enter a command here. In these notes, even in the context of inputting to the console, executing it and checking the result, I don’t show the prompt.</p>
-<p>The command you want to input and execute is displayed in a gray box like the following</p>
-<pre class="r"><code>10 * 3</code></pre>
-<pre><code>## [1] 30</code></pre>
-<p><code>[1] 30</code> is the result of execution, which means that the result of<code>10 * 3</code> is 30. There is no particular meaning about <code>##</code> at the beginning. <code>[1]</code> can be ignored for now. <strong>Post the execution result of the previous command in the box with the white background placed immediately after the command</strong></p>
-<p>By omitting the prompt, there is an advantage that it can be executed by copying and pasting even for a command with multiple lines. Copy the whole code, paste it into the console, press Enter and you should see the results in the Plots pane.</p>
-<pre class="r"><code># 01-cobbdouglas-plot.R
-
-A = 1.2
-alpha = 0.3
-cobbdouglas = function(k) {
-  return(A * k ^ alpha)
-}
-
-k = seq(0, 10, length.out=200)
-y = cobbdouglas(k)
-plot(k, y, type='l')</code></pre>
-<div class="figure">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABUAAAAPACAMAAADDuCPrAAAAUVBMVEUAAAAAADoAAGYAOpAAZmYAZpAAZrY6AAA6kNtmAABmOpBmZjpmtv+QOgCQZgCQkDqQ29uQ2/+2ZgC2///bkDrb////tmb/25D//7b//9v///9UQPnMAAAACXBIWXMAAB2HAAAdhwGP5fFlAAAeZUlEQVR4nO3dbXvTzHaAUQMtgRbaYowD/P8fWr/EjhKHJNoaSbNn1vpwnkMuaWwlyp2RJcubvwCEbNZ+AgBZCShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgTVHdANQDHlE1V8xILW/m4DbSneqNIDljTDHwygWwIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECCvBo1IdtCijAyfhPKxZQoHvRT3oXUKBn0XY+rFz86ZQesCQBBS6mpPMyQtEn9FdA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" alt="Execution of result '01-cobbdouglas-plot.R'" width="672" />
-<p class="caption">
-Execution of result ‘01-cobbdouglas-plot.R’
-</p>
-</div>
-<p>Contents following <code>#</code> are comments only for the programmer. As a promise of these notes, we write the file name when saving as a script in the comment of the first line of code chunk, and short caption for reference in the text.</p>
-</div>
-<div id="script-file" class="section level4 unnumbered">
-<h4>Script file</h4>
-<p>Let’s make a directory to save the script file. When I look for the contents in the Files pane, I think I can find the <code>rpaste0(project_name,'.Rproj')</code> file. That is the highest level (root directory) of the project directory. If you can not find the file, please move the directory hierarchy and search for it. Since I was able to get away from where I was, I should be able to go back. If you can not return, exit RStudio and double-click .Rproj again to restart it.</p>
-<p>When the project’s .Rpoj file is found, press the button “New Folder” to create a new directory named 「R」.</p>
-<p><strong>script</strong> is a file of one or more commands. R can read the script file and execute it in order from the top. Working on the console is not suitable for entering code that spans multiple lines, so save it separately in the file</p>
-<p>There are several ways to create a new script file with RStudio.</p>
+<div id="complex-numberschapter-complex-numbers" class="section level4">
+<h4>@(complex numbers)Chapter: Complex numbers</h4>
 <ul>
-<li>RStudio Select “R Script” from the button at the top left corner (an addition mark on the white square) and click.</li>
-<li>Go to 「File &gt; New File &gt; R Script」from the menu.</li>
-<li><strong><em>Press the keyboard shortcut Ctrl + Shift + N / Cmd + Shift + N</em></strong></li>
+<li>Review of complex numbers</li>
+<li>Why are complex numbers necessary?</li>
 </ul>
-<p>It would be very good to remember the last keyboard shortcut. When you press Cmd + Shit + N, the source pane opens with the name Untitled 1. Let’s copy &amp; paste the code of <code>01_cobbdouglas_plot.R</code> here. If you attempt to save by Ctrl + S / Cmd + S, you are prompted to decide the storage location and name, so place it in the folder called R created earlier under the name <code>01_cobbdouglas_plot.R</code>. The project directory should have the following structure.<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a></p>
-<pre><code>linear-economic-dynamics
-├── R
-│   └── 01_cobbdouglas_plot.R
-└── linear-economic-dynamics.Rproj</code></pre>
-<p>To execute the script file <code>01_cobbdouglas_plot.R</code> in the subdirectory R in the working directory (linear-economic-dynamics), do as follows.</p>
-<pre class="r"><code>source('R/01_cobbdouglas_plot.R')</code></pre>
-<p>The position of the file starting from the working directory is called <strong>relative path</strong>. When writing a file path in a script, be sure to specify it by a relative path unless it can not move due to unavoidable circumstances.</p>
-<p>You can also place the previous script file in a lower level subdirectory. For example, it is also possible to create a directory for each chapter</p>
-<pre><code>source('R/part1/chapter03/section04/subsection01/01.R')</code></pre>
-<p>However, if the hierarchy becomes too deep, it becomes difficult to manage, so let’s keep it as flat as possible.In these notes, I applied the file name in the format</p>
-<pre><code>R/chapternumber_descriptive_name.R</code></pre>
-<p>for all, and place it all right under the R directory.</p>
 </div>
-</div>
-<div id="package" class="section level3">
-<h3>Package</h3>
-<div id="tidyverse" class="section level4 unnumbered">
-<h4>tidyverse</h4>
-<p>In these notes, we use the package <code>tidyverse</code>. <code>Tidyverse</code> is a set of packages to facilitate R data frame manipulation. If you do not want to load functions beyond what you need, you can load <code>ggplot2</code>,<code>dplyr</code>, <code>tidyr</code> as needed.</p>
-<p>Let’s try typing</p>
-<p>at the prompt to try. If an error occurs, install it with the following command, and then re-execute</p>
-<pre class="r"><code>install.packages(&quot;tidyverse&quot;)</code></pre>
-<p>I think that this message will come out</p>
-<pre><code>Loading tidyverse: ggplot2
-Loading tidyverse: tibble
-Loading tidyverse: tidyr
-Loading tidyverse: readr
-Loading tidyverse: purrr
-Loading tidyverse: dplyr
-Conflicts with tidy packages ---------------------------
-filter(): dplyr, stats
-lag():    dplyr, stats</code></pre>
-<p>Since <code>tidyverse</code> is a package group, its work is to read several individual packages. Conflicts may worry you, but there is no particular problem. Even though functions called filter(), lag() are loaded by default, the entities of <code>filter ()</code>, <code>lag ()</code> were changed by loading <code>dplyr</code> with the same name. If you want to use the default <code>filter ()</code> you can call <code>stats :: filter ()</code>. Prefixes such as <code>stats ::</code> and <code>dplyr ::</code> are used when you want to specify in which package the function or object is defined.</p>
-<p>In these notes, we use <code>tibble::tibble()</code> instead of <code>base::data.frame()</code>. The package <code>tibble</code> is included in <code>tidyverse</code>. Let’s briefly look at the differences.</p>
-<pre class="r"><code>x = c(1, 2, 3)
-y = c('a', 'b', 'c')
-z = c(TRUE, TRUE, FALSE)
-
-(df = data.frame(x = x, y = y, z = z))</code></pre>
-<pre><code>##   x y     z
-## 1 1 a  TRUE
-## 2 2 b  TRUE
-## 3 3 c FALSE</code></pre>
-<pre class="r"><code>(tbl = tibble(x = x, y = y, z = z))</code></pre>
-<pre><code>## # A tibble: 3 × 3
-##       x     y     z
-##   &lt;dbl&gt; &lt;chr&gt; &lt;lgl&gt;
-## 1     1     a  TRUE
-## 2     2     b  TRUE
-## 3     3     c FALSE</code></pre>
-<p>Compared with the data frame of <strong>base</strong>, <strong>tibble</strong> is easy to handle in the following points.</p>
+<div id="matrixchapter-review-of-matrices" class="section level4 unnumbered">
+<h4>@(matrix)Chapter: Review of matrices</h4>
 <ul>
-<li>It displays the size of the data</li>
-<li>Display type information of a column (<code>&lt;dbl&gt;</code>, <code>&lt;chr&gt;</code>, <code>&lt;lgl&gt;</code>)</li>
-<li>It does not make character string a factor type</li>
+<li>Review of matrices</li>
+<li>Similarity between matrix product and complex numbers product</li>
 </ul>
-<p>The factor type internally stores character strings as integer values. Taking this as a character string causes problems. For example</p>
-<pre class="r"><code>&quot;a&quot; &lt; &quot;b&quot;</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<p>but if you expect the same behavior as the following, the problem will arise if you make the following evaluation:</p>
-<pre class="r"><code>df$y[1] &lt; df$y[2]</code></pre>
-<pre><code>## Warning in Ops.factor(df$y[1], df$y[2]): '&lt;' not meaningful for factors</code></pre>
-<pre><code>## [1] NA</code></pre>
 </div>
-<div id="qz" class="section level4 unnumbered">
-<h4>QZ</h4>
-<p>Let’s also install the <code>QZ</code> package in the same way. We will use it later.</p>
-<pre class="r"><code>install.packages(&quot;qz&quot;)</code></pre>
-</div>
-<div id="devtools" class="section level4 unnumbered">
-<h4>devtools</h4>
-<p>Development environment package. You can install packages from the github repository using <code>devtools :: github_install ()</code>.</p>
-<p><strong>Step 1</strong>:</p>
-<p>Install the compiler.</p>
+<div id="eigenchapter-eigenvalues-of-matrices" class="section level4">
+<h4>@(eigen)Chapter: Eigenvalues of matrices</h4>
 <ul>
-<li><strong>Windows</strong>: Install <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools (https://cran.r-project.org/bin/windows/Rtools/)</a></li>
-<li><strong>Mac</strong>: Install Xcode</li>
+<li>Review of eigenvalues of the matrices</li>
+<li>Clarify the relationship of complex eigenvalues of linear system</li>
 </ul>
-<p><strong>Step 2</strong>:</p>
-<p>Install from CRAN</p>
-<pre class="r"><code>install.packages(&quot;devtools&quot;)</code></pre>
+</div>
+<div id="chapter-5-eigenspace" class="section level4 unnumbered">
+<h4>Chapter 5: Eigenspace</h4>
+</div>
+<div id="chapter-6-stability-of-jordan-canonical-form-and-linear-system" class="section level4 unnumbered">
+<h4>Chapter 6: Stability of Jordan canonical form and linear system</h4>
+<ul>
+<li>Jordan canonical form</li>
+<li>Stability</li>
+</ul>
+</div>
+<div id="chapter-7-det-a-neq-0" class="section level4 unnumbered">
+<h4>Chapter 7: <span class="math inline">\(\det A \neq 0\)</span></h4>
+<ul>
+<li><span class="citation">@BlanchardKahn1980</span></li>
+</ul>
+</div>
+<div id="chapter-8-weierstrass-canonical-form-and-descriptive-system" class="section level4 unnumbered">
+<h4>Chapter 8: Weierstrass canonical form and descriptive system</h4>
+<ul>
+<li><span class="math inline">\(\det A = 0\)</span></li>
+</ul>
+</div>
+<div id="chapter-9-general-a" class="section level4 unnumbered">
+<h4>Chapter 9: General <span class="math inline">\(A\)</span></h4>
+<ul>
+<li>Stock and Watson?</li>
+</ul>
+</div>
+<div id="chapter-10-numerical-solution" class="section level4 unnumbered">
+<h4>Chapter 10: Numerical solution</h4>
+<ul>
+<li>Schur analysis</li>
+<li>QZ analysis</li>
+</ul>
+</div>
+<div id="chapter-11-kleins-method" class="section level4 unnumbered">
+<h4>Chapter 11: Klein’s method</h4>
+<ul>
+<li><span class="citation">@Klein2000</span></li>
+</ul>
+</div>
+<div id="chapter-12-sims-method" class="section level4 unnumbered">
+<h4>Chapter 12: Sims’ method</h4>
+</div>
+<div id="chapter-13-probabilistic-system" class="section level4 unnumbered">
+<h4>Chapter 13: Probabilistic system</h4>
+</div>
+<div id="chapter-14-lubik-schorfheide" class="section level4 unnumbered">
+<h4>Chapter 14: Lubik-Schorfheide</h4>
+</div>
+<div id="chapter-15-markov-switching-system" class="section level4 unnumbered">
+<h4>Chapter 15: Markov-switching system</h4>
 </div>
 </div>
+<div id="acknowledgments" class="section level2 unnumbered">
+<h2>Acknowledgments</h2>
+<p>I thank you Professor Ando of Columbia University for his valuable comments.</p>
 </div>
 </div>
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>There is no “path dependency” case listed in the above list.<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>Hartman-Grobman theorem. The necessary condition for this theorem to hold is that the equilibrium is hyperbolic. A non-hyperbolic system does not make sense as an approximation of a non-linear system. However, it is not necessary to make a special distinction for handling as a linear model.<a href="#fnref2">↩</a></p></li>
-<li id="fn3"><p>In models including probabilistic factors, we make slightly different definitions, but basically they are the same thing.<a href="#fnref3">↩</a></p></li>
-<li id="fn4"><p>locale<a href="#fnref4">↩</a></p></li>
-<li id="fn5"><p>In fact there is a hidden directory called .Rproj.user.<a href="#fnref5">↩</a></p></li>
+<li id="fn1"><p>Please install the last version of <a href="https://www.r-project.org/">R</a> and <a href="https://www.rstudio.com/">RStudio</a>. The reason why I chose the R language is that I thought that many students had already used it to learn econometrics, <em>[…]</em> It is a very popular programming language / environment so I think that it will be very benefical to learn it once.<a href="#fnref1">↩</a></p></li>
 </ol>
 </div>
 
