@@ -142,9 +142,9 @@ include_graphics("04-eigen.003.jpeg")
 ```
 
 2本のベクトル$v_1 \neq 0 \neq v_2$ が面積を持つ平行四辺形を作るための必要十分条件は，
-$v_1 = \alpha v_2$ となるような, $\alpha \neq 0$ が存在しないことである（図\@ref(fig:parallel-columns)）。
+$v_1 = \alpha v_2$ となるような, $\alpha$ が存在しないことである（図\@ref(fig:parallel-columns)）。
 ゼロと異なる3本のベクトル $v_1, v_2, v_3$ が体積を持つ平行六面体を作るための必要十分条件は，
-$v_1 = \alpha v_2 + \beta v_3$ かつ $\alpha$ と $\beta$ は同時にはゼロでないというものである。
+$v_1 = \alpha v_2 + \beta v_3$ かつ $\alpha$ と $\beta$ がないというものである。
 いずれかのベクトルがゼロである可能性も考慮して，次のような概念を定義すると便利である。
 
 ```{definition}
@@ -238,18 +238,13 @@ $$
 $$
   \alpha_{1}\lambda_{1}v_{1}+\alpha_{2}\lambda_{2}v_{2}=0.
 $$
-$\lambda_{1}\neq\lambda_{2}$ より，一方はゼロでない。一般性を失うことなく$\lambda_{1}\neq0$ とできて,
-$$
-  \alpha_{1}v_{1}+(\lambda_{2}/\lambda_{1})\alpha_{2}v_{2}=0.
-$$
 $\alpha_1 v_1 + \alpha_2 v_2 = 0$ より,
 $$
-  \left[
-    1 - (\lambda_{2}/\lambda_{1})
-  \right] \alpha_{1}v_{1}=0.
+  \alpha_1 (\lambda_1 - \lambda_2) v_1 = 0.
 $$
-$\alpha_{1}\neq0$，$v_{1}\neq0$ なので，$\lambda_{2}/\lambda_{1}=1$
-が成り立たなければならないが,　これは異なる固有値を選んだという前提に矛盾する
+
+$\alpha_{1}\neq0$， $v_{1}\neq0$, $\lambda_{1} \neq \lambda_{2}$
+であったから，これは不合理である。
 従って，相異なる固有値に対応する固有ベクトルは1次独立でなければならない。
 ```
 
