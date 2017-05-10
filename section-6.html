@@ -300,7 +300,8 @@ a(f)p(f)x\in\ker q(f),\quad b(f)q(f)x\in\ker p(f)
 v &amp; =a(f)p(f)v+b(f)q(f)v=0.
 \end{align}\]</span>
 <p>最後の等式は <span class="math inline">\(v\in\ker p(f)\cap\ker q(f)\)</span> を使った.</p>
-次に, 各 <span class="math inline">\(\ker(f-\lambda_{i})^{n_{i}}\)</span> は <span class="math inline">\(f\)</span> の不変部分空間であることを示す. 実際, <span class="math inline">\(x\in\ker(f-\lambda_{i})^{n_{i}}\)</span> とすれば, <span class="math inline">\(f(f-\lambda_{i})^{n_{i}}x=(f-\lambda_{i})^{n_{i}}f(x)=(f-\lambda_{i})^{n_{i}}\lambda_{i}x=\lambda_{i}(f-\lambda_{i})^{n_{i}}x=0\)</span>. {[}16ED03{]} の結果によると, 上の様に構成した基底の下で <span class="math inline">\(f\)</span> はブロック対角行列になる.
+<p>次に, 各 <span class="math inline">\(\ker(f-\lambda_{i})^{n_{i}}\)</span> は <span class="math inline">\(f\)</span> の不変部分空間であることを示す. 実際, <span class="math inline">\(x\in\ker(f-\lambda_{i})^{n_{i}}\)</span> とすれば, <span class="math inline">\(f(f-\lambda_{i})^{n_{i}}x=(f-\lambda_{i})^{n_{i}}f(x)=(f-\lambda_{i})^{n_{i}}\lambda_{i}x=\lambda_{i}(f-\lambda_{i})^{n_{i}}x=0\)</span>.</p>
+上の様に構成した基底の下で <span class="math inline">\(f\)</span> はブロック対角行列になる. [TODO: Cross-reference]
 </div>
 <p></p>
 % 線形写像の固有値が定める部分空間によって <span class="math inline">\(X\simeq\mathbb{F}^{n}\)</span> を直和分解できることが分かった. <span class="math display">\[
@@ -325,7 +326,7 @@ I_{2}=\begin{bmatrix}1 &amp; 0\\
 <h3><span class="header-section-number">6.1.2</span> 最小多項式</h3>
 ハミルトン・ケーリーの定理より固有多項式が <span class="math inline">\(\phi_{f}(f)=0\)</span> を満たすことを確認した. しかし, <span class="math inline">\(\phi_{f}(z)\)</span> はこの性質をもつ唯一の多項式ではない. 
 <div class="definition">
-<span id="def:unnamed-chunk-123" class="definition"><strong>定義 6.2 </strong></span>最高次の係数が 1 であり, <span class="math inline">\(m_{f}(f)=0\)</span> を満たす多項式 <span class="math inline">\(m_{f}(z)\)</span> を最小多項式という.
+<span id="def:unnamed-chunk-123" class="definition"><strong>定義 6.2 </strong></span>最高次の係数が 1 であり, <span class="math inline">\(m_{f}(f)=0\)</span> を満たす多項式 <span class="math inline">\(m_{f}(z)\)</span> の中で次数が最小のものを最小多項式という.
 </div>
 <p></p>
 <p>最小多項式は特定の行列表現に依存しないことに注意.</p>
@@ -339,9 +340,10 @@ m_{J_{2}(1)}(z) &amp; =(z-1)^{2}.
 
 </div>
 <p></p>
-最小多項式 <span class="math inline">\(m_{f}\)</span> は<span class="math inline">\(\phi_{f}\)</span> と共通のゼロ点をもつので, 因数分解すると <span class="math display">\[
+<p>最小多項式 <span class="math inline">\(m_{f}\)</span> は<span class="math inline">\(\phi_{f}\)</span> と共通のゼロ点をもつので, 因数分解すると <span class="math display">\[
 m_{f}(z)=(z-\lambda_{1})^{\tilde{n}_{1}}\cdots(z-\lambda_{r})^{\tilde{n}_{r}}
-\]</span> とできる. 自然数 <span class="math inline">\(\tilde{n}_{1},\dots,\tilde{n}_{r}\)</span> を固有値<span class="math inline">\(\lambda_{1},\dots,\lambda_{r}\)</span> の幾何的重複度とよぶ. 
+\]</span> とできる.</p>
+
 <div class="theorem">
 <span id="thm:unnamed-chunk-125" class="theorem"><strong>定理 6.2 </strong></span>線形写像が対角化可能であることの必要十分条件は最小多項式が重根を持たないことである.
 </div>
@@ -355,7 +357,7 @@ p_{1}(z)(z-\lambda_{1})+\cdots+p_{r}(z)(z-\lambda_{r})=1
 \]</span> <span class="math inline">\(\ker(A-\lambda_{1}),\dots,\ker(A-\lambda_{r})\)</span> の基底 (つまり固有ベクトル) について <span class="math inline">\(f\)</span> を表現すれば対角行列を得る.
 </div>
 <p></p>
-% 補題  を強めて次のように分解できる. 証明は同様である. 
+補題  を強めて次のように分解できる. 証明は同様である. 
 <div class="theorem">
 <span id="thm:unnamed-chunk-127" class="theorem"><strong>定理 6.3 </strong></span><span class="math inline">\(X\)</span> を次のように直和分解できる. <span class="math display">\[
 X=\ker(f-\lambda_{1})^{\tilde{n}_{1}}\oplus\cdots\oplus\ker(f-\lambda_{r})^{\tilde{n}_{r}}.

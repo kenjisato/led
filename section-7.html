@@ -256,7 +256,7 @@ C &amp; D
 \]</span>
 </div>
 <p></p>
-% 
+
 <div class="corollary">
 <span id="cor:blockcor" class="corollary"><strong>系 7.1 </strong></span><span class="math inline">\(A,C,D\)</span> は適当な次元の行列であるとする. <span class="math inline">\(A\)</span> および <span class="math inline">\(D\)</span> を正則とする. このとき<span class="math inline">\(\left[\begin{smallmatrix}A &amp; 0\\ C &amp; D \end{smallmatrix}\right]\)</span> は正則であり, 次式が成立する. <span class="math display">\[
 \begin{bmatrix}A &amp; 0\\
@@ -269,7 +269,7 @@ C &amp; D
 <p></p>
 
 <div class="exercise">
-定理<a href="section-7.html#thm:blockinv">7.1</a> および系@ref{cor:blockcor)を証明せよ.
+定理<a href="section-7.html#thm:blockinv">7.1</a> および系@ref{cor:blockcor}を証明せよ.
 </div>
 <p></p>
 </div>
@@ -532,7 +532,7 @@ P_{2s}J_{s}P_{1s}^{-1}x_{t}^{1}+(P_{2u}J_{u}-P_{2s}J_{s}P_{1s}^{-1}P_{1u})y_{t}^
 \end{bmatrix}+Bu_{t}.\tag{7.11}
 \end{align}\]</span>
 <p><span class="math inline">\(y_{t}^{u}\)</span> は式<a href="section-7.html#eq:bk-yu">(7.6)</a> によって決定していることに注意せよ. なお, 式<a href="section-7.html#eq:bk-recur">(7.11)</a> には <span class="math inline">\(x^{2}\)</span> が過去の情報に依存して決まっているという問題がある. <span class="math inline">\(x^{2}\)</span> は初期条件が与えられない変数なので, 同時点の <span class="math inline">\(x^{1}\)</span>, <span class="math inline">\(u\)</span> および未来の <span class="math inline">\(u\)</span> にのみ依存する形で記述できなければならない.</p>
-<p><a href="mailto:少し計算を進めて@BlanchardKahn1980">少し計算を進めて@BlanchardKahn1980</a> の再帰公式 (p. 1308 (2), (3)式) を導出しよう. 彼らのモデルは確率的なモデルであるが, われわれの決定論モデルでも解の構造はまったく変わらない.</p>
+<p>少し計算を進めて <span class="citation">Blanchard and Kahn (<a href="#ref-BlanchardKahn1980">1980</a>)</span> の再帰公式 (p. 1308 (2), (3)式) を導出しよう. 彼らのモデルは確率的なモデルであるが, われわれの決定論モデルでも解の構造はまったく変わらない.</p>
 <p>式<a href="section-7.html#eq:bk-recur">(7.11)</a> を使って, <span class="math inline">\(x_{t}^{1}\)</span> を消去する. <span class="math inline">\(x_{t}^{1}\)</span> の係数行列をそろえて</p>
 <span class="math display">\[
 \begin{aligned}
@@ -554,7 +554,7 @@ x_{t+1}^{2} &amp; =P_{2s}J_{s}P_{1s}^{-1}x_{t}^{1}+(P_{2u}J_{u}-P_{2s}J_{s}P_{1s
 <div class="theorem">
 <span id="thm:blkn" class="theorem"><strong>定理 7.3 </strong></span><span class="math inline">\(n_{1}=n_{s}\)</span> かつ <span class="math inline">\(\det P_{1s}\neq0\)</span> とする. このとき, <a href="section-7.html#eq:bk-sys">(7.1)</a> の解は一意に定まり, <span class="math inline">\(t=0,1,\dots\)</span> について <span class="math inline">\(x_{t}\)</span> は次式で与えられる. <span class="math display">\[
 \begin{aligned}
-x_{t+1}^{1} &amp; =P_{1s}J_{s}P_{1s}^{-1}x_{t}^{1}+(P_{1u}J_{u}-P_{1s}J_{s}P_{1s}^{-1}P_{1u})y_{t}^{u},\\
+x_{t+1}^{1} &amp; =P_{1s}J_{s}P_{1s}^{-1}x_{t}^{1}+(P_{1u}J_{u}-P_{1s}J_{s}P_{1s}^{-1}P_{1u})y_{t}^{u} + B_1 u_t,\\
 x_{t}^{2} &amp; =P_{2s}P_{1s}^{-1}x_{t}^{1}+(P_{2u}-P_{2s}P_{1s}^{-1}P_{1u})y_{t}^{u},\\
 y_{t}^{u} &amp; =-\sum_{k=0}^{\infty}J_{u}^{-k-1}C_{u}u_{t+k},\\
 x_{0}^{1} &amp; :\ \text{given.}
@@ -750,7 +750,10 @@ y_{t}^{u} &amp; =-\left(\sum_{k=0}^{\infty}\hat{J}_{u}^{k}D_{u}\Phi^{k}\right)u_
  &amp; =:Mu_{t}.
 \end{aligned}
 \]</span> 行列<span class="math inline">\(M\)</span>を計算しよう. 簡単な計算から <span class="math display">\[
-M=-\left(\sum_{k=0}^{\infty}\hat{J}_{u}^{k}D_{u}\Phi^{k}\right)=-D_{u}-\sum_{k=1}^{\infty}\hat{J}_{u}^{k}D_{u}\Phi^{k}=-D_{u}-\hat{J}_{u}M\Phi
+M
+=-\left(\sum_{k=0}^{\infty}\hat{J}_{u}^{k}D_{u}\Phi^{k}\right)
+=-D_{u}-\sum_{k=1}^{\infty}\hat{J}_{u}^{k}D_{u}\Phi^{k}
+=-D_{u}+\hat{J}_{u}M\Phi
 \]</span></p>
 <p>が得られ, <span class="math inline">\(M\)</span> は離散時間シルベスタ方程式の解であることが分かる. 定理 <a href="section-7.html#thm:sylv">7.2</a> より, <span class="math display">\[
 \mathrm{vec}(M)=\left[\left(\Phi^{\top}\otimes\hat{J}_{u}\right)-I\right]^{-1}\mathrm{vec}(D_{u}).
