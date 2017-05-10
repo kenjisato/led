@@ -26,7 +26,7 @@
 <meta name="author" content="佐藤 健治">
 
 
-<meta name="date" content="2017-04-13">
+<meta name="date" content="2017-05-10">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -348,7 +348,7 @@ A =
 図 4.3: 平行な列ベクトル
 </p>
 </div>
-<p>2本のベクトル<span class="math inline">\(v_1 \neq 0 \neq v_2\)</span> が面積を持つ平行四辺形を作るための必要十分条件は， <span class="math inline">\(v_1 = \alpha v_2\)</span> となるような, <span class="math inline">\(\alpha \neq 0\)</span> が存在しないことである（図<a href="eigen.html#fig:parallel-columns">4.3</a>）。 ゼロと異なる3本のベクトル <span class="math inline">\(v_1, v_2, v_3\)</span> が体積を持つ平行六面体を作るための必要十分条件は， <span class="math inline">\(v_1 = \alpha v_2 + \beta v_3\)</span> かつ <span class="math inline">\(\alpha\)</span> と <span class="math inline">\(\beta\)</span> は同時にはゼロでないというものである。 いずれかのベクトルがゼロである可能性も考慮して，次のような概念を定義すると便利である。</p>
+<p>2本のベクトル<span class="math inline">\(v_1 \neq 0 \neq v_2\)</span> が面積を持つ平行四辺形を作るための必要十分条件は， <span class="math inline">\(v_1 = \alpha v_2\)</span> となるような, <span class="math inline">\(\alpha\)</span> が存在しないことである（図<a href="eigen.html#fig:parallel-columns">4.3</a>）。 ゼロと異なる3本のベクトル <span class="math inline">\(v_1, v_2, v_3\)</span> が体積を持つ平行六面体を作るための必要十分条件は， <span class="math inline">\(v_1 = \alpha v_2 + \beta v_3\)</span> かつ <span class="math inline">\(\alpha\)</span> と <span class="math inline">\(\beta\)</span> がないというものである。 いずれかのベクトルがゼロである可能性も考慮して，次のような概念を定義すると便利である。</p>
 
 <div class="definition">
 <span id="def:unnamed-chunk-68" class="definition"><strong>定義 4.1 </strong></span><span class="math inline">\(n\)</span> 本のベクトル <span class="math inline">\(v_1, \dots, v_n\)</span> が<strong>1次独立（linearly independent）</strong>であるとは, <span class="math inline">\(\alpha_{1},\dots,\alpha_{n}\)</span> に対して <span class="math inline">\(\alpha_{1}v_{1}+ \cdots + \alpha_{n}v_{n}=0\)</span> が成り立てば，<span class="math inline">\(\alpha_{1}=\cdots=\alpha_{n}=0\)</span> が成り立つことをいう。 1次独立でないとき，ベクトルの組は <strong>1次従属（linearly dependent）</strong>であるという。
@@ -403,17 +403,14 @@ A =
 <p></p>
 
 <div class="proof">
-<span class="proof"><em>証明. </em></span> 定理の主張に反して1次従属であったとしよう。すなわち，同時にはゼロでない <span class="math inline">\(\alpha_{1}, \alpha_{2}\)</span> があって<span class="math inline">\(\alpha_{1}v_{1}+\alpha_{2}v_{2}=0\)</span>を満たすとする。 一般性を失うことなく，<span class="math inline">\(\alpha_1 \neq 0\)</span> とできる。 このとき， <span class="math display">\[
+<p><span class="proof"><em>証明. </em></span> 定理の主張に反して1次従属であったとしよう。すなわち，同時にはゼロでない <span class="math inline">\(\alpha_{1}, \alpha_{2}\)</span> があって<span class="math inline">\(\alpha_{1}v_{1}+\alpha_{2}v_{2}=0\)</span>を満たすとする。 一般性を失うことなく，<span class="math inline">\(\alpha_1 \neq 0\)</span> とできる。 このとき， <span class="math display">\[
   \alpha_{1}Av_{1}+\alpha_{2}Av_{2}=0.
 \]</span> 固有値の定義より <span class="math display">\[
   \alpha_{1}\lambda_{1}v_{1}+\alpha_{2}\lambda_{2}v_{2}=0.
-\]</span> <span class="math inline">\(\lambda_{1}\neq\lambda_{2}\)</span> より，一方はゼロでない。一般性を失うことなく<span class="math inline">\(\lambda_{1}\neq0\)</span> とできて, <span class="math display">\[
-  \alpha_{1}v_{1}+(\lambda_{2}/\lambda_{1})\alpha_{2}v_{2}=0.
 \]</span> <span class="math inline">\(\alpha_1 v_1 + \alpha_2 v_2 = 0\)</span> より, <span class="math display">\[
-  \left[
-    1 - (\lambda_{2}/\lambda_{1})
-  \right] \alpha_{1}v_{1}=0.
-\]</span> <span class="math inline">\(\alpha_{1}\neq0\)</span>，<span class="math inline">\(v_{1}\neq0\)</span> なので，<span class="math inline">\(\lambda_{2}/\lambda_{1}=1\)</span> が成り立たなければならないが,　これは異なる固有値を選んだという前提に矛盾する 従って，相異なる固有値に対応する固有ベクトルは1次独立でなければならない。
+  \alpha_1 (\lambda_1 - \lambda_2) v_1 = 0.
+\]</span></p>
+<span class="math inline">\(\alpha_{1}\neq0\)</span>， <span class="math inline">\(v_{1}\neq0\)</span>, <span class="math inline">\(\lambda_{1} \neq \lambda_{2}\)</span> であったから，これは不合理である。 従って，相異なる固有値に対応する固有ベクトルは1次独立でなければならない。
 </div>
 <p></p>
 <p>2つ以上の異なる固有値についても同様のことが証明できる。</p>
