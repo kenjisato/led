@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>経済動学: 線形編</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="経済動学 講義ノート">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="経済動学: 線形編" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="経済動学 講義ノート" />
+  <meta name="github-repo" content="kenjisato/led" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="経済動学: 線形編" />
+  
+  <meta name="twitter:description" content="経済動学 講義ノート" />
+  
+
+<meta name="author" content="佐藤 健治">
+
+
+<meta name="date" content="2017-05-20">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="schurqz.html">
+<link rel="next" href="e58f82e88083e69687e78cae.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="asset/css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Linear Economic Dynamics</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#top-page"></a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>序文</a><ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#e6a78be68890"><i class="fa fa-check"></i>構成</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#e8ac9de8be9e"><i class="fa fa-check"></i>謝辞</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> はじめに</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#intro-economic-dynamics"><i class="fa fa-check"></i><b>1.1</b> 経済動学</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#intro-target-model"><i class="fa fa-check"></i><b>1.2</b> 対象とするモデル</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#intro-deterministic"><i class="fa fa-check"></i><b>1.2.1</b> 決定論モデル</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#intro-control-theory"><i class="fa fa-check"></i><b>1.2.2</b> 制御理論との違い</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#intro-stability-determinacy"><i class="fa fa-check"></i><b>1.2.3</b> 安定性と決定性</a></li>
+<li class="chapter" data-level="1.2.4" data-path="intro.html"><a href="intro.html#intro-RE"><i class="fa fa-check"></i><b>1.2.4</b> 合理的期待モデル</a></li>
+<li class="chapter" data-level="1.2.5" data-path="intro.html"><a href="intro.html#intro-MSRE"><i class="fa fa-check"></i><b>1.2.5</b> マルコフスイッチングモデル</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#intro-programing"><i class="fa fa-check"></i><b>1.3</b> プログラミング環境</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#intro-rstudio"><i class="fa fa-check"></i><b>1.3.1</b> RStudio</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#intro-prepare"><i class="fa fa-check"></i><b>1.3.2</b> 準備</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#section-1.3.3"><i class="fa fa-check"></i><b>1.3.3</b> パッケージ</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="complexnumbers.html"><a href="complexnumbers.html"><i class="fa fa-check"></i><b>2</b> 複素数</a><ul>
+<li class="chapter" data-level="2.1" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> はじめに</a></li>
+<li class="chapter" data-level="2.2" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> 複素数</a></li>
+<li class="chapter" data-level="2.3" data-path="complexnumbers.html"><a href="complexnumbers.html#imaginary-plane"><i class="fa fa-check"></i><b>2.3</b> 複素平面（imaginary plane）</a></li>
+<li class="chapter" data-level="2.4" data-path="complexnumbers.html"><a href="complexnumbers.html#r-"><i class="fa fa-check"></i><b>2.4</b> R コード</a><ul>
+<li class="chapter" data-level="" data-path="complexnumbers.html"><a href="complexnumbers.html#e59b9be58987e6bc94e7ae97"><i class="fa fa-check"></i>四則演算</a></li>
+<li class="chapter" data-level="" data-path="complexnumbers.html"><a href="complexnumbers.html#e8a487e7b4a0e5b9b3e99da2e4b88ae381aee59bb3e7a4ba"><i class="fa fa-check"></i>複素平面上の図示</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.5"><i class="fa fa-check"></i><b>2.5</b> 極形式</a></li>
+<li class="chapter" data-level="2.6" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.6"><i class="fa fa-check"></i><b>2.6</b> 共役複素数</a></li>
+<li class="chapter" data-level="2.7" data-path="complexnumbers.html"><a href="complexnumbers.html#complexramsey"><i class="fa fa-check"></i><b>2.7</b> 補遺：ラムゼーモデル</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>3</b> 行列論の復習</a><ul>
+<li class="chapter" data-level="3.1" data-path="matrix.html"><a href="matrix.html#section-3.1"><i class="fa fa-check"></i><b>3.1</b> 行列の形</a></li>
+<li class="chapter" data-level="3.2" data-path="matrix.html"><a href="matrix.html#matrix-operation"><i class="fa fa-check"></i><b>3.2</b> 行列の演算</a></li>
+<li class="chapter" data-level="3.3" data-path="matrix.html"><a href="matrix.html#section-3.3"><i class="fa fa-check"></i><b>3.3</b> 線形方程式</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="matrix.html"><a href="matrix.html#section-3.3.1"><i class="fa fa-check"></i><b>3.3.1</b> 線形連立方程式の変形</a></li>
+<li class="chapter" data-level="3.3.2" data-path="matrix.html"><a href="matrix.html#section-3.3.2"><i class="fa fa-check"></i><b>3.3.2</b> 行基本変形</a></li>
+<li class="chapter" data-level="3.3.3" data-path="matrix.html"><a href="matrix.html#section-3.3.3"><i class="fa fa-check"></i><b>3.3.3</b> 列基本変形</a></li>
+<li class="chapter" data-level="3.3.4" data-path="matrix.html"><a href="matrix.html#section-3.3.4"><i class="fa fa-check"></i><b>3.3.4</b> 初等変形</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="matrix.html"><a href="matrix.html#r--1"><i class="fa fa-check"></i><b>3.4</b> R コード</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="matrix.html"><a href="matrix.html#section-3.4.1"><i class="fa fa-check"></i><b>3.4.1</b> 行列の定義</a></li>
+<li class="chapter" data-level="3.4.2" data-path="matrix.html"><a href="matrix.html#section-3.4.2"><i class="fa fa-check"></i><b>3.4.2</b> 要素の取得</a></li>
+<li class="chapter" data-level="3.4.3" data-path="matrix.html"><a href="matrix.html#section-3.4.3"><i class="fa fa-check"></i><b>3.4.3</b> 行列の演算・関数</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="eigen.html"><a href="eigen.html"><i class="fa fa-check"></i><b>4</b> 行列の固有値</a><ul>
+<li class="chapter" data-level="4.1" data-path="eigen.html"><a href="eigen.html#section-4.1"><i class="fa fa-check"></i><b>4.1</b> 行列式</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="eigen.html"><a href="eigen.html#section-4.1.1"><i class="fa fa-check"></i><b>4.1.1</b> 置換</a></li>
+<li class="chapter" data-level="4.1.2" data-path="eigen.html"><a href="eigen.html#section-4.1.2"><i class="fa fa-check"></i><b>4.1.2</b> 行列式の定義</a></li>
+<li class="chapter" data-level="4.1.3" data-path="eigen.html"><a href="eigen.html#section-4.1.3"><i class="fa fa-check"></i><b>4.1.3</b> 行列式の意味</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="eigen.html"><a href="eigen.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 固有値と固有ベクトル</a></li>
+<li class="chapter" data-level="4.3" data-path="eigen.html"><a href="eigen.html#section-4.3"><i class="fa fa-check"></i><b>4.3</b> 対角化</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="eigen.html"><a href="eigen.html#section-4.3.1"><i class="fa fa-check"></i><b>4.3.1</b> 計算方法の確認</a></li>
+<li class="chapter" data-level="4.3.2" data-path="eigen.html"><a href="eigen.html#section-4.3.2"><i class="fa fa-check"></i><b>4.3.2</b> 例題</a></li>
+<li class="chapter" data-level="4.3.3" data-path="eigen.html"><a href="eigen.html#section-4.3.3"><i class="fa fa-check"></i><b>4.3.3</b> 複素数の行列表現</a></li>
+<li class="chapter" data-level="4.3.4" data-path="eigen.html"><a href="eigen.html#section-4.3.4"><i class="fa fa-check"></i><b>4.3.4</b> 実対角化</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="eigen.html"><a href="eigen.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 線形動学方程式と固有値</a></li>
+<li class="chapter" data-level="4.5" data-path="eigen.html"><a href="eigen.html#section-4.5"><i class="fa fa-check"></i><b>4.5</b> ラムゼーモデルと固有値</a></li>
+<li class="chapter" data-level="4.6" data-path="eigen.html"><a href="eigen.html#r--2"><i class="fa fa-check"></i><b>4.6</b> R コード</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="linspace.html"><a href="linspace.html"><i class="fa fa-check"></i><b>5</b> 線形空間論の基礎</a><ul>
+<li class="chapter" data-level="5.1" data-path="linspace.html"><a href="linspace.html#linspace-definition"><i class="fa fa-check"></i><b>5.1</b> 線形空間</a></li>
+<li class="chapter" data-level="5.2" data-path="linspace.html"><a href="linspace.html#linspace-subspace"><i class="fa fa-check"></i><b>5.2</b> 線形部分空間</a></li>
+<li class="chapter" data-level="5.3" data-path="linspace.html"><a href="linspace.html#linspace-independence"><i class="fa fa-check"></i><b>5.3</b> 1次独立性</a></li>
+<li class="chapter" data-level="5.4" data-path="linspace.html"><a href="linspace.html#linspace-linearmap"><i class="fa fa-check"></i><b>5.4</b> 線形写像</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="linspace.html"><a href="linspace.html#section-5.4.1"><i class="fa fa-check"></i><b>5.4.1</b> 基本的な定義の復習</a></li>
+<li class="chapter" data-level="" data-path="linspace.html"><a href="linspace.html#e5838fe383bbe98086e5838f"><i class="fa fa-check"></i>像・逆像</a></li>
+<li class="chapter" data-level="5.4.2" data-path="linspace.html"><a href="linspace.html#section-5.4.2"><i class="fa fa-check"></i><b>5.4.2</b> 線形性</a></li>
+<li class="chapter" data-level="5.4.3" data-path="linspace.html"><a href="linspace.html#section-5.4.3"><i class="fa fa-check"></i><b>5.4.3</b> 像空間，核，商空間</a></li>
+<li class="chapter" data-level="5.4.4" data-path="linspace.html"><a href="linspace.html#section-5.4.4"><i class="fa fa-check"></i><b>5.4.4</b> 座標</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="linspace.html"><a href="linspace.html#linspace-matrix"><i class="fa fa-check"></i><b>5.5</b> 行列</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="linspace.html"><a href="linspace.html#section-5.5.1"><i class="fa fa-check"></i><b>5.5.1</b> 線形写像の表現としての行列</a></li>
+<li class="chapter" data-level="5.5.2" data-path="linspace.html"><a href="linspace.html#section-5.5.2"><i class="fa fa-check"></i><b>5.5.2</b> 基底の変換</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="linspace.html"><a href="linspace.html#linspace-invariant"><i class="fa fa-check"></i><b>5.6</b> 不変部分空間</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="linspace.html"><a href="linspace.html#section-5.6.1"><i class="fa fa-check"></i><b>5.6.1</b> ブロック対角化</a></li>
+<li class="chapter" data-level="5.6.2" data-path="linspace.html"><a href="linspace.html#section-5.6.2"><i class="fa fa-check"></i><b>5.6.2</b> 固有値分解</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="section-6.html"><a href="section-6.html"><i class="fa fa-check"></i><b>6</b> 行列の標準形</a><ul>
+<li class="chapter" data-level="6.1" data-path="section-6.html"><a href="section-6.html#section-6.1"><i class="fa fa-check"></i><b>6.1</b> 一般固有空間への分解</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="section-6.html"><a href="section-6.html#section-6.1.1"><i class="fa fa-check"></i><b>6.1.1</b> ハミルトン・ケーリーの定理</a></li>
+<li class="chapter" data-level="6.1.2" data-path="section-6.html"><a href="section-6.html#section-6.1.2"><i class="fa fa-check"></i><b>6.1.2</b> 最小多項式</a></li>
+<li class="chapter" data-level="6.1.3" data-path="complexnumbers.html"><a href="complexnumbers.html#-1"><i class="fa fa-check"></i><b>6.1.3</b> 一般固有空間への分解</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="section-6.html"><a href="section-6.html#section-6.2"><i class="fa fa-check"></i><b>6.2</b> 一般化固有値問題</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="section-6.html"><a href="section-6.html#section-6.2.1"><i class="fa fa-check"></i><b>6.2.1</b> 一般化固有値</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="section-6.html"><a href="section-6.html#section-6.3"><i class="fa fa-check"></i><b>6.3</b> ハミルトン・ケーリーの定理の証明</a></li>
+<li class="chapter" data-level="6.4" data-path="section-6.html"><a href="section-6.html#section-6.4"><i class="fa fa-check"></i><b>6.4</b> ワイエルシュトラス標準形の導出</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="blanchardkahn.html"><a href="blanchardkahn.html"><i class="fa fa-check"></i><b>7</b> 線形システムの分析</a><ul>
+<li class="chapter" data-level="7.1" data-path="blanchardkahn.html"><a href="blanchardkahn.html#section-7.1"><i class="fa fa-check"></i><b>7.1</b> 行列公式</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="blanchardkahn.html"><a href="blanchardkahn.html#section-7.1.1"><i class="fa fa-check"></i><b>7.1.1</b> 逆行列公式</a></li>
+<li class="chapter" data-level="7.1.2" data-path="blanchardkahn.html"><a href="blanchardkahn.html#section-7.1.2"><i class="fa fa-check"></i><b>7.1.2</b> シルベスタ方程式</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="blanchardkahn.html"><a href="blanchardkahn.html#blanchard-kahn-case"><i class="fa fa-check"></i><b>7.2</b> <span class="math inline">\(E=I\)</span> のケース</a><ul>
+<li class="chapter" data-level="" data-path="blanchardkahn.html"><a href="blanchardkahn.html#e59bb3e8a7a3"><i class="fa fa-check"></i>図解</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="blanchardkahn.html"><a href="blanchardkahn.html#e-neq-i-"><i class="fa fa-check"></i><b>7.3</b> <span class="math inline">\(E \neq I\)</span> のケース</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="blanchardkahn.html"><a href="blanchardkahn.html#section-7.3.1"><i class="fa fa-check"></i><b>7.3.1</b> アイデア</a></li>
+<li class="chapter" data-level="7.3.2" data-path="blanchardkahn.html"><a href="blanchardkahn.html#section-7.3.2"><i class="fa fa-check"></i><b>7.3.2</b> 解の存在と一意性</a></li>
+<li class="chapter" data-level="7.3.3" data-path="blanchardkahn.html"><a href="blanchardkahn.html#u-"><i class="fa fa-check"></i><b>7.3.3</b> <span class="math inline">\(u\)</span> の特定化</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="schurqz.html"><a href="schurqz.html"><i class="fa fa-check"></i><b>8</b> Schur分解・QZ分解</a><ul>
+<li class="chapter" data-level="8.1" data-path="schurqz.html"><a href="schurqz.html#section-8.1"><i class="fa fa-check"></i><b>8.1</b> 直交性</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="schurqz.html"><a href="schurqz.html#section-8.1.1"><i class="fa fa-check"></i><b>8.1.1</b> 内積空間</a></li>
+<li class="chapter" data-level="8.1.2" data-path="schurqz.html"><a href="schurqz.html#section-8.1.2"><i class="fa fa-check"></i><b>8.1.2</b> 内積空間と基底</a></li>
+<li class="chapter" data-level="8.1.3" data-path="schurqz.html"><a href="schurqz.html#section-8.1.3"><i class="fa fa-check"></i><b>8.1.3</b> 内積空間のノルム</a></li>
+<li class="chapter" data-level="8.1.4" data-path="schurqz.html"><a href="schurqz.html#section-8.1.4"><i class="fa fa-check"></i><b>8.1.4</b> グラム・シュミットの直交化法</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="schurqz.html"><a href="schurqz.html#section-8.2"><i class="fa fa-check"></i><b>8.2</b> シューア分解とその応用</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="schurqz.html"><a href="schurqz.html#section-8.2.1"><i class="fa fa-check"></i><b>8.2.1</b> シューア分解</a></li>
+<li class="chapter" data-level="8.2.2" data-path="schurqz.html"><a href="schurqz.html#section-8.2.2"><i class="fa fa-check"></i><b>8.2.2</b> システム分析への応用</a></li>
+<li class="chapter" data-level="8.2.3" data-path="schurqz.html"><a href="schurqz.html#u_t1phi-u_t"><i class="fa fa-check"></i><b>8.2.3</b> <span class="math inline">\(u_{t+1}=\Phi u_{t}\)</span></a></li>
+<li class="chapter" data-level="8.2.4" data-path="schurqz.html"><a href="schurqz.html#schur"><i class="fa fa-check"></i><b>8.2.4</b> 実Schur分解</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="schurqz.html"><a href="schurqz.html#qz-"><i class="fa fa-check"></i><b>8.3</b> QZ 分解とその応用</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="intro.html"><a href="intro.html#qz"><i class="fa fa-check"></i><b>8.3.1</b> QZ分解</a></li>
+<li class="chapter" data-level="8.3.2" data-path="complexnumbers.html"><a href="complexnumbers.html#-1"><i class="fa fa-check"></i><b>8.3.2</b> システム分析への応用</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="intro.html"><a href="intro.html#qz"><i class="fa fa-check"></i><b>8.4</b> QZ解法の一般公式</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="section-9.html"><a href="section-9.html"><i class="fa fa-check"></i><b>9</b> 線形確率システム</a><ul>
+<li class="chapter" data-level="9.1" data-path="section-9.html"><a href="section-9.html#klein2000-"><i class="fa fa-check"></i><b>9.1</b> <span class="citation">Klein (<a href="#ref-Klein2000">2000</a>)</span> の方法</a><ul>
+<li class="chapter" data-level="" data-path="section-9.html"><a href="section-9.html#ar"><i class="fa fa-check"></i>ARショック</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="section-9.html"><a href="section-9.html#section-9.2"><i class="fa fa-check"></i><b>9.2</b> 確率過程について</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="section-9.html"><a href="section-9.html#section-9.2.1"><i class="fa fa-check"></i><b>9.2.1</b> 確率変数</a></li>
+<li class="chapter" data-level="9.2.2" data-path="section-9.html"><a href="section-9.html#section-9.2.2"><i class="fa fa-check"></i><b>9.2.2</b> 期待値</a></li>
+<li class="chapter" data-level="9.2.3" data-path="section-9.html"><a href="section-9.html#section-9.2.3"><i class="fa fa-check"></i><b>9.2.3</b> 条件付き期待値</a></li>
+<li class="chapter" data-level="9.2.4" data-path="section-9.html"><a href="section-9.html#section-9.2.4"><i class="fa fa-check"></i><b>9.2.4</b> 確率過程</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e58f82e88083e69687e78cae.html"><a href="e58f82e88083e69687e78cae.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="http://led.kenjisato.jp" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">経済動学: 線形編</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="section-9" class="section level1">
+<h1><span class="header-section-number">第9章</span> 線形確率システム</h1>
+<div id="klein2000-" class="section level2">
+<h2><span class="header-section-number">9.1</span> <span class="citation">Klein (<a href="#ref-Klein2000">2000</a>)</span> の方法</h2>
+<p>本稿ではこれまで扱った線形システムに確率的な要因を導入しよう. 本稿は確率過程に関する初級の知識を前提にしているが, <span class="citation">Klein (<a href="#ref-Klein2000">2000</a>)</span> の手法を理解するのに確率論の高度な知識は必要ではない. 読み進めながら定義などを確認していけばよいだろう. 次節に簡単な補論を設けて, 未定義語を補うようにしている.</p>
+<span class="math inline">\((\Omega,P,\mathcal{F},\{\mathcal{F}_{t}\}_{t\ge0})\)</span> をフィルター付き確率空間, 入力項 <span class="math inline">\((u_{t})\)</span> を<span class="math inline">\(\{\mathcal{F}_{t}\}_{t\ge0}\)</span> に適合した確率過程とする. 適合性の定義は省略しているが, 実用上は <span class="math inline">\(\mathbb{E}_{t}u_{t}=u_{t}\)</span>, <span class="math inline">\(t=0,1,\dots\)</span> が成り立つことを認識していればよい. システム変数に関する (期待の) 時間発展が方程式 <a href="section-9.html#eq:kl-randomsys">(9.1)</a> で表されているものとする.
+<span class="math display" id="eq:kl-randomsys">\[\begin{equation}
+E\mathbb{E}_{t}x_{t+1}=Ax_{t}+Bu_{t},\qquad t=0,1,\dots,\tag{9.1}
+\end{equation}\]</span>
+<p>ただし <span class="math inline">\(\mathbb{E}_{t}x_{t+1}=\mathbb{E}\left[x_{t+1}\mid\mathcal{F}_{t}\right]\)</span> は <span class="math inline">\(\mathcal{F}_{t}\)</span> に関する<span class="math inline">\(x_{t+1}\)</span>の条件付き期待値である. <span class="math inline">\(\mathbb{E}_{t}x_{t}=x_{t}\)</span>, <span class="math inline">\(\mathbb{E}_{t}u_{t}=u_{t}\)</span> が成り立つことに注意しておこう. したがって, <a href="section-9.html#eq:kl-randomsys">(9.1)</a> は <span class="math display">\[
+E\mathbb{E}_{t}x_{t+1}=A\mathbb{E}_{t}x_{t}+B\mathbb{E}_{t}u_{t}
+\]</span> と書けば, 決定論との関係がより明確になるだろう. ただし, 条件付き期待値はそれ自身確率変数なので対象の複雑性が大幅に増していることは注意しておこう. それでもなお決定論の解法が必要な仕事をしてくれる.</p>
+<p>以下では, 決定論的な方法をなぞりながら仮定すべき条件を探していこう. まずは <span class="math inline">\((E,A)\)</span> のQZ分解を行う. したがって, 次の条件を仮定する.</p>
+
+<div class="assumption">
+<span class="math inline">\((E,A)\)</span> はレギュラーである.
+</div>
+<p></p>
+<p><span class="math inline">\(Q\)</span>, <span class="math inline">\(Z\)</span> をユニタリ行列, <span class="math inline">\(Q^{*}EZ=S\)</span> および<span class="math inline">\(Q^{*}AZ=T\)</span> を上三角行列であるとする. 変数変換 <span class="math inline">\(x=Zy\)</span> の部分行列分解を <span class="math display">\[
+\begin{bmatrix}x_{t}^{1}\\
+x_{t}^{2}
+\end{bmatrix}=\begin{bmatrix}Z_{1s} &amp; Z_{1u}\\
+Z_{2s} &amp; Z_{2u}
+\end{bmatrix}\begin{bmatrix}y_{t}^{s}\\
+y_{t}^{u}
+\end{bmatrix}
+\]</span> とする. <span class="math inline">\(x^{1}\in\mathbb{R}^{n_{1}}\)</span>, <span class="math inline">\(x^{2}\in\mathbb{R}^{n_{2}}\)</span>, <span class="math inline">\(y^{s}\in\mathbb{R}^{n_{s}}\)</span>, <span class="math inline">\(y^{u}\in\mathbb{R}^{n_{u}}\)</span> とする. 次の条件を仮定しよう.</p>
+
+<div class="assumption">
+<span class="math inline">\(n_{u}\neq 0\)</span>.
+</div>
+<p></p>
+<p>方程式の適当な並び替えによって <span class="math inline">\(x^{1}\)</span> は先決変数, <span class="math inline">\(x^{2}\)</span> は非先決変数であるように選んでいる. ただし, <span class="citation">Klein (<a href="#ref-Klein2000">2000</a>)</span> の意味で先決変数とは <span class="math display">\[
+x_{t+1}^{1}=\mathbb{E}_{t}x_{t+1}^{1}+\xi_{t+1}
+\]</span> なる, 外生的な<span class="math inline">\((\mathcal{F}_{t})\)</span>-適合確率過程 <span class="math inline">\((\xi_{t})\)</span> が存在する変数のこと. 定義より <span class="math inline">\(\mathbb{E}_{t}\xi_{t+1}=0\)</span> であることに注意せよ. 先決変数は <span class="math inline">\(t\)</span> 期に獲得できる情報によって <span class="math inline">\((t+1)\)</span> 期の値を予測不可能な誤差 (<span class="math inline">\(\xi_{t+1}\)</span>) を除いて決定できる変数である. <span class="math inline">\(0\)</span> 期時点の先決変数の期待値は <span class="math inline">\((-1)\)</span> 期には既に決定されているはずなので, <span class="math inline">\(x_{0}^{1}\)</span> は初期値として与えられている値に外生的な撹乱を加えたものと考えてよい. これは決定論の場合に仮定したことと同等である.<a href="#fn31" class="footnoteRef" id="fnref31"><sup>31</sup></a></p>
+<p>繰り返し現れている次の仮定の役割は今や明らかであろう.</p>
+
+<div class="assumption">
+<span class="math inline">\(n_{1}=n_{s}\)</span>, <span class="math inline">\(\det Z_{1s}\neq0\)</span>.
+</div>
+<p></p>
+さて, 決定論の場合と同様に QZ分解の一般化固有値の並び替えによって, ブロック行列表現
+<span class="math display" id="eq:kl-after-qz">\[\begin{equation}
+  \begin{bmatrix}S_{ss} &amp; S_{su}\\
+  0 &amp; S_{uu}
+  \end{bmatrix}\mathbb{E}_{t}\begin{bmatrix}y_{t+1}^{s}\\
+  y_{t+1}^{u}
+  \end{bmatrix}=\begin{bmatrix}T_{ss} &amp; T_{su}\\
+  0 &amp; T_{uu}
+  \end{bmatrix}\begin{bmatrix}y_{t}^{s}\\
+  y_{t}^{u}
+  \end{bmatrix}+\begin{bmatrix}C_{s}\\
+  C_{u}
+  \end{bmatrix}u_{t}\tag{9.2}
+\end{equation}\]</span>
+が次のような性質をもつとする. すなわち, <span class="math inline">\((S_{ss},T_{ss})\)</span> は安定 (絶対値が1 のものを含む) な一般化固有値に対応するブロックであり, <span class="math inline">\((S_{uu},T_{uu})\)</span> は不安定 (無限大固有値を含む) 一般化固有値に対応するブロックである. レギュラー性の仮定により <span class="math inline">\(T_{uu}\)</span> は正則行列であるから, バックワードサブシステム
+<span class="math display" id="eq:kl-yu-rec">\[\begin{equation}
+y_{t}^{u}=T_{uu}^{-1}S_{uu}\mathbb{E}_{t}y_{t+1}^{u}-T_{uu}^{-1}C_{u}u_{t}\tag{9.3}
+\end{equation}\]</span>
+が定義できる. これをforward-looking に解いて <span class="math inline">\(y_{t}^{u}\)</span> を決定する.
+<span class="math display" id="eq:kl-y-finite">\[\begin{align}
+y_{t}^{u} &amp; =T_{uu}^{-1}S_{uu}\mathbb{E}_{t}y_{t+1}^{u}-T_{uu}^{-1}C_{u}u_{t}\nonumber \\
+ &amp; =T_{uu}^{-1}S_{uu}\mathbb{E}_{t}\left[T_{uu}^{-1}S_{uu}\mathbb{E}_{t+1}y_{t+2}^{u}-T_{uu}^{-1}C_{u}u_{t+1}\right]-T_{uu}^{-1}C_{u}u_{t}\nonumber \\
+ &amp; =\left(T_{uu}^{-1}S_{uu}\right)^{2}\mathbb{E}_{t}y_{t+2}^{u}-\left(T_{uu}^{-1}S_{uu}\right)T_{uu}^{-1}C_{u}\mathbb{E}_{t}u_{t+1}-T_{uu}^{-1}C_{u}u_{t}\nonumber \\
+ &amp; =\cdots\nonumber \\
+ &amp; =\left(T_{uu}^{-1}S_{uu}\right)^{\tau}\mathbb{E}_{t}y_{t+\tau}^{u}-\sum_{k=0}^{\tau-1}\left(T_{uu}^{-1}S_{uu}\right)^{k}T_{uu}^{-1}C_{u}\mathbb{E}_{t}u_{t+k}.\tag{9.4}
+\end{align}\]</span>
+<p><span class="math inline">\(T_{uu}^{-1}S_{uu}\)</span> は安定行列であることに注意しよう. 式 <a href="section-9.html#eq:kl-y-finite">(9.4)</a> の第2項が収束性するために次を仮定しよう. 一番簡単な十分条件は <span class="math inline">\(u\)</span> が有界なサポートを持つことである.</p>
+
+<div class="assumption">
+確率過程 <span class="math inline">\((u_{t})\)</span> に対する期待は安定である. すなわち, <span class="math display">\[
+\sup_{t}\|\mathbb{E}u_{t}\|&lt;\infty.
+\]</span>
+</div>
+<p></p>
+さらに, <a href="section-9.html#eq:kl-y-finite">(9.4)</a> の第1項が収束することを保証するために, 解空間を制限する. このためには, <span class="math display">\[
+  \lim_{\tau\to\infty}\left(T_{uu}^{-1}S_{uu}\right)^{\tau}=0
+\]</span> の収束スピードが指数的であることに注意して, 指数的に発散する解を排除してやればよい. 以上より,
+<span class="math display" id="eq:kl-yut">\[\begin{equation}
+  y_{t}^{u}=-\sum_{k=0}^{\infty}\left(T_{uu}^{-1}S_{uu}\right)^{k}
+    T_{uu}^{-1}C_{u}\mathbb{E}_{t}u_{t+k}\tag{9.5}
+\end{equation}\]</span>
+<p>を得る.</p>
+非先決変数を決定するための線形方程式 <span class="math display">\[
+\begin{bmatrix}Z_{1s} &amp; 0\\
+Z_{2s} &amp; -I
+\end{bmatrix}\begin{bmatrix}y_{t}^{s}\\
+x_{t}^{2}
+\end{bmatrix}=\begin{bmatrix}I &amp; -Z_{1u}\\
+0 &amp; -Z_{2u}
+\end{bmatrix}\begin{bmatrix}x_{t}^{1}\\
+y_{t}^{u}
+\end{bmatrix}
+\]</span> から, <span class="math display">\[
+y_{t}^{s}=Z_{1s}^{-1}\left(x_{t}^{1}-Z_{1u}y_{t}^{u}\right).
+\]</span> さらに, <a href="section-9.html#eq:kl-after-qz">(9.2)</a> の上段の式から, <span class="math display">\[
+S_{ss}\mathbb{E}_{t}y_{t+1}^{s}+S_{su}\mathbb{E}_{t}y_{t+1}^{u}=T_{ss}y_{t}^{s}+T_{su}y_{t}^{u}+C_{s}u_{t}
+\]</span> <span class="math display">\[
+\begin{aligned}
+S_{ss}\mathbb{E}_{t}Z_{1s}^{-1}\left(x_{t+1}^{1}-Z_{1u}y_{t+1}^{u}\right)+S_{su}\mathbb{E}_{t}y_{t+1}^{u} &amp; =T_{ss}Z_{1s}^{-1}\left(x_{t}^{1}-Z_{1u}y_{t}^{u}\right)+T_{su}y_{t}^{u}+C_{s}u_{t}\\
+S_{ss}Z_{1s}^{-1}\mathbb{E}_{t}x_{t+1}^{1}+\left(S_{su}-S_{ss}Z_{1s}^{-1}Z_{1u}\right)\mathbb{E}_{t}y_{t+1}^{u} &amp; =T_{ss}Z_{1s}^{-1}x_{t}^{1}+\left(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u}\right)y_{t}^{u}+C_{s}u_{t}
+\end{aligned}
+\]</span> <span class="math display">\[
+\begin{aligned}
+S_{ss}Z_{1s}^{-1}\mathbb{E}_{t}x_{t+1}^{1} &amp; =T_{ss}Z_{1s}^{-1}x_{t}^{1}+\left(S_{ss}Z_{1s}^{-1}Z_{1u}-S_{su}\right)\mathbb{E}_{t}y_{t+1}^{u}\\
+ &amp; \qquad+(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})y_{t}^{u}+C_{s}u_{t}\\
+\mathbb{E}_{t}x_{t+1}^{1} &amp; =Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}x_{t}^{1}+\left(Z_{1u}-Z_{1s}S_{ss}^{-1}S_{su}\right)\mathbb{E}_{t}y_{t+1}^{u}\\
+ &amp; \qquad+Z_{1s}S_{ss}^{-1}(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})y_{t}^{u}+Z_{1s}S_{ss}^{-1}C_{s}u_{t}.
+\end{aligned}
+\]</span> 式 <a href="section-9.html#eq:kl-yu-rec">(9.3)</a> より, <span class="math display">\[
+Z_{1s}S_{ss}^{-1}(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})y_{t}^{u}=Z_{1s}S_{ss}^{-1}(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})\left(T_{uu}^{-1}S_{uu}\mathbb{E}_{t}y_{t+1}^{u}-T_{uu}^{-1}C_{u}u_{t}\right)
+\]</span> だから, <span class="math display">\[
+\mathbb{E}_{t}x_{t+1}^{1}=\Omega_{x}x_{t}^{1}+\Omega_{u}u_{t}+\Omega_{y}\mathbb{E}_{t}y_{t+1}^{u}
+\]</span> <span class="math display">\[
+\begin{aligned}
+\Omega_{x} &amp; =Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}\\
+\Omega_{u} &amp; =Z_{1s}S_{ss}^{-1}\left[(T_{ss}Z_{1s}^{-1}Z_{1u}-T_{su})T_{uu}^{-1}C_{u}+C_{s}\right]\\
+\Omega_{y} &amp; =Z_{1u}-Z_{1s}S_{ss}^{-1}S_{su}+Z_{1s}S_{ss}^{-1}(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})T_{uu}^{-1}S_{uu}.
+\end{aligned}
+\]</span> ここで, 先決変数の定義を使うと,
+<span class="math display" id="eq:kl-x1">\[\begin{equation}
+x_{t+1}^{1}=\Omega_{x}x_{t}^{1}+\Omega_{u}u_{t}+\Omega_{y}\mathbb{E}_{t}y_{t+1}^{u}+\xi_{t+1}\tag{9.6}
+\end{equation}\]</span>
+を得る. 非先決変数については, <span class="math display">\[
+\begin{aligned}
+x_{t}^{2} &amp; =Z_{2s}y_{t}^{s}+Z_{2u}y_{t}^{u}\\
+ &amp; =Z_{2s}Z_{1s}^{-1}(x_{t}^{1}-Z_{1u}y_{t}^{u})+Z_{2u}y_{t}^{u}\\
+ &amp; =Z_{2s}Z_{1s}^{-1}x_{t}^{1}+(Z_{2u}-Z_{2s}Z_{1s}^{-1}Z_{1u})y_{t}^{u}
+\end{aligned}
+\]</span> より,
+<span class="math display" id="eq:kl-x2">\[\begin{equation}
+x_{t}^{2}=\Psi_{x}x_{t}^{1}+\Psi_{y}y_{t}^{u},\tag{9.7}
+\end{equation}\]</span>
+<p><span class="math display">\[
+\begin{aligned}
+\Psi_{x} &amp; =Z_{2s}Z_{1s}^{-1}\\
+\Psi_{y} &amp; =Z_{2u}-Z_{2s}Z_{1s}^{-1}Z_{1u}
+\end{aligned}
+\]</span> とできる.</p>
+<div id="ar" class="section level3 unnumbered">
+<h3>ARショック</h3>
+<p>ここで, <span class="math inline">\(u\)</span> がAR過程 <span class="math display">\[
+u_{t+1}=\Phi u_{t}+\varepsilon_{t+1}
+\]</span> であると仮定しよう. ただし, <span class="math inline">\((\varepsilon_{t})\)</span> は独立同分布をもつ確率過程であり, <span class="math inline">\(\mathbb{E}_{t}\varepsilon_{t+1}=0\)</span>, <span class="math inline">\(\mathbb{E}_{t}\varepsilon_{t+1}\varepsilon_{t+1}^{\top}=\Sigma\)</span>. 行列 <span class="math inline">\(\Phi\)</span> の固有値はすべて絶対値が1より小さいとする. 式 <a href="section-9.html#eq:kl-yut">(9.5)</a> と <span class="math inline">\(\mathbb{E}_{t}u_{t+1}=\Phi u_{t}\)</span> より, <span class="math display">\[
+y_{t}^{u}=-\sum_{k=0}^{\tau-1}\left(T_{uu}^{-1}S_{uu}\right)^{k}T_{uu}^{-1}C_{u}\Phi^{k}u_{t}.
+\]</span> <span class="math inline">\(M\)</span> をシルベスタ方程式 <span class="math display">\[
+M-T_{uu}^{-1}S_{uu}M\Phi=-T_{uu}^{-1}C_{u}
+\]</span> の解とすれば <span class="math display">\[
+y_{t}^{u}=Mu_{t}
+\]</span> と書ける. <a href="section-9.html#eq:kl-x1">(9.6)</a> と<a href="section-9.html#eq:kl-x2">(9.7)</a> から <span class="math display">\[
+\begin{aligned}
+x_{t+1}^{1} &amp; =\Omega_{x}x_{t}^{1}+\Omega_{u}u_{t}+\Omega_{y}\mathbb{E}_{t}y_{t+1}^{u}+\xi_{t+1}\\
+ &amp; =\Omega_{x}x_{t}^{1}+(\Omega_{u}+\Omega_{y}M\Phi)u_{t}+\xi_{t+1}
+\end{aligned}
+\]</span> および <span class="math display">\[
+x_{t}^{2}=\Psi_{x}x_{t}^{1}+\Psi_{y}Mu_{t}
+\]</span> を得る. これで解の特徴づけが完了した.</p>
+</div>
+</div>
+<div id="section-9.2" class="section level2">
+<h2><span class="header-section-number">9.2</span> 確率過程について</h2>
+<p>ランダムネスというのは, ごく荒く言って, 発生する現象に複数の可能性があるということである. 明日は雨が降るかもしれないし, 雨は降らないかもしれない. 天気予報は 「明日雨になる確率」を教えてくれる. ランダムな現象の素朴な数学的表現は, と呼ばれる2つの可能な値を持つ「変数」(ここでは <span class="math inline">\(X\)</span> を名付けよう) のそれぞれの値に, 足して1になる数字<span class="math inline">\(p_{1}\)</span> , <span class="math inline">\(p_{2}\)</span> を割り当てて, <span class="math display">\[
+P(X=\text{fine})=p_{1},\qquad P(X=\text{rainy})=p_{2}
+\]</span> のように書くことである. <span class="math inline">\(\{p_{1},p_{2}\}\)</span> をという. では, <span class="math inline">\(X\)</span> を関数として定式化して, 定義域 <span class="math inline">\(\{\omega_{1},\omega_{2}\}\)</span> の方に確率を割り振る. もちろん, まったく同じことであるがこうすることによって関数解析の枠組みで確率論を扱えるので大変都合が良い. この補論では, マクロ経済学で頻出するフィルトレーションとか条件付き期待値といった用語がなんとなくイメージできるようになる程度に確率論の簡単な紹介を行なってみたいと思う.</p>
+<div id="section-9.2.1" class="section level3">
+<h3><span class="header-section-number">9.2.1</span> 確率変数</h3>
+<p>ランダムな現象を表現するために関数を使うということは, 関数 <span class="math inline">\(X:\omega\mapsto X(\omega)\)</span> の取りうる値 (値域) の方に「生起するかもしれないと認識している値」を対応させるということは想像がつくだろう. 例えば株価のように非負の値を取る確率変数であれば <span class="math display">\[
+X:\bullet\to\mathbb{R}_{+}
+\]</span> という関数を考えるのである. 定義域の方は何が入るだろうか？実は取りうる値を区別するのに十分な数の要素を持っていれば何でもよい. 慣例に従って <span class="math inline">\(\Omega\)</span> という記号を使うと <span class="math display">\[
+X:\Omega\to\mathbb{R}_{+}
+\]</span> と書ける. <span class="math inline">\(\Omega\)</span> を状態空間, <span class="math inline">\(\Omega\)</span> の元を根元事象, <span class="math inline">\(\Omega\)</span> の部分集合を事象という.. <span class="math inline">\(\Omega\)</span> がどのように分割されるか, <span class="math inline">\(\Omega\)</span> の分割のそれぞれにどのように確率を割り振るかが大事なのである. 例えば, <span class="math inline">\(X\)</span> が 2値関数であれば, <span class="math inline">\(\Omega_{1}=\{\omega_{1},\omega_{2}\}\)</span> という2点集合を取って, <span class="math inline">\(\Omega_{1}=\{\omega_{1}\}\cup\{\omega_{2}\}\)</span> と分割し, <span class="math display">\[
+X_{1}(\omega)=\begin{cases}
+0, &amp; \omega\in\{\omega_{1}\}\\
+1, &amp; \omega\in\{\omega_{2}\}
+\end{cases}
+\]</span> としてもいいし, <span class="math inline">\(\Omega_{2}=[0,1]\)</span> として, <span class="math inline">\(\Omega_{2}=[0,1/2)\cup[1/2,1]\)</span> と分割し, <span class="math display">\[
+X_{2}(\omega)=\begin{cases}
+0, &amp; \omega\in[0,1/2)\\
+1, &amp; \omega\in[1/2,1]
+\end{cases}
+\]</span> とするのでもよい. さらに, この分割にさえ自由度がある. 例えば, <span class="math inline">\(\Omega_{3}=[0,1]\)</span> として, <span class="math inline">\(\Omega_{3}=[0,1/3)\cup[1/3,1]\)</span> と分割し, <span class="math display">\[
+X_{3}(\omega)=\begin{cases}
+0, &amp; \omega\in[0,1/3)\\
+1, &amp; \omega\in[1/3,1]
+\end{cases}
+\]</span> としても問題は起こらない. 3つの例において, 関数 <span class="math inline">\(X_{1}\)</span> , <span class="math inline">\(X_{2}\)</span>, <span class="math inline">\(X_{3}\)</span> はそれぞれ異なる関数であるにも関わらず, 同じ確率的現象の表現と解釈するためには, 各事象に対して確率を割り振るやり方を同じにしてやる必要がある. つまり, <span class="math display">\[
+X_{1}^{-1}(\{0\})=\{\omega_{1}\},\quad X_{1}^{-1}(\{1\})=\{\omega_{2}\}
+\]</span> <span class="math display">\[
+X_{2}^{-1}(\{0\})=[0,1/2),\quad X_{2}^{-1}(\{1\})=[1/2,1]
+\]</span> <span class="math display">\[
+X_{3}^{-1}(\{0\})=[0,1/3),\quad X_{3}^{-1}(\{1\})=[1/3,1]
+\]</span> に注意して, <span class="math display">\[
+P_{1}(\{\omega_{1}\})=P_{2}([0,1/2))=P_{3}([0,1/3))=p_{1}
+\]</span> <span class="math display">\[
+P_{1}(\{\omega_{2}\})=P_{2}([1/2,1])=P_{3}([1/3,1])=p_{2}
+\]</span> と「確率」<span class="math inline">\(P_{1}\)</span>, <span class="math inline">\(P_{2}\)</span>, <span class="math inline">\(P_{3}\)</span>を定義すれば , これらが同じ現象を表現していると言える. ただし, <span class="math inline">\(p_{1}+p_{2}=1\)</span>, <span class="math inline">\(p_{1},p_{2}\ge0\)</span>.</p>
+<p>連続値を取るような場合には, 事象としてどのようなものを考えればよいだろうか. 例を挙げて考えてみよう. 「株価が5000円以上6000円未満である」という事象は <span class="math display">\[
+\{\omega\in\Omega\mid5000\le X(\omega)&lt;6000\}
+\]</span> と書ける. あるいは同じことを <span class="math display">\[
+X^{-1}\left([5000,6000)\right)=X^{-1}\left([0,5000)\right)^{c}\cap X^{-1}\left([0,6000)\right)
+\]</span> とも書ける. <span class="math inline">\(X^{-1}(A)\)</span> は<span class="math inline">\(A\)</span> の<span class="math inline">\(X\)</span>による逆像, <span class="math inline">\(A^{c}\)</span> は<span class="math inline">\(A\)</span> の補集合である. 非負の実数値を取るような確率現象を扱う上で, 「事象全体の集合」として考えるべきは, <span class="math inline">\(\{\omega\in\Omega\mid X(\omega)\le a\}\)</span>, <span class="math inline">\(\{\omega\in\Omega\mid X(\omega)&lt;a\}\)</span>, <span class="math inline">\(a\in\mathbb{R}_{+}\cup\{+\infty\}\)</span> やその補集合, 和集合, 積集合などを含むものとするのがよい. さらに技術的な理由から, そのような部分集合の可算無限個の和集合も含んでいるとするのである.</p>
+<p>以上の要請を汲んだ上で, 確率論の教科書を確認してほしい. そこには次のような定義が書いていると思う: <span class="math inline">\(\Omega\)</span> の部分集合族 <span class="math inline">\(\mathcal{F}\)</span> が であるとは, (i) <span class="math inline">\(\Omega\in\mathcal{F}\)</span>, (ii) <span class="math inline">\(A\in\mathcal{F}\Rightarrow A^{c}\in\mathcal{F}\)</span>, (iii) <span class="math inline">\(A_{1},A_{2},\dots,A_{n},\dots\in\mathcal{F}\Rightarrow\cup_{n=1}^{\infty}A_{n}\in\mathcal{F}\)</span> の3つが成り立つことをいう. <span class="math inline">\(\Omega\)</span> とその部分集合族 <span class="math inline">\(\mathcal{F}\)</span> — <span class="math inline">\((\Omega,\mathcal{F})\)</span> のペアをという — の出来上がりである. さらに, <span class="math inline">\(\{\omega\mid X(\omega)&lt;a\}\)</span> の形式の部分集合やそれらの補集合, 可算無限個の和集合, 積集合が <span class="math inline">\(\mathcal{F}\)</span> に含まれているとき, <span class="math inline">\(X\)</span> はという.</p>
+<p>確率はと呼ばれる写像 <span class="math inline">\(P:\mathcal{F}\to[0,1]\)</span> によって定式化される. 確率測度は次の性質を満たす. (i) <span class="math inline">\(P(\Omega)=1\)</span>, (ii) <span class="math inline">\(P(A^{c})=1-P(A)\)</span>, (iii) <span class="math inline">\(A_{1},A_{2},\dots\)</span> が <span class="math inline">\(A_{i}\cap A_{j}=\emptyset\)</span>, <span class="math inline">\(i\neq j\)</span> ならば <span class="math inline">\(P(\cup_{i}A_{i})=\sum_{i}P(A_{i})\)</span>. 3つ組 <span class="math inline">\((\Omega,\mathcal{F},P)\)</span> を確率空間という.</p>
+<p>以上でランダムネスの構成要素が全部出揃った. 適当に状態空間 <span class="math inline">\(\Omega\)</span> を設定し, 状態空間を事象を表す部分集合に分割し (<span class="math inline">\(\mathcal{F}\)</span> はその一般化・抽象化である), さらに事象ごとの生起確率を割り振っていく(<span class="math inline">\(P\)</span> がその役割を果たしてくれる). 確率変数 <span class="math inline">\(X\)</span> は, <span class="math inline">\(\Omega\)</span> を定義域にもつ関数であって, <span class="math display">\[
+\{\omega\in\Omega\mid X(\omega)&lt;a\}\in\mathcal{F}
+\]</span> が成り立つものである. <span class="math inline">\(\mathcal{F}\)</span> の元になるということは,「<span class="math inline">\(X&lt;a\)</span> である確率」がキチンと定義されるように作っているということである. ところで, 可測性は<span class="math inline">\(\mathcal{F}\)</span>の選び方に依存するので, 明示的に <span class="math inline">\(\mathcal{F}\)</span>-可測と言ったりもする.</p>
+<span class="math inline">\(\Omega\)</span> が有限個の部分集合の族に分割される場合を考えると可測関数の直感的な理解が得られやすい. <span class="math inline">\(\Omega=A_{1}\cup A_{2}\cup\cdots\cup A_{n}\)</span>, <span class="math inline">\(A_{i}\cap A_{j}=\emptyset\)</span>, <span class="math inline">\(i\neq j\)</span> としよう. この場合, 分割　<span class="math inline">\(\Delta=\{A_{1},A_{2},\dots,A_{n}\}\)</span> が事象の集合族を定める. すなわち, <span class="math display">\[
+\mathcal{F}_{\Delta}=\left\{ \cup_{k=1}^{r}A_{n_{k}}\mid\{n_{1},\dots,n_{r}\}\subset\{1,\dots,n\},\ r=0,1,\dots,n\right\} 
+\]</span> とすれば, <span class="math inline">\(\mathcal{F}_{\Delta}\)</span> は <span class="math inline">\(\sigma\)</span>-集合族となる. <span class="math inline">\(\mathcal{F}_{\Delta}\)</span> は <span class="math inline">\(\Delta\)</span> の元をすべて含む最小の <span class="math inline">\(\sigma\)</span>-集合族であって <span class="math inline">\(\mathcal{F}\supset\mathcal{F}_{\Delta}\)</span> なる <span class="math inline">\(\sigma\)</span>-集合族であれば何を考えても以下の議論は上手くいく.
+
+<p>2値関数の場合に可測関数と非可測関数を図示してみよう. <span class="math inline">\(\Omega_{3}=[0,1]\)</span>, <span class="math inline">\(\Delta_{3}=\{[0,1/3),[1/3,1]\}\)</span> とすれば, <span class="math inline">\(\mathcal{F}_{\Delta_{3}}=\{\emptyset,[0,1/3),[1/3,1],\Omega_{3}\}\)</span> である. 図 の <span class="math inline">\(X_{3}\)</span> は分割 <span class="math inline">\(\Delta_{3}\)</span> の各集合上で定数値を取る関数である. 一方で, <span class="math inline">\(f\)</span> は <span class="math inline">\([1/3,1]\)</span> 上で定数関数でない. <span class="math inline">\(f\)</span> が可測性の定義 <span class="math inline">\(\{\omega\in\Omega\mid f(\omega)&lt;a\}\in\mathcal{F}_{\Delta_{3}}\)</span> を満たさないことを確認してほしい. 有限個の事象のみを扱うケースでは, 可測関数すなわち確率変数は, 分割を構成する各集合上で定数値を取る関数に外ならない. 2値関数, 2事象への分割を考えたが, より一般のケースでも同様のことを確認できる.</p>
+<p>なお, <span class="math inline">\(\Omega\)</span> 上で定数値をとる関数はもちろん可測関数である. 不確実性がない現象の表現に使う.</p>
+</div>
+<div id="section-9.2.2" class="section level3">
+<h3><span class="header-section-number">9.2.2</span> 期待値</h3>
+期待値は積分で定義できる. <span class="math inline">\((\Omega,\mathcal{F},P)\)</span> を確率空間, <span class="math inline">\(X\)</span> を<span class="math inline">\(\mathbb{R}\)</span>-値確率変数とする. <span class="math inline">\(X\)</span> の期待値を
+<span class="math display" id="eq:kl-mean">\[\begin{equation}
+\mathbb{E}X=\int_{\Omega}X(\omega)dP(\omega)\tag{9.8}
+\end{equation}\]</span>
+<p>と定義する. ここでの積分はいわゆるルベーグ積分である. ルベーグ積分論を未修であれば, 次のように理解すればよいだろう. 先ほど述べた可測関数の定義より, <span class="math display">\[
+\left\{ \omega\in\Omega\mid x\le X(\omega)&lt;x+dx\right\} \in\mathcal{F}
+\]</span> が成り立つ. <span class="math inline">\(\mathcal{F}\)</span> は<span class="math inline">\(P\)</span> の定義域なので, <span class="math display">\[
+P\left(\left\{ \omega\in\Omega\mid x\le X(\omega)&lt;x+dx\right\} \right)
+\]</span> という確率が対応している. これを <span class="math inline">\(dP(\omega)\)</span> と思えば, <span class="math display">\[
+\mathbb{E}X=\int_{x\in\mathbb{R}}xP\left(\left\{ \omega\in\Omega\mid x\le X(\omega)&lt;x+dx\right\} \right)
+\]</span> と書けて, 馴染みのある定式化とかなり近い形式になる. 累積分布関数を <span class="math inline">\(F\)</span> とすれば, <span class="math display">\[
+P\left(\left\{ \omega\in\Omega\mid x\le X(\omega)&lt;x+dx\right\} \right)=F(x+dx)-F(x)
+\]</span> だから, <span class="math display">\[
+\mathbb{E}X=\int_{x\in\mathbb{R}}x\left[F(x+dx)-F(x)\right]
+\]</span> はスティルチェス積分による表現であるし, 確率密度関数が存在する場合には, <span class="math display">\[
+P\left(\left\{ \omega\in\Omega\mid x\le X(\omega)&lt;x+dx\right\} \right)=p(x)dx
+\]</span> と書き換えることができるので, <span class="math display">\[
+\mathbb{E}X=\int_{x\in\mathbb{R}}xp(x)dx
+\]</span> と, よりいっそう馴染み深い表現になる.</p>
+<p>この操作で一つ見えてくることは, <span class="math inline">\((\Omega,\mathcal{F})\)</span> に備えた測度 <span class="math inline">\(P\)</span> が<span class="math inline">\(\mathbb{R}\)</span>上の測度を定めるということである. <span class="math inline">\(A\subset\mathbb{R}\)</span> が普通の (例えば区間 <span class="math inline">\((a,b)\)</span> など) 部分集合であれば <span class="math display">\[
+X^{-1}(A)\in\mathcal{F}
+\]</span> が成り立つので, <span class="math inline">\(P(X^{-1}(A))\)</span> が定義されている. これを <span class="math inline">\(\mathbb{R}\)</span> の部分集合 <span class="math inline">\(A\)</span> に対して確率<span class="math inline">\(P(X^{-1}(A))\)</span> を対応させる集合関数 <span class="math inline">\(P\circ X^{-1}\)</span> と見れば, <span class="math inline">\(P\circ X^{-1}\)</span> は確率測度の性質をもっている. <span class="math inline">\(X\)</span> から誘導された確率測度を<span class="math inline">\(X\)</span>のという.</p>
+<p>簡単な例を見てみよう. <span class="math display">\[
+\begin{aligned}
+\mathbb{E}X_{3} &amp; =0\cdot P([0,1/3))+1\cdot P([1/3,1])\\
+ &amp; =0\cdot p_{1}+1\cdot p_{2}\\
+ &amp; =p_{2}
+\end{aligned}
+\]</span> である. 分布は <span class="math display">\[
+\begin{aligned}
+P\circ X^{-1}(\{0\}) &amp; =p_{1}\\
+P\circ X^{-1}(\{1\}) &amp; =p_{2}
+\end{aligned}
+\]</span> によって定まる.</p>
+</div>
+<div id="section-9.2.3" class="section level3">
+<h3><span class="header-section-number">9.2.3</span> 条件付き期待値</h3>
+<p><span class="math inline">\(\sigma\)</span>-集合族, あるいはそれを生成する分割が不確実な現象に対する情報精度の上限という意味を持っていることを確認しておこう. <span class="math inline">\((\Omega,\mathcal{F},P)\)</span> を確率空間, <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span> を実数値確率変数とする. 説明の都合上, <span class="math inline">\(X\)</span> が先に判明して, <span class="math inline">\(Y\)</span> は後で判明するという時間差があるとしておく.</p>
+<p>根元事象 <span class="math inline">\(\omega\in\Omega\)</span> を特定できれば, <span class="math inline">\(X(\omega)\)</span> にも <span class="math inline">\(Y(\omega)\)</span> にも不確実性は存在しない. したがって, 不確実性は どの <span class="math inline">\(\omega\)</span> に対応する値がでてくるか分からないということに起因している. また, 先に明らかになる確率変数　<span class="math inline">\(X\)</span> の観測によって得られる情報は, あくまで <span class="math inline">\(X(\omega)=a\)</span> とか, <span class="math inline">\(a&lt;X(\omega)&lt;b\)</span> とか, <span class="math inline">\(X(\omega)\in A\)</span> という生起した値に関する情報だけであるから <span class="math inline">\(\omega\in X^{-1}(\{a\})\)</span> や <span class="math inline">\(\omega\in X^{-1}((a,b))\)</span>, <span class="math inline">\(\omega\in X^{-1}(A)\)</span>といった情報を得ることができるが, <span class="math inline">\(\omega\)</span> の完全な特定はできない. もし, <span class="math inline">\(Y\)</span> が <span class="math inline">\(X^{-1}(A)\)</span> の上で定数でなければ, <span class="math inline">\(Y\)</span> の値を正確に予見することはできない. ただし, <span class="math inline">\(\{Y(\omega)\mid\omega\in X^{-1}(A)\}\)</span> のいずれかの値が生起するということだけは分かる.</p>
+<p>2つの重要なメッセージがある. 第一に, <span class="math inline">\(\mathcal{F}\)</span> が細かく細分化されていればいるほど, <span class="math inline">\(\mathcal{F}\)</span>-可測関数の値から得られる情報は多くなる. すなわち観測値を用いて, より小さな集合の中に<span class="math inline">\(\omega\)</span> を特定できる. 第二に, 時間を通じて <span class="math inline">\(\omega\)</span> に関する情報が徐々に明らかになっていくということである.</p>
+<p>具体的な例を通して見ていこう. <span class="math inline">\(\Omega=[0,1]\)</span> が $={ [0,),[,),[,),[,1]} $ と分割されているとする. 簡単のため分割を構成する各集合の確率は等しく <span class="math inline">\(\tfrac{1}{4}\)</span> であるとしよう. 確率変数を <span class="math display">\[
+X(\omega)=\begin{cases}
+0 &amp; \text{if }\omega\in[0,\tfrac{1}{2})\\
+1 &amp; \text{if }\omega\in[\tfrac{1}{2},1]
+\end{cases}
+\]</span> <span class="math display">\[
+Y(\omega)=\begin{cases}
+0 &amp; \text{if }\omega\in[0,\tfrac{1}{4})\\
+1 &amp; \text{if }\omega\in[\tfrac{1}{4},\tfrac{1}{2})\\
+2 &amp; \text{if }\omega\in[\tfrac{1}{2},\tfrac{3}{4})\\
+3 &amp; \text{if }\omega\in[\tfrac{3}{4},1]
+\end{cases}
+\]</span> と特定化する. <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span> が<span class="math inline">\(\mathcal{F}_{\Delta}\)</span>-可測関数であることを確認してほしい.</p>
+<p><span class="math inline">\(X\)</span> が実現する前には, <span class="math inline">\(\omega\in\Omega\)</span> という情報しかないので, <span class="math inline">\(\Delta_{0}=\{\Omega\}\)</span> で表される情報集合を持っているといってよいだろう. <span class="math inline">\(X\)</span> が実現した後には, <span class="math inline">\(\omega\in[0,\tfrac{1}{2})\)</span> あるいは <span class="math inline">\(\omega\in[\tfrac{1}{2},1]\)</span> のいずれかであるので, <span class="math inline">\(X\)</span> によって <span class="math inline">\(\Delta_{1}=\{[0,\tfrac{1}{2}),[\tfrac{1}{2},1]\}\)</span> という<span class="math inline">\(\Delta_{0}\)</span> よりは細かいが <span class="math inline">\(\Delta\)</span> よりは粗い分割で表される情報を獲得できる. さらに, <span class="math inline">\(Y\)</span> が明らかになると, <span class="math inline">\(\Delta_{2}=\Delta\)</span> を獲得できる. それでは, <span class="math inline">\(X\)</span> が授けてくれた情報を使って, <span class="math inline">\(Y\)</span> について何が言えるようになるか, を考えてほしい.</p>
+<p>まずは初級の確率論の議論をなぞってみよう. <span class="math inline">\(X\)</span> の実現値で条件付けると, <span class="math inline">\(Y\)</span> がぞれぞれの値をとる確率が変わる. 例えば, <span class="math inline">\(X=0\)</span> という条件の下で, <span class="math inline">\(Y=0\)</span> となる確率は <span class="math display">\[
+P(Y=0|X=0)=\frac{P(Y=0)}{P(Y=0)+P(Y=1)}=\frac{1}{2}.
+\]</span> また, <span class="math display">\[
+P(Y=2|X=0)=0
+\]</span> などが分かる. 次に, <span class="math inline">\(X\)</span> の実現値で条件付けると, <span class="math inline">\(Y\)</span> に関する期待値も変化する. 例えば, <span class="math display">\[
+\begin{aligned}
+\mathbb{E}\left[Y\mid X=0\right] &amp; =0\cdot P(Y=0|X=0)+1\cdot P(Y=1|X=0)+2\cdot P(Y=2|X=0)+3\cdot P(Y=3|X=0)\\
+ &amp; =\frac{1}{2}.
+\end{aligned}
+\]</span> また, <span class="math display">\[
+\mathbb{E}[Y\mid X=1]=\frac{5}{2}.
+\]</span> したがって, 条件付き期待値は実現値 <span class="math inline">\(x\)</span> の関数として <span class="math display">\[
+\mathbb{E}[Y\mid X=x]=\begin{cases}
+\tfrac{1}{2} &amp; \text{if }x=0\\
+\tfrac{5}{2} &amp; \text{if }x=1
+\end{cases}
+\]</span> などと書かれるのである.</p>
+<p><span class="math inline">\(\mathbb{E}[Y|X=x]\)</span> と書いてはいるが, 実現値<span class="math inline">\(x\)</span>に依存していないことに違和感を感じないだろうか. もちろん, <span class="math inline">\(x\)</span> に依存するような条件付き期待値を作ろうと思えば作れるし, そのような例が重要であるのは事実だが, <span class="math inline">\(x\)</span> の関数として条件付き期待値を特徴付けると本質を見誤ることになる. では何に依存していると認識するべきか？それは, 特定の実現値を生成する <span class="math inline">\(\omega\)</span> のなす集合である. すなわち条件付き期待値は <span class="math inline">\(\omega\)</span> に依存していて, <span class="math inline">\(\Delta_{1}\)</span> のどの元に <span class="math inline">\(\omega\)</span> が属するかによって値が変わるものと捉えるべきである. したがって, 次のように書く方がより本質に近い. <span class="math display">\[
+\mathbb{E}[Y|\Delta_{1}](\omega)=\begin{cases}
+\tfrac{1}{2} &amp; \text{if }\omega\in[0,\tfrac{1}{2})\\
+\tfrac{5}{2} &amp; \text{if }\omega\in[\tfrac{1}{2},1].
+\end{cases}
+\]</span> この定式化は, <span class="math inline">\(\mathbb{E}[Y|\Delta_{1}]\)</span> は確率変数であり, <span class="math inline">\(\mathcal{F}_{\Delta_{1}}\)</span>-可測であるということを示唆している. 有限分割が得られないケースでは, <span class="math inline">\(\mathbb{E}[Y|\mathcal{F}_{\Delta_{1}}]\)</span> と書く. ここで, <span class="math display">\[
+\mathcal{F}_{\Delta_{1}}\subset\mathcal{F}_{\Delta}
+\]</span> に注意をしてほしい. 粗い分割で得られた情報で「予測」をしているので (<span class="math inline">\(Y\)</span> は <span class="math inline">\(\mathcal{F}_{\Delta_{1}}\)</span>-可測ではない), <span class="math inline">\(\omega\)</span> への依存性が残ってしまうのである.</p>
+<div id="e69da1e4bbb6e4bb98e3818de69c9fe5be85e580a4e381aee680a7e8b3aa" class="section level5 unnumbered">
+<h5>条件付き期待値の性質</h5>
+<p>一般に, 条件付き期待値は次の性質をもつ: <span class="math inline">\((\Omega,\mathcal{F},P)\)</span> を確率空間 <span class="math inline">\(Z\)</span> を確率変数, <span class="math inline">\(\mathcal{G}\)</span> を <span class="math inline">\(\mathcal{G}\subset\mathcal{F}\)</span> なる <span class="math inline">\(\sigma\)</span>-集合族とすると<span class="math inline">\(\mathbb{E}[Z|\mathcal{G}]\)</span> は <span class="math inline">\(\mathcal{G}\)</span>-可測な確率変数になる. さらに, <span class="math inline">\(\mathcal{H\subset\mathcal{G}\subset F}\)</span> なる <span class="math inline">\(\sigma\)</span>-集合族を取れば, <span class="math display">\[
+\mathbb{E}[\mathbb{E}[Z|\mathcal{G}]|\mathcal{H}]=\mathbb{E}[Z|\mathcal{H}]
+\]</span> が成り立つ (正式には「ほとんど確実に」というのを付けなければならない).　</p>
+<p>これを分割の言葉で確認しておこう. 前半の部分はすでに確認できているので, 後半を確認する. 分割 <span class="math inline">\(\Delta_{1}\)</span>, <span class="math inline">\(\Delta_{2}\)</span> に対して, <span class="math inline">\(\Delta_{2}\)</span> が<span class="math inline">\(\Delta_{1}\)</span> より細分化されているとは, 任意の <span class="math inline">\(A\in\Delta_{2}\)</span> についてある <span class="math inline">\(B\in\Delta_{1}\)</span> があって <span class="math inline">\(A\subset B\)</span> が成り立つこととし, <span class="math inline">\(\Delta_{1}|\Delta_{2}\)</span> と書こう. <span class="math inline">\(\Delta_{1}|\Delta_{2}\)</span> ならば<span class="math inline">\(\mathcal{F}_{\Delta_{1}}\subset\mathcal{F}_{\Delta_{2}}\)</span> が成り立つ. したがって, <span class="math display">\[
+\mathbb{E}[\mathbb{E}[Z|\Delta_{2}]|\Delta_{1}]=\mathbb{E}[Z|\Delta_{1}]
+\]</span> を確かめよう.</p>
+<p><span class="math inline">\(\Delta\)</span> が確率空間を構成する分割（最も細かい分割）であるとすれば, <span class="math inline">\(\Delta_{2}|\Delta\)</span> がなりたつ. 任意の <span class="math inline">\(A\in\Delta_{2}\)</span> について, <span class="math inline">\(A=\cup_{i}A_{i}\)</span>, <span class="math inline">\(A_{i}\in\Delta\)</span>, なる互いに素な分割がある. 上の計算を一般化すると, 条件付き期待値の定義は <span class="math inline">\(P(A)\neq0\)</span>, <span class="math inline">\(\omega\in A\in\Delta_{2}\)</span> のとき, <span class="math display">\[
+\mathbb{E}[Z|\Delta_{2}](\omega)=\sum_{i}\frac{Z(A_{i})P(A_{i})}{P(A)}
+\]</span> とできる. <span class="math inline">\(P(A)=0\)</span> のときは, <span class="math inline">\(\mathbb{E}[Z|\Delta_{2}](\omega)=0\)</span> である. ただし, <span class="math inline">\(Z(A_{i})\)</span> は <span class="math inline">\(\omega\in A_{i}\)</span> のときの <span class="math inline">\(Z(\omega)\)</span> の値, 以下では <span class="math inline">\(\mathbb{E}[Z|\Delta_{2}](A)\)</span> も同様の意味で使う. 可測関数は区分的な定数関数であったことに注意しよう.</p>
+<p><span class="math inline">\(B\in\Delta_{1}\)</span> に対して, <span class="math inline">\(\Delta_{2}\)</span> の元による互いに素な分割 <span class="math inline">\(B=\cup_{j}B_{j}\)</span> が存在する. 各 <span class="math inline">\(B_{j}\in\Delta_{2}\)</span> には, <span class="math inline">\(\Delta\)</span> の元による互いに素な分割 <span class="math inline">\(B_{i}=\cup_{i}B_{ij}\)</span> が存在するので, <span class="math inline">\(\omega\in B\)</span> に対して <span class="math display">\[
+\begin{aligned}
+\mathbb{E}[\mathbb{E}[Z|\Delta_{2}]|\Delta_{1}](B) &amp; =\sum_{j}\frac{\mathbb{E}[Z|\Delta_{2}](B_{j})P(B_{j})}{P(B)}\\
+ &amp; =\sum_{j}\frac{\sum_{i}\left[\frac{Z(B_{ij})P(B_{ij})}{P(B_{j})}\right]P(B_{j})}{P(B)}\\
+ &amp; =\sum_{j}\sum_{i}\frac{Z(B_{ij})P(B_{ij})}{P(B)}.
+\end{aligned}
+\]</span> <span class="math inline">\(B=\cup_{i,j}B_{ij}\)</span> は, <span class="math inline">\(B\in\Delta_{1}\)</span> の <span class="math inline">\(\Delta\)</span> の元による互いに素な分割になっているので, <span class="math display">\[
+\mathbb{E}[\mathbb{E}[Z|\Delta_{2}]|\Delta_{1}](B)=\mathbb{E}[Z|\Delta_{1}](B)
+\]</span> が成り立つ.</p>
+</div>
+</div>
+<div id="section-9.2.4" class="section level3">
+<h3><span class="header-section-number">9.2.4</span> 確率過程</h3>
+<p>前節では確率変数が情報を明らかにしていく様子を具体例をもって描写してみた. どの程度成功しているかは分からないが, 我々はもっと先に進まなければならない. ここまでの話を逆転させてみよう. すなわち, しだいに細分化されていく分割の列 <span class="math display">\[
+\{\Omega\}=\Delta_{0}|\Delta_{1}|\Delta_{2}|\cdots
+\]</span> あるいは, <span class="math inline">\(\sigma\)</span>-集合族の増大列 <span class="math display">\[
+\{\emptyset,\Omega\}=\mathcal{F}_{0}\subset\mathcal{F}_{1}\subset\mathcal{F}_{2}\cdots
+\]</span> が予め与えられていて, 確率変数の列 <span class="math inline">\(X_{1}\)</span>, <span class="math inline">\(X_{2}\)</span>, … がこれらの分割, <span class="math inline">\(\sigma\)</span>-集合族に関して可測になっているという状況を考えるのである. <span class="math inline">\(\sigma\)</span>-集合族の列 <span class="math inline">\(\mathbb{F}=(\mathcal{F}_{n})\)</span> をフィルトレーションといい, <span class="math inline">\(X_{n}\)</span> が<span class="math inline">\(\mathcal{F}_{n}\)</span>-可測であるような確率変数の列を <span class="math inline">\(\mathbb{F}\)</span>-適合確率過程という.</p>
+<p>具体的なイメージとしては, コイントスの繰り返しを考えるとよい. ひとまず繰り返しの回数を3回としてみよう. <span class="math inline">\(\Omega=[0,1)\)</span> の分割列を <span class="math display">\[
+\begin{aligned}
+\Delta_{0} &amp; =\{\Omega\}\\
+\Delta_{1} &amp; =\{[0,\tfrac{1}{2}),[\tfrac{1}{2},1)\}\\
+\Delta_{2} &amp; =\{[0,\tfrac{1}{4}),[\tfrac{1}{4},\tfrac{1}{2}),[\tfrac{1}{2},\tfrac{3}{4}),[\tfrac{3}{4},1)\}\\
+\Delta_{3} &amp; =\{[0,\tfrac{1}{8}),[\tfrac{1}{8},\tfrac{1}{4}),\dots,[\tfrac{3}{4},\tfrac{7}{8}),[\tfrac{7}{8},1)\}
+\end{aligned}
+\]</span> と構成する. 1回目が表であるという事象 (<span class="math inline">\(x_{1}=0\)</span>) を <span class="math inline">\(\omega\in[\tfrac{0}{2},\tfrac{1}{2})\)</span>, 裏であるという事象 (<span class="math inline">\(x_{1}=1\)</span>) を <span class="math inline">\(\omega\in[\tfrac{1}{2},1)\)</span> に対応させる. さらに1回目が <span class="math inline">\(x_{1}\)</span> で2回目が表 (<span class="math inline">\(x_{2}=0\)</span>) あるいは裏 (<span class="math inline">\(x_{2}=1)\)</span> であるという事象を, <span class="math inline">\(\omega\in[\tfrac{x_{1}}{2}+\tfrac{x_{2}}{2^{2}},\tfrac{x_{1}}{2}+\frac{x_{2}+1}{2^{2}})\)</span> に対応させる. 1回目が<span class="math inline">\(x_{1}\)</span> で, 2回目が <span class="math inline">\(x_{2}\)</span> で3回目が<span class="math inline">\(x_{3}\)</span> である (<span class="math inline">\(x_{3}=0\)</span> or <span class="math inline">\(1\)</span>) という事象を <span class="math inline">\(\omega\in[\tfrac{x_{1}}{2}+\tfrac{x_{2}}{2^{2}}+\tfrac{x_{3}}{2^{3}},\tfrac{x_{1}}{2}+\frac{x_{2}}{2^{2}}+\tfrac{x_{3}+1}{2^{3}})\)</span> に対応させると, コイントスモデルの分割ができあがる. この分割列に適合した確率過程を作ることは難しくない. 各ステップの分割にあわせて区分的定数関数を作ればよい.</p>
+<p>適合過程を考察する理由は明白であろう. 確率過程 <span class="math inline">\(X_{n}(\omega)\)</span> が <span class="math inline">\(n\)</span> 回目のコイントス後の所持金を表している場合を考えてみよ.</p>
+
+
+</div>
+</div>
+</div>
+<h3>参考文献</h3>
+<div id="refs" class="references">
+<div id="ref-Klein2000">
+<p>Klein, Paul. 2000. “Using the Generalized Schur Form to Solve a Multivariate Linear Rational Expectations Model.” <em>Journal of Economic Dynamics &amp; Control</em> 24: 1405–23.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="31">
+<li id="fn31"><p>決定論とは異なり, <span class="math inline">\(x_{0}^{1}\)</span> が外生的な確率変数であることは許容される. あえて冗長な表現をすれば <span class="math inline">\(x_{0}^{1}=\mathbb{E}_{0}[x_{0}^{1}]+\xi_{0}\)</span> となる.<a href="section-9.html#fnref31">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="schurqz.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="e58f82e88083e69687e78cae.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"download": ["linear-economic-dynamics.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"lib_dir": "assets",
+"search": true,
+"toolbar": {
+"position": "fixed"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

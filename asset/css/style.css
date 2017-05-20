@@ -76,7 +76,25 @@ div.theorem, div.proposition {
     top: -1em;
 }
 
-div.example {
+.assumption {
+    border: 2px solid #82636b;
+    border-radius: 4px;
+    margin: 2em 0;
+    padding: 2em;
+    position: relative;
+}
+.assumption::before {
+    background-color: #fff;
+    color: #82636b;
+    content: "Assumption";
+    font-weight: bold;
+    left: 1em;
+    padding: 0 .5em;
+    position: absolute;
+    top: -1em;
+}
+
+.example {
     border: 2px solid #82636b;
     border-radius: 4px;
     margin: 2em 0;

@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>経済動学: 線形編</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="経済動学 講義ノート">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="経済動学: 線形編" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="経済動学 講義ノート" />
+  <meta name="github-repo" content="kenjisato/led" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="経済動学: 線形編" />
+  
+  <meta name="twitter:description" content="経済動学 講義ノート" />
+  
+
+<meta name="author" content="佐藤 健治">
+
+
+<meta name="date" content="2017-05-20">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="blanchardkahn.html">
+<link rel="next" href="section-9.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="asset/css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Linear Economic Dynamics</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#top-page"></a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>序文</a><ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#e6a78be68890"><i class="fa fa-check"></i>構成</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#e8ac9de8be9e"><i class="fa fa-check"></i>謝辞</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> はじめに</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#intro-economic-dynamics"><i class="fa fa-check"></i><b>1.1</b> 経済動学</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#intro-target-model"><i class="fa fa-check"></i><b>1.2</b> 対象とするモデル</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#intro-deterministic"><i class="fa fa-check"></i><b>1.2.1</b> 決定論モデル</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#intro-control-theory"><i class="fa fa-check"></i><b>1.2.2</b> 制御理論との違い</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#intro-stability-determinacy"><i class="fa fa-check"></i><b>1.2.3</b> 安定性と決定性</a></li>
+<li class="chapter" data-level="1.2.4" data-path="intro.html"><a href="intro.html#intro-RE"><i class="fa fa-check"></i><b>1.2.4</b> 合理的期待モデル</a></li>
+<li class="chapter" data-level="1.2.5" data-path="intro.html"><a href="intro.html#intro-MSRE"><i class="fa fa-check"></i><b>1.2.5</b> マルコフスイッチングモデル</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#intro-programing"><i class="fa fa-check"></i><b>1.3</b> プログラミング環境</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#intro-rstudio"><i class="fa fa-check"></i><b>1.3.1</b> RStudio</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#intro-prepare"><i class="fa fa-check"></i><b>1.3.2</b> 準備</a></li>
+<li class="chapter" data-level="1.3.3" data-path="intro.html"><a href="intro.html#section-1.3.3"><i class="fa fa-check"></i><b>1.3.3</b> パッケージ</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="complexnumbers.html"><a href="complexnumbers.html"><i class="fa fa-check"></i><b>2</b> 複素数</a><ul>
+<li class="chapter" data-level="2.1" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.1"><i class="fa fa-check"></i><b>2.1</b> はじめに</a></li>
+<li class="chapter" data-level="2.2" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.2"><i class="fa fa-check"></i><b>2.2</b> 複素数</a></li>
+<li class="chapter" data-level="2.3" data-path="complexnumbers.html"><a href="complexnumbers.html#imaginary-plane"><i class="fa fa-check"></i><b>2.3</b> 複素平面（imaginary plane）</a></li>
+<li class="chapter" data-level="2.4" data-path="complexnumbers.html"><a href="complexnumbers.html#r-"><i class="fa fa-check"></i><b>2.4</b> R コード</a><ul>
+<li class="chapter" data-level="" data-path="complexnumbers.html"><a href="complexnumbers.html#e59b9be58987e6bc94e7ae97"><i class="fa fa-check"></i>四則演算</a></li>
+<li class="chapter" data-level="" data-path="complexnumbers.html"><a href="complexnumbers.html#e8a487e7b4a0e5b9b3e99da2e4b88ae381aee59bb3e7a4ba"><i class="fa fa-check"></i>複素平面上の図示</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.5"><i class="fa fa-check"></i><b>2.5</b> 極形式</a></li>
+<li class="chapter" data-level="2.6" data-path="complexnumbers.html"><a href="complexnumbers.html#section-2.6"><i class="fa fa-check"></i><b>2.6</b> 共役複素数</a></li>
+<li class="chapter" data-level="2.7" data-path="complexnumbers.html"><a href="complexnumbers.html#complexramsey"><i class="fa fa-check"></i><b>2.7</b> 補遺：ラムゼーモデル</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="matrix.html"><a href="matrix.html"><i class="fa fa-check"></i><b>3</b> 行列論の復習</a><ul>
+<li class="chapter" data-level="3.1" data-path="matrix.html"><a href="matrix.html#section-3.1"><i class="fa fa-check"></i><b>3.1</b> 行列の形</a></li>
+<li class="chapter" data-level="3.2" data-path="matrix.html"><a href="matrix.html#matrix-operation"><i class="fa fa-check"></i><b>3.2</b> 行列の演算</a></li>
+<li class="chapter" data-level="3.3" data-path="matrix.html"><a href="matrix.html#section-3.3"><i class="fa fa-check"></i><b>3.3</b> 線形方程式</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="matrix.html"><a href="matrix.html#section-3.3.1"><i class="fa fa-check"></i><b>3.3.1</b> 線形連立方程式の変形</a></li>
+<li class="chapter" data-level="3.3.2" data-path="matrix.html"><a href="matrix.html#section-3.3.2"><i class="fa fa-check"></i><b>3.3.2</b> 行基本変形</a></li>
+<li class="chapter" data-level="3.3.3" data-path="matrix.html"><a href="matrix.html#section-3.3.3"><i class="fa fa-check"></i><b>3.3.3</b> 列基本変形</a></li>
+<li class="chapter" data-level="3.3.4" data-path="matrix.html"><a href="matrix.html#section-3.3.4"><i class="fa fa-check"></i><b>3.3.4</b> 初等変形</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="matrix.html"><a href="matrix.html#r--1"><i class="fa fa-check"></i><b>3.4</b> R コード</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="matrix.html"><a href="matrix.html#section-3.4.1"><i class="fa fa-check"></i><b>3.4.1</b> 行列の定義</a></li>
+<li class="chapter" data-level="3.4.2" data-path="matrix.html"><a href="matrix.html#section-3.4.2"><i class="fa fa-check"></i><b>3.4.2</b> 要素の取得</a></li>
+<li class="chapter" data-level="3.4.3" data-path="matrix.html"><a href="matrix.html#section-3.4.3"><i class="fa fa-check"></i><b>3.4.3</b> 行列の演算・関数</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="eigen.html"><a href="eigen.html"><i class="fa fa-check"></i><b>4</b> 行列の固有値</a><ul>
+<li class="chapter" data-level="4.1" data-path="eigen.html"><a href="eigen.html#section-4.1"><i class="fa fa-check"></i><b>4.1</b> 行列式</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="eigen.html"><a href="eigen.html#section-4.1.1"><i class="fa fa-check"></i><b>4.1.1</b> 置換</a></li>
+<li class="chapter" data-level="4.1.2" data-path="eigen.html"><a href="eigen.html#section-4.1.2"><i class="fa fa-check"></i><b>4.1.2</b> 行列式の定義</a></li>
+<li class="chapter" data-level="4.1.3" data-path="eigen.html"><a href="eigen.html#section-4.1.3"><i class="fa fa-check"></i><b>4.1.3</b> 行列式の意味</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="eigen.html"><a href="eigen.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 固有値と固有ベクトル</a></li>
+<li class="chapter" data-level="4.3" data-path="eigen.html"><a href="eigen.html#section-4.3"><i class="fa fa-check"></i><b>4.3</b> 対角化</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="eigen.html"><a href="eigen.html#section-4.3.1"><i class="fa fa-check"></i><b>4.3.1</b> 計算方法の確認</a></li>
+<li class="chapter" data-level="4.3.2" data-path="eigen.html"><a href="eigen.html#section-4.3.2"><i class="fa fa-check"></i><b>4.3.2</b> 例題</a></li>
+<li class="chapter" data-level="4.3.3" data-path="eigen.html"><a href="eigen.html#section-4.3.3"><i class="fa fa-check"></i><b>4.3.3</b> 複素数の行列表現</a></li>
+<li class="chapter" data-level="4.3.4" data-path="eigen.html"><a href="eigen.html#section-4.3.4"><i class="fa fa-check"></i><b>4.3.4</b> 実対角化</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="eigen.html"><a href="eigen.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 線形動学方程式と固有値</a></li>
+<li class="chapter" data-level="4.5" data-path="eigen.html"><a href="eigen.html#section-4.5"><i class="fa fa-check"></i><b>4.5</b> ラムゼーモデルと固有値</a></li>
+<li class="chapter" data-level="4.6" data-path="eigen.html"><a href="eigen.html#r--2"><i class="fa fa-check"></i><b>4.6</b> R コード</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="linspace.html"><a href="linspace.html"><i class="fa fa-check"></i><b>5</b> 線形空間論の基礎</a><ul>
+<li class="chapter" data-level="5.1" data-path="linspace.html"><a href="linspace.html#linspace-definition"><i class="fa fa-check"></i><b>5.1</b> 線形空間</a></li>
+<li class="chapter" data-level="5.2" data-path="linspace.html"><a href="linspace.html#linspace-subspace"><i class="fa fa-check"></i><b>5.2</b> 線形部分空間</a></li>
+<li class="chapter" data-level="5.3" data-path="linspace.html"><a href="linspace.html#linspace-independence"><i class="fa fa-check"></i><b>5.3</b> 1次独立性</a></li>
+<li class="chapter" data-level="5.4" data-path="linspace.html"><a href="linspace.html#linspace-linearmap"><i class="fa fa-check"></i><b>5.4</b> 線形写像</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="linspace.html"><a href="linspace.html#section-5.4.1"><i class="fa fa-check"></i><b>5.4.1</b> 基本的な定義の復習</a></li>
+<li class="chapter" data-level="" data-path="linspace.html"><a href="linspace.html#e5838fe383bbe98086e5838f"><i class="fa fa-check"></i>像・逆像</a></li>
+<li class="chapter" data-level="5.4.2" data-path="linspace.html"><a href="linspace.html#section-5.4.2"><i class="fa fa-check"></i><b>5.4.2</b> 線形性</a></li>
+<li class="chapter" data-level="5.4.3" data-path="linspace.html"><a href="linspace.html#section-5.4.3"><i class="fa fa-check"></i><b>5.4.3</b> 像空間，核，商空間</a></li>
+<li class="chapter" data-level="5.4.4" data-path="linspace.html"><a href="linspace.html#section-5.4.4"><i class="fa fa-check"></i><b>5.4.4</b> 座標</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="linspace.html"><a href="linspace.html#linspace-matrix"><i class="fa fa-check"></i><b>5.5</b> 行列</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="linspace.html"><a href="linspace.html#section-5.5.1"><i class="fa fa-check"></i><b>5.5.1</b> 線形写像の表現としての行列</a></li>
+<li class="chapter" data-level="5.5.2" data-path="linspace.html"><a href="linspace.html#section-5.5.2"><i class="fa fa-check"></i><b>5.5.2</b> 基底の変換</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="linspace.html"><a href="linspace.html#linspace-invariant"><i class="fa fa-check"></i><b>5.6</b> 不変部分空間</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="linspace.html"><a href="linspace.html#section-5.6.1"><i class="fa fa-check"></i><b>5.6.1</b> ブロック対角化</a></li>
+<li class="chapter" data-level="5.6.2" data-path="linspace.html"><a href="linspace.html#section-5.6.2"><i class="fa fa-check"></i><b>5.6.2</b> 固有値分解</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="section-6.html"><a href="section-6.html"><i class="fa fa-check"></i><b>6</b> 行列の標準形</a><ul>
+<li class="chapter" data-level="6.1" data-path="section-6.html"><a href="section-6.html#section-6.1"><i class="fa fa-check"></i><b>6.1</b> 一般固有空間への分解</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="section-6.html"><a href="section-6.html#section-6.1.1"><i class="fa fa-check"></i><b>6.1.1</b> ハミルトン・ケーリーの定理</a></li>
+<li class="chapter" data-level="6.1.2" data-path="section-6.html"><a href="section-6.html#section-6.1.2"><i class="fa fa-check"></i><b>6.1.2</b> 最小多項式</a></li>
+<li class="chapter" data-level="6.1.3" data-path="complexnumbers.html"><a href="complexnumbers.html#-1"><i class="fa fa-check"></i><b>6.1.3</b> 一般固有空間への分解</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="section-6.html"><a href="section-6.html#section-6.2"><i class="fa fa-check"></i><b>6.2</b> 一般化固有値問題</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="section-6.html"><a href="section-6.html#section-6.2.1"><i class="fa fa-check"></i><b>6.2.1</b> 一般化固有値</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="section-6.html"><a href="section-6.html#section-6.3"><i class="fa fa-check"></i><b>6.3</b> ハミルトン・ケーリーの定理の証明</a></li>
+<li class="chapter" data-level="6.4" data-path="section-6.html"><a href="section-6.html#section-6.4"><i class="fa fa-check"></i><b>6.4</b> ワイエルシュトラス標準形の導出</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="blanchardkahn.html"><a href="blanchardkahn.html"><i class="fa fa-check"></i><b>7</b> 線形システムの分析</a><ul>
+<li class="chapter" data-level="7.1" data-path="blanchardkahn.html"><a href="blanchardkahn.html#section-7.1"><i class="fa fa-check"></i><b>7.1</b> 行列公式</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="blanchardkahn.html"><a href="blanchardkahn.html#section-7.1.1"><i class="fa fa-check"></i><b>7.1.1</b> 逆行列公式</a></li>
+<li class="chapter" data-level="7.1.2" data-path="blanchardkahn.html"><a href="blanchardkahn.html#section-7.1.2"><i class="fa fa-check"></i><b>7.1.2</b> シルベスタ方程式</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="blanchardkahn.html"><a href="blanchardkahn.html#blanchard-kahn-case"><i class="fa fa-check"></i><b>7.2</b> <span class="math inline">\(E=I\)</span> のケース</a><ul>
+<li class="chapter" data-level="" data-path="blanchardkahn.html"><a href="blanchardkahn.html#e59bb3e8a7a3"><i class="fa fa-check"></i>図解</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="blanchardkahn.html"><a href="blanchardkahn.html#e-neq-i-"><i class="fa fa-check"></i><b>7.3</b> <span class="math inline">\(E \neq I\)</span> のケース</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="blanchardkahn.html"><a href="blanchardkahn.html#section-7.3.1"><i class="fa fa-check"></i><b>7.3.1</b> アイデア</a></li>
+<li class="chapter" data-level="7.3.2" data-path="blanchardkahn.html"><a href="blanchardkahn.html#section-7.3.2"><i class="fa fa-check"></i><b>7.3.2</b> 解の存在と一意性</a></li>
+<li class="chapter" data-level="7.3.3" data-path="blanchardkahn.html"><a href="blanchardkahn.html#u-"><i class="fa fa-check"></i><b>7.3.3</b> <span class="math inline">\(u\)</span> の特定化</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="schurqz.html"><a href="schurqz.html"><i class="fa fa-check"></i><b>8</b> Schur分解・QZ分解</a><ul>
+<li class="chapter" data-level="8.1" data-path="schurqz.html"><a href="schurqz.html#section-8.1"><i class="fa fa-check"></i><b>8.1</b> 直交性</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="schurqz.html"><a href="schurqz.html#section-8.1.1"><i class="fa fa-check"></i><b>8.1.1</b> 内積空間</a></li>
+<li class="chapter" data-level="8.1.2" data-path="schurqz.html"><a href="schurqz.html#section-8.1.2"><i class="fa fa-check"></i><b>8.1.2</b> 内積空間と基底</a></li>
+<li class="chapter" data-level="8.1.3" data-path="schurqz.html"><a href="schurqz.html#section-8.1.3"><i class="fa fa-check"></i><b>8.1.3</b> 内積空間のノルム</a></li>
+<li class="chapter" data-level="8.1.4" data-path="schurqz.html"><a href="schurqz.html#section-8.1.4"><i class="fa fa-check"></i><b>8.1.4</b> グラム・シュミットの直交化法</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="schurqz.html"><a href="schurqz.html#section-8.2"><i class="fa fa-check"></i><b>8.2</b> シューア分解とその応用</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="schurqz.html"><a href="schurqz.html#section-8.2.1"><i class="fa fa-check"></i><b>8.2.1</b> シューア分解</a></li>
+<li class="chapter" data-level="8.2.2" data-path="schurqz.html"><a href="schurqz.html#section-8.2.2"><i class="fa fa-check"></i><b>8.2.2</b> システム分析への応用</a></li>
+<li class="chapter" data-level="8.2.3" data-path="schurqz.html"><a href="schurqz.html#u_t1phi-u_t"><i class="fa fa-check"></i><b>8.2.3</b> <span class="math inline">\(u_{t+1}=\Phi u_{t}\)</span></a></li>
+<li class="chapter" data-level="8.2.4" data-path="schurqz.html"><a href="schurqz.html#schur"><i class="fa fa-check"></i><b>8.2.4</b> 実Schur分解</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="schurqz.html"><a href="schurqz.html#qz-"><i class="fa fa-check"></i><b>8.3</b> QZ 分解とその応用</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="intro.html"><a href="intro.html#qz"><i class="fa fa-check"></i><b>8.3.1</b> QZ分解</a></li>
+<li class="chapter" data-level="8.3.2" data-path="complexnumbers.html"><a href="complexnumbers.html#-1"><i class="fa fa-check"></i><b>8.3.2</b> システム分析への応用</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="intro.html"><a href="intro.html#qz"><i class="fa fa-check"></i><b>8.4</b> QZ解法の一般公式</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="section-9.html"><a href="section-9.html"><i class="fa fa-check"></i><b>9</b> 線形確率システム</a><ul>
+<li class="chapter" data-level="9.1" data-path="section-9.html"><a href="section-9.html#klein2000-"><i class="fa fa-check"></i><b>9.1</b> <span class="citation">Klein (<a href="#ref-Klein2000">2000</a>)</span> の方法</a><ul>
+<li class="chapter" data-level="" data-path="section-9.html"><a href="section-9.html#ar"><i class="fa fa-check"></i>ARショック</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="section-9.html"><a href="section-9.html#section-9.2"><i class="fa fa-check"></i><b>9.2</b> 確率過程について</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="section-9.html"><a href="section-9.html#section-9.2.1"><i class="fa fa-check"></i><b>9.2.1</b> 確率変数</a></li>
+<li class="chapter" data-level="9.2.2" data-path="section-9.html"><a href="section-9.html#section-9.2.2"><i class="fa fa-check"></i><b>9.2.2</b> 期待値</a></li>
+<li class="chapter" data-level="9.2.3" data-path="section-9.html"><a href="section-9.html#section-9.2.3"><i class="fa fa-check"></i><b>9.2.3</b> 条件付き期待値</a></li>
+<li class="chapter" data-level="9.2.4" data-path="section-9.html"><a href="section-9.html#section-9.2.4"><i class="fa fa-check"></i><b>9.2.4</b> 確率過程</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="e58f82e88083e69687e78cae.html"><a href="e58f82e88083e69687e78cae.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="http://led.kenjisato.jp" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">経済動学: 線形編</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="schurqz" class="section level1">
+<h1><span class="header-section-number">第8章</span> Schur分解・QZ分解</h1>
+<p>今回はシステム軌道の数値計算を行う上で重要なSchur分解, QZ 分解について解説する. QZ分解は <span class="citation">Klein (<a href="#ref-Klein2000">2000</a>)</span> や <span class="citation">Sims (<a href="#ref-Sims2001">2001</a>)</span> で使われている実用的な方法である. Schur 分解は <span class="math inline">\(E=I\)</span> のケースで, つまり <span class="citation">Blanchard and Kahn (<a href="#ref-BlanchardKahn1980">1980</a>)</span> の仮定の下で利用できる.</p>
+<p>本稿では内積空間に関する基本事項を復習し, Schur 分解, Schur分解を用いたシステム分析, QZ分解, QZ分解を用いたシステム分析の順に解説する.</p>
+<div id="section-8.1" class="section level2">
+<h2><span class="header-section-number">8.1</span> 直交性</h2>
+<p><span class="math inline">\(X\)</span> を<span class="math inline">\(\mathbb{F}\)</span> 上の線形空間とする.</p>
+<div id="section-8.1.1" class="section level3">
+<h3><span class="header-section-number">8.1.1</span> 内積空間</h3>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-167" class="definition"><strong>定義 8.1  (内積空間の公理) </strong></span><span class="math inline">\(\mathbb F\)</span> 上の線形空間 <span class="math inline">\(X\)</span> が内積空間であるとは, 内積と呼ばれる写像 <span class="math display">\[
+\begin{aligned}
+(\cdot,\cdot):X\times X &amp; \to\mathbb{F}
+\end{aligned}
+\]</span> が定義されていて, 次の性質を満たすことをいう.</p>
+<ol style="list-style-type: decimal">
+<li>任意の <span class="math inline">\(x\in X\)</span> について <span class="math inline">\((x,x)\ge0\)</span>, <span class="math inline">\(x=0\)</span> のとき, またそのときに限り <span class="math inline">\((x,x)=0\)</span>;</li>
+<li>任意の <span class="math inline">\(x,y\in X\)</span> について <span class="math inline">\((y,x)=\overline{(x,y)}\)</span>;</li>
+<li>任意の <span class="math inline">\(x,y\in X\)</span>, <span class="math inline">\(\alpha\in\mathbb{F}\)</span> について <span class="math inline">\((\alpha x,y)=\alpha(x,y)\)</span>;</li>
+<li>任意の <span class="math inline">\(x,y,z\in X\)</span> について <span class="math inline">\((x+y,z)=(x,z)+(y,z)\)</span>.</li>
+</ol>
+</div>
+<p></p>
+
+<div class="example">
+<span id="ex:unnamed-chunk-168" class="example"><strong>例 8.1 </strong></span><span class="math inline">\(X=\mathbb{C}^{n}\)</span> とする. <span class="math inline">\(X\)</span>に <span class="math display">\[
+(x,y):=\sum_{k=1}^{n}x_{k}\bar{y}_{k}=y^{*}x
+\]</span> を導入した空間は内積空間の公理を満たす.
+</div>
+<p></p>
+
+<div class="example">
+<span id="ex:unnamed-chunk-169" class="example"><strong>例 8.2 </strong></span>分散有限な<span class="math inline">\(\mathbb{R}^{n}\)</span>値確率変数全体からなる線形空間 <span class="math inline">\(L^{2}(\mathbb{R}^{n};P)\)</span> に <span class="math display">\[
+(x,y):=\mathbb{E}\left[y^{\top}x\right]:=\int_{\mathbb{R}^{n}}y(\omega)^{\top}x(\omega)P(d\omega).
+\]</span> を導入すると, <span class="math inline">\(L^{2}(\mathbb{R}^{n};P)\)</span> は内積空間になる.
+</div>
+<p></p>
+
+<div class="definition">
+<span id="def:unnamed-chunk-170" class="definition"><strong>定義 8.2 </strong></span><span class="math inline">\(X\)</span> を内積空間とする. <span class="math inline">\(x,y\in X\)</span> が <span class="math inline">\((x,y)=0\)</span> を満たすとき, <span class="math inline">\(x\)</span> と <span class="math inline">\(y\)</span> は直交しているといい, <span class="math inline">\(x\perp y\)</span> と書く.
+</div>
+<p></p>
+
+<div class="definition">
+<span id="def:unnamed-chunk-171" class="definition"><strong>定義 8.3 </strong></span><span class="math inline">\(X\)</span> を有限次元の内積空間とする. <span class="math inline">\(X\)</span> の基底 <span class="math inline">\(\{v_{1},\dots,v_{n}\}\)</span> が <span class="math display">\[
+\begin{aligned}
+\|v_{i}\|=1, &amp; \quad i=1,\dots,n\\
+v_{i}\perp v_{j} &amp; \quad i\neq j
+\end{aligned}
+\]</span> を満たすとき, <span class="math inline">\(\{v_{1},\dots,v_{n}\}\)</span> を正規直交基底であるという.
+</div>
+<p></p>
+
+<div class="definition">
+<span id="def:unnamed-chunk-172" class="definition"><strong>定義 8.4 </strong></span>部分空間 <span class="math inline">\(M\)</span> の直交補空間 <span class="math inline">\(M^{\perp}\)</span>とは <span class="math display">\[
+M^{\perp}:=\left\{ x\in X\ \mid\ m\perp x\ \forall m\in M\right\} 
+\]</span> のことである. あるいは, 全空間を明示して<span class="math inline">\(X\ominus M\)</span> と書く.
+</div>
+<p></p>
+</div>
+<div id="section-8.1.2" class="section level3">
+<h3><span class="header-section-number">8.1.2</span> 内積空間と基底</h3>
+<p><span class="math inline">\(X\)</span> を有限次元の内積空間とする. 内積は基底とは無関係に定義されるものであることに注意する.</p>
+<p>内積空間 <span class="math inline">\(X\)</span> に基底を導入し, 内積の座標表現を調べてみよう. <span class="math inline">\(V = [v_1\ \cdots\ v_n ]\)</span> をある正規直交基底とする. このとき, ベクトル <span class="math inline">\(x, y \in X\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+  x &amp;= x_1^V v_1 + \cdots + x_n^V v_n, \quad 
+     x^V = (x_1^V, \dots, x_n^V)^\top  \in \mathbb F^n \\
+  y &amp;= y_1^V v_1 + \cdots + y_n^V v_n, \quad
+     y^V = (y_1^V, \dots, y_n^V)^\top \in \mathbb F
+\end{aligned}
+\]</span></p>
+<p>について</p>
+<p><span class="math display">\[
+  (x, y) = \sum_{k = 1}^n x_k^V \bar{y}_k^V = (y^V)^* (x^V)
+\]</span> が成り立つことに注意せよ。我々がよく知っている内積の定義は, 正規直交基底を導入することで自然に導かれるものである.</p>
+<p>ベクトルの組 <span class="math inline">\(W = [w_1\ \cdots\ w_n]\)</span> を正規直交基底とは限らない一般の基底,</p>
+<p><span class="math display">\[
+\begin{aligned}
+  x &amp;= x_1^W W_1 + \cdots + x_n^W W_n, \quad 
+     x^W = (x_1^W, \dots, x_n^W)^\top  \in \mathbb F^n \\
+  y &amp;= y_1^W W_1 + \cdots + y_n^W W_n, \quad
+     y^W = (y_1^W, \dots, y_n^W)^\top \in \mathbb F
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+  (x, y) 
+    = \sum_{i = 1}^n \sum_{j = 1}^n
+        x_i^W \bar{y}_j^W (w_i, w_j)
+    = (y^W)^* G^W (x^W)
+\]</span> ただし <span class="math display">\[
+  G^W = \begin{bmatrix}
+    (w_1, w_1) &amp; \cdots &amp; (w_1, w_n) \\
+    \vdots     &amp; \ddots &amp; \vdots \\
+    (w_n, w_1) &amp; \cdots &amp; (w_n, w_n) 
+   \end{bmatrix}
+\]</span> とした. <span class="math inline">\(G^W\)</span> はHermite行列である. 基底の内積からなる <span class="math inline">\(G^W\)</span> のような行列を Gram行列と呼ぶ. Gram行列は必ず正定値行列になる. 実際,</p>
+<p><span class="math display">\[
+  (x^W)^*G^W x^W = (x, x) \ge 0,
+\]</span> 等号が成立するのは <span class="math inline">\(x = 0\)</span> のときのみである.<br />
+逆に, 正定置行列 <span class="math inline">\(A\)</span> が与えられたとき, <span class="math inline">\((\xi, \eta) \mapsto \eta^*A\xi\)</span> は <span class="math inline">\(\mathbb F^n\)</span> の内積である.</p>
+<p>次に, 転置行列（共役転置行列）を線形空間において特徴づけしよう.</p>
+
+<div class="definition">
+<span id="def:unnamed-chunk-173" class="definition"><strong>定義 8.5 </strong></span><span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span> を内積空間とする. 線形写像 <span class="math inline">\(f:X\to Y\)</span> の随伴写像 <span class="math inline">\(f^{*}:Y\to X\)</span> とは, 任意の <span class="math inline">\(x\in X\)</span> と <span class="math inline">\(y\in Y\)</span> について <span class="math display">\[
+(fx,y)_{Y}=(x,f^{*}y)_{X}
+\]</span> が成り立つ線形写像のことである.
+</div>
+<p></p>
+<p><span class="math inline">\(\mathbb F^n\)</span> に通常の内積を導入したときに, 共役転置行列 <span class="math inline">\(A^*\)</span> が上の性質を満たしていることを確認せよ.</p>
+</div>
+<div id="section-8.1.3" class="section level3">
+<h3><span class="header-section-number">8.1.3</span> 内積空間のノルム</h3>
+内積空間には「ベクトルの長さ」を表すノルム関数が自然に定義される. 
+<div class="definition">
+<p><span id="def:unnamed-chunk-174" class="definition"><strong>定義 8.6  (内積によって導入されるノルム) </strong></span> <span class="math inline">\(X\)</span> を内積空間とする. 写像 <span class="math inline">\(\|\cdot\|:X\to\mathbb{R}_{+}\)</span> <span class="math display">\[
+\begin{aligned}
+\|\cdot\|:X &amp; \to\mathbb{R}_{+}\\
+x &amp; \mapsto\sqrt{(x,x)}
+\end{aligned}
+\]</span> は次の性質をもつ.</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(x=0\)</span> のとき, またそのときに限り <span class="math inline">\(\|x\|=0\)</span>;</li>
+<li>任意の <span class="math inline">\(x\in X\)</span>, <span class="math inline">\(\alpha\in\mathbb{F}\)</span> に対して, <span class="math inline">\(\|\alpha x\|=|\alpha|\|x\|\)</span>;</li>
+<li>任意の <span class="math inline">\(x,y\in X\)</span> に対して, <span class="math inline">\(\|x+y\|\le\|x\|+\|y\|\)</span>;</li>
+</ol>
+このような性質を持つ関数をノルムと呼ぶ. 内積空間には自然なノルムが存在する.
+</div>
+<p></p>
+<p>ノルム関数は内積とは無関係に定義できるものである. 内積空間とは限らない線形空間にノルムを導入した空間をノルム空間という.</p>
+<p>内積から導入されたノルムが3つ目の性質（三角不等式と呼ばれる）を満たすことは証明が必要である. まず, 次の定理を紹介する.</p>
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-175" class="theorem"><strong>定理 8.1  (コーシー・シュワルツ) </strong></span><span class="math inline">\(X\)</span> を内積空間とする. 任意の <span class="math inline">\(x,y\in X\)</span> について
+<span class="math display">\[\begin{equation}
+\left|(x,y)\right|\le\|x\|\|y\|  (\#eq:eq:uni-cs)
+\end{equation}\]</span>
+が成り立つ. <span class="math inline">\(x\)</span> と <span class="math inline">\(y\)</span> が1次従属のとき, またそのときに限り等号が成立する.
+</div>
+<p></p>
+
+<div class="proof">
+<span class="proof"><em>証明. </em></span> <span class="math inline">\(x,y\in X\)</span> を任意にとる. <span class="math inline">\(y=0\)</span> のとき自明であるから, <span class="math inline">\(y\neq0\)</span> とする. さらに, <span class="math inline">\(t\in\mathbb{F}\)</span> を固定する. <span class="math display">\[
+\begin{aligned}
+0 &amp; \le(x+ty,x+ty)\\
+ &amp; =(x,x)+(x,ty)+(ty,x)+(ty,ty)\\
+ &amp; =\|x\|^{2}+\bar{t}(x,y)+t\overline{(x,y)}+|t|^{2}\|y\|^{2}
+\end{aligned}
+\]</span> ここで, <span class="math inline">\(t=-(x,y)/\|y\|^{2}\)</span> を代入すると, <span class="math display">\[
+0\le\|x\|^{2}-\frac{\overline{(x,y)}}{\|y\|^{2}}(x,y)-\frac{(x,y)}{\|y\|^{2}}\overline{(x,y)}+\frac{(x,y)\overline{(x,y)}}{\|y\|^{4}}\|y\|^{2},
+\]</span> したがって <span class="math display">\[
+\left|(x,y)\right|^{2}\le\|x\|^{2}\|y\|^{2}
+\]</span> を得る. 等号で成立する場合には, <span class="math inline">\((x+ty,x+ty)=0\)</span>, すなわち <span class="math inline">\(x+ty=0\)</span> なる <span class="math inline">\(t\)</span> が存在するということである. <span class="math inline">\(y\neq0\)</span> を仮定しているので, これは1次独立性に外ならない. 逆に, 1次従属であるときに等号成立することは内積とノルムの定義により明らか.
+</div>
+<p></p>
+
+<div class="proposition">
+<span id="prp:unnamed-chunk-177" class="proposition"><strong>命題 8.1 </strong></span>内積によって導入されたノルムは三角不等式を満たす.
+</div>
+<p></p>
+
+<div class="proof">
+<span class="proof"><em>証明. </em></span> 定義に従って, <span class="math display">\[
+\begin{aligned}
+\|x+y\|^{2} &amp; =\left|(x+y,x+y)\right|\\
+ &amp; \le(x,x)+\left|(x,y)\right|+\left|(y,x)\right|+(y,y)\\
+ &amp; =\|x\|^{2}+2\left|(x,y)\right|+\|y\|^{2}\\
+ &amp; \le\|x\|^{2}+2\|x\|\|y\|+\|y\|^{2}\\
+ &amp; =\left(\|x\|+\|y\|\right)^{2}.
+\end{aligned}
+\]</span> 4行目の不等式にコーシー・シュワルツの不等式を使った.
+</div>
+<p></p>
+<p>ユニタリ行列とは <span class="math display">\[
+U^{*}U=UU^{*}=I
+\]</span> を満たす行列のことであった.</p>
+
+<div class="fact">
+ユニタリ行列 <span class="math inline">\(U\)</span> の列は <span class="math inline">\(\mathbb{F}^{n}\)</span> の正規直交基底を成す.
+</div>
+<p></p>
+
+<div class="fact">
+ユニタリ変換は内積を保存する. なぜなら, <span class="math display">\[
+(Ux,Uy)=(x,U^{*}Uy)=(x,y).
+\]</span>
+</div>
+<p></p>
+
+<div class="fact">
+<span class="math inline">\(U\)</span> をユニタリとすると, <span class="math inline">\(|\det U|=1\)</span>.
+</div>
+<p></p>
+</div>
+<div id="section-8.1.4" class="section level3">
+<h3><span class="header-section-number">8.1.4</span> グラム・シュミットの直交化法</h3>
+<p><span class="math inline">\(X\)</span> を内積空間, <span class="math inline">\(v_{1},v_{2},\dots,v_{k}\in X\)</span> は1次独立であるとする. このとき, <span class="math display">\[
+\mathrm{span}\{v_{1},\dots,v_{k}\}=\mathrm{span}\{u_{1},\dots,u_{k}\}
+\]</span> であって, <span class="math display">\[
+u_{i}\perp u_{j},\quad i\neq j
+\]</span> なる1次独立なベクトルの組 <span class="math inline">\(u_{1},\dots,u_{k}\)</span> で, <span class="math inline">\(\|u_{1}\|=\cdots=\|u_{k}\|=1\)</span> となるものが必ず存在する.</p>
+実際に構成してみよう. 考え方としては, <span class="math display">\[
+u_{i+1}\in\mathrm{span}\{v_{1},\dots,v_{i+1}\}\ominus\mathrm{span}\{v_{1},\dots,v_{i}\},\quad i=1,2,3,\dots
+\]</span> が成り立つように, 順に <span class="math inline">\(u_{1},u_{2},\dots\)</span> を見つけていく. 最初のステップでは, <span class="math display">\[
+\bar{u}_{1}:=v_{1},\qquad u_{1}:=\frac{\bar{u}_{1}}{\|\bar{u}_{1}\|}
+\]</span> とする. 次に <span class="math inline">\(\bar{u}_{2}\perp\mathrm{span}\{u_{1}\}\)</span> なる <span class="math inline">\(\bar{u}_{2}\in\mathrm{span}\{v_{1},v_{2}\}=\mathrm{span}\{u_{1},v_{2}\}\)</span> を見つける. <span class="math display">\[
+\bar{u}_{2}=\alpha_{1}u_{1}+\alpha_{2}v_{2}
+\]</span> と仮において, 直交性の条件から <span class="math display">\[
+\begin{aligned}
+(\bar{u}_{2},u_{1}) &amp; =(\alpha_{1}u_{1}+\alpha_{2}v_{2},u_{1})\\
+ &amp; =\alpha_{1}(u_{1},u_{1})+\alpha_{2}(v_{2},u_{1})\\
+ &amp; =0
+\end{aligned}
+\]</span> が成り立つように <span class="math inline">\(\alpha_{1},\alpha_{2}\)</span> を選べばよい. <span class="math inline">\((u_{1},u_{1})=1\)</span> としたので, 例えば <span class="math display">\[
+\alpha_{1}=-(v_{2},u_{1}),\quad\alpha_{2}=1
+\]</span> とすれば直交性が満たされる. したがって, <span class="math display">\[
+\bar{u}_{2}=v_{2}-(v_{2},u_{1})u_{1},\qquad u_{2}=\frac{\bar{u}_{2}}{\|u_{2}\|}.
+\]</span> 同様の手続きを繰り返せばよいので, 詳細は省略する. 続きの証明を各自で完成させること. 結果的だけ述べると <span class="math inline">\(i=2,3,\dots,k\)</span> については, <span class="math inline">\(u_{i}\)</span> は次の公式で与えられる. <span class="math display">\[
+\bar{u}_{i}=v_{i}-\sum_{j=1}^{i-1}(v_{i},u_{j})u_{j},\qquad u_{i}=\frac{\bar{u}_{i}}{\|\bar{u}_{i}\|}.
+\]</span> この直交化のアルゴリズムをグラム・シュミットの直交化法という. 
+<div class="fact">
+<span class="math inline">\(X\)</span> を有限次元内積空間, <span class="math inline">\(M\)</span> をその部分空間とする. このとき, <span class="math display">\[
+X=M\oplus M^{\perp}.
+\]</span>
+</div>
+<p></p>
+
+<div class="proof">
+<span class="proof"><em>証明. </em></span> <span class="math inline">\(x\in M\cap M^{\perp}\)</span> とする. 定義から <span class="math inline">\((x,x)=0\)</span> とならなければならないので, <span class="math inline">\(x=0\)</span> が従う. シュミットの直交化により<span class="math inline">\(M\)</span> の正規直交基底が存在する. さらに <span class="math inline">\((\dim X-\dim M)\)</span> 本のベクトルを追加して <span class="math inline">\(X\)</span> の基底を構成できる. シュミットの方法で直交化しておけば, 新しく追加したベクトルは <span class="math inline">\(M^{\perp}\)</span> に含まれている.
+</div>
+<p></p>
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-184" class="theorem"><strong>定理 8.2 </strong></span>任意の行列 <span class="math inline">\(A\in\mathbb{F}^{m\times n}\)</span> に対して, ユニタリ行列 <span class="math inline">\(Q\in\mathbb{F}^{m\times m}\)</span> と 上三角行列 <span class="math inline">\(R\in\mathbb{F}^{m\times n}\)</span> が存在して, <span class="math inline">\(A=QR\)</span> が成り立つ.
+</div>
+<p></p>
+
+<div class="proof">
+<p><span class="proof"><em>証明. </em></span> 証明の方針を述べる. <span class="math inline">\(\mathbb{F}^{n}\)</span> の標準基底を <span class="math inline">\([e_{1}\ \cdots\ e_{n}]\)</span> とする. <span class="math inline">\(\mathrm{rank}A=\bar{m}&lt;\min\{m,n\}\)</span> として <span class="math inline">\([e_{1}\ \cdots\ e_{\bar{m}}]\)</span> が <span class="math inline">\(\mathrm{im}A\)</span> の基底になるように基底の順序を入れ替えておく. 順序交換はユニタリ変換である. 像 <span class="math inline">\([Ae_{1}\ \cdots\ Ae_{\bar{m}}]=[A_{1}\ \cdots\ A_{\bar{m}}]\subset\mathbb{F}^{m}\)</span> にグラム・シュミットの方法を適用して互いに直交するノルム1のベクトルの組 <span class="math inline">\([u_{1}\ \cdots\ u_{\bar{m}}]\)</span> を構成すると, 適当な <span class="math inline">\(\alpha_{ij}\)</span>, <span class="math inline">\(i\ge j\)</span> に対して <span class="math display">\[
+\begin{aligned}
+Ae_{1} &amp; =\alpha_{11}u_{1},\\
+Ae_{2} &amp; =\alpha_{21}u_{1}+\alpha_{22}u_{2}\\
+ &amp; \vdots\\
+Ae_{\bar{m}} &amp; =\alpha_{n1}u_{1}+\alpha_{n2}u_{2}+\cdots+\alpha_{\bar{m}\bar{m}}u_{\bar{m}}
+\end{aligned}
+\]</span> とできる. すなわち, <span class="math display">\[
+A[e_{1}\ \cdots\ e_{\bar{m}}]=[u_{1}\ \cdots\ u_{\bar{m}}]\left[\begin{array}{cccc}
+\alpha_{11} &amp; * &amp; * &amp; *\\
+ &amp; \alpha_{22} &amp; * &amp; *\\
+ &amp;  &amp; \ddots &amp; *\\
+ &amp;  &amp;  &amp; \alpha_{\bar{m}\bar{m}}
+\end{array}\right]=:QR.
+\]</span> <span class="math inline">\(n=m=\bar{m}\)</span> であれば, ここで分解 <span class="math inline">\(A=QR\)</span> が完成している. <span class="math inline">\(n=m&gt;\bar{m}\)</span> であれば <span class="math inline">\([u_{1}\ \cdots\ u_{\bar{m}}]\)</span> に適当なベクトルを付け加えて <span class="math inline">\([u_{1}\ \cdots\ u_{\bar{m}}\ u_{\bar{m}+1}\ \cdots\ u_{m}]\)</span> が正規直交基底になるようにできるので <span class="math display">\[
+A[e_{1}\ \cdots\ e_{\bar{m}}\ e_{\bar{m}+1}\ \cdots\ e_{n}]=[u_{1}\ \cdots\ u_{\bar{m}}\ u_{\bar{m}+1}\ \cdots\ u_{m}]\left[\begin{array}{cccc|cc}
+\alpha_{11} &amp; * &amp; * &amp; * &amp; * &amp; *\\
+ &amp; \alpha_{22} &amp; * &amp; * &amp; * &amp; *\\
+ &amp;  &amp; \ddots &amp; * &amp; * &amp; *\\
+ &amp;  &amp;  &amp; \alpha_{\bar{m}\bar{m}} &amp; * &amp; *\\
+\hline  &amp;  &amp;  &amp;  &amp; 0 &amp; 0\\
+ &amp;  &amp;  &amp;  &amp;  &amp; 0
+\end{array}\right]=:QR.
+\]</span></p>
+<span class="math inline">\(n\neq m\)</span> であっても同様の考え方で証明できる. <span class="math inline">\(n&lt;m\)</span> の場合にはゼロからなる行を最下部に付け加える. <span class="math inline">\(n&gt;m\)</span> の場合は, 任意の数からなる列を最右部に付け加える.
+</div>
+<p></p>
+</div>
+</div>
+<div id="section-8.2" class="section level2">
+<h2><span class="header-section-number">8.2</span> シューア分解とその応用</h2>
+<p>行列の対角化やジョルダン標準化は, 行列表現が良い形になるような基底を探すことである. このような基底は一般には正規直交基底になるとは限らないが, すべての行列は適当な正規直交基底に関して三角行列に表現できることが知られている. この結果を使うと, 正規行列はユニタリ行列で対角化できることを証明できる. 例えば, エルミート行列はユニタリ行列で対角化できる.</p>
+<div id="section-8.2.1" class="section level3">
+<h3><span class="header-section-number">8.2.1</span> シューア分解</h3>
+
+<div class="theorem">
+<span id="thm:unnamed-chunk-186" class="theorem"><strong>定理 8.3 </strong></span>任意の正方行列 <span class="math inline">\(A\in\mathbb{F}^{n\times n}\)</span> に対して, あるユニタリ行列 <span class="math inline">\(U\in\mathbb{F}^{n\times n}\)</span> が存在して, <span class="math inline">\(U^{-1}AU=U^{*}AU\)</span>を上三角行列にできる. <span class="math inline">\(U^{-1}AU\)</span> の対角成分には<span class="math inline">\(A\)</span>の固有値が並ぶ.
+</div>
+<p></p>
+
+<div class="proof">
+<span class="proof"><em>証明. </em></span> <span class="math inline">\(A\)</span> をジョルダン標準化する基底を <span class="math inline">\([v_{1}\ v_{2}\ \cdots\ v_{n}]\)</span> とする. 基底の構成により, <span class="math display">\[
+\mathcal{V}_{k}:=\mathrm{span}\{v_{1},\dots,v_{k}\}
+\]</span> は不変部分空間の拡大列 <span class="math display">\[
+\{0\}\subsetneq\mathcal{V}_{1}\subsetneq\mathcal{V}_{2}\subsetneq\cdots\subsetneq\mathcal{V}_{n-1}\subsetneq\mathcal{V}_{n}=\mathbb{C}^{n}
+\]</span> を形成する. <span class="math inline">\(A\mathcal{V}_{k}\subset\mathcal{V}_{k}\)</span>, <span class="math inline">\(k=1,\dots,n\)</span>, だから <span class="math inline">\(u_{k}\in\mathcal{V}_{k}\setminus\mathcal{V}_{k-1}\)</span> が成り立つように基底 <span class="math inline">\([\bar{u}_{1}\ \cdots\ \bar{u}_{n}]\)</span> を選べば, 上三角行列で表現される. グラム・シュミットの方法で <span class="math inline">\([\bar{u}_{1}\ \cdots\ \bar{u}_{n}]\)</span> に正規直交化を施せば <span class="math inline">\(U^{-1}AU=T=[t_{ij}]\)</span> が上三角行列になるようなユニタリ行列 <span class="math inline">\(U=[u_{1}\ \cdots\ u_{n}]\)</span> が見つかる. <span class="math inline">\(T\)</span> の対角成分に<span class="math inline">\(A\)</span> の固有値が並ぶことは次のようにして分かる. 任意の <span class="math inline">\(k\)</span> について, <span class="math inline">\(u_{k}\in\mathcal{V}_{k}\setminus\mathcal{V}_{k-1}\)</span> は <span class="math inline">\(u_{k}\in\alpha_{k}v_{k}+\mathcal{V}_{k-1}\)</span>, <span class="math inline">\(\alpha_{k}\neq0\)</span>, を満たすので, <span class="math display">\[
+Au_{k}\in\alpha_{k}Av_{k}+A\mathcal{V}_{k-1}\subset\alpha_{k}Av_{k}+\mathcal{V}_{k-1}.
+\]</span> <span class="math inline">\(v_{k}\)</span> が固有ベクトルであれば, <span class="math inline">\(Av_{k}=\lambda_{k}v_{k}\)</span>, 高次の一般固有ベクトルであれば <span class="math inline">\(Av_{k}=\lambda_{k}v_{k}+v_{k-1}\)</span>. いずれにせよ <span class="math inline">\(Av_{k}\in\lambda_{k}v_{k}+\mathcal{V}_{k-1}\)</span> であるから, 結局 <span class="math display">\[
+Au_{k}\in\lambda_{k}\alpha_{k}v_{k}+\mathcal{V}_{k-1}
+\]</span> が成り立つ. したがって, <span class="math inline">\(t_{kk}=\lambda_{k}\)</span> にならなければならない.
+</div>
+<p></p>
+<span class="math inline">\(A\in\mathbb{F}^{n\times n}\)</span> が正規行列であるとは, <span class="math inline">\(A^{*}A=AA^{*}\)</span> が成り立つことをいう. シューアの定理によって, 次の重要な結果を証明できる. 
+<div class="corollary">
+<span id="cor:unnamed-chunk-188" class="corollary"><strong>系 8.1 </strong></span><span class="math inline">\(A\in\mathbb{F}^{n\times n}\)</span> を正規行列であることと, ユニタリ行列によって対角化可能であることは同値.
+</div>
+<p></p>
+
+<div class="proof">
+<p><span class="proof"><em>証明. </em></span> <span class="math inline">\(A\)</span> を正規行列とする. <span class="math inline">\(U\)</span> をユニタリ行列, <span class="math inline">\(U^{*}AU=T\)</span> が上三角行列であるとする. したがって, <span class="math display">\[
+A=UTU^{*},\quad A^{*}=UT^{*}U^{*}.
+\]</span> <span class="math inline">\(A\)</span> は正規行列だから <span class="math display">\[
+UTU^{*}\cdot UT^{*}U^{*}=UT^{*}U^{*}\cdot UTU^{*}
+\]</span> すなわち <span class="math display">\[
+UTT^{*}U^{*}=UT^{*}TU^{*}.
+\]</span> <span class="math inline">\(U\)</span>, <span class="math inline">\(U^{*}\)</span> は正則なので, <span class="math inline">\(T\)</span> は正規行列である. 正規な上三角行列は対角行列以外にありえない(問題) ので, <span class="math inline">\(A\)</span> はユニタリ行列で対角化できる.</p>
+<span class="math inline">\(A\)</span> がユニタリ行列で対角化可能であるとする. <span class="math inline">\(UAU^{*}\)</span>, <span class="math inline">\(UA^{*}U^{*}\)</span> はどちらも対角行列なので <span class="math inline">\(UAU^{*}\cdot UA^{*}U^{*}=UA^{*}U^{*}\cdot UAU^{*}\)</span> が成り立つ. <span class="math inline">\(U\)</span>, <span class="math inline">\(U^{*}\)</span> は正則なので <span class="math inline">\(AA^{*}=A^{*}A\)</span> を得る.
+</div>
+<p></p>
+
+<div class="exercise">
+正規かつ上三角である行列は対角行列であることを示せ.
+</div>
+<p></p>
+
+<div class="exercise">
+エルミート行列はユニタリ行列で対角化できることを証明せよ.
+</div>
+<p></p>
+</div>
+<div id="section-8.2.2" class="section level3">
+<h3><span class="header-section-number">8.2.2</span> システム分析への応用</h3>
+<p>無限期間のシステムが</p>
+<span class="math display" id="eq:uni-sys">\[\begin{equation}
+x_{t+1}=Ax_{t}+Bu_{t},\quad t=0,1,\dots,\tag{8.1}
+\end{equation}\]</span>
+に従うとする. ただし, <span class="math inline">\(x\)</span> を構成する変数の内, 一部にのみ初期条件が与えられているとする. 変数 <span class="math inline">\(x\)</span> は <span class="math inline">\(x^{1}\in\mathbb{R}^{n_{1}}\)</span> および <span class="math inline">\(x^{2}\in\mathbb{R}^{n_{2}}\)</span> によって
+<span class="math display" id="eq:uni-12">\[\begin{equation}
+x_{t}=\begin{bmatrix}x_{t}^{1}\\
+x_{t}^{2}
+\end{bmatrix}\tag{8.2}
+\end{equation}\]</span>
+と分離されており, 初期条件が <span class="math display">\[
+x_{0}^{1}=\bar{x}_{0}^{1},
+\]</span> と与えられているとしよう. 終端条件として経路の発散スピードが幾何数列のスピードを超えないことを仮定する. すなわち, 任意の <span class="math inline">\(-1&lt;\rho&lt;1\)</span> について <span class="math display">\[
+\lim_{\tau\to\infty}\rho^{\tau}\|x_{\tau}^{2}\|=0
+\]</span> が成り立つとする. <span class="math inline">\(A\)</span> のシューア分解 <span class="math display">\[
+A=U\begin{bmatrix}T_{ss} &amp; T_{su}\\
+0 &amp; T_{uu}
+\end{bmatrix}U^{-1},\qquad U=\begin{bmatrix}U_{1s} &amp; U_{1u}\\
+U_{2s} &amp; U_{2u}
+\end{bmatrix},\quad U^{-1}=\begin{bmatrix}U_{1s}^{*} &amp; U_{2s}^{*}\\
+U_{1u}^{*} &amp; U_{2u}^{*}
+\end{bmatrix}
+\]</span> を利用して状態方程式を <span class="math display">\[
+U^{-1}\begin{bmatrix}x_{t+1}^{1}\\
+x_{t+1}^{2}
+\end{bmatrix}=\begin{bmatrix}T_{ss} &amp; T_{su}\\
+0 &amp; T_{uu}
+\end{bmatrix}U^{-1}\begin{bmatrix}x_{t}^{1}\\
+x_{t}^{2}
+\end{bmatrix}+U^{-1}\begin{bmatrix}B_{1}\\
+B_{2}
+\end{bmatrix}u_{t}
+\]</span> と変形できる. ただし, <span class="math inline">\(T_{ss}\)</span>, <span class="math inline">\(T_{uu}\)</span> はともに上三角行列であり,　 <span class="math inline">\(T_{ss}\)</span>には<span class="math inline">\(A\)</span>の固有値の内, 絶対値が1以下のものが並んでいる. また, <span class="math inline">\(T_{uu}\)</span>の対角成分には <span class="math inline">\(A\)</span> の固有値の中でも絶対値が <span class="math inline">\(1\)</span> より大きいものが並んでいるものとする. したがって, <span class="math inline">\(T_{uu}\)</span> は正則である. <span class="math inline">\(y:=U^{-1}x\)</span>, と変数変換することで
+<span class="math display" id="eq:uni-triangle">\[\begin{equation}
+\begin{bmatrix}y_{t+1}^{s}\\
+y_{t+1}^{u}
+\end{bmatrix}=\begin{bmatrix}T_{ss} &amp; T_{su}\\
+0 &amp; T_{uu}
+\end{bmatrix}\begin{bmatrix}y_{t}^{s}\\
+y_{t}^{u}
+\end{bmatrix}+\begin{bmatrix}C_{s}\\
+C_{u}
+\end{bmatrix}u_{t}\tag{8.3}
+\end{equation}\]</span>
+を得る. ただし, <span class="math display">\[
+y^{s}\in\mathbb{R}^{n_{s}},\ y^{u}\in\mathbb{R}^{n_{u}},\ y=\begin{bmatrix}y^{s}\\
+y^{u}
+\end{bmatrix},\ U^{-1}B=:\begin{bmatrix}C_{s}\\
+C_{u}
+\end{bmatrix}
+\]</span> であり, 行列はすべて適合するサイズをもつものとする. 第<a href="blanchardkahn.html#blanchardkahn">7</a>章 でやったように, 式 の第2ブロックについて最終期から後ろ向きに (forward-looking に) 解いてみよう. <span class="math inline">\(T_{uu}\)</span> は正則であるから,
+<span class="math display" id="eq:uni-yt">\[\begin{align}
+y_{t}^{u} &amp; =T_{uu}^{-1}y_{t+1}^{u}-T_{uu}^{-1}C_{u}u_{t}\nonumber \\
+ &amp; =T_{uu}^{-1}\left(T_{uu}^{-1}y_{t+2}^{u}-T_{uu}^{-1}C_{u}u_{t+1}\right)-T_{uu}^{-1}C_{u}u_{t}\nonumber \\
+ &amp; =T_{uu}^{-2}y_{t+2}^{u}-T_{uu}^{-2}C_{u}u_{t+1}-T_{uu}^{-1}C_{u}u_{t}\nonumber \\
+ &amp; =\cdots\nonumber \\
+ &amp; =T_{uu}^{-T}y_{t+T}^{u}-\sum_{k=0}^{T-1}T_{uu}^{-k-1}C_{uu}u_{t+k}.\tag{8.4}
+\end{align}\]</span>
+<p><span class="math inline">\(T_{uu}^{-1}\)</span> は安定行列であり, 解の発散スピードに関する仮定から</p>
+<span class="math display" id="eq:uni-schur-yt">\[\begin{equation}
+y_{t}^{u}=-\sum_{k=0}^{\infty}T_{uu}^{-k-1}C_{u}u_{t+k} \tag{8.5}
+\end{equation}\]</span>
+<p>が成り立たなければならない. したがって, <span class="math inline">\(y_{0}^{u}=\bar{y}_{0}^{u}=-\sum_{k=0}^{\infty}T_{uu}^{-k-1}C_{u}u_{k}\)</span> を決定できる.　<span class="math inline">\(t=0\)</span> に関する変数を決定する方程式</p>
+<p><span class="math display">\[
+\begin{bmatrix}\bar{x}_{0}^{1}\\
+x_{0}^{2}
+\end{bmatrix}=U\begin{bmatrix}y_{0}^{s}\\
+\bar{y}_{0}^{u}
+\end{bmatrix}
+\]</span> あるいは同値な方程式 <span class="math display">\[
+\begin{bmatrix}U_{1s} &amp; 0\\
+U_{2s} &amp; -I
+\end{bmatrix}\begin{bmatrix}y_{0}^{s}\\
+x_{0}^{2}
+\end{bmatrix}=\begin{bmatrix}I &amp; -U_{1u}\\
+0 &amp; -U_{2u}
+\end{bmatrix}\begin{bmatrix}\bar{x}_{0}^{1}\\
+\bar{y}_{0}^{u}
+\end{bmatrix}
+\]</span> は <span class="math inline">\(U_{1s}\)</span> が正則であるときに解が一意に存在する. これを仮定して解くと, <span class="math display">\[
+\begin{bmatrix}y_{0}^{s}\\
+x_{0}^{2}
+\end{bmatrix}=\begin{bmatrix}U_{1s}^{-1} &amp; -U_{1s}^{-1}U_{1u}\\
+U_{2s}U_{1s}^{-1} &amp; U_{2u}-U_{2s}U_{1s}^{-1}U_{1u}
+\end{bmatrix}\begin{bmatrix}x_{0}^{1}\\
+y_{0}^{u}
+\end{bmatrix}.
+\]</span> 解の不在, 不決定性に関する議論はこれまでと同様であるので省略する. 再帰方程式を計算しよう.</p>
+<span class="math display">\[
+\begin{aligned}
+\begin{bmatrix}x_{t+1}^{1}\\
+x_{t+1}^{2}
+\end{bmatrix} &amp; =U\begin{bmatrix}y_{t+1}^{s}\\
+y_{t+1}^{u}
+\end{bmatrix}\\
+ &amp; =U\begin{bmatrix}T_{ss}y_{t}^{s}+T_{su}y_{t}^{u}+C_{s}u_{t}\\
+y_{t+1}^{u}
+\end{bmatrix}\\
+ &amp; =\begin{bmatrix}U_{1s} &amp; U_{1u}\\
+U_{2s} &amp; U_{2u}
+\end{bmatrix}\begin{bmatrix}T_{ss}U_{1s}^{-1}x_{t}^{1}+\left(T_{su}-T_{ss}U_{1s}^{-1}U_{1u}\right)y_{t}^{u}+C_{s}u_{t}\\
+y_{t+1}^{u}
+\end{bmatrix}
+\end{aligned}
+\]</span> 両辺に <span class="math inline">\([U_{2s}U_{1s}^{-1}\ -I]\)</span>を掛けると <span class="math display">\[
+\begin{aligned}
+U_{2s}U_{1s}^{-1}x_{t+1}^{1}-x_{t+1}^{2} &amp; =\begin{bmatrix}0 &amp; U_{2s}U_{1s}^{-1}U_{1u}-U_{2u}\end{bmatrix}\begin{bmatrix}T_{ss}U_{1s}^{-1}x_{t}^{1}+\left(T_{su}-T_{ss}U_{1s}^{-1}U_{1u}\right)y_{t}^{u}+C_{s}u_{t}\\
+y_{t+1}^{u}
+\end{bmatrix}\\
+ &amp; =\left(U_{2s}U_{1s}^{-1}U_{1u}-U_{2u}\right)y_{t+1}^{u}.
+\end{aligned}
+\]</span> したがって,
+<span class="math display" id="eq:uni-schur-x2">\[\begin{equation}
+  x_{t}^{2}=U_{2s}U_{1s}^{-1}x_{t}^{1}+\left(U_{2u}-U_{2s}U_{1s}^{-1}U_{1u}\right)y_{t}^{u},\qquad t=0,1,\dots\tag{8.6}
+\end{equation}\]</span>
+次に <span class="math inline">\(x^{1}\)</span> の再帰方程式を求める. まず <span class="math display">\[
+\begin{aligned}
+y_{t+1}^{u} &amp; =-\sum_{k=0}^{\infty}T_{uu}^{-k-1}C_{u}u_{t+1+k}\\
+ &amp; =-T_{uu}^{-1}C_{u}u_{t+1}-T_{uu}^{-2}C_{u}u_{t+2}-T_{uu}^{-3}C_{u}u_{t+3}-\cdots\\
+ &amp; =C_{u}u_{t}+T_{uu}\left(-T_{uu}^{-1}C_{u}u_{t}-T_{uu}^{-2}C_{u}u_{t+1}-T_{uu}^{-3}C_{u}u_{t+2}-\cdots\right)\\
+ &amp; =C_{u}u_{t}+T_{uu}y_{t}^{u}
+\end{aligned}
+\]</span> に注意する.
+<span class="math display" id="eq:uni-schur-x1">\[\begin{align}
+x_{t+1}^{1} &amp; =U_{1s}T_{ss}U_{1s}^{-1}x_{t}^{1}+U_{1s}\left(T_{su}-T_{ss}U_{1s}^{-1}U_{1u}\right)y_{t}^{u}+U_{1s}C_{s}u_{t}+U_{1u}y_{t+1}^{u}\nonumber \\
+ &amp; =U_{1s}T_{ss}U_{1s}^{-1}x_{t}^{1}+\left[U_{1s}\left(T_{su}-T_{ss}U_{1s}^{-1}U_{1u}\right)+U_{1u}T_{uu}\right]y_{t}^{u}+\left(U_{1s}C_{s}+U_{1u}C_{u}\right)u_{t}\nonumber \\
+ &amp; =U_{1s}T_{ss}U_{1s}^{-1}x_{t}^{1}+\left[U_{1s}\left(T_{su}-T_{ss}U_{1s}^{-1}U_{1u}\right)+U_{1u}T_{uu}\right]y_{t}^{u}+B_{1}u_{t}.\tag{8.7}
+\end{align}\]</span>
+<p>これで再帰的な解が得られたことになる.</p>
+</div>
+<div id="u_t1phi-u_t" class="section level3">
+<h3><span class="header-section-number">8.2.3</span> <span class="math inline">\(u_{t+1}=\Phi u_{t}\)</span></h3>
+<span class="math inline">\(u_{t}\)</span> を特定化しよう. <a href="schurqz.html#eq:uni-schur-yt">(8.5)</a> で <span class="math display">\[
+M:=-\sum_{k=0}^{\infty}T_{uu}^{-k-1}C_{u}\Phi^{k}
+\]</span> とおけば, <span class="math inline">\(M\)</span> は離散時間のシルベスタ方程式 <span class="math display">\[
+\begin{aligned}
+M &amp; =-T_{uu}^{-1}C_{u}+T_{uu}^{-1}M\Phi
+\end{aligned}
+\]</span> を満たす. あるいは, 連続時間のシルベスタ方程式 <span class="math display">\[
+T_{uu}M-M\Phi=-C_{u}
+\]</span> を満たす. <span class="math display">\[
+\mathrm{vec}(T_{uu}M)-\mathrm{vec}(M\Phi)=-\mathrm{vec}(C_{u}).
+\]</span> に 補題 <a href="blanchardkahn.html#lem:vecformula">7.1</a> を使うと <span class="math display">\[
+\left(I^{\top}\otimes T_{uu}\right)\mathrm{vec}(M)-\left(\Phi^{\top}\otimes I\right)\mathrm{vec}(M)=-\mathrm{vec}(C_{u}),
+\]</span> <span class="math display">\[
+\mathrm{vec}(M)=\left[\left(\Phi^{\top}\otimes I\right)-\left(I^{\top}\otimes T_{uu}\right)\right]^{-1}\mathrm{vec}(C_{u})
+\]</span> を得る. <span class="math inline">\(M\)</span> がこのように決まるものとしたとき, 式 <a href="schurqz.html#eq:uni-schur-x1">(8.7)</a> より
+<span class="math display" id="eq:uni-sx1">\[\begin{equation}
+x_{t+1}^{1}=U_{1s}T_{ss}U_{1s}^{-1}x_{t}^{1}+\left[U_{1s}T_{su}M-U_{1s}T_{ss}U_{1s}^{-1}U_{1u}M+U_{1u}T_{uu}M+B_{1}\right]u_{t}\tag{8.8}
+\end{equation}\]</span>
+<p>を得る.</p>
+<p>式 <a href="schurqz.html#eq:uni-schur-x2">(8.6)</a> より, <span class="math display">\[
+x_{t}^{2}=U_{2s}U_{1s}^{-1}x_{t}^{1}+\left(U_{2u}-U_{2s}U_{1s}^{-1}U_{1u}\right)Mu_{t}.
+\]</span></p>
+</div>
+<div id="schur" class="section level3">
+<h3><span class="header-section-number">8.2.4</span> 実Schur分解</h3>
+<p>上の議論では <span class="math inline">\(T\)</span> が上三角行列であるとしたが, この事実は完全には利用されていない. 再帰式を計算する上では <span class="math inline">\(U^{-1}AU\)</span> がブロック上三角行列 <span class="math display">\[
+\begin{bmatrix}T_{ss} &amp; T_{su}\\
+0 &amp; T_{uu}
+\end{bmatrix}
+\]</span> でありさえすればよい. さらに, <span class="math inline">\(T_{ss}\)</span>, <span class="math inline">\(T_{uu}\)</span> が対角成分に<span class="math inline">\(A\)</span> の固有値 <span class="math inline">\(\lambda=a\pm bj\)</span> に対応する<span class="math inline">\(2\times2\)</span> 実行列 <span class="math display">\[
+\begin{bmatrix}a &amp; -b\\
+b &amp; a
+\end{bmatrix}
+\]</span> が並ぶようなブロック上三角行列であれば, 収束性に関する議論も上と同様に成り立つ.</p>
+<p>実は, 任意の実行列<span class="math inline">\(A\)</span> に対して, 適当な直交行列 <span class="math inline">\(U\)</span> を選んで <span class="math display">\[
+U^{\top}AU=\left[\begin{array}{cc|cc|cc|cc}
+a_{1} &amp; -b_{1} &amp; * &amp; * &amp; * &amp; * &amp; * &amp; *\\
+b_{1} &amp; a_{1} &amp; * &amp; * &amp; * &amp; * &amp; * &amp; *\\
+\hline  &amp;  &amp; a_{2} &amp; -b &amp; * &amp; * &amp; * &amp; *\\
+ &amp;  &amp; b_{2} &amp; a_{2} &amp; * &amp; * &amp; * &amp; *\\
+\hline  &amp;  &amp;  &amp;  &amp; \ddots &amp; * &amp; * &amp; *\\
+ &amp;  &amp;  &amp;  &amp;  &amp; \ddots &amp; * &amp; *\\
+\hline  &amp;  &amp;  &amp;  &amp;  &amp;  &amp; a_{r} &amp; -b_{r}\\
+ &amp;  &amp;  &amp;  &amp;  &amp;  &amp; b_{r} &amp; a_{r}
+\end{array}\right]
+\]</span> となるようにできる. この分解を 実Schur分解という. 上で行なった議論は実Schur分解の範囲で考えれば十分である.</p>
+</div>
+</div>
+<div id="qz-" class="section level2">
+<h2><span class="header-section-number">8.3</span> QZ 分解とその応用</h2>
+<p>行列のペア <span class="math inline">\((E,A)\)</span> が与えられたとき, 正則行列 <span class="math inline">\(V\)</span>, <span class="math inline">\(W\)</span> により <span class="math display">\[
+W^{-1}AV=\begin{bmatrix}J\\
+ &amp; I
+\end{bmatrix},\qquad W^{-1}EV=\begin{bmatrix}I\\
+ &amp; N
+\end{bmatrix}
+\]</span> が成り立つようにできるのであった. <span class="math inline">\(J\)</span>, <span class="math inline">\(N\)</span> はいずれもジョルダン標準形行列になっているので, <span class="math inline">\(W^{-1}AV\)</span>, <span class="math inline">\(W^{-1}EV\)</span> はいずれも上三角行列になっていることに注意しよう. 行列ペアに対してSchur 分解を拡張することで, 一般化Schur分解あるいはQZ分解と呼ばれる標準化の方法が得られる. ユニタリ変換による標準化は数値的に望ましい性質を持つので, 実用的にはQZ分解を利用したシステム解析法がもっとも使いやすい.</p>
+<div id="qz" class="section level3">
+<h3><span class="header-section-number">8.3.1</span> QZ分解</h3>
+<span class="citation">Golub and Van Loan (<a href="#ref-GVL4">2013</a>)</span> にしたがって証明する.<a href="#fn30" class="footnoteRef" id="fnref30"><sup>30</sup></a> 
+<div class="theorem">
+<span id="thm:unnamed-chunk-191" class="theorem"><strong>定理 8.4 </strong></span>任意の正方行列のペア <span class="math inline">\(E,A\in\mathbb{F}^{n\times n}\)</span> に対して, 適当なユニタリ行列 <span class="math inline">\(Q\)</span>, <span class="math inline">\(Z\)</span> を選べば <span class="math display">\[
+Q^{*}AZ=T,\qquad Q^{*}EZ=S
+\]</span> が上三角行列になるようにできる. ペンシル <span class="math inline">\((E,A)\)</span> がレギュラーであれば, <span class="math inline">\(T\)</span> と<span class="math inline">\(S\)</span> の対角成分の比が <span class="math inline">\((E,A)\)</span> の有限固有値の集合と一致する. すなわち <span class="math display">\[
+\mathrm{sp}(E,A)=\left\{ \frac{t_{ii}}{s_{ii}}\ \mid\ s_{ii}\neq0,\ i=1,\dots,n\right\} .
+\]</span>
+</div>
+<p></p>
+
+<div class="proof">
+<span class="proof"><em>証明. </em></span> <span class="math inline">\(\{E_{k}\}\)</span> を <span class="math inline">\(E\)</span> に収束する正則行列の列とする. <span class="math inline">\(AE_{k}^{-1}\)</span> をシューア分解するユニタリ行列を<span class="math inline">\(Q_{k}\)</span> とすれば,
+<span class="math display" id="eq:uni-qza">\[\begin{align}
+  Q_{k}^{*}\left(AE_{k}^{-1}\right)Q_{k}=R_{k} \tag{8.9}
+\end{align}\]</span>
+は上三角行列である. QR分解を <span class="math inline">\(E_{k}^{-1}Q_{k}\)</span> にほどこして,
+<span class="math display" id="eq:uni-qzb">\[\begin{equation}
+E_{k}^{-1}Q_{k}=Z_{k}S_{k}^{-1}\tag{8.10}
+\end{equation}\]</span>
+<p>とする. ただし, <span class="math inline">\(S_{k}^{-1}\)</span> は上三角行列で, <span class="math inline">\(Z_{k}\)</span> はユニタリ行列. <a href="schurqz.html#eq:uni-qza">(8.9)</a> に <a href="schurqz.html#eq:uni-qzb">(8.10)</a> を代入すると, <span class="math display">\[
+Q_{k}^{*}AZ_{k}=R_{k}S_{k}
+\]</span> を得る. 正則な上三角行列の逆行列もまた上三角行列なので, <span class="math inline">\(S_{k}\)</span> は上三角行列である. したがって, <span class="math inline">\(R_{k}S_{k}\)</span> は上三角行列である. <span class="math inline">\(T_{k}:=R_{k}S_{k}\)</span> とする.</p>
+式 <a href="schurqz.html#eq:uni-qzb">(8.10)</a> に右から <span class="math inline">\(S_{k}\)</span>, 左から<span class="math inline">\(E_{k}\)</span>を掛けて <span class="math display">\[
+Q_{k}S_{k}=E_{k}Z_{k},
+\]</span> さらに左から <span class="math inline">\(Q_{k}^{-k}=Q_{k}^{*}\)</span> を掛けて <span class="math display">\[
+S_{k}=Q_{k}^{*}E_{k}Z_{k}
+\]</span> を得る. <span class="math inline">\(|\det Q_{k}|=|\det Z_{k}|\)</span> が成り立つので, <span class="math inline">\(Q_{k}\)</span>, <span class="math inline">\(Z_{k}\)</span> は <span class="math inline">\(\mathbb{F}^{n\times n}\)</span> の有界な点列である. ボルツァーノ・ワイエルシュトラスの定理により, <span class="math inline">\(\{(Q_{k},Z_{k})\}\)</span> は収束する部分列 <span class="math inline">\(\{(Q_{k_{i}},Z_{k_{i}})\}_{i}\)</span> を持つ. 極限を <span class="math inline">\((Q,Z)\)</span> とすれば <span class="math display">\[
+\begin{aligned}
+\lim_{i\to\infty}Q_{k_{i}}^{*}A_{k_{i}}Z_{k_{i}} &amp; =Q^{*}AZ=T=\lim_{i\to\infty}T_{k_{i}}\\
+\lim_{i\to\infty}Q_{k_{i}}^{*}E_{k_{i}}Z_{k_{i}} &amp; =Q^{*}EZ=S=\lim_{i\to\infty}S_{k_{i}}
+\end{aligned}
+\]</span> が成り立つ. <span class="math inline">\(T\)</span>, <span class="math inline">\(S\)</span> が上三角行列であることは明らか. <span class="math inline">\(Q\)</span>, <span class="math inline">\(Z\)</span> がユニタリであることは, <span class="math display">\[
+I=Q_{k_{i}}^{*}Q_{k_{i}}\to Q^{*}Q,\quad I=Z_{k_{i}}^{*}Z_{k_{i}}\to Z^{*}Z
+\]</span> から分かる. 有限固有値に関する性質は, <span class="math display">\[
+\begin{aligned}
+|\det(\lambda E-A)| &amp; =|\det(\lambda QSZ^{*}-QTZ^{*})|\\
+ &amp; =|\det Q\cdot\det(\lambda S-T)\cdot\det Z^{*}|\\
+ &amp; =|\det(\lambda S-T)|\\
+ &amp; =\prod|\lambda s_{ii}-t_{ii}|
+\end{aligned}
+\]</span> から従う.
+</div>
+<p></p>
+</div>
+<div id="-1" class="section level3">
+<h3><span class="header-section-number">8.3.2</span> システム分析への応用</h3>
+<span class="math inline">\((E,A)\)</span> をレギュラーとする. ここではシステム
+<span class="math display" id="eq:uni-sing-qz">\[\begin{equation}
+Ex_{t+1}=Ax_{t}+Bu_{t},\quad x\in\mathbb{R}^{n},\quad u\in\mathbb{R}^{m}\tag{8.11}
+\end{equation}\]</span>
+<p>に対する解公式を導出しよう. QZ分解を用いた分析といってもこれまでの分析と大きくは変わらない. もうかなり慣れてきたと思うので, 簡単に述べるにとどめる.</p>
+<p>これまでと同様, <span class="math inline">\(x_{0}=(x_{0}^{1},x_{0}^{2})\in\mathbb{R}^{n_{1}}\times\mathbb{R}^{n_{2}}\)</span> には初期条件 <span class="math inline">\(x_{0}^{1}=\bar{x}_{0}^{1}\)</span> が与えられている. 幾何数列の発散スピードを超えない <span class="math inline">\((x_{t})_{t\ge0}\)</span> を実行可能な解とする. <span class="math inline">\((E,A)\)</span> の QZ分解 <span class="math display">\[
+\begin{aligned}
+Q^{*}EZ &amp; =S=\begin{bmatrix}S_{ss} &amp; S_{su}\\
+0 &amp; S_{uu}
+\end{bmatrix},\quad S_{ss}\in\mathbb{C}^{n_{s}\times n_{s}},\ S_{su}\in\mathbb{C}^{n_{s}\times n_{u}},\ S_{uu}\in\mathbb{C}^{n_{u}\times n_{u}}\\
+Q^{*}AZ &amp; =T=\begin{bmatrix}T_{ss} &amp; T_{su}\\
+0 &amp; T_{uu}
+\end{bmatrix}\quad T_{ss}\in\mathbb{C}^{n_{s}\times n_{s}},\ T_{su}\in\mathbb{C}^{n_{s}\times n_{u}},\ T_{uu}\in\mathbb{C}^{n_{u}\times n_{u}}
+\end{aligned}
+\]</span> は <span class="math inline">\(\{\lambda_{i}=(T_{ss})_{ii}/(S_{ss})_{ii}\ \mid\ i=1,\dots,n_{s}\}\)</span> が <span class="math inline">\(|\lambda_{i}|\le1\)</span> を満たす有限固有値とする. <span class="math inline">\(S_{ss}\)</span> は正則である. <span class="math inline">\((S_{uu},T_{uu})\)</span> について, <span class="math inline">\((S_{uu})_{ii}\neq0\)</span> のとき <span class="math inline">\((T_{uu})_{ii}/(S_{uu})_{ii}&gt;1\)</span> であり <span class="math inline">\((E,A)\)</span> の有限不安定固有値に対応し, <span class="math inline">\((S_{uu})_{ii}=0\)</span> は無限大固有値に対応している. <span class="math inline">\((E,A)\)</span> がレギュラーなので <span class="math inline">\((S_{uu})_{ii}=0\)</span> のときは <span class="math inline">\((T_{uu})_{ii}\neq0\)</span> である. したがって, <span class="math inline">\(T_{uu}\)</span> は必ず正則になる.</p>
+いつものように <span class="math inline">\(\left[\begin{smallmatrix}y_{t}^{s}\\ y_{t}^{u} \end{smallmatrix}\right]=Z^{*}\left[\begin{smallmatrix}x_{t}^{1}\\ x_{t}^{2} \end{smallmatrix}\right]\in\mathbb{R}^{n_{s}}\times\mathbb{R}^{n_{u}}\)</span>と変数変換すると,
+<span class="math display" id="eq:uni-recur-qz">\[\begin{equation}
+\begin{bmatrix}S_{ss} &amp; S_{su}\\
+0 &amp; S_{uu}
+\end{bmatrix}\begin{bmatrix}y_{t+1}^{s}\\
+y_{t+1}^{u}
+\end{bmatrix}=\begin{bmatrix}T_{ss} &amp; T_{su}\\
+0 &amp; T_{uu}
+\end{bmatrix}\begin{bmatrix}y_{t}^{s}\\
+y_{t}^{u}
+\end{bmatrix}+Q^{*}Bu_{t}.\tag{8.12}
+\end{equation}\]</span>
+ただし, <span class="math inline">\(Z=\left[\begin{smallmatrix}Z_{1s} &amp; Z_{1u}\\ Z_{2s} &amp; Z_{2u} \end{smallmatrix}\right]\)</span>, <span class="math inline">\(Q^{*}B=\left[\begin{smallmatrix}C_{s}\\ C_{u} \end{smallmatrix}\right]\)</span> としておこう. <span class="math inline">\(T_{uu}\)</span>, <span class="math inline">\(S_{uu}\)</span> は上三角行列なので, <span class="math inline">\(T_{uu}^{-1}\)</span> および <span class="math inline">\(T_{uu}^{-1}S_{uu}\)</span> も上三角行列になる. <span class="math inline">\(S_{uu}\)</span> , <span class="math inline">\(T_{uu}\)</span> の定義から, <span class="math inline">\(T_{uu}^{-1}S_{uu}\)</span> は絶対値が1以下の固有値のみをもつ行列である. バックワードサブシステム
+<span class="math display" id="eq:uni-qz-bsys">\[\begin{equation}
+y_{t}^{u}=(T_{uu}^{-1}S_{uu})y_{t+1}^{u}-T_{uu}^{-1}C_{u}u_{t}\tag{8.13}
+\end{equation}\]</span>
+が <span class="math inline">\(y_{t}^{u}\)</span> を決定する. 発散スピードに対する仮定から
+<span class="math display" id="eq:uni-yu-qz">\[\begin{equation}
+y_{t}^{u}=-\sum_{k=0}^{\infty}\left(T_{uu}^{-1}S_{uu}\right)^{k}T_{uu}^{-1}C_{u}u_{t+k}\tag{8.14}
+\end{equation}\]</span>
+となる. 未知数の決定は線形方程式
+<span class="math display" id="eq:uni-qz-linsys">\[\begin{equation}
+\begin{bmatrix}Z_{1s} &amp; 0\\
+Z_{2s} &amp; -I
+\end{bmatrix}\begin{bmatrix}y_{0}^{s}\\
+x_{0}^{2}
+\end{bmatrix}=\begin{bmatrix}I &amp; -Z_{1u}\\
+0 &amp; -Z_{2u}
+\end{bmatrix}\begin{bmatrix}\bar{x}_{0}^{1}\\
+\bar{y}_{0}^{u}
+\end{bmatrix}\tag{8.15}
+\end{equation}\]</span>
+<p>によることもこれまでと同様である. <span class="math inline">\(Z_{1s}\)</span> が正則な正方行列であるときに <span class="math inline">\(t=0\)</span> 時点の変数を一意に定めることができる.</p>
+<p>再帰方程式を導出するにあたって, <span class="math inline">\(u_{t+1}=\Phi u_{t}\)</span> を仮定する. 式<a href="schurqz.html#eq:uni-yu-qz">(8.14)</a> より<span class="math inline">\(y_{t}^{u}=Mu_{t}\)</span>. ただし, <span class="math inline">\(M\)</span> はシルベスタ方程式 <span class="math display">\[
+\begin{aligned}
+M &amp; -T_{uu}^{-1}S_{uu}M\Phi=-T_{uu}^{-1}C_{u}
+\end{aligned}
+\]</span> の解である. <a href="schurqz.html#eq:uni-recur-qz">(8.12)</a> の第1行目の式から</p>
+<span class="math display">\[\begin{align}
+y_{t+1}^{s} &amp; =S_{ss}^{-1}T_{ss}y_{t}^{s}-S_{ss}^{-1}S_{su}y_{t+1}^{u}+S_{ss}^{-1}T_{su}y_{t}^{u}+S_{ss}^{-1}C_{s}u_{t}(\#eq:uni-ys_gen)\\
+ &amp; =S_{ss}^{-1}T_{ss}y_{t}^{s}-\left(S_{ss}^{-1}S_{su}M\Phi-S_{ss}^{-1}T_{su}M-S_{ss}^{-1}C_{s}\right)u_{t}.\nonumber 
+\end{align}\]</span>
+<span class="math inline">\(y_{t}^{s}=Z_{1s}^{-1}\left(x_{t}^{1}-Z_{1u}y_{t}^{u}\right)\)</span> を使ってさらに計算を進めると,
+<span class="math display" id="eq:uni-x1-qz">\[\begin{align}
+x_{t+1}^{1} &amp; =Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}x_{t}^{1}+Lu_{t},\tag{8.16}
+\end{align}\]</span>
+<p>を得る. ただし, <span class="math display">\[
+L=-Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}Z_{1u}M+Z_{1s}S_{ss}^{-1}\left(T_{su}M-S_{su}M\Phi+C_{s}\right)+Z_{1u}M\Phi.
+\]</span> 続いて, <span class="math inline">\(x_{t}^{2}\)</span> に関する方程式を導出しよう. 変数変換の定義より <span class="math display">\[
+Z_{2s}y_{t}^{s}-x_{t}^{2}=-Z_{2u}y_{t}^{u},\qquad y_{t}^{s}=Z_{1s}^{-1}\left(x_{t}^{1}-Z_{1u}y_{t}^{u}\right)
+\]</span> が成り立つので, <span class="math display">\[
+\begin{aligned}
+x_{t}^{2} &amp; =Z_{2s}y_{t}^{s}+Z_{2u}y_{t}^{u}\\
+ &amp; =Z_{2s}Z_{1s}^{-1}\left(x_{t}^{1}-Z_{1u}y_{t}^{u}\right)+Z_{2u}y_{t}^{u}\\
+ &amp; =Z_{2s}Z_{1s}^{-1}x_{t}^{1}+(Z_{2u}-Z_{2s}Z_{1s}^{-1}Z_{1u})Mu_{t}.
+\end{aligned}
+\]</span> したがって, 次の公式を得た.</p>
+
+<div class="theorem">
+<p><span id="thm:unnamed-chunk-193" class="theorem"><strong>定理 8.5  (<span class="citation">Klein (<a href="#ref-Klein2000">2000</a>)</span>) </strong></span>システム  をQZ分解を用いて解くと, 解は <span class="math display">\[
+\begin{aligned}
+x_{t+1}^{1} &amp; =Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}x_{t}^{1}+Lu_{t},\\
+x_{t}^{2} &amp; =Z_{2s}Z_{1s}^{-1}x_{t}^{1}+(Z_{2u}-Z_{2s}Z_{1s}^{-1}Z_{1u})Mu_{t}
+\end{aligned}
+\]</span> によって表される. ただし,<span class="math inline">\(x_{0}^{1}\)</span> は所与, <span class="math inline">\(S\)</span>, <span class="math inline">\(T\)</span>, <span class="math inline">\(Z\)</span>, <span class="math inline">\(M\)</span>, <span class="math inline">\(C\)</span> は上で与えたものであり,</p>
+<span class="math display">\[
+\begin{aligned}
+L &amp; =-Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}Z_{1u}M+Z_{1s}S_{ss}^{-1}\left(T_{su}M-S_{su}M\Phi+C_{s}\right)+Z_{1u}M\Phi,\\
+M &amp; =\mathrm{vec}^{-1}\left(\left(\Phi^{\top}\otimes S_{uu}-I\otimes T_{uu}\right)^{-1}\mathrm{vec}(C_{u})\right).
+\end{aligned}
+\]</span>
+</div>
+<p></p>
+<p></p>
+</div>
+</div>
+<div id="qz" class="section level2">
+<h2><span class="header-section-number">8.4</span> QZ解法の一般公式</h2>
+<p>一般の <span class="math inline">\(u\)</span> に対する公式は次のように表現できる. <span class="math inline">\(t=0,1,\dots\)</span> に対して, <span class="math display">\[
+\begin{aligned}
+x_{t+1}^{1} &amp; =\Omega_{x}x_{t}^{1}+\Omega_{u}u_{t}+\Omega_{y}y_{t+1}^{u}\\
+x_{t}^{2} &amp; =\Psi_{x}x_{t}^{1}+\Psi_{y}y_{t}^{u}
+\end{aligned}
+\]</span> ただし, <span class="math inline">\(x_{0}^{1}\)</span> は所与であり, <span class="math inline">\(y_{t}^{u}\)</span> は式 <a href="schurqz.html#eq:uni-yu-qz">(8.14)</a> から定まる. 行列, <span class="math inline">\(\Omega_{x}\)</span>, <span class="math inline">\(\Omega_{u}\)</span>, <span class="math inline">\(\Omega_{y}\)</span>, <span class="math inline">\(\Psi_{x}\)</span>, <span class="math inline">\(\Psi_{y}\)</span> を導出しよう. <span class="math display">\[
+\begin{aligned}
+x_{t+1}^{1}-Z_{1u}y_{t+1}^{u} &amp; =Z_{1s}y_{t+1}^{s}\\
+ &amp; =Z_{1s}\left[S_{ss}^{-1}T_{ss}y_{t}^{s}-S_{ss}^{-1}S_{su}y_{t+1}^{u}+S_{ss}^{-1}T_{su}y_{t}^{u}+S_{ss}^{-1}C_{s}u_{t}\right]\\
+ &amp; =Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}\left(x_{t}^{1}-Z_{1u}y_{t}^{u}\right)\\
+ &amp; \qquad-Z_{1s}S_{ss}^{-1}S_{su}y_{t+1}^{u}\\
+ &amp; \qquad+Z_{1s}S_{ss}^{-1}T_{su}y_{t}^{u}\\
+ &amp; \qquad+Z_{1s}S_{ss}^{-1}C_{s}u_{t}
+\end{aligned}
+\]</span> から <span class="math display">\[
+\begin{aligned}
+x_{t+1}^{1} &amp; =Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}x_{t}^{1}\\
+ &amp; \qquad+(Z_{1u}-Z_{1s}S_{ss}^{-1}S_{su})y_{t+1}^{u}\\
+ &amp; \qquad+Z_{1s}S_{ss}^{-1}(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})y_{t}^{u}\\
+ &amp; \qquad+Z_{1s}S_{ss}^{-1}C_{s}u_{t}.
+\end{aligned}
+\]</span> 式<a href="schurqz.html#eq:uni-qz-bsys">(8.13)</a> を用いて整理すると, <span class="math display">\[
+\begin{aligned}
+x_{t+1}^{1} &amp; =Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}x_{t}^{1}\\
+ &amp; \qquad+(Z_{1u}-Z_{1s}S_{ss}^{-1}S_{su})y_{t+1}^{u}\\
+ &amp; \qquad+Z_{1s}S_{ss}^{-1}(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})T_{uu}^{-1}(S_{uu}y_{t+1}^{u}-C_{u}u_{t})\\
+ &amp; \qquad+Z_{1s}S_{ss}^{-1}C_{s}u_{t}\\
+ &amp; =Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}x_{t}^{1}\\
+ &amp; \qquad+Z_{1s}S_{ss}^{-1}\left[C_{s}-(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})T_{uu}^{-1}C_{u}\right]u_{t}\\
+ &amp; \qquad+\left[Z_{1u}-Z_{1s}S_{ss}^{-1}S_{su}+Z_{1s}S_{ss}^{-1}(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})T_{uu}^{-1}S_{uu}\right]y_{t+1}^{u}
+\end{aligned}
+\]</span> を得る. したがって, <span class="math display">\[
+\begin{aligned}
+\Omega_{x} &amp; =Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}\\
+\Omega_{u} &amp; =Z_{1s}S_{ss}^{-1}\left[(T_{ss}Z_{1s}^{-1}Z_{1u}-T_{su})T_{uu}^{-1}C_{u}+C_{s}\right]\\
+\Omega_{y} &amp; =Z_{1u}-Z_{1s}S_{ss}^{-1}S_{su}+Z_{1s}S_{ss}^{-1}(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})T_{uu}^{-1}S_{uu}.
+\end{aligned}
+\]</span> 非先決変数については, <span class="math display">\[
+\begin{aligned}
+x_{t}^{2} &amp; =Z_{2s}y_{t}^{s}+Z_{2u}y_{t}^{u}\\
+ &amp; =Z_{2s}Z_{1s}^{-1}(x_{t}^{1}-Z_{1u}y_{t}^{u})+Z_{2u}y_{t}^{u}\\
+ &amp; =Z_{2s}Z_{1s}^{-1}x_{t}^{1}+(Z_{2u}-Z_{2s}Z_{1s}^{-1}Z_{1u})y_{t}^{u}
+\end{aligned}
+\]</span> より, <span class="math display">\[
+\begin{aligned}
+\Psi_{x} &amp; =Z_{2s}Z_{1s}^{-1}\\
+\Psi_{y} &amp; =Z_{2u}-Z_{2s}Z_{1s}^{-1}Z_{1u}
+\end{aligned}
+\]</span> となる.</p>
+
+</div>
+</div>
+<h3>参考文献</h3>
+<div id="refs" class="references">
+<div id="ref-Klein2000">
+<p>Klein, Paul. 2000. “Using the Generalized Schur Form to Solve a Multivariate Linear Rational Expectations Model.” <em>Journal of Economic Dynamics &amp; Control</em> 24: 1405–23.</p>
+</div>
+<div id="ref-Sims2001">
+<p>Sims, Christopher A. 2001. “Solving Linear Rational Expectations Models.” <em>Computational Economics</em> 20: 1–20.</p>
+</div>
+<div id="ref-BlanchardKahn1980">
+<p>Blanchard, Olivier Jean, and Charles M. Kahn. 1980. “The Solution of Linear Difference Models Under Rational Expectations.” <em>Econometrica</em> 48 (5): 1305–12.</p>
+</div>
+<div id="ref-GVL4">
+<p>Golub, Gene H., and Charles F. Van Loan. 2013. <em>Matrix Computations</em>. 4th ed. John Hopkins University Press.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="30">
+<li id="fn30"><p>TODO: Deflating subspace への分解 <span class="math inline">\(\mathbb{F}^{n}=\mathcal{V}^{*}\oplus\mathcal{W}^{*}\)</span> と2つの部分空間列 <span class="math inline">\(\mathcal{V}_{0}\supsetneq\mathcal{V}_{1}\supsetneq\cdots\supsetneq\mathcal{V}^{*}\)</span>, <span class="math inline">\(\mathcal{W}_{0}\subsetneq\mathcal{W}_{1}\subsetneq\cdots\subsetneq\mathcal{W}^{*}\)</span> に適合する基底を用いた証明を考えてみよ.<a href="schurqz.html#fnref30">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="blanchardkahn.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-9.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"download": ["linear-economic-dynamics.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"lib_dir": "assets",
+"search": true,
+"toolbar": {
+"position": "fixed"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
