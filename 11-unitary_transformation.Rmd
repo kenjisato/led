@@ -1,0 +1,953 @@
+# Schur分解・QZ分解 
+
+今回はシステム軌道の数値計算を行う上で重要なSchur分解, QZ 分解について解説する. QZ分解は @Klein2000
+や @Sims2001 で使われている実用的な方法である. Schur 分解は $E=I$ のケースで, つまり @BlanchardKahn1980
+の仮定の下で利用できる. 
+
+本稿では内積空間に関する基本事項を復習し, Schur 分解, Schur分解を用いたシステム分析, QZ分解, QZ分解を用いたシステム分析の順に解説する. 
+
+## 直交性
+
+$X$ を$\mathbb{F}$ 上の線形空間とする. 
+
+### 内積空間
+
+```{definition, name='内積空間の公理'}
+$\mathbb F$ 上の線形空間 $X$ が内積空間であるとは, 内積と呼ばれる写像
+$$
+\begin{aligned}
+(\cdot,\cdot):X\times X & \to\mathbb{F}
+\end{aligned}
+$$
+が定義されていて, 次の性質を満たすことをいう. 
+
+1. 任意の $x\in X$ について $(x,x)\ge0$, $x=0$ のとき, またそのときに限り $(x,x)=0$;
+1. 任意の $x,y\in X$ について $(y,x)=\overline{(x,y)}$;
+1. 任意の $x,y\in X$, $\alpha\in\mathbb{F}$ について $(\alpha x,y)=\alpha(x,y)$;
+1. 任意の $x,y,z\in X$ について $(x+y,z)=(x,z)+(y,z)$. 
+
+```
+
+
+```{example}
+$X=\mathbb{C}^{n}$ とする. $X$に 
+$$
+(x,y):=\sum_{k=1}^{n}x_{k}\bar{y}_{k}=y^{*}x
+$$
+ を導入した空間は内積空間の公理を満たす. 
+```
+
+
+```{example}
+分散有限な$\mathbb{R}^{n}$値確率変数全体からなる線形空間 $L^{2}(\mathbb{R}^{n};P)$ に
+$$
+(x,y):=\mathbb{E}\left[y^{\top}x\right]:=\int_{\mathbb{R}^{n}}y(\omega)^{\top}x(\omega)P(d\omega).
+$$
+ を導入すると, $L^{2}(\mathbb{R}^{n};P)$ は内積空間になる. 
+```
+
+
+```{definition}
+$X$ を内積空間とする. $x,y\in X$ が $(x,y)=0$ を満たすとき, $x$ と $y$ は直交しているといい,
+$x\perp y$ と書く. 
+```
+
+
+```{definition}
+$X$ を有限次元の内積空間とする. $X$ の基底 $\{v_{1},\dots,v_{n}\}$ が 
+$$
+\begin{aligned}
+\|v_{i}\|=1, & \quad i=1,\dots,n\\
+v_{i}\perp v_{j} & \quad i\neq j
+\end{aligned}
+$$
+を満たすとき, $\{v_{1},\dots,v_{n}\}$ を正規直交基底であるという. 
+```
+
+
+```{definition}
+部分空間 $M$ の直交補空間 $M^{\perp}$とは
+$$
+M^{\perp}:=\left\{ x\in X\ \mid\ m\perp x\ \forall m\in M\right\} 
+$$
+のことである. あるいは, 全空間を明示して$X\ominus M$ と書く.
+```
+
+
+### 内積空間と基底
+
+$X$ を有限次元の内積空間とする. 内積は基底とは無関係に定義されるものであることに注意する. 
+
+内積空間 $X$ に基底を導入し, 内積の座標表現を調べてみよう. $V =  [v_1\ \cdots\ v_n ]$ をある正規直交基底とする. このとき, ベクトル $x, y \in X$ 
+
+$$
+\begin{aligned}
+  x &= x_1^V v_1 + \cdots + x_n^V v_n, \quad 
+     x^V = (x_1^V, \dots, x_n^V)^\top  \in \mathbb F^n \\
+  y &= y_1^V v_1 + \cdots + y_n^V v_n, \quad
+     y^V = (y_1^V, \dots, y_n^V)^\top \in \mathbb F
+\end{aligned}
+$$
+
+について
+
+$$
+  (x, y) = \sum_{k = 1}^n x_k^V \bar{y}_k^V = (y^V)^* (x^V)
+$$
+が成り立つことに注意せよ。我々がよく知っている内積の定義は, 正規直交基底を導入することで自然に導かれるものである. 
+
+ベクトルの組 $W = [w_1\ \cdots\ w_n]$ を正規直交基底とは限らない一般の基底, 
+
+$$
+\begin{aligned}
+  x &= x_1^W W_1 + \cdots + x_n^W W_n, \quad 
+     x^W = (x_1^W, \dots, x_n^W)^\top  \in \mathbb F^n \\
+  y &= y_1^W W_1 + \cdots + y_n^W W_n, \quad
+     y^W = (y_1^W, \dots, y_n^W)^\top \in \mathbb F
+\end{aligned}
+$$
+
+$$
+  (x, y) 
+    = \sum_{i = 1}^n \sum_{j = 1}^n
+        x_i^W \bar{y}_j^W (w_i, w_j)
+    = (y^W)^* G^W (x^W)
+$$
+ただし
+$$
+  G^W = \begin{bmatrix}
+    (w_1, w_1) & \cdots & (w_1, w_n) \\
+    \vdots     & \ddots & \vdots \\
+    (w_n, w_1) & \cdots & (w_n, w_n) 
+   \end{bmatrix}
+$$
+とした. $G^W$ はHermite行列である. 基底の内積からなる $G^W$ のような行列を Gram行列と呼ぶ. Gram行列は必ず正定値行列になる. 実際, 
+
+$$
+  (x^W)^*G^W x^W = (x, x) \ge 0,
+$$
+等号が成立するのは $x = 0$ のときのみである.  
+逆に, 正定置行列 $A$ が与えられたとき, $(\xi, \eta) \mapsto \eta^*A\xi$ は $\mathbb F^n$ の内積である. 
+
+次に, 転置行列（共役転置行列）を線形空間において特徴づけしよう. 
+
+```{definition}
+$X$, $Y$ を内積空間とする. 線形写像 $f:X\to Y$ の随伴写像 $f^{*}:Y\to X$ とは, 任意の
+$x\in X$ と $y\in Y$ について
+$$
+(fx,y)_{Y}=(x,f^{*}y)_{X}
+$$
+が成り立つ線形写像のことである. 
+```
+
+$\mathbb F^n$ に通常の内積を導入したときに, 共役転置行列 $A^*$ が上の性質を満たしていることを確認せよ.
+
+### 内積空間のノルム
+
+内積空間には「ベクトルの長さ」を表すノルム関数が自然に定義される.
+```{definition, name='内積によって導入されるノルム'}
+ $X$ を内積空間とする. 写像 $\|\cdot\|:X\to\mathbb{R}_{+}$
+$$
+\begin{aligned}
+\|\cdot\|:X & \to\mathbb{R}_{+}\\
+x & \mapsto\sqrt{(x,x)}
+\end{aligned}
+$$
+は次の性質をもつ. 
+
+1. $x=0$ のとき, またそのときに限り $\|x\|=0$;
+1. 任意の $x\in X$, $\alpha\in\mathbb{F}$ に対して, $\|\alpha x\|=|\alpha|\|x\|$;
+1. 任意の $x,y\in X$ に対して, $\|x+y\|\le\|x\|+\|y\|$;
+
+このような性質を持つ関数をノルムと呼ぶ. 内積空間には自然なノルムが存在する. 
+```
+
+ノルム関数は内積とは無関係に定義できるものである. 内積空間とは限らない線形空間にノルムを導入した空間をノルム空間という. 
+
+内積から導入されたノルムが3つ目の性質（三角不等式と呼ばれる）を満たすことは証明が必要である. まず, 次の定理を紹介する. 
+
+```{theorem, name='コーシー・シュワルツ'}
+$X$ を内積空間とする. 任意の $x,y\in X$ について
+\begin{equation}
+\left|(x,y)\right|\le\|x\|\|y\|  (\#eq:eq:uni-cs)
+\end{equation}
+が成り立つ. $x$ と $y$ が1次従属のとき, またそのときに限り等号が成立する. 
+```
+
+```{proof}
+$x,y\in X$ を任意にとる. $y=0$ のとき自明であるから, $y\neq0$ とする. さらに, $t\in\mathbb{F}$
+を固定する. 
+$$
+\begin{aligned}
+0 & \le(x+ty,x+ty)\\
+ & =(x,x)+(x,ty)+(ty,x)+(ty,ty)\\
+ & =\|x\|^{2}+\bar{t}(x,y)+t\overline{(x,y)}+|t|^{2}\|y\|^{2}
+\end{aligned}
+$$
+ここで, $t=-(x,y)/\|y\|^{2}$ を代入すると, 
+$$
+0\le\|x\|^{2}-\frac{\overline{(x,y)}}{\|y\|^{2}}(x,y)-\frac{(x,y)}{\|y\|^{2}}\overline{(x,y)}+\frac{(x,y)\overline{(x,y)}}{\|y\|^{4}}\|y\|^{2},
+$$
+したがって
+$$
+\left|(x,y)\right|^{2}\le\|x\|^{2}\|y\|^{2}
+$$
+を得る. 等号で成立する場合には, $(x+ty,x+ty)=0$, すなわち $x+ty=0$ なる $t$ が存在するということである.
+$y\neq0$ を仮定しているので, これは1次独立性に外ならない. 逆に, 1次従属であるときに等号成立することは内積とノルムの定義により明らか. 
+```
+
+
+```{proposition}
+内積によって導入されたノルムは三角不等式を満たす. 
+```
+
+```{proof}
+定義に従って, 
+$$
+\begin{aligned}
+\|x+y\|^{2} & =\left|(x+y,x+y)\right|\\
+ & \le(x,x)+\left|(x,y)\right|+\left|(y,x)\right|+(y,y)\\
+ & =\|x\|^{2}+2\left|(x,y)\right|+\|y\|^{2}\\
+ & \le\|x\|^{2}+2\|x\|\|y\|+\|y\|^{2}\\
+ & =\left(\|x\|+\|y\|\right)^{2}.
+\end{aligned}
+$$
+4行目の不等式にコーシー・シュワルツの不等式を使った. 
+```
+
+ユニタリ行列とは
+$$
+U^{*}U=UU^{*}=I
+$$
+ を満たす行列のことであった. 
+
+```{block2, type='fact'}
+ユニタリ行列 $U$ の列は $\mathbb{F}^{n}$ の正規直交基底を成す. 
+```
+
+
+```{block2, type='fact'}
+ユニタリ変換は内積を保存する. なぜなら, 
+$$
+(Ux,Uy)=(x,U^{*}Uy)=(x,y).
+$$
+```
+
+
+```{block2, type='fact'}
+$U$ をユニタリとすると, $|\det U|=1$. 
+```
+
+
+### グラム・シュミットの直交化法
+
+$X$ を内積空間, $v_{1},v_{2},\dots,v_{k}\in X$ は1次独立であるとする. このとき, 
+$$
+\mathrm{span}\{v_{1},\dots,v_{k}\}=\mathrm{span}\{u_{1},\dots,u_{k}\}
+$$
+ であって, 
+$$
+u_{i}\perp u_{j},\quad i\neq j
+$$
+なる1次独立なベクトルの組 $u_{1},\dots,u_{k}$ で, $\|u_{1}\|=\cdots=\|u_{k}\|=1$
+となるものが必ず存在する. 
+
+実際に構成してみよう. 考え方としては, 
+$$
+u_{i+1}\in\mathrm{span}\{v_{1},\dots,v_{i+1}\}\ominus\mathrm{span}\{v_{1},\dots,v_{i}\},\quad i=1,2,3,\dots
+$$
+が成り立つように, 順に $u_{1},u_{2},\dots$ を見つけていく. 最初のステップでは, 
+$$
+\bar{u}_{1}:=v_{1},\qquad u_{1}:=\frac{\bar{u}_{1}}{\|\bar{u}_{1}\|}
+$$
+ とする. 次に $\bar{u}_{2}\perp\mathrm{span}\{u_{1}\}$ なる $\bar{u}_{2}\in\mathrm{span}\{v_{1},v_{2}\}=\mathrm{span}\{u_{1},v_{2}\}$
+を見つける. 
+$$
+\bar{u}_{2}=\alpha_{1}u_{1}+\alpha_{2}v_{2}
+$$
+と仮において, 直交性の条件から
+$$
+\begin{aligned}
+(\bar{u}_{2},u_{1}) & =(\alpha_{1}u_{1}+\alpha_{2}v_{2},u_{1})\\
+ & =\alpha_{1}(u_{1},u_{1})+\alpha_{2}(v_{2},u_{1})\\
+ & =0
+\end{aligned}
+$$
+が成り立つように $\alpha_{1},\alpha_{2}$ を選べばよい. $(u_{1},u_{1})=1$ としたので,
+例えば
+$$
+\alpha_{1}=-(v_{2},u_{1}),\quad\alpha_{2}=1
+$$
+とすれば直交性が満たされる. したがって, 
+$$
+\bar{u}_{2}=v_{2}-(v_{2},u_{1})u_{1},\qquad u_{2}=\frac{\bar{u}_{2}}{\|u_{2}\|}.
+$$
+同様の手続きを繰り返せばよいので, 詳細は省略する. 続きの証明を各自で完成させること. 結果的だけ述べると $i=2,3,\dots,k$
+については, $u_{i}$ は次の公式で与えられる. 
+$$
+\bar{u}_{i}=v_{i}-\sum_{j=1}^{i-1}(v_{i},u_{j})u_{j},\qquad u_{i}=\frac{\bar{u}_{i}}{\|\bar{u}_{i}\|}.
+$$
+この直交化のアルゴリズムをグラム・シュミットの直交化法という.
+```{block2, type='fact'}
+$X$ を有限次元内積空間, $M$ をその部分空間とする. このとき, 
+$$
+X=M\oplus M^{\perp}.
+$$
+```
+
+```{proof}
+$x\in M\cap M^{\perp}$ とする. 定義から $(x,x)=0$ とならなければならないので, $x=0$
+が従う. シュミットの直交化により$M$ の正規直交基底が存在する. さらに $(\dim X-\dim M)$ 本のベクトルを追加して
+$X$ の基底を構成できる. シュミットの方法で直交化しておけば, 新しく追加したベクトルは $M^{\perp}$ に含まれている.
+```
+
+```{theorem}
+任意の行列 $A\in\mathbb{F}^{m\times n}$ に対して, ユニタリ行列 $Q\in\mathbb{F}^{m\times m}$
+と 上三角行列 $R\in\mathbb{F}^{m\times n}$ が存在して, $A=QR$ が成り立つ. 
+```
+
+```{proof}
+証明の方針を述べる. $\mathbb{F}^{n}$ の標準基底を $[e_{1}\ \cdots\ e_{n}]$ とする.
+$\mathrm{rank}A=\bar{m}<\min\{m,n\}$ として $[e_{1}\ \cdots\ e_{\bar{m}}]$
+が $\mathrm{im}A$ の基底になるように基底の順序を入れ替えておく. 順序交換はユニタリ変換である. 像 $[Ae_{1}\ \cdots\ Ae_{\bar{m}}]=[A_{1}\ \cdots\ A_{\bar{m}}]\subset\mathbb{F}^{m}$
+にグラム・シュミットの方法を適用して互いに直交するノルム1のベクトルの組 $[u_{1}\ \cdots\ u_{\bar{m}}]$
+を構成すると, 適当な $\alpha_{ij}$, $i\ge j$ に対して
+$$
+\begin{aligned}
+Ae_{1} & =\alpha_{11}u_{1},\\
+Ae_{2} & =\alpha_{21}u_{1}+\alpha_{22}u_{2}\\
+ & \vdots\\
+Ae_{\bar{m}} & =\alpha_{n1}u_{1}+\alpha_{n2}u_{2}+\cdots+\alpha_{\bar{m}\bar{m}}u_{\bar{m}}
+\end{aligned}
+$$
+とできる. すなわち,
+$$
+A[e_{1}\ \cdots\ e_{\bar{m}}]=[u_{1}\ \cdots\ u_{\bar{m}}]\left[\begin{array}{cccc}
+\alpha_{11} & * & * & *\\
+ & \alpha_{22} & * & *\\
+ &  & \ddots & *\\
+ &  &  & \alpha_{\bar{m}\bar{m}}
+\end{array}\right]=:QR.
+$$
+$n=m=\bar{m}$ であれば, ここで分解 $A=QR$ が完成している. $n=m>\bar{m}$ であれば $[u_{1}\ \cdots\ u_{\bar{m}}]$
+に適当なベクトルを付け加えて $[u_{1}\ \cdots\ u_{\bar{m}}\ u_{\bar{m}+1}\ \cdots\ u_{m}]$
+が正規直交基底になるようにできるので
+$$
+A[e_{1}\ \cdots\ e_{\bar{m}}\ e_{\bar{m}+1}\ \cdots\ e_{n}]=[u_{1}\ \cdots\ u_{\bar{m}}\ u_{\bar{m}+1}\ \cdots\ u_{m}]\left[\begin{array}{cccc|cc}
+\alpha_{11} & * & * & * & * & *\\
+ & \alpha_{22} & * & * & * & *\\
+ &  & \ddots & * & * & *\\
+ &  &  & \alpha_{\bar{m}\bar{m}} & * & *\\
+\hline  &  &  &  & 0 & 0\\
+ &  &  &  &  & 0
+\end{array}\right]=:QR.
+$$
+
+$n\neq m$ であっても同様の考え方で証明できる. $n<m$ の場合にはゼロからなる行を最下部に付け加える. $n>m$
+の場合は, 任意の数からなる列を最右部に付け加える. 
+```
+
+
+## シューア分解とその応用
+
+行列の対角化やジョルダン標準化は, 行列表現が良い形になるような基底を探すことである. このような基底は一般には正規直交基底になるとは限らないが,
+すべての行列は適当な正規直交基底に関して三角行列に表現できることが知られている. この結果を使うと, 正規行列はユニタリ行列で対角化できることを証明できる.
+例えば, エルミート行列はユニタリ行列で対角化できる.
+
+### シューア分解
+```{theorem}
+任意の正方行列 $A\in\mathbb{F}^{n\times n}$ に対して, あるユニタリ行列 $U\in\mathbb{F}^{n\times n}$
+が存在して, $U^{-1}AU=U^{*}AU$を上三角行列にできる. $U^{-1}AU$ の対角成分には$A$の固有値が並ぶ. 
+```
+
+```{proof}
+$A$ をジョルダン標準化する基底を $[v_{1}\ v_{2}\ \cdots\ v_{n}]$ とする. 基底の構成により,
+$$
+\mathcal{V}_{k}:=\mathrm{span}\{v_{1},\dots,v_{k}\}
+$$
+ は不変部分空間の拡大列
+$$
+\{0\}\subsetneq\mathcal{V}_{1}\subsetneq\mathcal{V}_{2}\subsetneq\cdots\subsetneq\mathcal{V}_{n-1}\subsetneq\mathcal{V}_{n}=\mathbb{C}^{n}
+$$
+を形成する. $A\mathcal{V}_{k}\subset\mathcal{V}_{k}$, $k=1,\dots,n$,
+だから $u_{k}\in\mathcal{V}_{k}\setminus\mathcal{V}_{k-1}$ が成り立つように基底
+$[\bar{u}_{1}\ \cdots\ \bar{u}_{n}]$ を選べば, 上三角行列で表現される. グラム・シュミットの方法で
+$[\bar{u}_{1}\ \cdots\ \bar{u}_{n}]$ に正規直交化を施せば $U^{-1}AU=T=[t_{ij}]$
+が上三角行列になるようなユニタリ行列 $U=[u_{1}\ \cdots\ u_{n}]$ が見つかる. $T$ の対角成分に$A$
+の固有値が並ぶことは次のようにして分かる. 任意の $k$ について, $u_{k}\in\mathcal{V}_{k}\setminus\mathcal{V}_{k-1}$
+は $u_{k}\in\alpha_{k}v_{k}+\mathcal{V}_{k-1}$, $\alpha_{k}\neq0$,
+を満たすので, 
+$$
+Au_{k}\in\alpha_{k}Av_{k}+A\mathcal{V}_{k-1}\subset\alpha_{k}Av_{k}+\mathcal{V}_{k-1}.
+$$
+$v_{k}$ が固有ベクトルであれば, $Av_{k}=\lambda_{k}v_{k}$, 高次の一般固有ベクトルであれば
+$Av_{k}=\lambda_{k}v_{k}+v_{k-1}$. いずれにせよ $Av_{k}\in\lambda_{k}v_{k}+\mathcal{V}_{k-1}$
+であるから, 結局
+$$
+Au_{k}\in\lambda_{k}\alpha_{k}v_{k}+\mathcal{V}_{k-1}
+$$
+が成り立つ. したがって, $t_{kk}=\lambda_{k}$ にならなければならない. 
+```
+
+
+$A\in\mathbb{F}^{n\times n}$ が正規行列であるとは, $A^{*}A=AA^{*}$ が成り立つことをいう.
+シューアの定理によって, 次の重要な結果を証明できる. 
+```{corollary}
+$A\in\mathbb{F}^{n\times n}$ を正規行列であることと, ユニタリ行列によって対角化可能であることは同値. 
+```
+
+```{proof}
+$A$ を正規行列とする. $U$ をユニタリ行列, $U^{*}AU=T$ が上三角行列であるとする. したがって,
+$$
+A=UTU^{*},\quad A^{*}=UT^{*}U^{*}.
+$$
+$A$ は正規行列だから
+$$
+UTU^{*}\cdot UT^{*}U^{*}=UT^{*}U^{*}\cdot UTU^{*}
+$$
+すなわち
+$$
+UTT^{*}U^{*}=UT^{*}TU^{*}.
+$$
+$U$, $U^{*}$ は正則なので, $T$ は正規行列である. 正規な上三角行列は対角行列以外にありえない(問題\ref{prob:16})
+ので, $A$ はユニタリ行列で対角化できる. 
+
+$A$ がユニタリ行列で対角化可能であるとする. $UAU^{*}$, $UA^{*}U^{*}$ はどちらも対角行列なので
+$UAU^{*}\cdot UA^{*}U^{*}=UA^{*}U^{*}\cdot UAU^{*}$ が成り立つ. $U$,
+$U^{*}$ は正則なので $AA^{*}=A^{*}A$ を得る.
+```
+
+```{block2, label="prob:16", type="exercise"}
+正規かつ上三角である行列は対角行列であることを示せ.
+```
+
+```{block2, type="exercise"}
+エルミート行列はユニタリ行列で対角化できることを証明せよ. 
+```
+
+### システム分析への応用
+
+無限期間のシステムが
+
+\begin{equation}
+x_{t+1}=Ax_{t}+Bu_{t},\quad t=0,1,\dots,(\#eq:uni-sys)
+\end{equation}
+に従うとする. ただし, $x$ を構成する変数の内, 一部にのみ初期条件が与えられているとする. 変数 $x$ は $x^{1}\in\mathbb{R}^{n_{1}}$
+および $x^{2}\in\mathbb{R}^{n_{2}}$ によって
+\begin{equation}
+x_{t}=\begin{bmatrix}x_{t}^{1}\\
+x_{t}^{2}
+\end{bmatrix}(\#eq:uni-12)
+\end{equation}
+と分離されており, 初期条件が
+$$
+x_{0}^{1}=\bar{x}_{0}^{1},
+$$
+と与えられているとしよう. 終端条件として経路の発散スピードが幾何数列のスピードを超えないことを仮定する. すなわち, 任意の $-1<\rho<1$
+について
+$$
+\lim_{\tau\to\infty}\rho^{\tau}\|x_{\tau}^{2}\|=0
+$$
+が成り立つとする. $A$ のシューア分解 
+$$
+A=U\begin{bmatrix}T_{ss} & T_{su}\\
+0 & T_{uu}
+\end{bmatrix}U^{-1},\qquad U=\begin{bmatrix}U_{1s} & U_{1u}\\
+U_{2s} & U_{2u}
+\end{bmatrix},\quad U^{-1}=\begin{bmatrix}U_{1s}^{*} & U_{2s}^{*}\\
+U_{1u}^{*} & U_{2u}^{*}
+\end{bmatrix}
+$$
+を利用して状態方程式を
+$$
+U^{-1}\begin{bmatrix}x_{t+1}^{1}\\
+x_{t+1}^{2}
+\end{bmatrix}=\begin{bmatrix}T_{ss} & T_{su}\\
+0 & T_{uu}
+\end{bmatrix}U^{-1}\begin{bmatrix}x_{t}^{1}\\
+x_{t}^{2}
+\end{bmatrix}+U^{-1}\begin{bmatrix}B_{1}\\
+B_{2}
+\end{bmatrix}u_{t}
+$$
+と変形できる. ただし, $T_{ss}$, $T_{uu}$ はともに上三角行列であり,　 $T_{ss}$には$A$の固有値の内,
+絶対値が1以下のものが並んでいる.\footnote{固有値の並び替えはジョルダン標準形の場合と違って基底ベクトルの並べ方を変えるだけという訳にはいかない. }
+また, $T_{uu}$の対角成分には $A$ の固有値の中でも絶対値が $1$ より大きいものが並んでいるものとする. したがって,
+$T_{uu}$ は正則である. $y:=U^{-1}x$, と変数変換することで 
+\begin{equation}
+\begin{bmatrix}y_{t+1}^{s}\\
+y_{t+1}^{u}
+\end{bmatrix}=\begin{bmatrix}T_{ss} & T_{su}\\
+0 & T_{uu}
+\end{bmatrix}\begin{bmatrix}y_{t}^{s}\\
+y_{t}^{u}
+\end{bmatrix}+\begin{bmatrix}C_{s}\\
+C_{u}
+\end{bmatrix}u_{t}(\#eq:uni-triangle)
+\end{equation}
+を得る. ただし, 
+$$
+y^{s}\in\mathbb{R}^{n_{s}},\ y^{u}\in\mathbb{R}^{n_{u}},\ y=\begin{bmatrix}y^{s}\\
+y^{u}
+\end{bmatrix},\ U^{-1}B=:\begin{bmatrix}C_{s}\\
+C_{u}
+\end{bmatrix}
+$$
+であり, 行列はすべて適合するサイズをもつものとする. 第\@ref(blanchardkahn)章 でやったように, 式\eqref{eq:uni-triangle}
+の第2ブロックについて最終期から後ろ向きに (forward-looking に) 解いてみよう. $T_{uu}$ は正則であるから,
+\begin{align}
+y_{t}^{u} & =T_{uu}^{-1}y_{t+1}^{u}-T_{uu}^{-1}C_{u}u_{t}\nonumber \\
+ & =T_{uu}^{-1}\left(T_{uu}^{-1}y_{t+2}^{u}-T_{uu}^{-1}C_{u}u_{t+1}\right)-T_{uu}^{-1}C_{u}u_{t}\nonumber \\
+ & =T_{uu}^{-2}y_{t+2}^{u}-T_{uu}^{-2}C_{u}u_{t+1}-T_{uu}^{-1}C_{u}u_{t}\nonumber \\
+ & =\cdots\nonumber \\
+ & =T_{uu}^{-T}y_{t+T}^{u}-\sum_{k=0}^{T-1}T_{uu}^{-k-1}C_{uu}u_{t+k}.(\#eq:uni-yt)
+\end{align}
+$T_{uu}^{-1}$ は安定行列であり, 解の発散スピードに関する仮定から
+
+\begin{equation}
+y_{t}^{u}=-\sum_{k=0}^{\infty}T_{uu}^{-k-1}C_{u}u_{t+k} (\#eq:uni-schur-yt)
+\end{equation}
+
+が成り立たなければならない. したがって, $y_{0}^{u}=\bar{y}_{0}^{u}=-\sum_{k=0}^{\infty}T_{uu}^{-k-1}C_{u}u_{k}$
+を決定できる.　$t=0$ に関する変数を決定する方程式
+
+$$
+\begin{bmatrix}\bar{x}_{0}^{1}\\
+x_{0}^{2}
+\end{bmatrix}=U\begin{bmatrix}y_{0}^{s}\\
+\bar{y}_{0}^{u}
+\end{bmatrix}
+$$
+あるいは同値な方程式
+$$
+\begin{bmatrix}U_{1s} & 0\\
+U_{2s} & -I
+\end{bmatrix}\begin{bmatrix}y_{0}^{s}\\
+x_{0}^{2}
+\end{bmatrix}=\begin{bmatrix}I & -U_{1u}\\
+0 & -U_{2u}
+\end{bmatrix}\begin{bmatrix}\bar{x}_{0}^{1}\\
+\bar{y}_{0}^{u}
+\end{bmatrix}
+$$
+は $U_{1s}$ が正則であるときに解が一意に存在する. これを仮定して解くと, 
+$$
+\begin{bmatrix}y_{0}^{s}\\
+x_{0}^{2}
+\end{bmatrix}=\begin{bmatrix}U_{1s}^{-1} & -U_{1s}^{-1}U_{1u}\\
+U_{2s}U_{1s}^{-1} & U_{2u}-U_{2s}U_{1s}^{-1}U_{1u}
+\end{bmatrix}\begin{bmatrix}x_{0}^{1}\\
+y_{0}^{u}
+\end{bmatrix}.
+$$
+解の不在, 不決定性に関する議論はこれまでと同様であるので省略する. 再帰方程式を計算しよう. 
+
+$$
+\begin{aligned}
+\begin{bmatrix}x_{t+1}^{1}\\
+x_{t+1}^{2}
+\end{bmatrix} & =U\begin{bmatrix}y_{t+1}^{s}\\
+y_{t+1}^{u}
+\end{bmatrix}\\
+ & =U\begin{bmatrix}T_{ss}y_{t}^{s}+T_{su}y_{t}^{u}+C_{s}u_{t}\\
+y_{t+1}^{u}
+\end{bmatrix}\\
+ & =\begin{bmatrix}U_{1s} & U_{1u}\\
+U_{2s} & U_{2u}
+\end{bmatrix}\begin{bmatrix}T_{ss}U_{1s}^{-1}x_{t}^{1}+\left(T_{su}-T_{ss}U_{1s}^{-1}U_{1u}\right)y_{t}^{u}+C_{s}u_{t}\\
+y_{t+1}^{u}
+\end{bmatrix}
+\end{aligned}
+$$
+両辺に $[U_{2s}U_{1s}^{-1}\ -I]$を掛けると
+$$
+\begin{aligned}
+U_{2s}U_{1s}^{-1}x_{t+1}^{1}-x_{t+1}^{2} & =\begin{bmatrix}0 & U_{2s}U_{1s}^{-1}U_{1u}-U_{2u}\end{bmatrix}\begin{bmatrix}T_{ss}U_{1s}^{-1}x_{t}^{1}+\left(T_{su}-T_{ss}U_{1s}^{-1}U_{1u}\right)y_{t}^{u}+C_{s}u_{t}\\
+y_{t+1}^{u}
+\end{bmatrix}\\
+ & =\left(U_{2s}U_{1s}^{-1}U_{1u}-U_{2u}\right)y_{t+1}^{u}.
+\end{aligned}
+$$
+したがって, 
+\begin{equation}
+  x_{t}^{2}=U_{2s}U_{1s}^{-1}x_{t}^{1}+\left(U_{2u}-U_{2s}U_{1s}^{-1}U_{1u}\right)y_{t}^{u},\qquad t=0,1,\dots(\#eq:uni-schur-x2)
+\end{equation}
+次に $x^{1}$ の再帰方程式を求める. まず
+$$
+\begin{aligned}
+y_{t+1}^{u} & =-\sum_{k=0}^{\infty}T_{uu}^{-k-1}C_{u}u_{t+1+k}\\
+ & =-T_{uu}^{-1}C_{u}u_{t+1}-T_{uu}^{-2}C_{u}u_{t+2}-T_{uu}^{-3}C_{u}u_{t+3}-\cdots\\
+ & =C_{u}u_{t}+T_{uu}\left(-T_{uu}^{-1}C_{u}u_{t}-T_{uu}^{-2}C_{u}u_{t+1}-T_{uu}^{-3}C_{u}u_{t+2}-\cdots\right)\\
+ & =C_{u}u_{t}+T_{uu}y_{t}^{u}
+\end{aligned}
+$$
+に注意する. 
+\begin{align}
+x_{t+1}^{1} & =U_{1s}T_{ss}U_{1s}^{-1}x_{t}^{1}+U_{1s}\left(T_{su}-T_{ss}U_{1s}^{-1}U_{1u}\right)y_{t}^{u}+U_{1s}C_{s}u_{t}+U_{1u}y_{t+1}^{u}\nonumber \\
+ & =U_{1s}T_{ss}U_{1s}^{-1}x_{t}^{1}+\left[U_{1s}\left(T_{su}-T_{ss}U_{1s}^{-1}U_{1u}\right)+U_{1u}T_{uu}\right]y_{t}^{u}+\left(U_{1s}C_{s}+U_{1u}C_{u}\right)u_{t}\nonumber \\
+ & =U_{1s}T_{ss}U_{1s}^{-1}x_{t}^{1}+\left[U_{1s}\left(T_{su}-T_{ss}U_{1s}^{-1}U_{1u}\right)+U_{1u}T_{uu}\right]y_{t}^{u}+B_{1}u_{t}.(\#eq:uni-schur-x1)
+\end{align}
+これで再帰的な解が得られたことになる. 
+
+### $u_{t+1}=\Phi u_{t}$ 
+
+$u_{t}$ を特定化しよう. \@ref(eq:uni-schur-yt) で
+$$
+M:=-\sum_{k=0}^{\infty}T_{uu}^{-k-1}C_{u}\Phi^{k}
+$$
+とおけば, $M$ は離散時間のシルベスタ方程式
+$$
+\begin{aligned}
+M & =-T_{uu}^{-1}C_{u}+T_{uu}^{-1}M\Phi
+\end{aligned}
+$$
+を満たす. あるいは, 連続時間のシルベスタ方程式\footnote{連続時間シルベスタ方程式は Scipy で数値計算できる. Matlab では離散時間, 連続時間のいずれも計算できる.}
+$$
+T_{uu}M-M\Phi=-C_{u}
+$$
+を満たす. 
+$$
+\mathrm{vec}(T_{uu}M)-\mathrm{vec}(M\Phi)=-\mathrm{vec}(C_{u}).
+$$
+に 補題 \@ref(lem:vecformula) を使うと
+$$
+\left(I^{\top}\otimes T_{uu}\right)\mathrm{vec}(M)-\left(\Phi^{\top}\otimes I\right)\mathrm{vec}(M)=-\mathrm{vec}(C_{u}),
+$$
+$$
+\mathrm{vec}(M)=\left[\left(\Phi^{\top}\otimes I\right)-\left(I^{\top}\otimes T_{uu}\right)\right]^{-1}\mathrm{vec}(C_{u})
+$$
+を得る. $M$ がこのように決まるものとしたとき, 式 \@ref(eq:uni-schur-x1) より
+\begin{equation}
+x_{t+1}^{1}=U_{1s}T_{ss}U_{1s}^{-1}x_{t}^{1}+\left[U_{1s}T_{su}M-U_{1s}T_{ss}U_{1s}^{-1}U_{1u}M+U_{1u}T_{uu}M+B_{1}\right]u_{t}(\#eq:uni-sx1)
+\end{equation}
+を得る.\footnote{式 \@ref(eq:uni-schur-x1) と @Klein2000 の 式 (5.21)-(5.23)との見かけ上の違いは2つの点に注意すれば解決できる.
+まず, Klein では QZ分解を使っているため, $S_{11}$, $S_{12}$ といった項がでてきている. Schur
+分解にはこの項は現れないので $S_{11}=I$, $S_{12}=0$ と読み替えればよい. また, \@ref(eq:uni-sx1)
+において
+$$
+U_{1u}T_{uu}M+B_{1}=U_{1u}\left(M\Phi-C_{u}\right)+\left(U_{1s}C_{s}+U_{1u}C_{u}\right)=U_{1u}M\Phi+U_{1s}C_{s}
+$$
+が成り立つことに注意せよ. }
+
+式 \@ref(eq:uni-schur-x2) より, 
+$$
+x_{t}^{2}=U_{2s}U_{1s}^{-1}x_{t}^{1}+\left(U_{2u}-U_{2s}U_{1s}^{-1}U_{1u}\right)Mu_{t}.
+$$
+
+
+### 実Schur分解
+
+上の議論では $T$ が上三角行列であるとしたが, この事実は完全には利用されていない. 再帰式を計算する上では $U^{-1}AU$
+がブロック上三角行列
+$$
+\begin{bmatrix}T_{ss} & T_{su}\\
+0 & T_{uu}
+\end{bmatrix}
+$$
+でありさえすればよい. さらに, $T_{ss}$, $T_{uu}$ が対角成分に$A$ の固有値 $\lambda=a\pm bj$
+に対応する$2\times2$ 実行列
+$$
+\begin{bmatrix}a & -b\\
+b & a
+\end{bmatrix}
+$$
+が並ぶようなブロック上三角行列であれば, 収束性に関する議論も上と同様に成り立つ. 
+
+実は, 任意の実行列$A$ に対して, 適当な直交行列 $U$ を選んで
+$$
+U^{\top}AU=\left[\begin{array}{cc|cc|cc|cc}
+a_{1} & -b_{1} & * & * & * & * & * & *\\
+b_{1} & a_{1} & * & * & * & * & * & *\\
+\hline  &  & a_{2} & -b & * & * & * & *\\
+ &  & b_{2} & a_{2} & * & * & * & *\\
+\hline  &  &  &  & \ddots & * & * & *\\
+ &  &  &  &  & \ddots & * & *\\
+\hline  &  &  &  &  &  & a_{r} & -b_{r}\\
+ &  &  &  &  &  & b_{r} & a_{r}
+\end{array}\right]
+$$
+となるようにできる. この分解を 実Schur分解という. 上で行なった議論は実Schur分解の範囲で考えれば十分である. 
+
+## QZ 分解とその応用
+
+行列のペア $(E,A)$ が与えられたとき, 正則行列 $V$, $W$ により
+$$
+W^{-1}AV=\begin{bmatrix}J\\
+ & I
+\end{bmatrix},\qquad W^{-1}EV=\begin{bmatrix}I\\
+ & N
+\end{bmatrix}
+$$
+が成り立つようにできるのであった. $J$, $N$ はいずれもジョルダン標準形行列になっているので, $W^{-1}AV$,
+$W^{-1}EV$ はいずれも上三角行列になっていることに注意しよう. 行列ペアに対してSchur 分解を拡張することで, 一般化Schur分解あるいはQZ分解と呼ばれる標準化の方法が得られる.
+ユニタリ変換による標準化は数値的に望ましい性質を持つので, 実用的にはQZ分解を利用したシステム解析法がもっとも使いやすい. 
+
+### QZ分解 
+
+@GVL4 にしたがって証明する.^[TODO: Deflating subspace への分解 $\mathbb{F}^{n}=\mathcal{V}^{*}\oplus\mathcal{W}^{*}$
+と2つの部分空間列 $\mathcal{V}_{0}\supsetneq\mathcal{V}_{1}\supsetneq\cdots\supsetneq\mathcal{V}^{*}$,
+$\mathcal{W}_{0}\subsetneq\mathcal{W}_{1}\subsetneq\cdots\subsetneq\mathcal{W}^{*}$
+に適合する基底を用いた証明を考えてみよ.]
+```{theorem}
+任意の正方行列のペア $E,A\in\mathbb{F}^{n\times n}$ に対して, 適当なユニタリ行列 $Q$, $Z$
+を選べば 
+$$
+Q^{*}AZ=T,\qquad Q^{*}EZ=S
+$$
+が上三角行列になるようにできる. ペンシル $(E,A)$ がレギュラーであれば, $T$ と$S$ の対角成分の比が $(E,A)$
+の有限固有値の集合と一致する. すなわち 
+$$
+\mathrm{sp}(E,A)=\left\{ \frac{t_{ii}}{s_{ii}}\ \mid\ s_{ii}\neq0,\ i=1,\dots,n\right\} .
+$$
+```
+
+
+```{proof}
+$\{E_{k}\}$ を $E$ に収束する正則行列の列とする. $AE_{k}^{-1}$ をシューア分解するユニタリ行列を$Q_{k}$
+とすれば,
+\begin{align}
+  Q_{k}^{*}\left(AE_{k}^{-1}\right)Q_{k}=R_{k} (\#eq:uni-qza)
+\end{align}
+は上三角行列である. QR分解を $E_{k}^{-1}Q_{k}$ にほどこして, 
+\begin{equation}
+E_{k}^{-1}Q_{k}=Z_{k}S_{k}^{-1}(\#eq:uni-qzb)
+\end{equation}
+とする. ただし, $S_{k}^{-1}$ は上三角行列で, $Z_{k}$ はユニタリ行列.  \@ref(eq:uni-qza) に \@ref(eq:uni-qzb) を代入すると,
+$$
+Q_{k}^{*}AZ_{k}=R_{k}S_{k}
+$$
+を得る. 正則な上三角行列の逆行列もまた上三角行列なので, $S_{k}$ は上三角行列である. したがって, $R_{k}S_{k}$
+は上三角行列である. $T_{k}:=R_{k}S_{k}$ とする. 
+
+式 \@ref(eq:uni-qzb) に右から $S_{k}$, 左から$E_{k}$を掛けて
+$$
+Q_{k}S_{k}=E_{k}Z_{k},
+$$
+さらに左から $Q_{k}^{-k}=Q_{k}^{*}$ を掛けて
+$$
+S_{k}=Q_{k}^{*}E_{k}Z_{k}
+$$
+を得る. $|\det Q_{k}|=|\det Z_{k}|$ が成り立つので, $Q_{k}$, $Z_{k}$ は $\mathbb{F}^{n\times n}$
+の有界な点列である. ボルツァーノ・ワイエルシュトラスの定理により, $\{(Q_{k},Z_{k})\}$ は収束する部分列 $\{(Q_{k_{i}},Z_{k_{i}})\}_{i}$
+を持つ. 極限を $(Q,Z)$ とすれば
+$$
+\begin{aligned}
+\lim_{i\to\infty}Q_{k_{i}}^{*}A_{k_{i}}Z_{k_{i}} & =Q^{*}AZ=T=\lim_{i\to\infty}T_{k_{i}}\\
+\lim_{i\to\infty}Q_{k_{i}}^{*}E_{k_{i}}Z_{k_{i}} & =Q^{*}EZ=S=\lim_{i\to\infty}S_{k_{i}}
+\end{aligned}
+$$
+が成り立つ. $T$, $S$ が上三角行列であることは明らか. $Q$, $Z$ がユニタリであることは, 
+$$
+I=Q_{k_{i}}^{*}Q_{k_{i}}\to Q^{*}Q,\quad I=Z_{k_{i}}^{*}Z_{k_{i}}\to Z^{*}Z
+$$
+から分かる. 有限固有値に関する性質は, 
+$$
+\begin{aligned}
+|\det(\lambda E-A)| & =|\det(\lambda QSZ^{*}-QTZ^{*})|\\
+ & =|\det Q\cdot\det(\lambda S-T)\cdot\det Z^{*}|\\
+ & =|\det(\lambda S-T)|\\
+ & =\prod|\lambda s_{ii}-t_{ii}|
+\end{aligned}
+$$
+から従う. 
+```
+
+
+### システム分析への応用
+
+$(E,A)$ をレギュラーとする. ここではシステム 
+\begin{equation}
+Ex_{t+1}=Ax_{t}+Bu_{t},\quad x\in\mathbb{R}^{n},\quad u\in\mathbb{R}^{m}(\#eq:uni-sing-qz)
+\end{equation}
+に対する解公式を導出しよう. QZ分解を用いた分析といってもこれまでの分析と大きくは変わらない. もうかなり慣れてきたと思うので,
+簡単に述べるにとどめる.
+
+これまでと同様, $x_{0}=(x_{0}^{1},x_{0}^{2})\in\mathbb{R}^{n_{1}}\times\mathbb{R}^{n_{2}}$
+には初期条件 $x_{0}^{1}=\bar{x}_{0}^{1}$ が与えられている. 幾何数列の発散スピードを超えない $(x_{t})_{t\ge0}$
+を実行可能な解とする. $(E,A)$ の QZ分解
+$$
+\begin{aligned}
+Q^{*}EZ & =S=\begin{bmatrix}S_{ss} & S_{su}\\
+0 & S_{uu}
+\end{bmatrix},\quad S_{ss}\in\mathbb{C}^{n_{s}\times n_{s}},\ S_{su}\in\mathbb{C}^{n_{s}\times n_{u}},\ S_{uu}\in\mathbb{C}^{n_{u}\times n_{u}}\\
+Q^{*}AZ & =T=\begin{bmatrix}T_{ss} & T_{su}\\
+0 & T_{uu}
+\end{bmatrix}\quad T_{ss}\in\mathbb{C}^{n_{s}\times n_{s}},\ T_{su}\in\mathbb{C}^{n_{s}\times n_{u}},\ T_{uu}\in\mathbb{C}^{n_{u}\times n_{u}}
+\end{aligned}
+$$
+は $\{\lambda_{i}=(T_{ss})_{ii}/(S_{ss})_{ii}\ \mid\ i=1,\dots,n_{s}\}$
+が $|\lambda_{i}|\le1$ を満たす有限固有値とする. $S_{ss}$ は正則である. $(S_{uu},T_{uu})$
+について, $(S_{uu})_{ii}\neq0$ のとき $(T_{uu})_{ii}/(S_{uu})_{ii}>1$ であり
+$(E,A)$ の有限不安定固有値に対応し, $(S_{uu})_{ii}=0$ は無限大固有値に対応している. $(E,A)$
+がレギュラーなので $(S_{uu})_{ii}=0$ のときは $(T_{uu})_{ii}\neq0$ である. したがって,
+$T_{uu}$ は必ず正則になる.
+
+いつものように $\left[\begin{smallmatrix}y_{t}^{s}\\
+y_{t}^{u}
+\end{smallmatrix}\right]=Z^{*}\left[\begin{smallmatrix}x_{t}^{1}\\
+x_{t}^{2}
+\end{smallmatrix}\right]\in\mathbb{R}^{n_{s}}\times\mathbb{R}^{n_{u}}$と変数変換すると,
+\begin{equation}
+\begin{bmatrix}S_{ss} & S_{su}\\
+0 & S_{uu}
+\end{bmatrix}\begin{bmatrix}y_{t+1}^{s}\\
+y_{t+1}^{u}
+\end{bmatrix}=\begin{bmatrix}T_{ss} & T_{su}\\
+0 & T_{uu}
+\end{bmatrix}\begin{bmatrix}y_{t}^{s}\\
+y_{t}^{u}
+\end{bmatrix}+Q^{*}Bu_{t}.(\#eq:uni-recur-qz)
+\end{equation}
+ただし, $Z=\left[\begin{smallmatrix}Z_{1s} & Z_{1u}\\
+Z_{2s} & Z_{2u}
+\end{smallmatrix}\right]$, $Q^{*}B=\left[\begin{smallmatrix}C_{s}\\
+C_{u}
+\end{smallmatrix}\right]$ としておこう. $T_{uu}$, $S_{uu}$ は上三角行列なので, $T_{uu}^{-1}$ および $T_{uu}^{-1}S_{uu}$
+も上三角行列になる. $S_{uu}$ , $T_{uu}$ の定義から, $T_{uu}^{-1}S_{uu}$ は絶対値が1以下の固有値のみをもつ行列である.
+バックワードサブシステム
+\begin{equation}
+y_{t}^{u}=(T_{uu}^{-1}S_{uu})y_{t+1}^{u}-T_{uu}^{-1}C_{u}u_{t}(\#eq:uni-qz-bsys)
+\end{equation}
+が $y_{t}^{u}$ を決定する. 発散スピードに対する仮定から
+\begin{equation}
+y_{t}^{u}=-\sum_{k=0}^{\infty}\left(T_{uu}^{-1}S_{uu}\right)^{k}T_{uu}^{-1}C_{u}u_{t+k}(\#eq:uni-yu-qz)
+\end{equation}
+となる. 未知数の決定は線形方程式
+\begin{equation}
+\begin{bmatrix}Z_{1s} & 0\\
+Z_{2s} & -I
+\end{bmatrix}\begin{bmatrix}y_{0}^{s}\\
+x_{0}^{2}
+\end{bmatrix}=\begin{bmatrix}I & -Z_{1u}\\
+0 & -Z_{2u}
+\end{bmatrix}\begin{bmatrix}\bar{x}_{0}^{1}\\
+\bar{y}_{0}^{u}
+\end{bmatrix}(\#eq:uni-qz-linsys)
+\end{equation}
+によることもこれまでと同様である. $Z_{1s}$ が正則な正方行列であるときに $t=0$ 時点の変数を一意に定めることができる. 
+
+再帰方程式を導出するにあたって, $u_{t+1}=\Phi u_{t}$ を仮定する.\footnote{この仮定を外した場合の公式は巻末補論を参照.}
+式\@ref(eq:uni-yu-qz) より$y_{t}^{u}=Mu_{t}$. ただし, $M$ はシルベスタ方程式
+$$
+\begin{aligned}
+M & -T_{uu}^{-1}S_{uu}M\Phi=-T_{uu}^{-1}C_{u}
+\end{aligned}
+$$
+の解である. \@ref(eq:uni-recur-qz) の第1行目の式から
+
+\begin{align}
+y_{t+1}^{s} & =S_{ss}^{-1}T_{ss}y_{t}^{s}-S_{ss}^{-1}S_{su}y_{t+1}^{u}+S_{ss}^{-1}T_{su}y_{t}^{u}+S_{ss}^{-1}C_{s}u_{t}(\#eq:uni-ys_gen)\\
+ & =S_{ss}^{-1}T_{ss}y_{t}^{s}-\left(S_{ss}^{-1}S_{su}M\Phi-S_{ss}^{-1}T_{su}M-S_{ss}^{-1}C_{s}\right)u_{t}.\nonumber 
+\end{align}
+$y_{t}^{s}=Z_{1s}^{-1}\left(x_{t}^{1}-Z_{1u}y_{t}^{u}\right)$ を使ってさらに計算を進めると,
+\begin{align}
+x_{t+1}^{1} & =Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}x_{t}^{1}+Lu_{t},(\#eq:uni-x1-qz)
+\end{align}
+を得る. ただし,
+$$
+L=-Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}Z_{1u}M+Z_{1s}S_{ss}^{-1}\left(T_{su}M-S_{su}M\Phi+C_{s}\right)+Z_{1u}M\Phi.
+$$
+続いて, $x_{t}^{2}$ に関する方程式を導出しよう. 変数変換の定義より
+$$
+Z_{2s}y_{t}^{s}-x_{t}^{2}=-Z_{2u}y_{t}^{u},\qquad y_{t}^{s}=Z_{1s}^{-1}\left(x_{t}^{1}-Z_{1u}y_{t}^{u}\right)
+$$
+が成り立つので, 
+$$
+\begin{aligned}
+x_{t}^{2} & =Z_{2s}y_{t}^{s}+Z_{2u}y_{t}^{u}\\
+ & =Z_{2s}Z_{1s}^{-1}\left(x_{t}^{1}-Z_{1u}y_{t}^{u}\right)+Z_{2u}y_{t}^{u}\\
+ & =Z_{2s}Z_{1s}^{-1}x_{t}^{1}+(Z_{2u}-Z_{2s}Z_{1s}^{-1}Z_{1u})Mu_{t}.
+\end{aligned}
+$$
+したがって, 次の公式を得た. 
+
+```{theorem, name='@Klein2000'}
+システム \eqref{eq:uni-sing-qz} をQZ分解を用いて解くと, 解は
+$$
+\begin{aligned}
+x_{t+1}^{1} & =Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}x_{t}^{1}+Lu_{t},\\
+x_{t}^{2} & =Z_{2s}Z_{1s}^{-1}x_{t}^{1}+(Z_{2u}-Z_{2s}Z_{1s}^{-1}Z_{1u})Mu_{t}
+\end{aligned}
+$$
+によって表される. ただし,$x_{0}^{1}$ は所与, $S$, $T$, $Z$, $M$, $C$ は上で与えたものであり,
+ 
+$$
+\begin{aligned}
+L & =-Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}Z_{1u}M+Z_{1s}S_{ss}^{-1}\left(T_{su}M-S_{su}M\Phi+C_{s}\right)+Z_{1u}M\Phi,\\
+M & =\mathrm{vec}^{-1}\left(\left(\Phi^{\top}\otimes S_{uu}-I\otimes T_{uu}\right)^{-1}\mathrm{vec}(C_{u})\right).
+\end{aligned}
+$$
+```
+
+
+
+\appendix
+
+## QZ解法の一般公式
+
+一般の $u$ に対する公式は次のように表現できる. $t=0,1,\dots$ に対して, 
+$$
+\begin{aligned}
+x_{t+1}^{1} & =\Omega_{x}x_{t}^{1}+\Omega_{u}u_{t}+\Omega_{y}y_{t+1}^{u}\\
+x_{t}^{2} & =\Psi_{x}x_{t}^{1}+\Psi_{y}y_{t}^{u}
+\end{aligned}
+$$
+ただし, $x_{0}^{1}$ は所与であり, $y_{t}^{u}$ は式 \@ref(eq:uni-yu-qz) から定まる.
+行列, $\Omega_{x}$, $\Omega_{u}$, $\Omega_{y}$, $\Psi_{x}$, $\Psi_{y}$
+を導出しよう. 
+$$
+\begin{aligned}
+x_{t+1}^{1}-Z_{1u}y_{t+1}^{u} & =Z_{1s}y_{t+1}^{s}\\
+ & =Z_{1s}\left[S_{ss}^{-1}T_{ss}y_{t}^{s}-S_{ss}^{-1}S_{su}y_{t+1}^{u}+S_{ss}^{-1}T_{su}y_{t}^{u}+S_{ss}^{-1}C_{s}u_{t}\right]\\
+ & =Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}\left(x_{t}^{1}-Z_{1u}y_{t}^{u}\right)\\
+ & \qquad-Z_{1s}S_{ss}^{-1}S_{su}y_{t+1}^{u}\\
+ & \qquad+Z_{1s}S_{ss}^{-1}T_{su}y_{t}^{u}\\
+ & \qquad+Z_{1s}S_{ss}^{-1}C_{s}u_{t}
+\end{aligned}
+$$
+から
+$$
+\begin{aligned}
+x_{t+1}^{1} & =Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}x_{t}^{1}\\
+ & \qquad+(Z_{1u}-Z_{1s}S_{ss}^{-1}S_{su})y_{t+1}^{u}\\
+ & \qquad+Z_{1s}S_{ss}^{-1}(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})y_{t}^{u}\\
+ & \qquad+Z_{1s}S_{ss}^{-1}C_{s}u_{t}.
+\end{aligned}
+$$
+式\@ref(eq:uni-qz-bsys) を用いて整理すると,
+$$
+\begin{aligned}
+x_{t+1}^{1} & =Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}x_{t}^{1}\\
+ & \qquad+(Z_{1u}-Z_{1s}S_{ss}^{-1}S_{su})y_{t+1}^{u}\\
+ & \qquad+Z_{1s}S_{ss}^{-1}(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})T_{uu}^{-1}(S_{uu}y_{t+1}^{u}-C_{u}u_{t})\\
+ & \qquad+Z_{1s}S_{ss}^{-1}C_{s}u_{t}\\
+ & =Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}x_{t}^{1}\\
+ & \qquad+Z_{1s}S_{ss}^{-1}\left[C_{s}-(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})T_{uu}^{-1}C_{u}\right]u_{t}\\
+ & \qquad+\left[Z_{1u}-Z_{1s}S_{ss}^{-1}S_{su}+Z_{1s}S_{ss}^{-1}(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})T_{uu}^{-1}S_{uu}\right]y_{t+1}^{u}
+\end{aligned}
+$$
+を得る. したがって, 
+$$
+\begin{aligned}
+\Omega_{x} & =Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}\\
+\Omega_{u} & =Z_{1s}S_{ss}^{-1}\left[(T_{ss}Z_{1s}^{-1}Z_{1u}-T_{su})T_{uu}^{-1}C_{u}+C_{s}\right]\\
+\Omega_{y} & =Z_{1u}-Z_{1s}S_{ss}^{-1}S_{su}+Z_{1s}S_{ss}^{-1}(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})T_{uu}^{-1}S_{uu}.
+\end{aligned}
+$$
+非先決変数については, 
+$$
+\begin{aligned}
+x_{t}^{2} & =Z_{2s}y_{t}^{s}+Z_{2u}y_{t}^{u}\\
+ & =Z_{2s}Z_{1s}^{-1}(x_{t}^{1}-Z_{1u}y_{t}^{u})+Z_{2u}y_{t}^{u}\\
+ & =Z_{2s}Z_{1s}^{-1}x_{t}^{1}+(Z_{2u}-Z_{2s}Z_{1s}^{-1}Z_{1u})y_{t}^{u}
+\end{aligned}
+$$
+より, 
+$$
+\begin{aligned}
+\Psi_{x} & =Z_{2s}Z_{1s}^{-1}\\
+\Psi_{y} & =Z_{2u}-Z_{2s}Z_{1s}^{-1}Z_{1u}
+\end{aligned}
+$$
+となる. 
+

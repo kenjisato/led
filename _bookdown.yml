@@ -27,4 +27,6 @@ rmd_files:
   - 05-linear_space.Rmd
   - 06-canonical_form.Rmd
   - 10-blanchardkahn.Rmd
+  - 11-unitary_transformation.Rmd
+  - 12-klein.Rmd
   - 99-bibliography.Rmd

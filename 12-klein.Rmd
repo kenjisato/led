@@ -1,0 +1,605 @@
+# 線形確率システム 
+
+## @Klein2000 の方法
+
+本稿ではこれまで扱った線形システムに確率的な要因を導入しよう. 本稿は確率過程に関する初級の知識を前提にしているが, @Klein2000
+の手法を理解するのに確率論の高度な知識は必要ではない. 読み進めながら定義などを確認していけばよいだろう. 次節に簡単な補論を設けて,
+未定義語を補うようにしている. 
+
+$(\Omega,P,\mathcal{F},\{\mathcal{F}_{t}\}_{t\ge0})$ をフィルター付き確率空間,
+入力項 $(u_{t})$ を$\{\mathcal{F}_{t}\}_{t\ge0}$ に適合した確率過程とする. 適合性の定義は省略しているが, 実用上は $\mathbb{E}_{t}u_{t}=u_{t}$, $t=0,1,\dots$
+が成り立つことを認識していればよい. システム変数に関する (期待の) 時間発展が方程式 \@ref(eq:kl-randomsys) で表されているものとする. 
+\begin{equation}
+E\mathbb{E}_{t}x_{t+1}=Ax_{t}+Bu_{t},\qquad t=0,1,\dots,(\#eq:kl-randomsys)
+\end{equation}
+ただし $\mathbb{E}_{t}x_{t+1}=\mathbb{E}\left[x_{t+1}\mid\mathcal{F}_{t}\right]$
+は $\mathcal{F}_{t}$ に関する$x_{t+1}$の条件付き期待値である.\footnote{任意の確率変数について $\mathbb{E}_{t}\mathbb{E}_{t+k}z=\mathbb{E}_{t}z$, $k\ge0$,
+が成り立つことと, $\mathbb{E}_{t}$ が確率変数を確率変数に写す線形作用素であることを認識しておけばよい. } $\mathbb{E}_{t}x_{t}=x_{t}$, $\mathbb{E}_{t}u_{t}=u_{t}$ が成り立つことに注意しておこう.
+したがって, \@ref(eq:kl-randomsys) は
+$$
+E\mathbb{E}_{t}x_{t+1}=A\mathbb{E}_{t}x_{t}+B\mathbb{E}_{t}u_{t}
+$$
+と書けば, 決定論との関係がより明確になるだろう. ただし, 条件付き期待値はそれ自身確率変数なので対象の複雑性が大幅に増していることは注意しておこう.
+それでもなお決定論の解法が必要な仕事をしてくれる. 
+
+以下では, 決定論的な方法をなぞりながら仮定すべき条件を探していこう. まずは $(E,A)$ のQZ分解を行う. したがって,
+次の条件を仮定する. 
+
+```{block2, type="assumption"}
+$(E,A)$ はレギュラーである. 
+```
+
+$Q$, $Z$ をユニタリ行列, $Q^{*}EZ=S$ および$Q^{*}AZ=T$ を上三角行列であるとする. 変数変換
+$x=Zy$ の部分行列分解を
+$$
+\begin{bmatrix}x_{t}^{1}\\
+x_{t}^{2}
+\end{bmatrix}=\begin{bmatrix}Z_{1s} & Z_{1u}\\
+Z_{2s} & Z_{2u}
+\end{bmatrix}\begin{bmatrix}y_{t}^{s}\\
+y_{t}^{u}
+\end{bmatrix}
+$$
+とする. $x^{1}\in\mathbb{R}^{n_{1}}$, $x^{2}\in\mathbb{R}^{n_{2}}$,
+$y^{s}\in\mathbb{R}^{n_{s}}$, $y^{u}\in\mathbb{R}^{n_{u}}$ とする.
+次の条件を仮定しよう. 
+
+```{block2, type="assumption"}
+$n_{u}\neq 0$. 
+```
+
+方程式の適当な並び替えによって $x^{1}$ は先決変数, $x^{2}$ は非先決変数であるように選んでいる. ただし, @Klein2000
+の意味で先決変数とは
+$$
+x_{t+1}^{1}=\mathbb{E}_{t}x_{t+1}^{1}+\xi_{t+1}
+$$
+なる, 外生的な$(\mathcal{F}_{t})$-適合確率過程 $(\xi_{t})$ が存在する変数のこと. 定義より
+$\mathbb{E}_{t}\xi_{t+1}=0$ であることに注意せよ. 先決変数は $t$ 期に獲得できる情報によって
+$(t+1)$ 期の値を予測不可能な誤差 ($\xi_{t+1}$) を除いて決定できる変数である. $0$ 期時点の先決変数の期待値は
+$(-1)$ 期には既に決定されているはずなので, $x_{0}^{1}$ は初期値として与えられている値に外生的な撹乱を加えたものと考えてよい.
+これは決定論の場合に仮定したことと同等である.^[決定論とは異なり, $x_{0}^{1}$ が外生的な確率変数であることは許容される. あえて冗長な表現をすれば $x_{0}^{1}=\mathbb{E}_{0}[x_{0}^{1}]+\xi_{0}$
+となる.]
+
+繰り返し現れている次の仮定の役割は今や明らかであろう. 
+
+```{block2, type="assumption"}
+$n_{1}=n_{s}$, $\det Z_{1s}\neq0$. 
+```
+
+さて, 決定論の場合と同様に QZ分解の一般化固有値の並び替えによって, ブロック行列表現
+\begin{equation}
+  \begin{bmatrix}S_{ss} & S_{su}\\
+  0 & S_{uu}
+  \end{bmatrix}\mathbb{E}_{t}\begin{bmatrix}y_{t+1}^{s}\\
+  y_{t+1}^{u}
+  \end{bmatrix}=\begin{bmatrix}T_{ss} & T_{su}\\
+  0 & T_{uu}
+  \end{bmatrix}\begin{bmatrix}y_{t}^{s}\\
+  y_{t}^{u}
+  \end{bmatrix}+\begin{bmatrix}C_{s}\\
+  C_{u}
+  \end{bmatrix}u_{t}(\#eq:kl-after-qz)
+\end{equation}
+が次のような性質をもつとする. すなわち, $(S_{ss},T_{ss})$ は安定 (絶対値が1 のものを含む) な一般化固有値に対応するブロックであり,
+$(S_{uu},T_{uu})$ は不安定 (無限大固有値を含む) 一般化固有値に対応するブロックである. レギュラー性の仮定により
+$T_{uu}$ は正則行列であるから, バックワードサブシステム
+\begin{equation}
+y_{t}^{u}=T_{uu}^{-1}S_{uu}\mathbb{E}_{t}y_{t+1}^{u}-T_{uu}^{-1}C_{u}u_{t}(\#eq:kl-yu-rec)
+\end{equation}
+が定義できる. これをforward-looking に解いて $y_{t}^{u}$ を決定する. 
+\begin{align}
+y_{t}^{u} & =T_{uu}^{-1}S_{uu}\mathbb{E}_{t}y_{t+1}^{u}-T_{uu}^{-1}C_{u}u_{t}\nonumber \\
+ & =T_{uu}^{-1}S_{uu}\mathbb{E}_{t}\left[T_{uu}^{-1}S_{uu}\mathbb{E}_{t+1}y_{t+2}^{u}-T_{uu}^{-1}C_{u}u_{t+1}\right]-T_{uu}^{-1}C_{u}u_{t}\nonumber \\
+ & =\left(T_{uu}^{-1}S_{uu}\right)^{2}\mathbb{E}_{t}y_{t+2}^{u}-\left(T_{uu}^{-1}S_{uu}\right)T_{uu}^{-1}C_{u}\mathbb{E}_{t}u_{t+1}-T_{uu}^{-1}C_{u}u_{t}\nonumber \\
+ & =\cdots\nonumber \\
+ & =\left(T_{uu}^{-1}S_{uu}\right)^{\tau}\mathbb{E}_{t}y_{t+\tau}^{u}-\sum_{k=0}^{\tau-1}\left(T_{uu}^{-1}S_{uu}\right)^{k}T_{uu}^{-1}C_{u}\mathbb{E}_{t}u_{t+k}.(\#eq:kl-y-finite)
+\end{align}
+$T_{uu}^{-1}S_{uu}$ は安定行列であることに注意しよう. 式 \@ref(eq:kl-y-finite) の第2項が収束性するために次を仮定しよう.
+一番簡単な十分条件は $u$ が有界なサポートを持つことである.
+
+```{block2, type="assumption"}
+確率過程 $(u_{t})$ に対する期待は安定である. すなわち, 
+$$
+\sup_{t}\|\mathbb{E}u_{t}\|<\infty.
+$$
+```
+
+さらに, \@ref(eq:kl-y-finite) の第1項が収束することを保証するために, 解空間を制限する. このためには, 
+$$
+  \lim_{\tau\to\infty}\left(T_{uu}^{-1}S_{uu}\right)^{\tau}=0
+$$
+の収束スピードが指数的であることに注意して, 指数的に発散する解を排除してやればよい. 以上より, 
+\begin{equation}
+  y_{t}^{u}=-\sum_{k=0}^{\infty}\left(T_{uu}^{-1}S_{uu}\right)^{k}
+    T_{uu}^{-1}C_{u}\mathbb{E}_{t}u_{t+k}(\#eq:kl-yut)
+\end{equation}
+を得る.
+
+非先決変数を決定するための線形方程式
+$$
+\begin{bmatrix}Z_{1s} & 0\\
+Z_{2s} & -I
+\end{bmatrix}\begin{bmatrix}y_{t}^{s}\\
+x_{t}^{2}
+\end{bmatrix}=\begin{bmatrix}I & -Z_{1u}\\
+0 & -Z_{2u}
+\end{bmatrix}\begin{bmatrix}x_{t}^{1}\\
+y_{t}^{u}
+\end{bmatrix}
+$$
+から, 
+$$
+y_{t}^{s}=Z_{1s}^{-1}\left(x_{t}^{1}-Z_{1u}y_{t}^{u}\right).
+$$
+さらに, \@ref(eq:kl-after-qz) の上段の式から, 
+$$
+S_{ss}\mathbb{E}_{t}y_{t+1}^{s}+S_{su}\mathbb{E}_{t}y_{t+1}^{u}=T_{ss}y_{t}^{s}+T_{su}y_{t}^{u}+C_{s}u_{t}
+$$
+$$
+\begin{aligned}
+S_{ss}\mathbb{E}_{t}Z_{1s}^{-1}\left(x_{t+1}^{1}-Z_{1u}y_{t+1}^{u}\right)+S_{su}\mathbb{E}_{t}y_{t+1}^{u} & =T_{ss}Z_{1s}^{-1}\left(x_{t}^{1}-Z_{1u}y_{t}^{u}\right)+T_{su}y_{t}^{u}+C_{s}u_{t}\\
+S_{ss}Z_{1s}^{-1}\mathbb{E}_{t}x_{t+1}^{1}+\left(S_{su}-S_{ss}Z_{1s}^{-1}Z_{1u}\right)\mathbb{E}_{t}y_{t+1}^{u} & =T_{ss}Z_{1s}^{-1}x_{t}^{1}+\left(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u}\right)y_{t}^{u}+C_{s}u_{t}
+\end{aligned}
+$$
+$$
+\begin{aligned}
+S_{ss}Z_{1s}^{-1}\mathbb{E}_{t}x_{t+1}^{1} & =T_{ss}Z_{1s}^{-1}x_{t}^{1}+\left(S_{ss}Z_{1s}^{-1}Z_{1u}-S_{su}\right)\mathbb{E}_{t}y_{t+1}^{u}\\
+ & \qquad+(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})y_{t}^{u}+C_{s}u_{t}\\
+\mathbb{E}_{t}x_{t+1}^{1} & =Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}x_{t}^{1}+\left(Z_{1u}-Z_{1s}S_{ss}^{-1}S_{su}\right)\mathbb{E}_{t}y_{t+1}^{u}\\
+ & \qquad+Z_{1s}S_{ss}^{-1}(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})y_{t}^{u}+Z_{1s}S_{ss}^{-1}C_{s}u_{t}.
+\end{aligned}
+$$
+式 \@ref(eq:kl-yu-rec) より, 
+$$
+Z_{1s}S_{ss}^{-1}(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})y_{t}^{u}=Z_{1s}S_{ss}^{-1}(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})\left(T_{uu}^{-1}S_{uu}\mathbb{E}_{t}y_{t+1}^{u}-T_{uu}^{-1}C_{u}u_{t}\right)
+$$
+だから, 
+$$
+\mathbb{E}_{t}x_{t+1}^{1}=\Omega_{x}x_{t}^{1}+\Omega_{u}u_{t}+\Omega_{y}\mathbb{E}_{t}y_{t+1}^{u}
+$$
+$$
+\begin{aligned}
+\Omega_{x} & =Z_{1s}S_{ss}^{-1}T_{ss}Z_{1s}^{-1}\\
+\Omega_{u} & =Z_{1s}S_{ss}^{-1}\left[(T_{ss}Z_{1s}^{-1}Z_{1u}-T_{su})T_{uu}^{-1}C_{u}+C_{s}\right]\\
+\Omega_{y} & =Z_{1u}-Z_{1s}S_{ss}^{-1}S_{su}+Z_{1s}S_{ss}^{-1}(T_{su}-T_{ss}Z_{1s}^{-1}Z_{1u})T_{uu}^{-1}S_{uu}.
+\end{aligned}
+$$
+ここで, 先決変数の定義を使うと, 
+\begin{equation}
+x_{t+1}^{1}=\Omega_{x}x_{t}^{1}+\Omega_{u}u_{t}+\Omega_{y}\mathbb{E}_{t}y_{t+1}^{u}+\xi_{t+1}(\#eq:kl-x1)
+\end{equation}
+を得る. 非先決変数については, 
+$$
+\begin{aligned}
+x_{t}^{2} & =Z_{2s}y_{t}^{s}+Z_{2u}y_{t}^{u}\\
+ & =Z_{2s}Z_{1s}^{-1}(x_{t}^{1}-Z_{1u}y_{t}^{u})+Z_{2u}y_{t}^{u}\\
+ & =Z_{2s}Z_{1s}^{-1}x_{t}^{1}+(Z_{2u}-Z_{2s}Z_{1s}^{-1}Z_{1u})y_{t}^{u}
+\end{aligned}
+$$
+より, 
+\begin{equation}
+x_{t}^{2}=\Psi_{x}x_{t}^{1}+\Psi_{y}y_{t}^{u},(\#eq:kl-x2)
+\end{equation}
+$$
+\begin{aligned}
+\Psi_{x} & =Z_{2s}Z_{1s}^{-1}\\
+\Psi_{y} & =Z_{2u}-Z_{2s}Z_{1s}^{-1}Z_{1u}
+\end{aligned}
+$$
+とできる. 
+
+### ARショック {-}
+
+ここで, $u$ がAR過程
+$$
+u_{t+1}=\Phi u_{t}+\varepsilon_{t+1}
+$$
+であると仮定しよう. ただし, $(\varepsilon_{t})$ は独立同分布をもつ確率過程であり, $\mathbb{E}_{t}\varepsilon_{t+1}=0$,
+$\mathbb{E}_{t}\varepsilon_{t+1}\varepsilon_{t+1}^{\top}=\Sigma$.\footnote{自己共分散に対する仮定は使われているか？}
+行列 $\Phi$ の固有値はすべて絶対値が1より小さいとする. 式 \@ref(eq:kl-yut) と $\mathbb{E}_{t}u_{t+1}=\Phi u_{t}$
+より,\footnote{$\mathbb{E}_{t}u_{t+2}=\mathbb{E}_{t}\mathbb{E}_{t+1}u_{t+2}=\mathbb{E}_{t}\Phi u_{t+1}=\Phi^{2}u_{t}$
+に注意せよ. }
+$$
+y_{t}^{u}=-\sum_{k=0}^{\tau-1}\left(T_{uu}^{-1}S_{uu}\right)^{k}T_{uu}^{-1}C_{u}\Phi^{k}u_{t}.
+$$
+$M$ をシルベスタ方程式
+$$
+M-T_{uu}^{-1}S_{uu}M\Phi=-T_{uu}^{-1}C_{u}
+$$
+の解とすれば
+$$
+y_{t}^{u}=Mu_{t}
+$$
+と書ける. \@ref(eq:kl-x1) と\@ref(eq:kl-x2) から
+$$
+\begin{aligned}
+x_{t+1}^{1} & =\Omega_{x}x_{t}^{1}+\Omega_{u}u_{t}+\Omega_{y}\mathbb{E}_{t}y_{t+1}^{u}+\xi_{t+1}\\
+ & =\Omega_{x}x_{t}^{1}+(\Omega_{u}+\Omega_{y}M\Phi)u_{t}+\xi_{t+1}
+\end{aligned}
+$$
+および
+$$
+x_{t}^{2}=\Psi_{x}x_{t}^{1}+\Psi_{y}Mu_{t}
+$$
+を得る. これで解の特徴づけが完了した. 
+
+
+## 確率過程について
+
+ランダムネスというのは, ごく荒く言って, 発生する現象に複数の可能性があるということである. 明日は雨が降るかもしれないし, 雨は降らないかもしれない.
+天気予報は 「明日雨になる確率」を教えてくれる.\footnote{「天気予報が外れた」という表現を「今日の降水確率は30\%ではなく50\%だ」の意味で使う人はおらず, 「降水確率20\%で予報は曇りだと言っていたのに,
+実際には雨が降った」といったケースに使う. 確率という言葉が浸透すればするほど, 確率概念が表現するドライな実体とはかけ離れた理解が広まっていくのかもしれない. } ランダムな現象の素朴な数学的表現は, \textbf{確率変数}と呼ばれる2つの可能な値を持つ「変数」(ここでは $X$ を名付けよう)
+のそれぞれの値に, 足して1になる数字$p_{1}$ , $p_{2}$ を割り当てて, 
+$$
+P(X=\text{fine})=p_{1},\qquad P(X=\text{rainy})=p_{2}
+$$
+のように書くことである. $\{p_{1},p_{2}\}$ を\textbf{確率分布}という. \textbf{測度論的な確率論}では,
+$X$ を関数として定式化して, 定義域 $\{\omega_{1},\omega_{2}\}$ の方に確率を割り振る. もちろん,
+まったく同じことであるがこうすることによって関数解析の枠組みで確率論を扱えるので大変都合が良い. この補論では, マクロ経済学で頻出するフィルトレーションとか条件付き期待値といった用語がなんとなくイメージできるようになる程度に確率論の簡単な紹介を行なってみたいと思う. 
+
+### 確率変数
+
+ランダムな現象を表現するために関数を使うということは, 関数 $X:\omega\mapsto X(\omega)$ の取りうる値
+(値域) の方に「生起するかもしれないと認識している値」を対応させるということは想像がつくだろう. 例えば株価のように非負の値を取る確率変数であれば
+$$
+X:\bullet\to\mathbb{R}_{+}
+$$
+という関数を考えるのである. 定義域の方は何が入るだろうか？実は取りうる値を区別するのに十分な数の要素を持っていれば何でもよい. 慣例に従って
+$\Omega$ という記号を使うと
+$$
+X:\Omega\to\mathbb{R}_{+}
+$$
+と書ける. $\Omega$ を状態空間, $\Omega$ の元を根元事象, $\Omega$ の部分集合を事象という.\textbf{
+$\Omega$ が意味するものは何か？という問いには特に意味がないことを強調しておこう}.\footnote{神様 (あるいは nature) が $\Omega$ のうちの1つを選んでいるが, 我々にはどれを選んだか分からない, といったイメージで$\Omega$
+が説明されることもあるが, そのようなイメージは理解の助けになるかもしれないし, ならないかもしれない. もっと悪いことに, 神様
+(あるいは nature) とは何かという問題に発展してしまう. 個人的には「確率変数は関数である. 関数には定義域が必要だから形式的に
+$\Omega$ としよう」で十分だと思う. } $\Omega$ がどのように分割されるか, $\Omega$ の分割のそれぞれにどのように確率を割り振るかが大事なのである.
+例えば, $X$ が 2値関数であれば, $\Omega_{1}=\{\omega_{1},\omega_{2}\}$ という2点集合を取って,
+$\Omega_{1}=\{\omega_{1}\}\cup\{\omega_{2}\}$ と分割し,
+$$
+X_{1}(\omega)=\begin{cases}
+0, & \omega\in\{\omega_{1}\}\\
+1, & \omega\in\{\omega_{2}\}
+\end{cases}
+$$
+としてもいいし, $\Omega_{2}=[0,1]$ として, $\Omega_{2}=[0,1/2)\cup[1/2,1]$
+と分割し, 
+$$
+X_{2}(\omega)=\begin{cases}
+0, & \omega\in[0,1/2)\\
+1, & \omega\in[1/2,1]
+\end{cases}
+$$
+とするのでもよい. さらに, この分割にさえ自由度がある. 例えば, $\Omega_{3}=[0,1]$ として, $\Omega_{3}=[0,1/3)\cup[1/3,1]$
+と分割し, 
+$$
+X_{3}(\omega)=\begin{cases}
+0, & \omega\in[0,1/3)\\
+1, & \omega\in[1/3,1]
+\end{cases}
+$$
+としても問題は起こらない. 3つの例において, 関数 $X_{1}$ , $X_{2}$, $X_{3}$ はそれぞれ異なる関数であるにも関わらず,
+同じ確率的現象の表現と解釈するためには, 各事象に対して確率を割り振るやり方を同じにしてやる必要がある. つまり,
+$$
+X_{1}^{-1}(\{0\})=\{\omega_{1}\},\quad X_{1}^{-1}(\{1\})=\{\omega_{2}\}
+$$
+$$
+X_{2}^{-1}(\{0\})=[0,1/2),\quad X_{2}^{-1}(\{1\})=[1/2,1]
+$$
+$$
+X_{3}^{-1}(\{0\})=[0,1/3),\quad X_{3}^{-1}(\{1\})=[1/3,1]
+$$
+ に注意して, 
+$$
+P_{1}(\{\omega_{1}\})=P_{2}([0,1/2))=P_{3}([0,1/3))=p_{1}
+$$
+$$
+P_{1}(\{\omega_{2}\})=P_{2}([1/2,1])=P_{3}([1/3,1])=p_{2}
+$$
+と「確率」$P_{1}$, $P_{2}$, $P_{3}$を定義すれば , これらが同じ現象を表現していると言える. ただし,
+$p_{1}+p_{2}=1$, $p_{1},p_{2}\ge0$. 
+
+連続値を取るような場合には, 事象としてどのようなものを考えればよいだろうか. 例を挙げて考えてみよう. 「株価が5000円以上6000円未満である」という事象は
+$$
+\{\omega\in\Omega\mid5000\le X(\omega)<6000\}
+$$
+と書ける. あるいは同じことを 
+$$
+X^{-1}\left([5000,6000)\right)=X^{-1}\left([0,5000)\right)^{c}\cap X^{-1}\left([0,6000)\right)
+$$
+とも書ける. $X^{-1}(A)$ は$A$ の$X$による逆像, $A^{c}$ は$A$ の補集合である. 非負の実数値を取るような確率現象を扱う上で,
+「事象全体の集合」として考えるべきは, $\{\omega\in\Omega\mid X(\omega)\le a\}$, $\{\omega\in\Omega\mid X(\omega)<a\}$,
+$a\in\mathbb{R}_{+}\cup\{+\infty\}$ やその補集合, 和集合, 積集合などを含むものとするのがよい.
+さらに技術的な理由から, そのような部分集合の可算無限個の和集合も含んでいるとするのである.
+
+以上の要請を汲んだ上で, 確率論の教科書を確認してほしい. そこには次のような定義が書いていると思う: $\Omega$ の部分集合族
+$\mathcal{F}$ が \textbf{$\sigma$-集合族}であるとは, (i) $\Omega\in\mathcal{F}$,
+(ii) $A\in\mathcal{F}\Rightarrow A^{c}\in\mathcal{F}$, (iii) $A_{1},A_{2},\dots,A_{n},\dots\in\mathcal{F}\Rightarrow\cup_{n=1}^{\infty}A_{n}\in\mathcal{F}$
+の3つが成り立つことをいう. $\Omega$ とその部分集合族 $\mathcal{F}$ — $(\Omega,\mathcal{F})$
+のペアを\textbf{可測空間}という — の出来上がりである. さらに, $\{\omega\mid X(\omega)<a\}$
+の形式の部分集合やそれらの補集合, 可算無限個の和集合, 積集合が $\mathcal{F}$ に含まれているとき, $X$ は\textbf{可測関数}という. 
+
+確率は\textbf{確率測度}と呼ばれる写像 $P:\mathcal{F}\to[0,1]$ によって定式化される. 確率測度は次の性質を満たす.
+(i) $P(\Omega)=1$, (ii) $P(A^{c})=1-P(A)$, (iii) $A_{1},A_{2},\dots$
+が $A_{i}\cap A_{j}=\emptyset$, $i\neq j$ ならば $P(\cup_{i}A_{i})=\sum_{i}P(A_{i})$.
+3つ組 $(\Omega,\mathcal{F},P)$ を確率空間という.
+
+以上でランダムネスの構成要素が全部出揃った. 適当に状態空間 $\Omega$ を設定し, 状態空間を事象を表す部分集合に分割し
+($\mathcal{F}$ はその一般化・抽象化である), さらに事象ごとの生起確率を割り振っていく($P$ がその役割を果たしてくれる).
+確率変数 $X$ は, $\Omega$ を定義域にもつ関数であって, 
+$$
+\{\omega\in\Omega\mid X(\omega)<a\}\in\mathcal{F}
+$$
+が成り立つものである. $\mathcal{F}$ の元になるということは,「$X<a$ である確率」がキチンと定義されるように作っているということである.
+ところで, 可測性は$\mathcal{F}$の選び方に依存するので, 明示的に $\mathcal{F}$-可測と言ったりもする.
+
+$\Omega$ が有限個の部分集合の族に分割される場合を考えると可測関数の直感的な理解が得られやすい. $\Omega=A_{1}\cup A_{2}\cup\cdots\cup A_{n}$,
+$A_{i}\cap A_{j}=\emptyset$, $i\neq j$ としよう. この場合, 分割　$\Delta=\{A_{1},A_{2},\dots,A_{n}\}$
+が事象の集合族を定める. すなわち,
+$$
+\mathcal{F}_{\Delta}=\left\{ \cup_{k=1}^{r}A_{n_{k}}\mid\{n_{1},\dots,n_{r}\}\subset\{1,\dots,n\},\ r=0,1,\dots,n\right\} 
+$$
+とすれば, $\mathcal{F}_{\Delta}$ は $\sigma$-集合族となる. $\mathcal{F}_{\Delta}$
+は $\Delta$ の元をすべて含む最小の $\sigma$-集合族であって $\mathcal{F}\supset\mathcal{F}_{\Delta}$
+なる $\sigma$-集合族であれば何を考えても以下の議論は上手くいく. 
+\begin{figure}
+\centering 
+\begin{subfigure}[b]{0.45\textwidth}
+\includegraphics[width=\textwidth, page=9]{16EDFig.pdf}
+\end{subfigure}
+\qquad
+\begin{subfigure}[b]{0.45\textwidth}
+\includegraphics[width=\textwidth, page=10]{16EDFig.pdf}         
+\end{subfigure}
+
+\caption{分割 $[0,1]=[0,1/3)\cup[1/3,1]$ に対する可測関数 $X_{3}$ と非可測関数 $f$}
+\label{fig:measurable}
+
+\end{figure}
+2値関数の場合に可測関数と非可測関数を図示してみよう. $\Omega_{3}=[0,1]$, $\Delta_{3}=\{[0,1/3),[1/3,1]\}$
+とすれば, $\mathcal{F}_{\Delta_{3}}=\{\emptyset,[0,1/3),[1/3,1],\Omega_{3}\}$
+である. 図\ref{fig:measurable} の $X_{3}$ は分割 $\Delta_{3}$ の各集合上で定数値を取る関数である.
+一方で, $f$ は $[1/3,1]$ 上で定数関数でない. $f$ が可測性の定義 $\{\omega\in\Omega\mid f(\omega)<a\}\in\mathcal{F}_{\Delta_{3}}$
+を満たさないことを確認してほしい. 有限個の事象のみを扱うケースでは, 可測関数すなわち確率変数は, 分割を構成する各集合上で定数値を取る関数に外ならない.
+2値関数, 2事象への分割を考えたが, より一般のケースでも同様のことを確認できる. 
+
+なお, $\Omega$ 上で定数値をとる関数はもちろん可測関数である. 不確実性がない現象の表現に使う. 
+
+### 期待値
+
+期待値は積分で定義できる. $(\Omega,\mathcal{F},P)$ を確率空間, $X$ を$\mathbb{R}$-値確率変数とする.
+$X$ の期待値を
+\begin{equation}
+\mathbb{E}X=\int_{\Omega}X(\omega)dP(\omega)(\#eq:kl-mean)
+\end{equation}
+と定義する. ここでの積分はいわゆるルベーグ積分である. ルベーグ積分論を未修であれば, 次のように理解すればよいだろう. 先ほど述べた可測関数の定義より,
+$$
+\left\{ \omega\in\Omega\mid x\le X(\omega)<x+dx\right\} \in\mathcal{F}
+$$
+が成り立つ. $\mathcal{F}$ は$P$ の定義域なので, 
+$$
+P\left(\left\{ \omega\in\Omega\mid x\le X(\omega)<x+dx\right\} \right)
+$$
+という確率が対応している. これを $dP(\omega)$ と思えば, 
+$$
+\mathbb{E}X=\int_{x\in\mathbb{R}}xP\left(\left\{ \omega\in\Omega\mid x\le X(\omega)<x+dx\right\} \right)
+$$
+と書けて, 馴染みのある定式化とかなり近い形式になる. 累積分布関数を $F$ とすれば,
+$$
+P\left(\left\{ \omega\in\Omega\mid x\le X(\omega)<x+dx\right\} \right)=F(x+dx)-F(x)
+$$
+だから, 
+$$
+\mathbb{E}X=\int_{x\in\mathbb{R}}x\left[F(x+dx)-F(x)\right]
+$$
+はスティルチェス積分による表現であるし, 確率密度関数が存在する場合には, 
+$$
+P\left(\left\{ \omega\in\Omega\mid x\le X(\omega)<x+dx\right\} \right)=p(x)dx
+$$
+ と書き換えることができるので, 
+$$
+\mathbb{E}X=\int_{x\in\mathbb{R}}xp(x)dx
+$$
+と, よりいっそう馴染み深い表現になる. 
+
+この操作で一つ見えてくることは, $(\Omega,\mathcal{F})$ に備えた測度 $P$ が$\mathbb{R}$上の測度を定めるということである.
+$A\subset\mathbb{R}$ が普通の (例えば区間 $(a,b)$ など) 部分集合であれば
+$$
+X^{-1}(A)\in\mathcal{F}
+$$
+が成り立つので, $P(X^{-1}(A))$ が定義されている. これを $\mathbb{R}$ の部分集合 $A$ に対して確率$P(X^{-1}(A))$
+を対応させる集合関数 $P\circ X^{-1}$ と見れば, $P\circ X^{-1}$ は確率測度の性質をもっている.\footnote{$\mathbb{R}$ の部分集合族からなる $\sigma$-集合族を考えなければ「測度」といっても意味がない. 通常, 開区間をすべて含む最小の
+$\sigma$-集合族を備えているものとする. これを\textbf{ ボレル集合族}という. } $X$ から誘導された確率測度を$X$の\textbf{分布}という. 
+
+簡単な例を見てみよう. 
+$$
+\begin{aligned}
+\mathbb{E}X_{3} & =0\cdot P([0,1/3))+1\cdot P([1/3,1])\\
+ & =0\cdot p_{1}+1\cdot p_{2}\\
+ & =p_{2}
+\end{aligned}
+$$
+である. 分布は
+$$
+\begin{aligned}
+P\circ X^{-1}(\{0\}) & =p_{1}\\
+P\circ X^{-1}(\{1\}) & =p_{2}
+\end{aligned}
+$$
+によって定まる. 
+
+### 条件付き期待値
+
+$\sigma$-集合族, あるいはそれを生成する分割が不確実な現象に対する情報精度の上限という意味を持っていることを確認しておこう.
+$(\Omega,\mathcal{F},P)$ を確率空間, $X$, $Y$ を実数値確率変数とする. 説明の都合上, $X$
+が先に判明して, $Y$ は後で判明するという時間差があるとしておく. 
+
+根元事象 $\omega\in\Omega$ を特定できれば, $X(\omega)$ にも $Y(\omega)$ にも不確実性は存在しない.
+したがって, 不確実性は どの $\omega$ に対応する値がでてくるか分からないということに起因している. また, 先に明らかになる確率変数　$X$
+の観測によって得られる情報は, あくまで $X(\omega)=a$ とか, $a<X(\omega)<b$ とか, $X(\omega)\in A$
+という生起した値に関する情報だけであるから $\omega\in X^{-1}(\{a\})$ や $\omega\in X^{-1}((a,b))$,
+$\omega\in X^{-1}(A)$といった情報を得ることができるが, $\omega$ の完全な特定はできない. もし,
+$Y$ が $X^{-1}(A)$ の上で定数でなければ, $Y$ の値を正確に予見することはできない. ただし, $\{Y(\omega)\mid\omega\in X^{-1}(A)\}$
+のいずれかの値が生起するということだけは分かる. 
+
+2つの重要なメッセージがある. 第一に, $\mathcal{F}$ が細かく細分化されていればいるほど, $\mathcal{F}$-可測関数の値から得られる情報は多くなる.
+すなわち観測値を用いて, より小さな集合の中に$\omega$ を特定できる. 第二に, 時間を通じて $\omega$ に関する情報が徐々に明らかになっていくということである. 
+
+具体的な例を通して見ていこう. $\Omega=[0,1]$ が $\Delta=\left\{ [0,\frac{1}{4}),[\frac{1}{4},\frac{1}{2}),[\frac{1}{2},\frac{3}{4}),[\frac{3}{4},1]\right\} $
+と分割されているとする. 簡単のため分割を構成する各集合の確率は等しく $\tfrac{1}{4}$ であるとしよう. 確率変数を
+$$
+X(\omega)=\begin{cases}
+0 & \text{if }\omega\in[0,\tfrac{1}{2})\\
+1 & \text{if }\omega\in[\tfrac{1}{2},1]
+\end{cases}
+$$
+$$
+Y(\omega)=\begin{cases}
+0 & \text{if }\omega\in[0,\tfrac{1}{4})\\
+1 & \text{if }\omega\in[\tfrac{1}{4},\tfrac{1}{2})\\
+2 & \text{if }\omega\in[\tfrac{1}{2},\tfrac{3}{4})\\
+3 & \text{if }\omega\in[\tfrac{3}{4},1]
+\end{cases}
+$$
+と特定化する. $X$, $Y$ が$\mathcal{F}_{\Delta}$-可測関数であることを確認してほしい.
+
+$X$ が実現する前には, $\omega\in\Omega$ という情報しかないので, $\Delta_{0}=\{\Omega\}$
+で表される情報集合を持っているといってよいだろう. $X$ が実現した後には, $\omega\in[0,\tfrac{1}{2})$
+あるいは $\omega\in[\tfrac{1}{2},1]$ のいずれかであるので, $X$ によって $\Delta_{1}=\{[0,\tfrac{1}{2}),[\tfrac{1}{2},1]\}$
+という$\Delta_{0}$ よりは細かいが $\Delta$ よりは粗い分割で表される情報を獲得できる. さらに, $Y$
+が明らかになると, $\Delta_{2}=\Delta$ を獲得できる. それでは, $X$ が授けてくれた情報を使って, $Y$
+について何が言えるようになるか, を考えてほしい. 
+
+まずは初級の確率論の議論をなぞってみよう. $X$ の実現値で条件付けると, $Y$ がぞれぞれの値をとる確率が変わる. 例えば,
+$X=0$ という条件の下で, $Y=0$ となる確率は
+$$
+P(Y=0|X=0)=\frac{P(Y=0)}{P(Y=0)+P(Y=1)}=\frac{1}{2}.
+$$
+また, 
+$$
+P(Y=2|X=0)=0
+$$
+などが分かる. 次に, $X$ の実現値で条件付けると, $Y$ に関する期待値も変化する. 例えば, 
+$$
+\begin{aligned}
+\mathbb{E}\left[Y\mid X=0\right] & =0\cdot P(Y=0|X=0)+1\cdot P(Y=1|X=0)+2\cdot P(Y=2|X=0)+3\cdot P(Y=3|X=0)\\
+ & =\frac{1}{2}.
+\end{aligned}
+$$
+また, 
+$$
+\mathbb{E}[Y\mid X=1]=\frac{5}{2}.
+$$
+したがって, 条件付き期待値は実現値 $x$ の関数として
+$$
+\mathbb{E}[Y\mid X=x]=\begin{cases}
+\tfrac{1}{2} & \text{if }x=0\\
+\tfrac{5}{2} & \text{if }x=1
+\end{cases}
+$$
+などと書かれるのである. 
+
+$\mathbb{E}[Y|X=x]$ と書いてはいるが, 実現値$x$に依存していないことに違和感を感じないだろうか. もちろん,
+$x$ に依存するような条件付き期待値を作ろうと思えば作れるし, そのような例が重要であるのは事実だが, $x$ の関数として条件付き期待値を特徴付けると本質を見誤ることになる.
+では何に依存していると認識するべきか？それは, 特定の実現値を生成する $\omega$ のなす集合である. すなわち条件付き期待値は
+$\omega$ に依存していて, $\Delta_{1}$ のどの元に $\omega$ が属するかによって値が変わるものと捉えるべきである.
+したがって, 次のように書く方がより本質に近い. 
+$$
+\mathbb{E}[Y|\Delta_{1}](\omega)=\begin{cases}
+\tfrac{1}{2} & \text{if }\omega\in[0,\tfrac{1}{2})\\
+\tfrac{5}{2} & \text{if }\omega\in[\tfrac{1}{2},1].
+\end{cases}
+$$
+この定式化は, $\mathbb{E}[Y|\Delta_{1}]$ は確率変数であり, $\mathcal{F}_{\Delta_{1}}$-可測であるということを示唆している.
+有限分割が得られないケースでは, $\mathbb{E}[Y|\mathcal{F}_{\Delta_{1}}]$ と書く. ここで,
+$$
+\mathcal{F}_{\Delta_{1}}\subset\mathcal{F}_{\Delta}
+$$
+に注意をしてほしい. 粗い分割で得られた情報で「予測」をしているので ($Y$ は $\mathcal{F}_{\Delta_{1}}$-可測ではない),
+$\omega$ への依存性が残ってしまうのである. 
+
+##### 条件付き期待値の性質 {-}
+
+一般に, 条件付き期待値は次の性質をもつ: $(\Omega,\mathcal{F},P)$ を確率空間 $Z$ を確率変数,
+$\mathcal{G}$ を $\mathcal{G}\subset\mathcal{F}$ なる $\sigma$-集合族とすると$\mathbb{E}[Z|\mathcal{G}]$
+は $\mathcal{G}$-可測な確率変数になる. さらに, $\mathcal{H\subset\mathcal{G}\subset F}$
+なる $\sigma$-集合族を取れば,
+$$
+\mathbb{E}[\mathbb{E}[Z|\mathcal{G}]|\mathcal{H}]=\mathbb{E}[Z|\mathcal{H}]
+$$
+が成り立つ (正式には「ほとんど確実に」というのを付けなければならない).　
+
+これを分割の言葉で確認しておこう. 前半の部分はすでに確認できているので, 後半を確認する. 分割 $\Delta_{1}$, $\Delta_{2}$
+に対して, $\Delta_{2}$ が$\Delta_{1}$ より細分化されているとは, 任意の $A\in\Delta_{2}$
+についてある $B\in\Delta_{1}$ があって $A\subset B$ が成り立つこととし, $\Delta_{1}|\Delta_{2}$
+と書こう. $\Delta_{1}|\Delta_{2}$ ならば$\mathcal{F}_{\Delta_{1}}\subset\mathcal{F}_{\Delta_{2}}$
+が成り立つ. したがって, 
+$$
+\mathbb{E}[\mathbb{E}[Z|\Delta_{2}]|\Delta_{1}]=\mathbb{E}[Z|\Delta_{1}]
+$$
+を確かめよう.
+
+$\Delta$ が確率空間を構成する分割（最も細かい分割）であるとすれば, $\Delta_{2}|\Delta$ がなりたつ.
+任意の $A\in\Delta_{2}$ について, $A=\cup_{i}A_{i}$, $A_{i}\in\Delta$,
+なる互いに素な分割がある. 上の計算を一般化すると, 条件付き期待値の定義は $P(A)\neq0$, $\omega\in A\in\Delta_{2}$
+のとき, 
+$$
+\mathbb{E}[Z|\Delta_{2}](\omega)=\sum_{i}\frac{Z(A_{i})P(A_{i})}{P(A)}
+$$
+とできる. $P(A)=0$ のときは, $\mathbb{E}[Z|\Delta_{2}](\omega)=0$ である. ただし,
+$Z(A_{i})$ は $\omega\in A_{i}$ のときの $Z(\omega)$ の値, 以下では $\mathbb{E}[Z|\Delta_{2}](A)$
+も同様の意味で使う. 可測関数は区分的な定数関数であったことに注意しよう. 
+
+$B\in\Delta_{1}$ に対して, $\Delta_{2}$ の元による互いに素な分割 $B=\cup_{j}B_{j}$
+が存在する. 各 $B_{j}\in\Delta_{2}$ には, $\Delta$ の元による互いに素な分割 $B_{i}=\cup_{i}B_{ij}$
+が存在するので, $\omega\in B$ に対して
+$$
+\begin{aligned}
+\mathbb{E}[\mathbb{E}[Z|\Delta_{2}]|\Delta_{1}](B) & =\sum_{j}\frac{\mathbb{E}[Z|\Delta_{2}](B_{j})P(B_{j})}{P(B)}\\
+ & =\sum_{j}\frac{\sum_{i}\left[\frac{Z(B_{ij})P(B_{ij})}{P(B_{j})}\right]P(B_{j})}{P(B)}\\
+ & =\sum_{j}\sum_{i}\frac{Z(B_{ij})P(B_{ij})}{P(B)}.
+\end{aligned}
+$$
+$B=\cup_{i,j}B_{ij}$ は, $B\in\Delta_{1}$ の $\Delta$ の元による互いに素な分割になっているので,
+$$
+\mathbb{E}[\mathbb{E}[Z|\Delta_{2}]|\Delta_{1}](B)=\mathbb{E}[Z|\Delta_{1}](B)
+$$
+が成り立つ. 
+
+### 確率過程
+
+前節では確率変数が情報を明らかにしていく様子を具体例をもって描写してみた. どの程度成功しているかは分からないが, 我々はもっと先に進まなければならない.
+ここまでの話を逆転させてみよう. すなわち, しだいに細分化されていく分割の列 
+$$
+\{\Omega\}=\Delta_{0}|\Delta_{1}|\Delta_{2}|\cdots
+$$
+あるいは, $\sigma$-集合族の増大列
+$$
+\{\emptyset,\Omega\}=\mathcal{F}_{0}\subset\mathcal{F}_{1}\subset\mathcal{F}_{2}\cdots
+$$
+が予め与えられていて, 確率変数の列 $X_{1}$, $X_{2}$, ... がこれらの分割, $\sigma$-集合族に関して可測になっているという状況を考えるのである.
+$\sigma$-集合族の列 $\mathbb{F}=(\mathcal{F}_{n})$ をフィルトレーションといい, $X_{n}$
+が$\mathcal{F}_{n}$-可測であるような確率変数の列を $\mathbb{F}$-適合確率過程という. 
+
+具体的なイメージとしては, コイントスの繰り返しを考えるとよい. ひとまず繰り返しの回数を3回としてみよう. $\Omega=[0,1)$
+の分割列を 
+$$
+\begin{aligned}
+\Delta_{0} & =\{\Omega\}\\
+\Delta_{1} & =\{[0,\tfrac{1}{2}),[\tfrac{1}{2},1)\}\\
+\Delta_{2} & =\{[0,\tfrac{1}{4}),[\tfrac{1}{4},\tfrac{1}{2}),[\tfrac{1}{2},\tfrac{3}{4}),[\tfrac{3}{4},1)\}\\
+\Delta_{3} & =\{[0,\tfrac{1}{8}),[\tfrac{1}{8},\tfrac{1}{4}),\dots,[\tfrac{3}{4},\tfrac{7}{8}),[\tfrac{7}{8},1)\}
+\end{aligned}
+$$
+と構成する. 1回目が表であるという事象 ($x_{1}=0$) を $\omega\in[\tfrac{0}{2},\tfrac{1}{2})$,
+裏であるという事象 ($x_{1}=1$) を $\omega\in[\tfrac{1}{2},1)$ に対応させる. さらに1回目が
+$x_{1}$ で2回目が表 ($x_{2}=0$) あるいは裏 ($x_{2}=1)$ であるという事象を, $\omega\in[\tfrac{x_{1}}{2}+\tfrac{x_{2}}{2^{2}},\tfrac{x_{1}}{2}+\frac{x_{2}+1}{2^{2}})$
+に対応させる. 1回目が$x_{1}$ で, 2回目が $x_{2}$ で3回目が$x_{3}$ である ($x_{3}=0$
+or $1$) という事象を $\omega\in[\tfrac{x_{1}}{2}+\tfrac{x_{2}}{2^{2}}+\tfrac{x_{3}}{2^{3}},\tfrac{x_{1}}{2}+\frac{x_{2}}{2^{2}}+\tfrac{x_{3}+1}{2^{3}})$
+に対応させると, コイントスモデルの分割ができあがる. この分割列に適合した確率過程を作ることは難しくない. 各ステップの分割にあわせて区分的定数関数を作ればよい. 
+
+適合過程を考察する理由は明白であろう. 確率過程 $X_{n}(\omega)$ が $n$ 回目のコイントス後の所持金を表している場合を考えてみよ.
+
+\bibliographystyle{ecta}
+\bibliography{16ED}
+
