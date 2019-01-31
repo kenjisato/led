@@ -1,0 +1,478 @@
+# Introduction {#intro}
+
+```{r, include=FALSE}
+project_name = "linear-economic-dynamics"
+```
+
+## Economic Dynamics {#intro-economic-dynamics}
+
+In 「Economic Dynamics」we study the change through time, or the absence of change,in variables (economic indicators) representing economic conditions. Let me explain what kind of problems we are going to deal with.
+
+I think that the students who took microeconomics at undergraduate level is familiar with the following optimization problem.
+$$
+\begin{aligned}
+  &\max_{c\in \mathbb{R}^N_+} u(c) \\
+  &\text {subject to}\quad p \cdot c \le I  
+\end{aligned}
+$$
+
+The problem concerns the choice of consumption 
+$c = (c_1, \dots, c_N)$ that maximixes utility $u(c)$ given prices $p = (p_1, \dots, p_N)$ and income $I$. 
+The standar assumption for this consumer model is that the economy has different types of goods $N$, whose the price of good $n$, $n = 1, \dots, N$, is set at $p_n$.
+Consumers wil purchase it in $c_n$ units. To purchase all goods, consumer need to pay $p \cdot c = \sum_{n=1}^N p_n x_n$ 
+subject to its budget constraint.
+
+The order of lining up each goods $n = 1, \dots, N$ is completely arbitrary. 
+There is also no reason for lining up $c_n$ and $c_{n + 1}$ in this order. Therefore, for example, even if **monotonicity**, 
+$c_1 < c_2 < c_3,\dots$, is obtained, 
+it can not be interpreted as if it happened by chance.
+
+Let's try to change the interpretation without changing the model. Essentially, there is only one good in the economy. 
+For example, $c_1$ is consumed in 2001, $c_2$ in 2002, and 
+each $c_n$ is interpreted as a variable representing economic activity at a certain point in time.
+Such change in the interpretation changes the interpretation of the result without changing the model to be solved. In other words, 
+the above-mentioned monotonicity means that consumption will increase year by year. For the sake of explanation, $N$ is finite, 
+but we often consider cases where $N = \infty$. When $N$ is finite, 
+this model is called **finite horizon** model. 
+Otherwise, it is called **infinite horizon** model. 
+
+Each variable solves a time-labelled model. 
+The economic dynamics has the main task to investigate the temporal nature that the solution satisfies. 
+We are interested in the following propositions.
+
+- Is it constant throughout the time, or will it settle to a convergence state after a sufficient amount of time?
+ Or, does we observe convergence and constant oscillation path?
+- Is the convergence path monotonically increasing (or decreasing) or oscillating?
+- In the case we observe constant oscillation, the oscillation is 
+regular (periodic) or irregular (caos)?
+- Does the economic state depend or not on the past path?
+- Is the economic state uniquely determined ...
+- etc.
+
+Equations that characterize the solution of the model are called **dynamic equation** or **dynamic system**.
+In economic models, as an equilibrium condition satisfied by optimization problem composed of various constraints, utility maximization of consumer ・profit maximization of firms, it is possible to get equations 
+that satisfy adjacent variables^[There is no "path dependency" case listed in the above list.].
+$$
+F(x_t, x_{t + 1}) = 0, \quad t = 1, 2, \dots
+$$
+However, $x_t$ is a vector of economic variables of interest. We changed the index representing 
+timeto $t$. When dealing with cases where the economic environment changes due to external factors (shocks) such as economic policies 
+$$
+  F(x_t, x_{t+1}, z_t) = 0
+$$
+we will obtain a dynamic equation.
+These systems are implicit systems in the sense that variables are determined as solutions of implicit function.
+
+In order to know the change over time of the economy, time series of $x_1, x_2, \dots$ are necessary. 
+As consequence, ideally a sequential calculation
+$$
+x_{n + 1} = G_t (x_t, z_t)
+$$
+is necessary. Or, if there is no time dependency of $ G $,
+$$
+x_{n+1} = G(x_t, z_t)
+$$
+it could be possible. The dynamic system as exemplified above can not be solved.
+
+
+## Intro target model {#intro-target-model}
+
+In this lecture, we consider the following dynamic system.
+
+\begin{equation}
+  A\mathbb{E}_{t}x_{t+1}=Bx_{t}+Cz_{t} (\#eq:lre)
+\end{equation}
+
+$x_t$ is a vector of variables (endogenous variables) determined to solve the model, 
+while $z_t$ is a variable determined outside the model (exogenous variable). $A$, $B$, $C$ are matrices of appropriate size.
+$\mathbb E_t$ is a conditional expectation. 
+
+A system, as the above-mentioned, consisting only of a matrix product and addition is called linear system. If we rewrite the above linear equation as
+\begin{equation}
+  Bx_{t} = A\mathbb{E}_{t}x_{t+1} - Cz_{t} (\#eq:lre2)
+\end{equation}
+we can read it as **the current economic variable is determined by expectation for the future**.
+Systems such as \@ref(eq:lre) and \@ref(eq:lre2) are called **linear rational expectations model**.
+
+Although we do not go deeper into model derivation in these notes, it would be sufficient if you were aware that variables such as price and consumption are determined to reflect forward-looking expectations. 
+The relationship where the price is determined reflecting the expectation can be understood through the following example.
+
+```{example}
+The basic formula of economic theory is that the stock price of a company is determined so that the value that the company produces in future will be discounted with consideration of the interest rate (or discount rate).
+Moreover, 「discount」means to adjust depreciation for the amount of time you have to wait before you get profit.
+
+The reason for establishing such a relationship can be understood relatively easily.
+Let's say that the discounted present value of the expected earnings of a company is temporarily higher than the total stock price of the company.
+If you purchase such stocks you can earn profits higher than the purchase price over a long period of time, 
+so buyers collect such stocks and market prices rise. On the other hand,
+let's suppose the expected earnings are temporarily lower than the total stock price.
+Shareholders have incentives to sell shares, but at such market prices, buyers are unwilling to buy. 
+Stock prices will fall until no shareholder wants to sell them even if the selling price would be lower.
+It is the previous price formula that is achieved as a result of eliminating the discrepancy between the anticipated value and the market price.
+
+If there is a chance to earn margins (arbitrage opportunity), the price will adjust quickly through the market, and, 
+as consequence, arbitrage opportunities will be lost.
+Based on the idea above, economic theory often makes analysis by focusing on the economic environment (equilibrium) 
+after the arbitrage opportunity has been eliminated.
+```
+
+Usually, economic models are described by non linear systems, but if you 
+limit the analysis around $z_t = 0$ ($t > 0$), the non-stochastic equilibrium point $x^* = x_t = x_{t+1}$ 
+is known to be well approximated by a linear system[^Hartman]. 
+
+[^Hartman]:Hartman-Grobman theorem. 
+The necessary condition for this theorem to hold is that the equilibrium is hyperbolic.
+A non-hyperbolic system does not make sense as an approximation of a non-linear system. However, it is not necessary to make a special distinction for handling as a linear model. 
+
+The analysis of linear systems can be incorporated into the analysis of coefficients matrices, 
+so it is very easy to handle both theoretically and numerically. As consequence,
+The analytical method we learn from now is the **first step to analyze what kind of change in economic variables will occur when small shocks are added to the economic equilibrium**.
+In practice it is difficult to derive quantitative implications from only linear approximation, 
+so to make useful analysis it is necessary to learn higher order approximation techniques. However, 
+you cannot understand nonlinear theory without understanding linear theory. Let's go steadily step by step.
+
+### Deterministic model {#intro-deterministic}
+
+Actually, even if probabilistic factors disappear, the fundamental policy of analysis does not change. In other words, by establishing a method to analyze 
+non-stochastic (deterministic) system
+
+\begin{equation}
+  Ax_{t+1} = Bx_t + Cz_t (\#eq:lsys)
+\end{equation}
+
+you can make a simulation/analysis 
+of \@ref(eq:lre). First, after talking about analysis of \@ref(eq: lsys),
+let's proceed with theoretical analysis introducing probabilistic factors. 
+
+Furthermore, non-deterministic analysis will be described in several stages.
+
+1. $A$ is a regular case
+  - Analytical approach
+  - Numerical approach
+
+2. $A$ is an irregular case
+  - Analytical approach
+  - Numerical approach
+  
+In the case where $A$ is regular, since \@ref(eq: lsys) is equivalent to
+
+\begin{equation}
+  x_{t+1} = A^{-1}Bx_t + A^{-1}Cz_t (\#eq:lsys2)
+\end{equation}
+
+($A^{-1}$ is the inverse matrix of $A$),
+it is formally the same as a standard linear system (state space equation).
+
+
+Then, let's deal with $A$ as irregular case. 
+The above-mentioned \@ref(eq:lsys), in the field of control theory the subject is the descriptor system, also known as implicit system. 
+Those who are going to conduct research in this field should probably be aware that 
+the same concept is being used with different names in different fields.
+
+By the way, the descriptor system is used to represent a 「non-causal」 system. In other words, it is a system where information of the future influences the present.
+Is not it a story you have heard somewhere?
+In economics, "forward-looking" is called 
+non-causal in the control theory.
+
+### Difference from control theory {#intro-control-theory}
+
+Economics and control theory deal with slightly different subjects.
+In control theory, we deal with objects which are operating arbitrarily without introducing control variables. On the other hand, in economic theory, the control variable (eg. consumption) is a part of the elements constituting the model of the analysis target. As consequence, the economic model is designed to represent a forward-looking phenomenon even if $A$ is regular.
+
+In dynamic system theory and control theory, when dealing with a system like \@ref(eq: lsys), 
+we usually give as many initial conditions as $x$.
+In such a case, since it is possible to sequentially obtain the solution of the system starting from the initial condition, 
+there is no particular hardship in solving the solution. On the other hand, 
+the expression of forward-looking in economics is independent of the system equation \@ref(eq: lsys).
+That is, forward-looking is handled in such a manner that initial conditions are given to some elements of the variable (vector) $x$ 
+and no initial condition is given to the remaining elements.
+Components with initial conditions are called **predetermined component** or **predetermined variable**.
+Components without initial conditions are called 
+**non-predetermined component** or **non-predetermined variable**^[In models including probabilistic factors, 
+we make slightly different definitions, but basically they are the same thing.].
+
+For example, let's say that you have created a model where the share $a$, the price of the stock $p$, 
+the external influence on the stock price $u$, and the vector $(a, p)$ satisfy the following dynamic equation.
+
+$$
+\begin{bmatrix}
+  a_{t+1} \\
+  p_{t+1}
+\end{bmatrix}
+=
+B
+\begin{bmatrix}
+  a_{t} \\
+  p_{t}
+\end{bmatrix}
++
+\begin{bmatrix}
+  0 \\
+  u_{t}
+\end{bmatrix}
+$$
+
+In this case, $a_0$ is given as an initial value, but it is a matter of typical macroeconomics 
+that $p_0$ is determined based on expectations for $a_0 $ and $u$.
+
+### Stability and determinacy {#intro-stability-determinacy}
+
+Now, how can we solve a problem where initial condition is not given to some variables?
+Of course, we can not solve such problems unless we place any restrictions 
+on $a_1, a_2, \dots$, $p_0, p_1, \dots$.
+
+@BlanchardKahn1980 proposed the following conditions. 
+Economic agents do not act based on expectations that diverge at a speed faster than geometric series.
+In other words, if the initial value can be set to 1 as a result of excluding initial values that diverge faster than the geometric series, 
+that point is a unique balance. However, in general there are numerous routes that satisfy the 
+stability (non-geometric divergence) while satisfying the dynamic equation. We call the cases that 
+are unique **determinate**, and the non-determinate cases **indeterminate**. 
+
+
+
+### Rational expectations model {#intro-RE}
+
+Then we analyze the system \@ref(eq: lre). The shock term $z$ is a stochastic process, but if you understand the analysis of determinism, you can understand a little by merely learning the nature of conditional expectation. There is actually no essential difference from the deterministic system since determinity can be characterized using the same concept of stability as in the deterministic model.
+
+In these notes, we introduce a kind of development topic.
+
+### Markov switching model {#intro-MSRE}
+
+Next we extend to a model in which the coefficient matrix varies according to the Markov chain.With such an extension, it becomes impossible to use the same concept of stability that is used by the traditional rational expectation model. We introduce the stability concept of **Mean Square Stability** and characterize the determinity.
+
+## Programming environment {#intro-programing}
+
+### RStudio {#intro-rstudio}
+
+The linear model as described above can be solved in most programming languages (thanks to widely used C, Fortran routines). In these notes we use R because I assumed it is the programming languange the students are more familiar with. Usually in Econometrics class they use Stata, in Macroeconomics Matlab and in Mathematical Economics but I think it is good that beginners in programming will be proficient in one language. Even if you move to other languages in the future, those who have learned more deeply and narrower than those who have studied broadly and shallowly will learn quickly.
+
+
+R is also an excellent tool for Econometrics and has a community with many users. All steps of data collection, graphic, modeling, document creation can be executed with R and RStudio. In order to increase the opportunity to understand RStudio, let's switch feelings to create all the reports in RStudio. Write it in the format RMarkdown and compile it. Knitr and pandoc do the work smoothly. Install texlive to convert to PDF. The size is big but it is easy. To enter mathematical expressions, you need to learn the syntax of LaTeX, but since you could use it also after graduation, it will useful to learn it now. Compared to LaTeX itself, RMarkdown can be written almost naturally, and above all it is very easy to embed R code, calculation result, graph in sentences. By the way, I also wrote these notes in RStudio. A package named bookdown handles well several RMarkdown files and configuration files.
+
+If you are enough familiar with, you may feel that effort of profiling and limit of calculation speed are fictious. If this is the case, you should learn a little bit of C++. You can write C ++ code that handles only heavy processing and call it using RCpp package. When such a desire appears, and you understand the mechanism of the computer to a certain extent, I think that you can learn quickly C ++.
+
+Commentary on the code in these notes assumes that the reader is working with RStudio. Readers who have no experience in R programming may find it more confusing to build an environment similar to the one I did. In the remainder of this section, we will briefly explain how to use RStudio and create an environment.
+
+### Preparation {#intro-prepare}
+
+You can download and install easily the binary files of R and RStudio, so I will omit the details of the installation.
+
+Let's prepare the RStudio project file for learning this course. Start RStudio, from the menu select 「File > New Project...」and create a new project. You have severl choices on how to create it, but if there are any particular problems choose 「New Directory > Empty Project」. Enter the necessary input items. For example, let's set the project name `r project_name`. Under the specified directory, a new directory (folder) named `r project_name` and in it the file `r paste0(project_name, '.Rproj')` is created.
+
+When restarting your work, double-click `r paste0(project_name, '.Rproj')` and RStudio opens. The directory created earlier becomes the working directory. Immediately after creating the project you already moved to the working directory so you can proceed.
+
+```{block2, type="exercise"}
+Explain the following terms. If you can not explain, search them.
+
+- directory, folder
+- working directory / current directory
+- relative path
+- absolute path
+- console
+- script file
+
+```
+
+Execution of the command may be done by entering + Enter on the console, or by writing the command in a script file and executing it.
+
+#### Console {-}
+
+Look for an area where it is written Console. If you do not tamper with the settings,^[locale] you should see a display saying:
+
+[^locale]: The language of R's message may be different depending on the            OS language. I strongly recommend using it in English.     When encountering an unknown error, it is more likely to get information in English. Everyone should investigate how to change the locale.
+
+```
+R version 3.3.2 (2016-10-31) -- "Sincere Pumpkin Patch"
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin13.4.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+>
+```
+
+The last symbol 「>」is called 「prompt」. It means that you enter a command here. In these notes, even in the context of inputting to the console, executing it and checking the result, I don't show the prompt.
+
+The command you want to input and execute is displayed in a gray box like the following
+
+
+```{r}
+10 * 3
+```
+
+`[1] 30` is the result of execution, which means that the result of` 10 * 3` is `r 10 * 3`. There is no particular meaning about `##` at the beginning. `[1]` can be ignored for now. **Post the execution result of the previous command in the box with the white background placed immediately after the command**
+
+
+By omitting the prompt, there is an advantage that it can be executed by copying and pasting even for a command with multiple lines. Copy the whole code, paste it into the console, press Enter and you should see the results in the Plots pane.
+
+```{r, fig.cap="Execution of result '01-cobbdouglas-plot.R'"}
+# 01-cobbdouglas-plot.R
+
+A = 1.2
+alpha = 0.3
+cobbdouglas = function(k) {
+  return(A * k ^ alpha)
+}
+
+k = seq(0, 10, length.out=200)
+y = cobbdouglas(k)
+plot(k, y, type='l')
+```
+
+Contents following `#` are comments only for the programmer. As a promise of these notes, we write the file name when saving as a script in the comment of the first line of code chunk, and short caption for reference in the text.
+
+
+#### Script file {-}
+
+Let's make a directory to save the script file. When I look for the contents in the Files pane, I think I can find the `rpaste0(project_name,'.Rproj')` file. That is the highest level (root directory) of the project directory. If you can not find the file, please move the directory hierarchy and search for it. Since I was able to get away from where I was, I should be able to go back. If you can not return, exit RStudio and double-click .Rproj again to restart it.
+
+When the project's .Rpoj file is found, press the button "New Folder" to create a new directory named 「R」.
+
+**script** is a file of one or more commands. R can read the script file and execute it in order from the top. Working on the console is not suitable for entering code that spans multiple lines, so save it separately in the file
+
+There are several ways to create a new script file with RStudio.
+
+- RStudio Select "R Script" from the button at the top left corner (an addition mark on the white square) and click.
+- Go to 「File > New File > R Script」from the menu.
+- ***Press the keyboard shortcut Ctrl + Shift + N / Cmd + Shift + N***
+
+It would be very good to remember the last keyboard shortcut.
+When you press Cmd + Shit + N, the source pane opens with the name Untitled 1. Let's copy & paste the code of `01_cobbdouglas_plot.R` here. If you attempt to save by Ctrl + S / Cmd + S, you are prompted to decide the storage location and name, so place it in the folder called R created earlier under the name `01_cobbdouglas_plot.R`. 
+The project directory should have the following structure.[^hidden]
+
+[^hidden]: In fact there is a hidden directory called .Rproj.user.
+
+
+```
+linear-economic-dynamics
+├── R
+│   └── 01_cobbdouglas_plot.R
+└── linear-economic-dynamics.Rproj
+```
+To execute the script file `01_cobbdouglas_plot.R` in the subdirectory R in the working directory (linear-economic-dynamics), do as follows.
+
+```{r, eval=FALSE}
+source('R/01_cobbdouglas_plot.R')
+```
+
+The position of the file starting from the working directory is called **relative path**. When writing a file path in a script, be sure to specify it by a relative path unless it can not move due to unavoidable circumstances.
+
+
+You can also place the previous script file in a lower level subdirectory. For example, it is also possible to create a directory for each chapter
+
+
+```
+source('R/part1/chapter03/section04/subsection01/01.R')
+```
+However, if the hierarchy becomes too deep, it becomes difficult to manage, so let's keep it as flat as possible.In these notes, I applied the file name in the format 
+
+```
+R/chapternumber_descriptive_name.R
+```
+
+for all, and place it all right under the R directory.
+
+### Package
+
+#### tidyverse {-}
+
+In these notes, we use the package `tidyverse`. `Tidyverse` is a set of packages to facilitate R data frame manipulation. If you do not want to load functions beyond what you need, you can load `ggplot2`,` dplyr`, `tidyr` as needed.
+
+Let's try typing 
+
+```{r, include=FALSE}
+library(tidyverse)
+```
+
+at the prompt to try. If an error occurs, install it with the following command, and then re-execute
+
+```{r, eval=FALSE}
+install.packages("tidyverse")
+```
+
+I think that this message will come out
+
+```
+Loading tidyverse: ggplot2
+Loading tidyverse: tibble
+Loading tidyverse: tidyr
+Loading tidyverse: readr
+Loading tidyverse: purrr
+Loading tidyverse: dplyr
+Conflicts with tidy packages ---------------------------
+filter(): dplyr, stats
+lag():    dplyr, stats
+```
+Since `tidyverse` is a package group, its work is to read several individual packages. Conflicts may worry you, but there is no particular problem. Even though functions called filter(), lag() are loaded by default, the entities of `filter ()`, `lag ()` were changed by loading `dplyr` with the same name. If you want to use the default `filter ()` you can call `stats :: filter ()`. Prefixes such as `stats ::` and `dplyr ::` are used when you want to specify in which package the function or object is defined.
+
+In these notes, we use `tibble::tibble()` instead of `base::data.frame()`. The package `tibble` is included in `tidyverse`. Let's briefly look at the differences.
+
+```{r}
+x = c(1, 2, 3)
+y = c('a', 'b', 'c')
+z = c(TRUE, TRUE, FALSE)
+
+(df = data.frame(x = x, y = y, z = z))
+```
+
+```{r}
+(tbl = tibble(x = x, y = y, z = z))
+```
+
+Compared with the data frame of **base**, **tibble** is easy to handle in the following points.
+
+- It displays the size of the data
+- Display type information of a column (`<dbl>`, `<chr>`, `<lgl>`)
+- It does not make character string a factor type
+
+The factor type internally stores character strings as integer values. Taking this as a character string causes problems. For example
+
+```{r}
+"a" < "b"
+```
+
+but if you expect the same behavior as the following, the problem will arise if you make the following evaluation:
+
+```{r}
+df$y[1] < df$y[2]
+```
+
+#### QZ {-}
+
+Let's also install the `QZ` package in the same way. We will use it later. 
+
+```{r, eval=FALSE}
+install.packages("qz")
+```
+
+#### devtools {-}
+
+Development environment package. You can install packages from the github repository using `devtools :: github_install ()`.
+
+**Step 1**:
+
+Install the compiler.
+
+- **Windows**: Install [Rtools (https://cran.r-project.org/bin/windows/Rtools/)](https://cran.r-project.org/bin/windows/Rtools/) 
+- **Mac**: Install Xcode 
+
+**Step 2**:
+
+Install from CRAN
+
+```{r, eval=FALSE}
+install.packages("devtools")
+```
+
